@@ -10,7 +10,7 @@ const styles=StyleSheet.create({
     input: {
         height: 30,
         borderColor: Colors.accent,
-        borderBottomWidth: 1,
+        borderWidth: 1,
         marginVertical: 10
     }
 });
