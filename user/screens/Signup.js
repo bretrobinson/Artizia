@@ -7,8 +7,11 @@ import AuthForm from '../components/AuthForm'
 const Signup = ({navigation}) => {
     return (
         <View style={styles.container}>
-    <AuthForm />
-    <Button title='Go to Signin' onPress={()=>navigation.navigate('Signin')}/>
+    <AuthForm 
+    headerText='Sign up'
+    submitButtonText='Sign up'
+    onSubmit={()=>console.log('sign up email and password')}/>
+    <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')}/>
         </View>
     );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer"
 
 import {LandingStackNavigator, MainStackNavigator} from './StackNavigator'
-import { exp } from "react-native-reanimated";
+import Signup from '../../screens/Signup'
 
 const Drawer = createDrawerNavigator()
 
@@ -11,7 +11,7 @@ const DrawerNavigator = ()=> {
         <Drawer.Navigator>
             <Drawer.Screen name='Landing' component={ LandingStackNavigator} />
             <Drawer.Screen name= 'Signin' component={MainStackNavigator} />
-            <Drawer.Screen name= 'Signup' component={MainStackNavigator} />
+            <Drawer.Screen name = 'Signup' component={Signup} />
         </Drawer.Navigator>
 
     )

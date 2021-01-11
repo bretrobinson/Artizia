@@ -5,12 +5,15 @@ import {Button} from 'react-native-elements'
 import AuthForm from '../components/AuthForm'
 
 
-const Signin = () => {
+const Signin = ({navigation}) => {
     return (
         <View style={styles.container}>
+            
         <AuthForm 
-        headerText='Signin'/>
-        <Button title='Go to Signup' onPress={()=>navigation.navigate('Signup')}/>
+        headerText='Sign in'
+        submitButtonText ='Sign in'
+        onSubmit={()=>console.log('sign in email and password')}/>
+        <Button title='Go to Sign up' onPress={()=>navigation.navigate('Signup')}/>
             </View>
     );
 };
