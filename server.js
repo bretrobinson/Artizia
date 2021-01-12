@@ -1,11 +1,32 @@
 const express = require ('express')
 const bcrypt = require ('bcrypt')
+const mysql      = require('mysql');
 const jwt = require('jsonwebtoken')
 const requireAuth = require('./serverHanhlers/requireAuth')
+
+
+const db = mysql.createConnection({
+  host     : 'craftdbinstance.c0rix1pv1sam.us-west-2.rds.amazonaws.com',
+  user     : 'matrixroot',
+  password : 'RF8p8vlVP48glnvKNJGa',
+  aatabase: 'CraftDb'
+});
+
+db.connect((err)=> {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+  
+    console.log('connected as id ' + db.threadId);
+  });
+
 
 const app = express()
 
 app.use(express.json())
+
+
 
 const database = {
     users:[{
@@ -38,6 +59,16 @@ const requireAuthL = (req, res, next) => {
 app.get('/', requireAuthL, (req, res)=>{
     res.send(`Your email: ${req.user.email}`)
 })
+
+// Edit this to create Table and insert data
+// app.get('/createdb',  (req, res)=>{
+//     let sql = 'CREATE DATABASE CraftDb';
+//     db.query(sql, (err, result)=>{
+//         if (err) throw err;
+//         console.log(result)
+//         res.send('Database connected')
+//     })    
+// })
 
 app.post('/signup', (req, res)=>{
     const {password, email} = req.body
