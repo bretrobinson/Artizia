@@ -72,6 +72,7 @@ app.get('/', requireAuthL, (req, res)=>{
 
 app.post('/signup', (req, res)=>{
     const {password, email} = req.body
+    console.log(email, password)
     if (!email || !password){
         return res.status(422).send('incorrect form submission')
     }
@@ -94,14 +95,13 @@ app.post('/signup', (req, res)=>{
 
 app.post('/signin', (req, res)=>{
     const {password, email} = req.body
-    console.log(email, password)
+    
     if (!email || !password){
         return res.status(422).send('incorrect form submission')
     }
     let found = false 
     database.users.forEach((user,i)=>{
-        console.log(user.email)
-        if(user.email === email){
+         if(user.email === email){
             if(user.password == password){
                 
                 found = true

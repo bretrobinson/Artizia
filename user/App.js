@@ -5,15 +5,29 @@ import Landing from './screens/Landing';
 import Signup from './screens/Signup'
 import { NavigationContainer } from "@react-navigation/native";
 import DrawerNavigator from "./components/Navigation/DrawerNavigator";
+import {navigationRef} from './RootNavigation'
+import {Provider as AuthProvider} from './context/AuthContext'
 
-const App = () => {
+export default function App() {
   return (
-    <NavigationContainer>
-      <DrawerNavigator />
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer 
+        ref={navigationRef}
+        >
+        <DrawerNavigator />
+      </NavigationContainer>
+      </AuthProvider>
   );
 }
-export default App;
+
+// const App = () => {
+//   return (
+//     <NavigationContainer>
+//       <DrawerNavigator />
+//     </NavigationContainer>
+//   );
+// }
+// export default App;
 
 // export default function App() {
 //   return (

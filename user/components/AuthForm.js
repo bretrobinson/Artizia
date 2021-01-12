@@ -5,7 +5,7 @@ import {Input, Button, Text } from 'react-native-elements'
 const AuthForm = ({submitButtonText, headerText, onSubmit}) => {
     const [email, SetEmail] = useState('')
     const [password, setPassword] = useState ('')
-
+    
     return (
         <>
         <Text h3 >{headerText}</Text>
@@ -25,7 +25,7 @@ const AuthForm = ({submitButtonText, headerText, onSubmit}) => {
         />
         <Button 
         title={submitButtonText} 
-        onPress={onSubmit}
+        onPress={()=>onSubmit({email,password})}
         />
 
             
