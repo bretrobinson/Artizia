@@ -4,28 +4,29 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken')
 const requireAuth = require('./serverHanhlers/requireAuth')
 const itemRouter = require("./routes/Item");
+const ItemsReview=require("./routes/ItemReview.route");
 
-db = mysql.createConnection({
-    host: 'craftdbinstance.c0rix1pv1sam.us-west-2.rds.amazonaws.com',
-    user: 'matrixroot',
-    password: 'RF8p8vlVP48glnvKNJGa',
-    database: 'CraftDb'
-});
+const SellerReview=require("./routes/SellerReview.route");
+const db = require("./models/db.js");
+const app = express();
+
 
 db.connect((err)=> {
     if (err) {
-      console.error('error connecting: ' + err.stack);
+      console.error('error connecting db: ' + err.stack);
       return;
     }
   
     console.log('connected to db as id ' + db.threadId);
   });
 
-const app = express()
+
 
 app.use(express.json())
-
+require("./routes/ItemReview.route.js")(app);
+require("./routes/SellerReview.route.js")(app);
 app.use('/api/item', itemRouter);
+
 
 const database = {
     users:[{
