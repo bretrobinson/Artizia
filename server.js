@@ -1,15 +1,15 @@
 const express = require ('express')
 const bcrypt = require ('bcrypt')
-const mysql      = require('mysql');
+const mysql = require('mysql');
 const jwt = require('jsonwebtoken')
 const requireAuth = require('./serverHanhlers/requireAuth')
+const itemRouter = require("./routes/Item");
 
-
-const db = mysql.createConnection({
-  host     : 'craftdbinstance.c0rix1pv1sam.us-west-2.rds.amazonaws.com',
-  user     : 'matrixroot',
-  password : 'RF8p8vlVP48glnvKNJGa',
-  aatabase: 'CraftDb'
+db = mysql.createConnection({
+    host: 'craftdbinstance.c0rix1pv1sam.us-west-2.rds.amazonaws.com',
+    user: 'matrixroot',
+    password: 'RF8p8vlVP48glnvKNJGa',
+    database: 'CraftDb'
 });
 
 db.connect((err)=> {
@@ -18,15 +18,14 @@ db.connect((err)=> {
       return;
     }
   
-    console.log('connected as id ' + db.threadId);
+    console.log('connected to db as id ' + db.threadId);
   });
-
 
 const app = express()
 
 app.use(express.json())
 
-
+app.use('/api/item', itemRouter);
 
 const database = {
     users:[{
@@ -55,6 +54,12 @@ const requireAuthL = (req, res, next) => {
         next()
     })
 }
+
+app.get("/api", (req, res) => {
+    res.json({
+        message: 'Welcome to Craft Sell API'
+    });
+});
 
 app.get('/', requireAuthL, (req, res)=>{
     res.send(`Your email: ${req.user.email}`)
