@@ -2,8 +2,10 @@ const express = require ('express')
 const bcrypt = require ('bcrypt')
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken')
-const requireAuth = require('./serverHanhlers/requireAuth')
+const requireAuth = require('./serverHandlers/requireAuth')
 const itemRouter = require("./routes/Item");
+const signin = require('./serverHandlers/signin')
+const signup = require('./serverHandlers/signup')
 
 db = mysql.createConnection({
     host: 'craftdbinstance.c0rix1pv1sam.us-west-2.rds.amazonaws.com',
@@ -35,25 +37,7 @@ const database = {
         joined: new Date()
     }]
 }
-const requireAuthL = (req, res, next) => {
-    const {authorization} = req.headers
-    
-    if(!authorization) {
-        return res.status(401).send({error: 'You must be logged in'})
-    }
-    const token = authorization.replace('Bearer ', '' )
-    jwt.verify(token, 'MY_SECRETE_KEY', async (err, payload)=>{
-        if(err){
-            return res.status(401).send({error: 'You must be logged in'})
-        }
-        const {userId} = payload
-        
-        const user = await database.users.find(user => user.id=== userId)
-        req.user = user
-
-        next()
-    })
-}
+const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, database, jwt, next)}
 
 app.get("/api", (req, res) => {
     res.json({
@@ -61,7 +45,7 @@ app.get("/api", (req, res) => {
     });
 });
 
-app.get('/', requireAuthL, (req, res)=>{
+app.get('/', checkToken, (req, res)=>{
     res.send(`Your email: ${req.user.email}`)
 })
 
@@ -75,53 +59,9 @@ app.get('/', requireAuthL, (req, res)=>{
 //     })    
 // })
 
-app.post('/signup', (req, res)=>{
-    const {password, email} = req.body
-    console.log(email, password)
-    if (!email || !password){
-        return res.status(422).send('incorrect form submission')
-    }
-    try {
-        database.users.push({
-            id: `${database.users.length + 130}`,
-            email,
-            password,
-            joined: new Date()
-        })
-        const token = jwt.sign({userId: database.users[database.users.length-1].id}, 'MY_SECRETE_KEY')
-        // res.send(database.users[database.users.length-1])
-        res.send({id: database.users[database.users.length-1].id, token} )
+app.post('/signup', (req, res)=>{signup.handleSignup(req, res, database, jwt)})
+app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
-    } catch (err){
-        return res.status(422).send(err.message)
-    }
-    
-})
-
-app.post('/signin', (req, res)=>{
-    const {password, email} = req.body
-    
-    if (!email || !password){
-        return res.status(422).send('incorrect form submission')
-    }
-    let found = false 
-    database.users.forEach((user,i)=>{
-         if(user.email === email){
-            if(user.password == password){
-                
-                found = true
-                if (found){
-                    const token = jwt.sign({userId: database.users.id}, 'MY_SECRETE_KEY')
-                    res.status(200).send(token)
-                }
-            }
-        }
-    })
-    if(!found) {
-        res.status(422).send('incorrect form submission')
-    }
-    
-})
 
 app.listen(3000, ()=>{
     console.log('Listening on 3000')
