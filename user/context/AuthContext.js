@@ -1,6 +1,7 @@
 import createDataContext from './createDataContext'
 import {navigate} from '../RootNavigation'
 import craftserverApi from '../api/craftserver'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const authReducer = (state, action)=>{
     switch(action.type){
@@ -17,6 +18,7 @@ const signup = dispatch => async ({ email, password }) => {
 
     try {
         const response = await craftserverApi.post('/signup', {email, password})
+        await AsyncStorage.setItem('token', response.data.token)
         dispatch({type: 'signin', payload: response.data.token})
         navigate('Landing')
     } catch (err) {
@@ -28,6 +30,7 @@ const signin = dispatch => async ({ email, password }) => {
 
     try {
         const response = await craftserverApi.post('/signin', {email, password})
+        await AsyncStorage.setItem('token', response.data.token)
         dispatch({type: 'signin', payload: response.data.token})
         navigate('Landing')
     } catch (err) {
