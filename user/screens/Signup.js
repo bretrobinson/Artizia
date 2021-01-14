@@ -4,6 +4,7 @@ import {StyleSheet} from 'react-native'
 import {Button, Text ,Input} from 'react-native-elements'
 import AuthForm from '../components/AuthForm'
 import {Context as AuthContext} from '../context/AuthContext'
+import RadioButton2 from '../components/RadioButton2'
 
 
 const Signup = ({navigation}) => {
@@ -13,7 +14,7 @@ const Signup = ({navigation}) => {
     const [fName, SetFname] = useState('')
     const [lName, setLname] = useState('')
     const [location, setLocation] = useState('')
-    const [payment, setPayment] = useState('')
+    const [payment, setPayment] = useState('Email Transfer')
     
 
     return (
@@ -50,9 +51,11 @@ const Signup = ({navigation}) => {
             label='Password'
         />
 
+    <RadioButton2 value={payment} setValue={setPayment}/>
+
 <Button 
         title='Sign up' 
-        onPress={()=>signup({email, password, fName, lName, location})}
+        onPress={()=>signup({email, password, fName, lName, location, payment})}
         />
     <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')}/>
         </View>
@@ -62,7 +65,7 @@ const Signup = ({navigation}) => {
 const styles=StyleSheet.create({
     container: {
         marginTop 
-        : 150
+        : 100
     }
 })
 export default Signup;

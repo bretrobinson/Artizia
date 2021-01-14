@@ -14,10 +14,10 @@ const authReducer = (state, action)=>{
     }
 }
 
-const signup = dispatch => async ({ email, password, fName, lName, location }) => {
+const signup = dispatch => async ({ email, password, fName, lName, location , payment}) => {
 
     try {
-        const response = await craftserverApi.post('/signup', {email, password, fName, lName, location})
+        const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment})
         await AsyncStorage.setItem('token', response.data.token)
         
         dispatch({type: 'signin', payload: response.data.token})

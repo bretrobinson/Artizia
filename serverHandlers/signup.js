@@ -1,7 +1,7 @@
 const handleSignup = (req, res, database, jwt)=>{
 
-    const {password, email,fName, lName, location} = req.body
-    console.log(email, password,fName, lName, location)
+    const {password, email,fName, lName, location, payment} = req.body
+    console.log(email, password,fName, lName, location, payment)
     if (!email || !password){
         return res.status(422).send('incorrect form submission')
     }
@@ -19,8 +19,8 @@ const handleSignup = (req, res, database, jwt)=>{
             joined: new Date(),
             fName,
             lName,
-            location
-            
+            location,
+            payment
         })
         const token = jwt.sign({userId: database.login[database.login.length-1].id}, 'MY_SECRETE_KEY')
         // res.send(database.login[database.login.length-1])
