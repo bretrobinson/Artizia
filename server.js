@@ -31,11 +31,17 @@ app.use('/api/item', itemRouter);
 
 
 const database = {
+    login:[{
+        id: '120',
+        email: 'sally@gmail.com',
+        password: '1234',
+         }],
     users:[{
         id: '120',
         email: 'sally@gmail.com',
         password: '1234',
-        joined: new Date()
+        joined: new Date(),
+        location:''
     }]
 }
 const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, database, jwt, next)}

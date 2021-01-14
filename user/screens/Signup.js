@@ -8,6 +8,8 @@ import {Context as AuthContext} from '../context/AuthContext'
 
 const Signup = ({navigation}) => {
     const{ signup} = useContext(AuthContext)
+    const [email, SetEmail] = useState('')
+    const [password, setPassword] = useState ('')
     const [fName, SetFname] = useState('')
     const [lName, setLname] = useState('')
     const [location, setLocation] = useState('')
@@ -29,13 +31,29 @@ const Signup = ({navigation}) => {
         onChangeText={setLocation}
         autoCorrect={false}
         label='Postal Code' />
-    <AuthForm 
+    {/* <AuthForm 
     submitButtonText='Sign up'
-    onSubmit={signup}/>
+    onSubmit={signup}/> */}
 
+<Input value={email} 
+            onChangeText={SetEmail}
+            autoCapitalize='none'
+            autoCorrect={false}
+            label='Email'
+        />
 
+        <Input value={password} 
+        onChangeText={setPassword}
+        secureTextEntry
+            autoCapitalize='none'
+            autoCorrect={false}
+            label='Password'
+        />
 
-
+<Button 
+        title='Sign up' 
+        onPress={()=>signup({email, password, fName, lName, location})}
+        />
     <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')}/>
         </View>
     );
