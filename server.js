@@ -3,10 +3,11 @@ const bcrypt = require ('bcrypt')
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken')
 const requireAuth = require('./serverHandlers/requireAuth')
-const itemRouter = require("./routes/Item");
-const ItemsReview=require("./routes/ItemReview.route");
 
+const ItemsReview=require("./routes/ItemReview.route");
 const SellerReview=require("./routes/SellerReview.route");
+const ItemRoute=require('./routes/Item.route')
+
 const db = require("./models/db.js");
 const app = express();
 const signin = require('./serverHandlers/signin')
@@ -22,13 +23,11 @@ db.connect((err)=> {
     console.log('connected to db as id ' + db.threadId);
   });
 
-
-
 app.use(express.json())
+
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
-app.use('/api/item', itemRouter);
-
+require('./routes/Item.route.js')(app);
 
 const database = {
     login:[{

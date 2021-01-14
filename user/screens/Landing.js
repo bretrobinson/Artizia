@@ -20,9 +20,9 @@ const Landing = () => {
                 numberOfMostRecentItems: 3
         }
 
-        Api.get(`/api/item/mostRecentItemsInCategories/${searchTerm}/3`)
+        Api.get(`/api/mostRecentItemsByCategoryMatchingSearchTerm/${searchTerm}/3`)
         .then(response => {
-            setMostRecentItemsForEachCategoryMatchingSearchFilter(response.data.data);
+            setMostRecentItemsForEachCategoryMatchingSearchFilter(response.data);
         })
         .catch(err => console.log(err)
         );
