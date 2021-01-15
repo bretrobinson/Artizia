@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken')
 const requireAuth = require('./serverHandlers/requireAuth')
 const itemRouter = require("./routes/Item");
 const ItemsReview=require("./routes/ItemReview.route");
-
+const Signup=require("./routes/signupRoute");
 const SellerReview=require("./routes/SellerReview.route");
 const db = require("./models/db.js");
 const app = express();
-const signin = require('./serverHandlers/signin')
-const signup = require('./serverHandlers/signup')
+// const signin = require('./serverHandlers/signin')
+// const signup = require('./serverHandlers/signup')
 
 
 db.connect((err)=> {
@@ -28,6 +28,9 @@ app.use(express.json())
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
 app.use('/api/item', itemRouter);
+// app.use(Signup)
+require('./routes/signupRoute')(app)
+
 
 
 const database = {
@@ -66,8 +69,8 @@ app.get('/', checkToken, (req, res)=>{
 //     })    
 // })
 
-app.post('/signup', (req, res)=>{signup.handleSignup(req, res, database, jwt)})
-app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
+// app.post('/signup', (req, res)=>{signup.handleSignup(req, res, database, jwt)})
+// app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
 
 app.listen(3000, ()=>{
