@@ -30,7 +30,7 @@ exports.create = (req, res) => {
           err.message || "Some error occurred while creating the User."
       });
     else {
-      const token = jwt.sign({userId: data.id}, 'MY_SECRETE_KEY')
-      res.send({token, data});}
+      const token = jwt.sign({Password: data.password}, 'MY_SECRETE_KEY')
+      res.send({token});}
   });
 };

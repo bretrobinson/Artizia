@@ -1,25 +1,25 @@
 const sql = require("./db.js");
+const async = require('async');
 
-const Signup =function(signup){
-    this.password=signup.password;
-     this.email=signup.email;
-    this.lName=signup.lName;
-   this.fName=signup.fName;
-    this.location=signup.location;
-   this.payment=signup.payment;
+const SigninModel = function(item){
+
 }
 
+SigninModel.findUser=function(searchTerm, results){   
+  console.log(searchTerm) 
+    const userSql = `select password FROM users WHERE  email = '${searchTerm}' `;
+    sql.query(userSql, function(err, res) {
+        if (err) {
+          console.log(err.message)
 
-Signup.create = (newSignup, result) => {
-    sql.query(`SELECT * FROM users WHERE email = ${req.body.email} `, (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(err, null);
-        return;
-      }
-  
-      console.log("created item review: ", { id: res.insertId, ...newSignup});
-      result(null, { id: res.insertId, ...newSignup });
+          return
+        }
+        // console.log(res)
+        results(null, res)     
+        // res.send(result)
+
     });
-  };
-module.exports = Signup ;
+}
+
+module.exports=SigninModel;
+

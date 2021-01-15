@@ -1,5 +1,12 @@
 module.exports = app => {
-    const signup = require("../controllers/signupController");
-// Create a new User
-app.post("/signin", signin.create);
+    const signin = require("../controllers/signinContoller");
+// Find User
+app.post("/signin", signin.findUser);
 }; 
+
+// module.exports = app => {
+//     const item = require("../controllers/item.controller.js");
+
+//     // Find categories that match search term
+//     app.get("/api/mostRecentItemsByCategoryMatchingSearchTerm/:searchTerm/:numberOfMostRecentItems", item.findMostRecentItemsByCategoryMatchingSearchTerm);
+// }; 
