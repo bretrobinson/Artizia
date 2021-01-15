@@ -3,10 +3,8 @@ const bcrypt = require ('bcrypt')
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken')
 const requireAuth = require('./serverHandlers/requireAuth')
-const itemRouter = require("./routes/Item");
-const ItemsReview=require("./routes/ItemReview.route");
-const Signup=require("./routes/signupRoute");
 
+const Signup=require("./routes/signupRoute");
 const ItemsReview=require("./routes/ItemReview.route");
 const SellerReview=require("./routes/SellerReview.route");
 const ItemRoute=require('./routes/Item.route')
@@ -30,12 +28,9 @@ app.use(express.json())
 
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
-app.use('/api/item', itemRouter);
 // app.use(Signup)
 require('./routes/signupRoute')(app)
-
-
-require('./routes/Item.route.js')(app);
+require('./routes/Item.route')(app);
 
 const database = {
     login:[{
