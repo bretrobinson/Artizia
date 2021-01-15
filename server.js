@@ -30,15 +30,12 @@ app.use(express.json())
 
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
-<<<<<<< HEAD
 app.use('/api/item', itemRouter);
 // app.use(Signup)
 require('./routes/signupRoute')(app)
 
 
-=======
 require('./routes/Item.route.js')(app);
->>>>>>> 464372ac447ef1b148699ef728d7a3ee56ba2e3a
 
 const database = {
     login:[{
