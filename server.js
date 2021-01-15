@@ -6,7 +6,11 @@ const requireAuth = require('./serverHandlers/requireAuth')
 const itemRouter = require("./routes/Item");
 const ItemsReview=require("./routes/ItemReview.route");
 const Signup=require("./routes/signupRoute");
+
+const ItemsReview=require("./routes/ItemReview.route");
 const SellerReview=require("./routes/SellerReview.route");
+const ItemRoute=require('./routes/Item.route')
+
 const db = require("./models/db.js");
 const app = express();
 // const signin = require('./serverHandlers/signin')
@@ -22,16 +26,19 @@ db.connect((err)=> {
     console.log('connected to db as id ' + db.threadId);
   });
 
-
-
 app.use(express.json())
+
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
+<<<<<<< HEAD
 app.use('/api/item', itemRouter);
 // app.use(Signup)
 require('./routes/signupRoute')(app)
 
 
+=======
+require('./routes/Item.route.js')(app);
+>>>>>>> 464372ac447ef1b148699ef728d7a3ee56ba2e3a
 
 const database = {
     login:[{
