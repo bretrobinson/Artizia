@@ -1,8 +1,8 @@
 const express = require ('express')
-const bcrypt = require ('bcrypt')
-const mysql = require('mysql');
-const jwt = require('jsonwebtoken')
-const requireAuth = require('./serverHandlers/requireAuth')
+// const bcrypt = require ('bcrypt')
+// const mysql = require('mysql');
+// const jwt = require('jsonwebtoken')
+const requireAuth = require('./routes/requireAuthRoute')
 
 const Signup=require("./routes/signupRoute");
 const ItemsReview=require("./routes/ItemReview.route");
@@ -32,21 +32,21 @@ require("./routes/SellerReview.route.js")(app);
 require('./routes/signupRoute')(app)
 require('./routes/Item.route')(app);
 require('./routes/signinRoute')(app)
-const database = {
-    login:[{
-        id: '120',
-        email: 'sally@gmail.com',
-        password: '1234',
-         }],
-    users:[{
-        id: '120',
-        email: 'sally@gmail.com',
-        password: '1234',
-        joined: new Date(),
-        location:''
-    }]
-}
-const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, database, jwt, next)}
+// const database = {
+//     login:[{
+//         id: '120',
+//         email: 'sally@gmail.com',
+//         password: '1234',
+//          }],
+//     users:[{
+//         id: '120',
+//         email: 'sally@gmail.com',
+//         password: '1234',
+//         joined: new Date(),
+//         location:''
+//     }]
+// }
+// const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
 
 app.get("/api", (req, res) => {
     res.json({
@@ -54,8 +54,8 @@ app.get("/api", (req, res) => {
     });
 });
 
-app.get('/', checkToken, (req, res)=>{
-    res.send(`Your email: ${req.user.email}`)
+app.get('/', requireAuth, (req, res)=>{
+    res.send(req.data)
 })
 
 // Edit this to create Table and insert data

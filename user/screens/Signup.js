@@ -19,7 +19,7 @@ const Signup = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-    <Text h3 >Sign up</Text>
+    <Text h3 style={styles.signup} >Sign up</Text>
     <Input value ={fName}
             onChangeText={SetFname}
             autoCorrect={false}
@@ -57,15 +57,22 @@ const Signup = ({navigation}) => {
         title='Sign up' 
         onPress={()=>signup({email, password, fName, lName, location, payment})}
         />
-    <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')}/>
+    <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')} style={styles.goto}/>
         </View>
     );
 };
 
 const styles=StyleSheet.create({
     container: {
-        marginTop 
-        : 100
+        marginTop : 0,
+        marginHorizontal: 10
+    },
+    signup: {
+        marginVertical: 20
+    },
+    goto:{
+        marginVertical: 40
     }
+
 })
 export default Signup;

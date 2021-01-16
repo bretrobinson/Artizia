@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const salt = bcrypt.genSaltSync(10);
 
 const SigninModel = require("../models/signinModel.js");
 // const ItemModel= require("../models/item.model.js");
@@ -28,14 +30,16 @@ exports.findUser = (req, res) => {
           err.message || "Incorrect "
       })
     } if(data.length>0){
-      if(req.body.password === data[0].password){
-        found = true
+      // if(req.body.password === data[0].password)
+      const isFound = bcrypt.compareSync(req.body.password, data[0].password);
+        found = isFound
+        console.log(data[0].password)
           if(found){
-            const token = jwt.sign({userPassword: data[0].password}, 'MY_SECRETE_KEY')
+            const token = jwt.sign({userId: data[0].idusers}, 'MY_SECRETE_KEY')
       
-            res.send({data,token});
+            res.send({token});
           }       
-      } 
+      
  
           }
           if(!found){
