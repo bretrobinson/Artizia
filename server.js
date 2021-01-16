@@ -4,9 +4,6 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken')
 const requireAuth = require('./serverHandlers/requireAuth')
 const itemRouter = require("./routes/Item");
-const ItemsReview=require("./routes/ItemReview.route");
-
-const SellerReview=require("./routes/SellerReview.route");
 const db = require("./models/db.js");
 const app = express();
 const signin = require('./serverHandlers/signin')
