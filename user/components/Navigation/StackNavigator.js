@@ -41,7 +41,7 @@ const MainStackNavigator = ({navigation}) => {
   const ReviewSellerStackNavigator = ({navigation}) => {
     return (
       <Stack.Navigator >
-        <Stack.Screen name="ReviewSeller" component={ReviewSeller}
+        <Stack.Screen name="Review Seller" component={ReviewSeller}
         options={{
           headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
         }} />

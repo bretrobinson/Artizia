@@ -1,20 +1,27 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import ItemReview from '../components/ReviewComponents/ItemReview'
-
-
-
-const ReviewSellerScreen = () => {
-    return (
-        <View style={styles.container}>
-            <ItemReview/>
+import { View } from 'react-native';
+import { StyleSheet, ScrollView, Button } from 'react-native';
+import ItemReview from '../components/Review.components/ItemReview.component';
+import SellerReview from '../components/Review.components/SellerReview.component';
+const ReviewSellerScreen = props => {
+  return (
+    <ScrollView>
+      <View>
+        <SellerReview />
+        <ItemReview />
+        <View >
+          <Button  title='Save' onPress={() => console.log} />
         </View>
-    );
-};
-const styles= StyleSheet.create({
-    container: {
-        marginTop: 200
-    }
-})
+      </View>
+    </ScrollView>
+  )
 
+  const styles = StyleSheet.create({
+    buttonContainer: {
+      borderWidth: '10%',
+      width:"50%"
+    }
+
+  });
+}
 export default ReviewSellerScreen;
