@@ -20,14 +20,28 @@ exports.findUser = (req, res) => {
 
    // Find most recent items matching search term
    SigninModel.findUser(req.body.email, (err, data) => {
-        if (err)
+     console.log(data.length)
+     let found = false
+        if (err){
       res.status(500).send({
         message:
-          err.message || "Some error occurred while finding most recent items by category matching search term."
-      });
-    else {
-      const token = jwt.sign({userPassword: data[0].password}, 'MY_SECRETE_KEY')
+          err.message || "Incorrect "
+      })
+    } if(data.length>0){
+      if(req.body.password === data[0].password){
+        found = true
+          if(found){
+            const token = jwt.sign({userPassword: data[0].password}, 'MY_SECRETE_KEY')
       
-      res.send({token});}
-  });
+            res.send({data,token});
+          }       
+      } 
+ 
+          }
+          if(!found){
+            res.send('incorrect credintial')
+          }
+          
+        }
+  );
 };
