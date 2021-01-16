@@ -31,7 +31,7 @@ const Signin = ({navigation}) => {
         />
 
 <Button 
-        title= 'Signi in' 
+        title= 'Sign in' 
         onPress={()=>signin({email,password})}
         />
         <Button title='Go to Sign up' onPress={()=>navigation.navigate('Signup')}/>

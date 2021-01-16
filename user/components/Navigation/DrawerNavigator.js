@@ -1,9 +1,9 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer"
 
-import {LandingStackNavigator, MainStackNavigator} from './StackNavigator'
+import {LandingStackNavigator, MainStackNavigator, ReviewSellerStackNavigator} from './StackNavigator'
 import Signup from '../../screens/Signup'
-import ReviewSellerScreen from '../../screens/ReviewSellerScreen'
+// import ReviewSellerScreen from '../../screens/ReviewSellerScreen'
 
 const Drawer = createDrawerNavigator()
 
@@ -16,7 +16,7 @@ const DrawerNavigator = ()=> {
                     options={{
                         headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
                       }}/>
-            <Drawer.Screen name= 'ReviewSeller' component={ReviewSellerScreen}
+            <Drawer.Screen name= 'ReviewSeller' component={ReviewSellerStackNavigator}
             options={{
                 headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
               }} />
