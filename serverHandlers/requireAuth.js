@@ -11,7 +11,7 @@ const handleAuth = (req, res,  database, jwt, next)=>{
         }
         const {userId} = payload
         
-        const user = await database.users.find(user => user.id=== userId)
+        const user = await database.login.find(user => user.id=== userId)
         req.user = user
 
         next()

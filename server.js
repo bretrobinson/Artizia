@@ -3,11 +3,16 @@ const bcrypt = require ('bcrypt')
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken')
 const requireAuth = require('./serverHandlers/requireAuth')
-const itemRouter = require("./routes/Item");
+
+const Signup=require("./routes/signupRoute");
+const ItemsReview=require("./routes/ItemReview.route");
+const SellerReview=require("./routes/SellerReview.route");
+const ItemRoute=require('./routes/Item.route')
+
 const db = require("./models/db.js");
 const app = express();
-const signin = require('./serverHandlers/signin')
-const signup = require('./serverHandlers/signup')
+// const signin = require('./serverHandlers/signin')
+// const signup = require('./serverHandlers/signup')
 
 
 db.connect((err)=> {
@@ -19,20 +24,26 @@ db.connect((err)=> {
     console.log('connected to db as id ' + db.threadId);
   });
 
-
-
 app.use(express.json())
+
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
-app.use('/api/item', itemRouter);
-
-
+// app.use(Signup)
+require('./routes/signupRoute')(app)
+require('./routes/Item.route')(app);
+require('./routes/signinRoute')(app)
 const database = {
+    login:[{
+        id: '120',
+        email: 'sally@gmail.com',
+        password: '1234',
+         }],
     users:[{
         id: '120',
         email: 'sally@gmail.com',
         password: '1234',
-        joined: new Date()
+        joined: new Date(),
+        location:''
     }]
 }
 const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, database, jwt, next)}
@@ -57,8 +68,8 @@ app.get('/', checkToken, (req, res)=>{
 //     })    
 // })
 
-app.post('/signup', (req, res)=>{signup.handleSignup(req, res, database, jwt)})
-app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
+// app.post('/signup', (req, res)=>{signup.handleSignup(req, res, database, jwt)})
+// app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
 
 app.listen(3000, ()=>{
