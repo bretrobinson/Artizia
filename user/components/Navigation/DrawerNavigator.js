@@ -13,9 +13,8 @@ const DrawerNavigator = ()=> {
     return (
         <Drawer.Navigator >
             <Drawer.Screen name='Landing' component={ LandingStackNavigator} />
-           
             <Drawer.Screen name= 'Signin' component={MainStackNavigator} />
-             <Drawer.Screen name = 'Signup' component={Signup} 
+            <Drawer.Screen name = 'Signup' component={Signup} 
                     options={{
                         headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
                       }}/>
