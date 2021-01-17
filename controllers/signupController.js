@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const salt = bcrypt.genSaltSync(10);
 
 const Signup = require("../models/signupModel.js");
 // Create and Save a new User
@@ -11,9 +13,14 @@ exports.create = (req, res) => {
       message: "Content can not be empty!"
     });
   }
+
+  const hash = bcrypt.hashSync(req.body.password, salt);
+
+  console.log(hash)
   // Create a User
   const signup = new  Signup({
-    password:req.body.password,
+    
+    password:hash,
     email:req.body.email,
     lName:req.body.lName,
     fName:req.body.fName,
@@ -30,7 +37,7 @@ exports.create = (req, res) => {
           err.message || "Some error occurred while creating the User."
       });
     else {
-      const token = jwt.sign({Password: data.password}, 'MY_SECRETE_KEY')
-      res.send({token});}
+      const token = jwt.sign({userId: data.idusers}, 'MY_SECRETE_KEY')
+      res.send({data, token});}
   });
 };
