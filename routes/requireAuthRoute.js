@@ -1,5 +1,6 @@
 const db = require("../models/db");
 const jwt = require('jsonwebtoken')
+const dbConfig = require("../config/db.config.js");
 
 
 module.exports = (req, res, next)=>{
@@ -9,7 +10,7 @@ module.exports = (req, res, next)=>{
         return res.status(401).send({error: 'You must be logged in'})
     }
     const token = authorization.replace('Bearer ', '' )
-    jwt.verify(token, 'MY_SECRETE_KEY', async (err, payload)=>{
+    jwt.verify(token, dbConfig.jwt, async (err, payload)=>{
         if(err){
             return res.status(401).send({error: 'You must be logged in'})
         }
@@ -23,7 +24,7 @@ module.exports = (req, res, next)=>{
              }
             // const user = await database.login.find(user => user.id=== userId)
             // console.log(result)
-        req.data = result[0]
+        req.user = result[0]
 
         next()
     

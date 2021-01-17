@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const dbConfig = require("../config/db.config.js");
 const bcrypt = require('bcrypt')
 const salt = bcrypt.genSaltSync(10);
 
@@ -16,7 +17,7 @@ exports.create = (req, res) => {
 
   const hash = bcrypt.hashSync(req.body.password, salt);
 
-  console.log(hash)
+  // console.log(hash)
   // Create a User
   const signup = new  Signup({
     
@@ -26,7 +27,8 @@ exports.create = (req, res) => {
     fName:req.body.fName,
     location:req.body.location,
     payment:req.body.payment,
-    
+    joined: new Date(),
+    status: 'Active'
   
   });
    // Save item review in the database
@@ -37,7 +39,7 @@ exports.create = (req, res) => {
           err.message || "Some error occurred while creating the User."
       });
     else {
-      const token = jwt.sign({userId: data.idusers}, 'MY_SECRETE_KEY')
+      const token = jwt.sign({userId: data.idusers}, dbConfig.jwt)
       res.send({data, token});}
   });
 };

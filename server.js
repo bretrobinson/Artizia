@@ -55,7 +55,7 @@ app.get("/api", (req, res) => {
 });
 
 app.get('/', requireAuth, (req, res)=>{
-    res.send(req.data)
+    res.send(req.user)
 })
 
 // Edit this to create Table and insert data

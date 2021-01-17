@@ -9,6 +9,8 @@ const Signup =function(signup ){
    this.fName=signup.fName;
     this.location=signup.location;
    this.payment=signup.payment;
+   this.joined=signup.joined
+   this.status=signup.status
 
 }
 
