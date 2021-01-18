@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
+
 const ratingCompleted = (rating) => {
   console.log("Rating is: " + rating)
 }

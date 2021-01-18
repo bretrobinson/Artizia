@@ -2,18 +2,31 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import DrawerNavigator from "./components/Navigation/DrawerNavigator";
-import {navigationRef} from './RootNavigation'
-import {Provider as AuthProvider} from './context/AuthContext'
+import { navigationRef } from './RootNavigation';
+import { Provider as AuthProvider } from './context/AuthContext';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import reviewSellerReducer from './store/reducers/ReviewSeller';
 
+
+const rootReducer = combineReducers({
+  reviewseller: reviewSellerReducer
+
+});
+
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 export default function App() {
   return (
     <AuthProvider>
-      <NavigationContainer 
-        ref={navigationRef}
+      <Provider store={store}>
+        <NavigationContainer
+          ref={navigationRef}
         >
-        <DrawerNavigator />
-      </NavigationContainer>
-      </AuthProvider>
+          <DrawerNavigator />
+        </NavigationContainer>
+      </Provider>
+    </AuthProvider>
   );
 }
 
