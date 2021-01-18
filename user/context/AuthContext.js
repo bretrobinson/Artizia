@@ -24,7 +24,7 @@ const signup = dispatch => async ({ email, password, fName, lName, location , pa
 
     try {
         if (email.length <1 || password.length<1){
-            dispatch({type: 'add_error', payload: 'Enter email and password'})
+            dispatch({type: 'add_error', payload: 'Enter email and password to go to signin'})
         } else {
             const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment})
             await AsyncStorage.setItem('token', response.data.token)
@@ -42,7 +42,7 @@ const signin = dispatch => async ({ email, password }) => {
 
     try {
         if (email.length <1 || password.length<1){
-            dispatch({type: 'add_error', payload: 'Enter email and password'})
+            dispatch({type: 'add_error', payload: 'Enter email and password or goto signup'})
         } else{
             const response = await craftserverApi.post('/signin', {email, password})
             // console.log(response.data)

@@ -29,6 +29,7 @@ const Signin = ({navigation}) => {
             autoCorrect={false}
             label='Email'
             placeholder='name@email.com'
+            placeholderTextColor='rgb(51, 153, 255)'
 
         />
 
@@ -38,9 +39,11 @@ const Signin = ({navigation}) => {
             autoCapitalize='none'
             autoCorrect={false}
             label='Password'
+            placeholder='password'
+            placeholderTextColor='rgb(51, 153, 255)'
         />
 
-{errorMessage ? <Text >{errorMessage}</Text> : null}
+{errorMessage ? <Text style={styles.error} >{errorMessage}</Text> : null}
 
 <Button 
         title= 'Sign in' 
@@ -61,6 +64,11 @@ const styles=StyleSheet.create({
     },
     goto:{
         marginVertical: 40
+    },
+    error: {
+        textAlign: 'center',
+        color: 'red',
+        marginBottom: 10
     }
 
 })
