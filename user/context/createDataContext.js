@@ -8,7 +8,7 @@ export default (reducer, actions, defaultValue)=>{
 
         const boundAction = {}
 
-        for (key in actions) {
+        for (let key in actions) {
             boundAction[key] = actions[key](dispatch)
         }
         return (

@@ -1,11 +1,13 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import {Feather} from '@expo/vector-icons'
-
+import Profile from '../../screens/Profile'
 import Landing from '../../screens/Landing'
 import Signup from '../../screens/Signup'
 import Signin from '../../screens/Signin'
 import ReviewSeller from '../../screens/ReviewSellerScreen'
+import CreateStackNavigator from './createStackNavigator'
+import AddItem from '../../screens/AddItemScreen'
 
 
 const Stack = createStackNavigator();
@@ -40,13 +42,26 @@ const MainStackNavigator = ({navigation}) => {
 
   const ReviewSellerStackNavigator = ({navigation}) => {
     return (
-      <Stack.Navigator >
-        <Stack.Screen name="Review Seller" component={ReviewSeller}
-        options={{
-          headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
-        }} />
-      </Stack.Navigator>
+      <CreateStackNavigator navigation={navigation} name="Review Seller" component={ReviewSeller} />
+      // <Stack.Navigator >
+      //   <Stack.Screen name="Review Seller" component={ReviewSeller}
+      //   options={{
+      //     headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
+      //   }} />
+      // </Stack.Navigator>
     );
   }
+  const ProfileStackNavigator = ({navigation}) => {
+    return (
+<CreateStackNavigator navigation={navigation} name="Profile" component={Profile} />
+    );
+  }
+  const AddItemStackNavigator = ({navigation}) => {
+    return (
+<CreateStackNavigator navigation={navigation} name="Add Item" component={AddItem} />
+    );
+  }
+
   
-  export { MainStackNavigator, LandingStackNavigator, ReviewSellerStackNavigator };
+  
+  export { MainStackNavigator, LandingStackNavigator, ReviewSellerStackNavigator, ProfileStackNavigator, AddItemStackNavigator };

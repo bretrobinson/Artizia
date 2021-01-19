@@ -1,5 +1,5 @@
 const express = require ('express')
-// const bcrypt = require ('bcrypt')
+const cors = require ('cors')
 // const mysql = require('mysql');
 // const jwt = require('jsonwebtoken')
 const requireAuth = require('./routes/requireAuthRoute')
@@ -11,7 +11,7 @@ const ItemRoute=require('./routes/Item.route')
 
 const db = require("./models/db.js");
 const app = express();
-// const signin = require('./serverHandlers/signin')
+app.use(cors())
 // const signup = require('./serverHandlers/signup')
 
 
@@ -58,10 +58,11 @@ app.get('/', requireAuth, (req, res)=>{
     res.send(req.user)
 })
 
-// Edit this to create Table and insert data
-// app.get('/createdb',  (req, res)=>{
-//     let sql = 'CREATE DATABASE CraftDb';
-//     db.query(sql, (err, result)=>{
+app.post('/announcement', (req, res)=>{
+    console.log(req.body.announcement)
+    res.send({message:`${req.body.announcement}`})
+})
+    // db.query(sql, (err, result)=>{
 //         if (err) throw err;
 //         console.log(result)
 //         res.send('Database connected')
@@ -72,6 +73,6 @@ app.get('/', requireAuth, (req, res)=>{
 // app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
 
-app.listen(3000, ()=>{
-    console.log('Listening on 3000')
+app.listen(4000, ()=>{
+    console.log('Listening on 4000')
 })

@@ -8,7 +8,7 @@ const SigninModel = require("../models/signinModel.js");
 
 exports.findUser = (req, res) => {
   const {email, password} = req.body
-   console.log(req.body)
+  
   // Validate request
  
   // Create a user model
@@ -30,7 +30,7 @@ exports.findUser = (req, res) => {
       // if(password === data[0].password)
       const isFound = bcrypt.compareSync(password, data[0].password);
         found = isFound
-       console.log(data[0])
+      //  console.log(data[0])
           if(found){
             const token = jwt.sign({userId: data[0].idusers}, dbConfig.jwt)
       

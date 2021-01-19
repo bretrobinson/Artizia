@@ -7,16 +7,23 @@ const RadioButton2 = ({value, setValue}) => {
 
   return (
     <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
-      <Text>Payment Method</Text>
+      <Text style={styles.text} >Payment Method</Text>
       <View style={styles.container}>
       <RadioButton.Item label="Email Transfer" value="Email Transfer" />
       <RadioButton.Item label="Pay Pal" value="payPal" />
       </View>
     </RadioButton.Group>
-  );S
+  );
 }
 const styles = StyleSheet.create({
   container : {
     marginHorizontal: 60
-  }})
+  },
+  text: {
+    fontSize:16,
+    marginLeft: 10,
+    fontWeight:'bold',
+    color: 'rgb(150,150,150)'
+  }
+})
 export default RadioButton2;

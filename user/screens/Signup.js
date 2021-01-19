@@ -1,7 +1,7 @@
 import React, {useState,useContext, useCallback} from 'react';
 import { View } from 'react-native';
-import {StyleSheet} from 'react-native'
-import {Button, Text ,Input} from 'react-native-elements'
+import {StyleSheet,ScrollView, KeyboardAvoidingView, SafeAreaView} from 'react-native'
+import {Button, Text ,Input, colors} from 'react-native-elements'
 import AuthForm from '../components/AuthForm'
 import {Context as AuthContext} from '../context/AuthContext'
 import RadioButton2 from '../components/RadioButton2'
@@ -25,6 +25,9 @@ const Signup = ({navigation}) => {
     
 
     return (
+        <SafeAreaView>
+        <ScrollView>
+        <KeyboardAvoidingView style={{ height: '100%', justifyContent: 'center' }} >
         <View style={styles.container}>
     <Text h3 style={styles.signup} >Sign up</Text>
     <Input value ={fName}
@@ -32,12 +35,14 @@ const Signup = ({navigation}) => {
             autoCorrect={false}
             label='First Name' 
             placeholder='FirstName'
+            placeholderTextColor='rgb(51, 153, 255)'
             />
     <Input value ={lName}
         onChangeText={setLname}
         autoCorrect={false}
-        label='LastN ame'
-        placeholder='LastName' />
+        label='Last Name'
+        placeholder='LastName'
+        placeholderTextColor='rgb(51, 153, 255)' />
         
 <Input value={email} 
             onChangeText={SetEmail}
@@ -45,6 +50,7 @@ const Signup = ({navigation}) => {
             autoCorrect={false}
             label='Email'
             placeholder='email@mail.com'
+            placeholderTextColor='rgb(51, 153, 255)'
         />
 
         <Input value={password} 
@@ -53,12 +59,15 @@ const Signup = ({navigation}) => {
             autoCapitalize='none'
             autoCorrect={false}
             label='Password'
+            placeholder='password'
+            placeholderTextColor='rgb(51, 153, 255)'
         />
     <Input value ={location}
         onChangeText={setLocation}
         autoCorrect={false}
         label='Postal Code'
         placeholder='A0A 0A0'
+        placeholderTextColor='rgb(51, 153, 255)'
         />
     {/* <AuthForm 
     submitButtonText='Sign up'
@@ -66,7 +75,7 @@ const Signup = ({navigation}) => {
 
 
     <RadioButton2 value={payment} setValue={setPayment}/>
-    {errorMessage ? <Text >{errorMessage}</Text> : null}
+    {errorMessage ? <Text style={styles.error} >{errorMessage}</Text> : null}
 
 <Button 
         title='Sign up' 
@@ -74,6 +83,9 @@ const Signup = ({navigation}) => {
         />
     <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')} style={styles.goto}/>
         </View>
+        </KeyboardAvoidingView>
+        </ScrollView>
+        </SafeAreaView>
     );
 };
 
@@ -86,7 +98,13 @@ const styles=StyleSheet.create({
         marginVertical: 20
     },
     goto:{
-        marginVertical: 40
+        marginVertical: 40,
+        
+    },
+    error: {
+        textAlign: 'center',
+        color: 'red',
+        
     }
 
 })
