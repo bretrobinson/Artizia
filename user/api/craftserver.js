@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'http://31ddb013c84f.ngrok.io'
+    baseURL: 'http://24615b638c47.ngrok.io'
 })
 
 

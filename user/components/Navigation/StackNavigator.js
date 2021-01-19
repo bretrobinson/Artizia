@@ -7,6 +7,7 @@ import Signup from '../../screens/Signup'
 import Signin from '../../screens/Signin'
 import ReviewSeller from '../../screens/ReviewSellerScreen'
 import CreateStackNavigator from './createStackNavigator'
+import AddItem from '../../screens/AddItemScreen'
 
 
 const Stack = createStackNavigator();
@@ -55,7 +56,12 @@ const MainStackNavigator = ({navigation}) => {
 <CreateStackNavigator navigation={navigation} name="Profile" component={Profile} />
     );
   }
+  const AddItemStackNavigator = ({navigation}) => {
+    return (
+<CreateStackNavigator navigation={navigation} name="Add Item" component={AddItem} />
+    );
+  }
 
   
   
-  export { MainStackNavigator, LandingStackNavigator, ReviewSellerStackNavigator, ProfileStackNavigator };
+  export { MainStackNavigator, LandingStackNavigator, ReviewSellerStackNavigator, ProfileStackNavigator, AddItemStackNavigator };
