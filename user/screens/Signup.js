@@ -1,6 +1,6 @@
 import React, {useState,useContext, useCallback} from 'react';
 import { View } from 'react-native';
-import {StyleSheet,ScrollView, KeyboardAvoidingView} from 'react-native'
+import {StyleSheet,ScrollView, KeyboardAvoidingView, SafeAreaView} from 'react-native'
 import {Button, Text ,Input, colors} from 'react-native-elements'
 import AuthForm from '../components/AuthForm'
 import {Context as AuthContext} from '../context/AuthContext'
@@ -25,8 +25,9 @@ const Signup = ({navigation}) => {
     
 
     return (
+        <SafeAreaView>
         <ScrollView>
-        <KeyboardAvoidingView>
+        <KeyboardAvoidingView style={{ height: '100%', justifyContent: 'center' }} >
         <View style={styles.container}>
     <Text h3 style={styles.signup} >Sign up</Text>
     <Input value ={fName}
@@ -84,6 +85,7 @@ const Signup = ({navigation}) => {
         </View>
         </KeyboardAvoidingView>
         </ScrollView>
+        </SafeAreaView>
     );
 };
 
@@ -96,12 +98,13 @@ const styles=StyleSheet.create({
         marginVertical: 20
     },
     goto:{
-        marginVertical: 40
+        marginVertical: 40,
+        
     },
     error: {
         textAlign: 'center',
         color: 'red',
-        marginBottom: 10
+        
     }
 
 })
