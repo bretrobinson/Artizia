@@ -28,10 +28,11 @@ const CategoryItems = props => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginBottom: 10
       },       
     searchCategorySection: {
-        marginVertical: 0
+        marginVertical: 5
     },
 });
 

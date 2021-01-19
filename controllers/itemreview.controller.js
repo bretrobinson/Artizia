@@ -11,9 +11,9 @@ exports.create = (req, res) => {
   }
   // Create a item review
   const itemreview = new  ItemReview({
-    shortdescription:req.body.shortdescriptions,
-    itemRating:req.body.itemrating,
-    itemReview:req.body.itemreview,
+    shortDescription:req.body.shortDescription,
+    itemRating:req.body.itemRating,
+    itemReview:req.body.itemReview,
     id_item:req.body.id_item
   });
    // Save item review in the database

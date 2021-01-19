@@ -13,7 +13,7 @@ exports.create = (req, res) => {
   const sellerreview = new  SellerReview({
     name:req.body.name,
     sellerRating:req.body.sellerRating,
-    sellerReview:req.body.itemreview,
+    sellerReview:req.body.sellerReview,
   
   });
    // Save item review in the database

@@ -1,40 +1,58 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View } from 'react-native';
 import { StyleSheet, ScrollView, Button } from 'react-native';
 import ItemReview from '../components/Review.components/ItemReview.component';
 import SellerReview from '../components/Review.components/SellerReview.component';
-import * as sellerReviewActions from '../../store/actions/ReviewSeller';
+import * as sellerReviewActions from '../store/actions/ReviewSeller';
+import { createReviewItem } from '../store/actions/ReviewItem';
+import { createReviewSeller } from '../store/actions/ReviewSeller';
 import { useSelector, useDispatch } from 'react-redux';
 const ReviewSellerScreen = props => {
-const sellerReview  = useSelector(state => {
+  const [name, setName] = useState("");
+  const [sellerRating,setsellerRating]= useState("");
+ const [sellerReview,setSellerReview]=useState("");
+ const [shortDescription, setshortDescription] = useState("");
+ const [itemRating, setItemRating] = useState("");
+ const [itemReview, setItemReview] = useState("");
 
-    for (const key in state.cart.items) {
-      transformedSellerReview.push({
-        sellerId: key,
-        name: state.cart.items[key].name,
-        sellerRating: state.cart.items[key].sellerRating,
-        sellerReview: state.cart.items[key].sellerReview,
-      
-      });
-    }
-   
-  });
-  const dispatch = useDispatch();
+ const dispatch = useDispatch();
+    passValueItemReviewFunction = (shortDescription,itemRating,itemReview) => {
+    setshortDescription(shortDescription);
+    setItemReview(itemReview);
+    setItemRating(itemRating);
+    console.log("callback function parent-chielditemreview>>>>>");
+    console.log("callback function parent description>>>>>" + shortDescription);
+    console.log("callback function parent itemrating>>>>>" + itemRating);
+    console.log("callback function parent  itemreview>>>>>" + itemReview);
+ }
+ 
+
+ passValueFunction = (name,sellerReview,sellerRating) => {
+   setName(name);
+   setSellerReview(sellerReview);
+  setsellerRating(sellerRating);
+  console.log("callback function parent name>>>>>" + name);
+  console.log("callback function parent sellerating>>>>>" + sellerRating);
+  console.log("callback function parent sellerreview>>>>>" + sellerReview);
+}
+
   return (
     <ScrollView>
       <View>
-        <SellerReview />
-        <ItemReview />
-        <View >
+        <SellerReview parentCallback = {passValueFunction} />
+        <ItemReview parentCallback ={passValueItemReviewFunction}/>
+  
+      </View>
+      <View >
         <Button
-          color={Colors.accent}
           title="Save"
           onPress={() => {
-            dispatch(sellerReviewActions.createReviewSeller(sellerReview));
+            dispatch(createReviewSeller(name,sellerReview,sellerRating));
+            createReviewItem(dispatch, shortDescription,itemReview,itemRating);
+         
           }}
         />
         </View>
-      </View>
     </ScrollView>
   )
 

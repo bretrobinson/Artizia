@@ -6,16 +6,18 @@ import { navigationRef } from './RootNavigation';
 import { Provider as AuthProvider } from './context/AuthContext';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
-import reviewSellerReducer from './store/reducers/ReviewSeller';
-
+import { reviewSellerReducer } from './store/reducers/ReviewSeller';
+import { searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer } from './store/reducers/Landing';
+import thunkMiddleware from 'redux-thunk';
 
 const rootReducer = combineReducers({
-  reviewseller: reviewSellerReducer
-
+   reviewSellerReducer,
+  searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer
 });
 
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+
+
 export default function App() {
   return (
     <AuthProvider>

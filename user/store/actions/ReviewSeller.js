@@ -1,35 +1,84 @@
+import Api from '../../api/craftserver';
 export const CREATE_REVIEWSELLER = 'CREATE_REVIEWSELLER';
+export const CREATE_REVIEWSELLER_PENDING = 'CREATE_REVIEWSELLER_PENDING';
+export const CREATE_REVIEWSELLER_SUCCESS = 'CREATE_REVIEWSELLER_SUCCESS';
+export const CREATE_REVIEWSELLER_FAILED = 'CREATE_REVIEWSELLER_FAILED';
 
-export const createReviewSeller = (sellerReview) => {
+// export const createReviewSeller = (dispatch, name,sellerReview,sellerRating) => {
+//   console.log('In createReviewSeller action');
+//   console.log("action_name>>>>" + name);
+//   console.log("action_review>>>" + sellerReview);
+//   console.log("action_rating>>>" + sellerRating);
+//   dispatch({ type: CREATE_REVIEWSELLER_PENDING });
+
+//   // return async dispatch => {
+   
+//     fetch('http://61210f1e4302.ngrok.io/api/newsellerreview',
+//       {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//             name,
+//             sellerReview,
+//             sellerRating,
+            
+//         })
+//       }
+//     )
+//     .then(response => response.json)
+//     .then(resData => {
+//       dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData });
+//     })
+//     .catch(err => {
+//       dispatch({ type: CREATE_REVIEWSELLER_FAILED, payload: response });
+//     });
+
+  
+// };
+
+export const createReviewSeller = (name,sellerReview,sellerRating) => {
+  console.log('In createReviewSeller action');
+  console.log("action_name>>>>" + name);
+  console.log("action_review>>>" + sellerReview);
+  console.log("action_rating>>>" + sellerRating);
+  // dispatch({ type: CREATE_REVIEWSELLER_PENDING });
+
+
+  
   return async dispatch => {
-    const date = new Date();
-    const response = await fetch(
-      'https://localhost:3000/api/newsellerreview',
+
+    console.log('Before fetch');
+    const response = await fetch('http://e19c6c2c3a02.ngrok.io/api/newsellerreview',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            sellerReview
+            name,
+            sellerReview,
+            sellerRating,
+            
         })
       }
     );
 
     if (!response.ok) {
-      throw new Error('Something went wrong!');
+      throw new Error('Error createReviewSeller');
     }
 
-    const resData = await response.json();
+    const resData = await response.json(); 
+    // .then(response => response.json)
+    // .then(resData => {
+    //   dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData });
+    // })
+    // .catch(err => {
+    //   dispatch({ type: CREATE_REVIEWSELLER_FAILED, payload: response });
+    // });
 
-    dispatch({
-      type: CREATE_REVIEWSELLER,
-      reviewSellerData: {
-          name:sellerReview.name,
-          sellerRating:sellerReview.sellerRating, 
-          sellerReview:sellerReview.sellerReview
-       
-    }
-});
+    dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData});
+  };
 };
-};
+
