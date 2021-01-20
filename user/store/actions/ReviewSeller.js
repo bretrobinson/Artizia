@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Api from '../../api/craftserver';
 export const CREATE_REVIEWSELLER = 'CREATE_REVIEWSELLER';
 export const CREATE_REVIEWSELLER_PENDING = 'CREATE_REVIEWSELLER_PENDING';
@@ -50,35 +51,30 @@ export const createReviewSeller = (name,sellerReview,sellerRating) => {
   return async dispatch => {
 
     console.log('Before fetch');
-    const response = await fetch('http://e19c6c2c3a02.ngrok.io/api/newsellerreview',
+    
+    const response = await axios.post('http://35ebd6d057bd.ngrok.io/api/newsellerreview',
       {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name,
-            sellerReview,
-            sellerRating,
-            
-        })
+        name,
+        sellerReview,
+        sellerRating
+      
+      }).then(resData => {if (!response.ok) {
+        throw new Error('Error createReviewSeller');
       }
-    );
+       })
 
-    if (!response.ok) {
-      throw new Error('Error createReviewSeller');
-    }
+    
 
-    const resData = await response.json(); 
-    // .then(response => response.json)
-    // .then(resData => {
-    //   dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData });
-    // })
-    // .catch(err => {
-    //   dispatch({ type: CREATE_REVIEWSELLER_FAILED, payload: response });
-    // });
+   // const resData = await response; 
+     .then(response)
+    .then(resData => {
+     dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData});
+    })
+     .catch(err => {
+      dispatch({ type: CREATE_REVIEWSELLER_FAILED, payload: response });
+     });
 
-    dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData});
+    //dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData})
   };
 };
 

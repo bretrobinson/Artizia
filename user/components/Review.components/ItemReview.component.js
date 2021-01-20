@@ -50,6 +50,7 @@ const ItemReviewscreen = props => {
           onChangeText={DescriptionInputHandler}
           keyboardType="default"
           autoCapitalize="sentences"
+          autoCorrect={false}
           returnKeyType="next"
           label='item description' />
         <TextInput value={itemReview}

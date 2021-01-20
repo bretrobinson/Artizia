@@ -12,6 +12,7 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 
  
 const sellerreviewscreen = props => {
+  const [text, setText] = useState('');
   const [name, setName] = useState("");
   const [sellerRating,setsellerRating]= useState("");
  const [sellerReview,setSellerReview]=useState("");
@@ -36,6 +37,7 @@ const ratingCompleted = (rating) => {
 
 }
 useEffect(() => {
+ 
   console.log("callback function child>>>>>" + name);
   console.log("callback function child>>>>>" + sellerRating);
   console.log("callback function child>>>>>" + sellerReview);
@@ -48,12 +50,15 @@ useEffect(() => {
     <View style={styles.container}>
 
       <View >
-        <TextInput
+        <TextInput   clearButtonMode="while-editing"
+         ref={element => {
+          this.attendee = element
+        }}
           style={styles.ReviewInput}
           placeholder="Seller Name"
-           onChangeText={nameInputHandler}
+           onChangeText={nameInputHandler,textclean=> console.log("cleaning xxxxxxxfunction")}
           autoFocus={true}
-          value={name}
+          value={name,text}
         />
         <TextInput 
           value={sellerReview}
