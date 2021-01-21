@@ -1,7 +1,7 @@
 const express = require ('express')
 const cors = require ('cors')
 // const mysql = require('mysql');
-// const jwt = require('jsonwebtoken')
+const announcementRoute = require('./routes/announcementRoute')
 const requireAuth = require('./routes/requireAuthRoute')
 
 const Signup=require("./routes/signupRoute");
@@ -25,10 +25,10 @@ db.connect((err)=> {
   });
 
 app.use(express.json())
-require("./routes/announcementReadRoute")(app);
+// require("./routes/announcementReadRoute")(app);
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
-require("./routes/anouncementWriteRoute")(app);
+// require("./routes/anouncementWriteRoute")(app);
 require('./routes/signupRoute')(app)
 require('./routes/Item.route')(app);
 require('./routes/signinRoute')(app)
@@ -47,7 +47,7 @@ require('./routes/signinRoute')(app)
 //     }] announcement
 // }announcement
 // const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
-
+app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
         message: 'Welcome to Craft Sell API'
