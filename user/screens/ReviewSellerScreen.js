@@ -7,6 +7,7 @@ import * as sellerReviewActions from '../store/actions/ReviewSeller';
 import { createReviewItem } from '../store/actions/ReviewItem';
 import { createReviewSeller } from '../store/actions/ReviewSeller';
 import { useSelector, useDispatch } from 'react-redux';
+import MainButton from '../components/MainButton';
 const ReviewSellerScreen = props => {
   const [name, setName] = useState("");
   const [sellerRating,setsellerRating]= useState("");
@@ -39,29 +40,40 @@ const ReviewSellerScreen = props => {
   return (
     <ScrollView>
       <View>
-        <SellerReview parentCallback = {passValueFunction} />
+        <SellerReview  parentCallback = {passValueFunction} />
         <ItemReview parentCallback ={passValueItemReviewFunction}/>
   
       </View>
-      <View >
-        <Button
+      <View style={styles.buttonContainer}>
+      <View style={styles.buttonSave}>
+        <MainButton  
           title="Save"
           onPress={() => {
             dispatch(createReviewSeller(name,sellerReview,sellerRating));
             createReviewItem(dispatch, shortDescription,itemReview,itemRating);
+          
          
           }}
         />
         </View>
+        </View>
     </ScrollView>
   )
 
-  const styles = StyleSheet.create({
-    buttonContainer: {
-      borderWidth: '10%',
-      width:"50%"
-    }
-
-  });
+ 
 }
+const styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 10
+  },
+  buttonSave:{
+     paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 20,
+    marginVertical: 10,
+    width: '60%',
+  }
+});
 export default ReviewSellerScreen;

@@ -11,7 +11,7 @@ export const createReviewItem = (dispatch,shortDescription,itemReview,itemRating
     console.log(">>>>>>item-shotdescription" + shortDescription);
     console.log(">>>>>>item-review" + itemReview);
     console.log(">>>>>>item-rating" + itemRating);
-    fetch('http://e19c6c2c3a02.ngrok.io/api/newitemreview',
+    fetch('http://35ebd6d057bd.ngrok.io/api/newitemreview',
       {
         method: 'POST',
         headers: {
