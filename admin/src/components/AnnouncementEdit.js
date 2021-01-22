@@ -23,13 +23,11 @@ const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, 
 
     return (
         <Container maxWidth='sm' >
-            <h3>Edit Message</h3>
+            <h3>Edit Announcement</h3>
             <div>
-           <Link href='/' onClick={()=>onUpdateMessage(idAnnouncements, message)}> <Button variant="contained" color="primary"
-                    
-            >
-            Edit Announcement
-                </Button> </Link>
+           <Button variant="contained" color="primary"  href='/' onClick={()=>onUpdateMessage(idAnnouncements, message)} >
+            Submit Edit
+                </Button> 
                 <Link href='/' > <Button variant="contained" color="primary">Cancel </Button> </Link>
                 </div>  
             

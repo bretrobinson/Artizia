@@ -114,7 +114,7 @@ loadAnnouncement()
           </Route>
           <Route path="/">
           <AnnouncementDisplay annnouncementData={annnouncementData}
-         onDeleteMessage={onDeleteMessage} message={message}
+         onDeleteMessage={onDeleteMessage}
         />
           </Route>
         </Switch>

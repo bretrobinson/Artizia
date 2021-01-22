@@ -2,6 +2,7 @@ import React from 'react';
 import {TextareaAutosize, Input, Button, TextField, Container} from '@material-ui/core'
 
 
+
 const Announcement = ({onChangeTitle, onChangeExpiredDate, onChangeMessage, onSubmitmessage, title, message, expiredDate}) => {
     
     return (
@@ -15,12 +16,11 @@ const Announcement = ({onChangeTitle, onChangeExpiredDate, onChangeMessage, onSu
             <div>
              <TextField id='date' label='Expiry date' type='date'  InputLabelProps={{ shrink: true, }} onChange={(e)=>onChangeExpiredDate(e.target.value)}  defaultValue={new Date()} />
             </div>
-            <div>
-                <Button variant="contained" color="primary"
-                    onClick={()=>onSubmitmessage({title, message, expiredDate})}
-            >
-            Submit Announcement
+            <div>              
+               <Button variant="contained" color="primary"  href='/' onClick={()=>onSubmitmessage({title, message, expiredDate})}>
+                    Submit Announcement
                 </Button>
+               
 
             </div>
            
