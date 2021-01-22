@@ -15,10 +15,11 @@ export const DeleteMyItem = (userid,itemid) => {
 
     console.log('Before fetch');
     
-    const response = await axios.post('http://5dc34b5df270.ngrok.io/api/deletemyitem/:userid/:itemid',
+    const response = await axios.post(`http://e712365bac01.ngrok.io/api/deletemyitem/${itemid}/${userid}`,
       {
-        userid,
+       
         itemid,
+        userid,
              
       }).then(resData => {if (!response.ok) {
         throw new Error('Error removing item');

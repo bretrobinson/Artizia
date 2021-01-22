@@ -13,9 +13,11 @@ const ItemModel=function(itemmodel){
     this.userId-itemmodel.userId;
 }
 
-    ItemModel.delete = (itemid,userid, result) => {
+    ItemModel.delete = (userid,itemid, result) => {
+        console.log("Delete sql item_id>>>oooo" + itemid  );
+        console.log("Delete sql user_id>>>oooo" + userid  );
     sql.query(`DELETE FROM Item WHERE id =${itemid} AND userid=${userid}`, (err, res) => {
-     console.log(sql);
+     
         if (err) {
         console.log("error: ", err);
         result(null, err);

@@ -1,5 +1,5 @@
 import { DELETE_MYITEM, DELETE_MYITEM_FAILED } from '../actions/DeleteMyItem';
-import SellerReview from '../../models/sellerreview';
+
 
 const initialState = {
     myitem: []

@@ -52,7 +52,7 @@ export const createReviewSeller = (name,sellerReview,sellerRating) => {
 
     console.log('Before fetch');
     
-    const response = await axios.post('http://35ebd6d057bd.ngrok.io/api/newsellerreview',
+    const response = await axios.post('http://e712365bac01.ngrok.io/api/newsellerreview',
       {
         name,
         sellerReview,

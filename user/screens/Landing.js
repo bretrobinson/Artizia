@@ -34,7 +34,7 @@ const Landing = (props) => {
                 <SearchBar
                 term={term}
                 onTermChange={newTerm => dispatch(updateSearchTerm(newTerm)) }
-                onTermSubmit={() => searchForMostRecentItemsByCategoryMatchingSearchTerm(dispatch, term) }
+                onTermSubmit={() => searchForMostRecentItemsByCategoryMatchingSearchTerm(dispatch, term === ''? '%25':term) }
                 />
             </View>
             <ScrollView>
