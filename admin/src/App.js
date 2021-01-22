@@ -21,6 +21,8 @@ const [message, setMessage] = useState('')
 const [expiredDate, setExpiredDate] = useState(new Date())
 const [annnouncementData, setAnnouncementData] = useState([])
 
+
+
 useEffect (()=>{
 loadAnnouncement()
 }, [])
@@ -52,7 +54,7 @@ try{
 }
 }
 const onUpdateMessage = async (idMessage, message) =>{
-console.log(message)
+console.log(idMessage)
 await craftserverApi.post('/announcement/' + idMessage ,{message})
 loadAnnouncement()
 }
@@ -100,7 +102,7 @@ loadAnnouncement()
           <Route path="/edit/:idAnnouncements">
           <AnnouncementEditPage onChangeTitle={setTitle}
       onChangeExpiredDate={setExpiredDate}
-      onChangeMessage={setMessage} 
+      onChangeMessage={setMessage}
       onUpdateMessage={onUpdateMessage}
       title={title} message={message} expiredDate={expiredDate}
        
@@ -122,7 +124,8 @@ loadAnnouncement()
     </div>
   );
 }
-const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, title})=>{
+const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, message, title})=>{
+ 
 let {idAnnouncements} = useParams()
 console.log(idAnnouncements)
 return <AnnouncementEdit idAnnouncements={idAnnouncements} 
@@ -130,7 +133,7 @@ onChangeTitle={onChangeTitle}
 onChangeExpiredDate={onChangeExpiredDate} 
 onChangeMessage={onChangeMessage}
 onUpdateMessage={onUpdateMessage}
-title={title} />
+title={title} message={message} />
 }
 
 export default App;

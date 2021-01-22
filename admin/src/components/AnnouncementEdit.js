@@ -20,24 +20,21 @@ const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, 
             loadMessage()
     }, [idAnnouncements])
 
- 
-        console.log(detail)
-
 
     return (
         <Container>
             <h3>Edit Message</h3>
             
-            <Input placeholder={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}  />
+            <Input value={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}  />
             <div>
                 <TextareaAutosize aria-label="minimum height" rowsMin={3} placeholder={detail.message} onChange={(e)=>onChangeMessage(e.target.value)}  />
             </div>
             <div>
-             <TextField id='date' label='Expiry date' type='date'  InputLabelProps={{ shrink: true, }} onChange={(e)=>onChangeExpiredDate(e.target.value)}  value={detail.expiredDate} />
+             <TextField id='date' label='Expiry date' type='date'  InputLabelProps={{ shrink: true, }} onChange={(e)=>onChangeExpiredDate(e.target.value)}   />
             </div>
             <div>
                 <Button variant="contained" color="primary"
-                    onClick={()=>onUpdateMessage({title, message, expiredDate})}
+                    onClick={()=>onUpdateMessage(idAnnouncements, message)}
             >
             Edit Announcement
                 </Button>
