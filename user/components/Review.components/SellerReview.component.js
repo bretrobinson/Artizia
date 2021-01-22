@@ -1,54 +1,93 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
-  placeholder
+  placeholder,
+  Button
 } from 'react-native';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
+ 
+const sellerreviewscreen = props => {
+  const [text, setText] = useState('');
+  const [name, setName] = useState("");
+  const [sellerRating,setsellerRating]= useState("");
+ const [sellerReview,setSellerReview]=useState("");
+
+  const nameInputHandler = (enteredName) => {
+    setName(enteredName);
+  };
+  const sellerReviewInputHandler = (enteredreview) => {
+    setSellerReview(enteredreview);
+  };
+  const sellerRatingInputHandler = (count) => {
+    setsellerRating(count);
+  };
+  
+  //const sellerreview = useSelector(state => state.sellerreviews);
+  
+
+ 
+
 const ratingCompleted = (rating) => {
-  console.log("Rating is: " + rating)
+  setsellerRating(rating)
+
 }
+useEffect(() => {
+ 
+  console.log("callback function child>>>>>" + name);
+  console.log("callback function child>>>>>" + sellerRating);
+  console.log("callback function child>>>>>" + sellerReview);
+ 
+  props.parentCallback(name,sellerReview,sellerRating);
 
-const SellerReview = props => {
-
-
+})
+//let disabled = (name.length > 0 && text.length > 0) ? false : true;
   return (
     <View style={styles.container}>
 
       <View >
-        <TextInput value={""}
+        <TextInput   clearButtonMode="while-editing"
+         ref={element => {
+          this.attendee = element
+        }}
           style={styles.ReviewInput}
           placeholder="Seller Name"
-          onChangeText={""}
-          keyboardType="default"
-          autoCapitalize="sentences"
-          returnKeyType="next"
-          label='Seller Name' />
-        <TextInput value={""}
+           onChangeText={nameInputHandler,textclean=> console.log("cleaning xxxxxxxfunction")}
+          autoFocus={true}
+          value={name,text}
+        />
+        <TextInput 
+          value={sellerReview}
           style={styles.ReviewInput}
           placeholder="Seller review"
           multiline={true}
           keyboardType="default"
           autoCapitalize="sentences"
           returnKeyType="next"
-          onChangeText={"Set review"}
+         onChangeText={sellerReviewInputHandler}
           label={"Seller review"}
         />
+       
+        
       </View>
       <View>
         <Text style={styles.title}>Seller rating</Text>
         <AirbnbRating
           count={10}
+          onChangeText={sellerRatingInputHandler}
           reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable"]}
           defaultRating={10}
           size={20}
+          onFinishRating={ratingCompleted}
+          value={sellerRating}
         />
 
       </View>
-
+     
     </View>
   );
 };
@@ -79,4 +118,4 @@ const styles = StyleSheet.create({
  }
 });
 
-export default SellerReview;
+export default sellerreviewscreen;

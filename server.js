@@ -1,7 +1,7 @@
 const express = require ('express')
 const cors = require ('cors')
 // const mysql = require('mysql');
-// const jwt = require('jsonwebtoken')
+const announcementRoute = require('./routes/announcementRoute')
 const requireAuth = require('./routes/requireAuthRoute')
 
 const Signup=require("./routes/signupRoute");
@@ -25,10 +25,10 @@ db.connect((err)=> {
   });
 
 app.use(express.json())
-
+// require("./routes/announcementReadRoute")(app);
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
-// app.use(Signup)
+// require("./routes/anouncementWriteRoute")(app);
 require('./routes/signupRoute')(app)
 require('./routes/Item.route')(app);
 require('./routes/signinRoute')(app)
@@ -44,10 +44,10 @@ require('./routes/signinRoute')(app)
 //         password: '1234',
 //         joined: new Date(),
 //         location:''
-//     }]
-// }
+//     }] announcement
+// }announcement
 // const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
-
+app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
         message: 'Welcome to Craft Sell API'
@@ -58,10 +58,10 @@ app.get('/', requireAuth, (req, res)=>{
     res.send(req.user)
 })
 
-app.post('/announcement', (req, res)=>{
-    console.log(req.body.announcement)
-    res.send({message:`${req.body.announcement}`})
-})
+// app.post('/announcement', (req, res)=>{
+//     console.log(req.body)
+//     res.send(req.body)
+// })
     // db.query(sql, (err, result)=>{
 //         if (err) throw err;
 //         console.log(result)

@@ -1,37 +1,31 @@
-import React, { useState } from 'react';
-import {TextareaAutosize, Input, Button} from '@material-ui/core'
-import craftserverApi from '../api/craftserver'
+import React from 'react';
+import {TextareaAutosize, Input, Button, TextField, Container} from '@material-ui/core'
 
-const Announcement = () => {
 
-    const [announcement, setAnnouncement] = useState({})
-const onChangeAnnouncement =(e)=>{
-    setAnnouncement(e.target.value)
-}
-
-const onSubmitAnnouncement = async ({announcement})=>{
-    try{
-        const response = await craftserverApi.post('/announcement', {announcement})
-        await console.log(response.data)
-    } catch (err) {
-        console.log(err)
-    }
-}
+const Announcement = ({onChangeTitle, onChangeExpiredDate, onChangeMessage, onSubmitmessage, title, message, expiredDate}) => {
+    
     return (
-        <div>
-            <h3>General Announcement</h3>
+        <Container>
+            <h3>General Message</h3>
+            
+            <Input placeholder='Title'  onChange={(e)=>onChangeTitle(e.target.value)}  />
             <div>
-                <TextareaAutosize aria-label="minimum height" rowsMin={3} placeholder="Minimum 3 rows" onChange={onChangeAnnouncement} />
+                <TextareaAutosize aria-label="minimum height" rowsMin={3} placeholder="message" onChange={(e)=>onChangeMessage(e.target.value)}  />
+            </div>
+            <div>
+             <TextField id='date' label='Expiry date' type='date'  InputLabelProps={{ shrink: true, }} onChange={(e)=>onChangeExpiredDate(e.target.value)}  defaultValue={new Date()} />
             </div>
             <div>
                 <Button variant="contained" color="primary"
-                    onClick={()=>onSubmitAnnouncement({announcement})}
+                    onClick={()=>onSubmitmessage({title, message, expiredDate})}
             >
             Submit Announcement
                 </Button>
-            </div>
 
-        </div>
+            </div>
+           
+
+        </Container>
     );
 };
 

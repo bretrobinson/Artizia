@@ -4,8 +4,6 @@ import { UPDATE_SEARCH_TERM,
     SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_TERM_FAILED } from '../constants';
 import Api from '../../api/craftserver';
 
-
-
 export const updateSearchTerm = (term) => {
     return { type: UPDATE_SEARCH_TERM, searchTerm: term };
 };

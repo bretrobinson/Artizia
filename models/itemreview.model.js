@@ -1,7 +1,7 @@
 const sql = require("./db.js");
 
 const ItemReview=function(itemreview){
-    this.shortdescription=itemreview.shortdescriptions;
+    this.shortDescription=itemreview.shortDescription;
     this.itemRating=itemreview.itemRating;
     this.itemReview=itemreview.itemReview;
     this.id_item=itemreview.id_item;
