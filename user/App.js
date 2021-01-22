@@ -7,10 +7,12 @@ import { Provider as AuthProvider } from './context/AuthContext';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { reviewSellerReducer } from './store/reducers/ReviewSeller';
+import {myItemReducer } from './store/reducers/DeleteMyItem';
 import { searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer } from './store/reducers/Landing';
 import thunkMiddleware from 'redux-thunk';
 
 const rootReducer = combineReducers({
+  myItemReducer,
    reviewSellerReducer,
   searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer
 });
