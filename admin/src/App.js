@@ -79,9 +79,6 @@ loadAnnouncement()
               <Link to="/message">Create Mesaage</Link>
             </li>
             <li>
-              <Link to="/edit">Edit Message</Link>
-            </li>
-            <li>
               <Link to="/rules">Rules</Link>
             </li>
           </ul>

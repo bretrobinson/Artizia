@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TextareaAutosize, Input, Button, TextField, Container} from '@material-ui/core'
+import {Button, Input, TextField, Container} from '@material-ui/core'
 import craftserverApi from '../api/craftserver'
 
 const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, title, message, expiredDate}) => {
@@ -24,20 +24,25 @@ const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, 
     return (
         <Container>
             <h3>Edit Message</h3>
-            
-            <Input value={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}  />
             <div>
-                <TextareaAutosize aria-label="minimum height" rowsMin={3} placeholder={detail.message} onChange={(e)=>onChangeMessage(e.target.value)}  />
+            <Button variant="contained" color="primary"
+                    onClick={()=>onUpdateMessage(idAnnouncements, message)}
+            >
+            Edit Announcement
+                </Button> 
+                </div>  
+            <Input value={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}    />    
+            <TextField label='Old Title' InputLabelProps={{ shrink: true, }} value={detail.title}   />
+            <TextField label='New Title' InputLabelProps={{ shrink: true, }} placeholder={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}  />
+            <div>
+                <TextField multiline label='Old Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsMin={3} value={detail.message}   />
+                <TextField  multiline label='New Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsMin={3} placeholder={detail.message} onChange={(e)=>onChangeMessage(e.target.value)}  />
             </div>
             <div>
              <TextField id='date' label='Expiry date' type='date'  InputLabelProps={{ shrink: true, }} onChange={(e)=>onChangeExpiredDate(e.target.value)}   />
             </div>
             <div>
-                <Button variant="contained" color="primary"
-                    onClick={()=>onUpdateMessage(idAnnouncements, message)}
-            >
-            Edit Announcement
-                </Button>
+
 
             </div>
            
