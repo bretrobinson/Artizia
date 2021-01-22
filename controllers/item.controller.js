@@ -1,5 +1,23 @@
 const ItemModel= require("../models/item.model.js");
 
+
+// Delete a Myitem with the specified userId and itemId in the request
+exports.deleteMyitem = (req, res) => {
+  ItemModel.delete(req.params.itemid,req.params.userid, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Item with id ${req.params.itemid}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not delete My item with id " + req.params.itemid
+        });
+      }
+    } else res.send({ message: `My item was deleted successfully!` });
+  });
+};
+
 exports.findMostRecentItemsByCategoryMatchingSearchTerm = (req, res) => {
    
   // Validate request

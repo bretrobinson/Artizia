@@ -5,8 +5,8 @@ const announcementRoute = require('./routes/announcementRoute')
 const requireAuth = require('./routes/requireAuthRoute')
 
 const Signup=require("./routes/signupRoute");
-const ItemsReview=require("./routes/ItemReview.route");
-const SellerReview=require("./routes/SellerReview.route");
+//const ItemsReview=require("./routes/ItemReview.route");
+//const SellerReview=require("./routes/SellerReview.route");
 const ItemRoute=require('./routes/Item.route')
 
 const db = require("./models/db.js");
@@ -28,6 +28,7 @@ app.use(express.json())
 // require("./routes/announcementReadRoute")(app);
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
+
 // require("./routes/anouncementWriteRoute")(app);
 require('./routes/signupRoute')(app)
 require('./routes/Item.route')(app);

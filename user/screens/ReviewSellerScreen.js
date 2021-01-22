@@ -6,6 +6,7 @@ import SellerReview from '../components/Review.components/SellerReview.component
 import * as sellerReviewActions from '../store/actions/ReviewSeller';
 import { createReviewItem } from '../store/actions/ReviewItem';
 import { createReviewSeller } from '../store/actions/ReviewSeller';
+import {DeleteMyItem} from '../store/actions/DeleteMyItem'
 import { useSelector, useDispatch } from 'react-redux';
 import MainButton from '../components/MainButton';
 const ReviewSellerScreen = props => {
@@ -17,6 +18,7 @@ const ReviewSellerScreen = props => {
  const [itemReview, setItemReview] = useState("");
 
  const dispatch = useDispatch();
+   
     passValueItemReviewFunction = (shortDescription,itemRating,itemReview) => {
     setshortDescription(shortDescription);
     setItemReview(itemReview);
@@ -51,7 +53,7 @@ const ReviewSellerScreen = props => {
           onPress={() => {
             dispatch(createReviewSeller(name,sellerReview,sellerRating));
             createReviewItem(dispatch, shortDescription,itemReview,itemRating);
-          
+         
          
           }}
         />
