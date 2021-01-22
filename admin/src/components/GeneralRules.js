@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TextareaAutosize} from '@material-ui/core'
 
 const Rules = () => {
