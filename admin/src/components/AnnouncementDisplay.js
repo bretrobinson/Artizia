@@ -6,7 +6,8 @@ const AnnouncementDisplay = ({annnouncementData,onUpdateMessage,onDeleteMessage,
     const history = useHistory()
 
     const annoucementDisplay = annnouncementData.map((data)=>{
-        return (<div>
+        return (<Container>
+
             <div key={data.idAnnouncements} >{data.title}
             <Button onClick={()=>onDeleteMessage(data.idAnnouncements)}>delete</Button>
             </div>
@@ -15,12 +16,12 @@ const AnnouncementDisplay = ({annnouncementData,onUpdateMessage,onDeleteMessage,
             Expire Date <div>{data.expiredDate}</div>            
             <Button onClick={()=>history.push('/edit/' + data.idAnnouncements)}>edit</Button>
             
-            </div>)
+            </Container>)
         })
         
 
     return (
-        <Container>
+        <Container maxWidth='lg'>
              {annoucementDisplay}
         </Container>
     );

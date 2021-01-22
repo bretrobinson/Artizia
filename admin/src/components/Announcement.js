@@ -5,12 +5,12 @@ import {TextareaAutosize, Input, Button, TextField, Container} from '@material-u
 const Announcement = ({onChangeTitle, onChangeExpiredDate, onChangeMessage, onSubmitmessage, title, message, expiredDate}) => {
     
     return (
-        <Container>
+        <Container maxWidth='sm'>
             <h3>General Message</h3>
             
-            <Input placeholder='Title'  onChange={(e)=>onChangeTitle(e.target.value)}  />
+            <Input placeholder='Title' required onChange={(e)=>onChangeTitle(e.target.value)}  />
             <div>
-                <TextareaAutosize aria-label="minimum height" rowsMin={3} placeholder="message" onChange={(e)=>onChangeMessage(e.target.value)}  />
+                <TextareaAutosize required  aria-label="minimum height" rowsMin={3} placeholder="message" onChange={(e)=>onChangeMessage(e.target.value)}  />
             </div>
             <div>
              <TextField id='date' label='Expiry date' type='date'  InputLabelProps={{ shrink: true, }} onChange={(e)=>onChangeExpiredDate(e.target.value)}  defaultValue={new Date()} />

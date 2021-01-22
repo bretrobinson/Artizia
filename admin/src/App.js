@@ -47,16 +47,20 @@ if (!title|| !message ){
 const loadAnnouncement = async () =>{
 try{
     const response = await craftserverApi.get('/announcement')
-    await console.log(response.data)
+    
     setAnnouncementData(response.data)
 } catch (err) {
     console.log(err)
 }
 }
 const onUpdateMessage = async (idMessage, message) =>{
-console.log(idMessage)
-await craftserverApi.post('/announcement/' + idMessage ,{message})
-loadAnnouncement()
+if(message.length<2){
+  alert('Please Enter Message to edit')
+} else{
+  await craftserverApi.post('/announcement/' + idMessage ,{message})
+  loadAnnouncement()
+}
+
 }
 
 

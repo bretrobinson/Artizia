@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Input, TextField, Container} from '@material-ui/core'
+import {Button, TextField, Container} from '@material-ui/core'
+import {Link} from '@material-ui/core'
 import craftserverApi from '../api/craftserver'
 
 const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, title, message, expiredDate}) => {
@@ -10,7 +11,6 @@ const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, 
         const loadMessage = async () =>{
             try{
                 const response = await craftserverApi.get('/announcement/'+ idAnnouncements )
-                await console.log(response.data)
                 setDetail(response.data[0])
                 
             } catch (err) {
@@ -22,18 +22,19 @@ const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, 
 
 
     return (
-        <Container>
+        <Container maxWidth='sm' >
             <h3>Edit Message</h3>
             <div>
-            <Button variant="contained" color="primary"
-                    onClick={()=>onUpdateMessage(idAnnouncements, message)}
+           <Link href='/' onClick={()=>onUpdateMessage(idAnnouncements, message)}> <Button variant="contained" color="primary"
+                    
             >
             Edit Announcement
-                </Button> 
+                </Button> </Link>
+                <Link href='/' > <Button variant="contained" color="primary">Cancel </Button> </Link>
                 </div>  
-            <Input value={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}    />    
+            
             <TextField label='Old Title' InputLabelProps={{ shrink: true, }} value={detail.title}   />
-            <TextField label='New Title' InputLabelProps={{ shrink: true, }} placeholder={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}  />
+            <TextField label='New Title' InputLabelProps={{ shrink: true, }} value={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}  />
             <div>
                 <TextField multiline label='Old Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsMin={3} value={detail.message}   />
                 <TextField  multiline label='New Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsMin={3} placeholder={detail.message} onChange={(e)=>onChangeMessage(e.target.value)}  />
