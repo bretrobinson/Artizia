@@ -51,14 +51,12 @@ useEffect(() => {
 
       <View >
         <TextInput   clearButtonMode="while-editing"
-         ref={element => {
-          this.attendee = element
-        }}
+        
           style={styles.ReviewInput}
           placeholder="Seller Name"
-           onChangeText={nameInputHandler,textclean=> console.log("cleaning xxxxxxxfunction")}
+           onChangeText={nameInputHandler}
           autoFocus={true}
-          value={name,text}
+          value={name}
         />
         <TextInput 
           value={sellerReview}

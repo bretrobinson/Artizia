@@ -4,6 +4,7 @@ const ItemModel= require("../models/item.model.js");
 // Delete a Myitem with the specified userId and itemId in the request
 exports.deleteMyitem = (req, res) => {
   ItemModel.delete(req.params.itemid,req.params.userid, (err, data) => {
+    console.log("deletemyitem....model>>" + req.params.itemid);
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
