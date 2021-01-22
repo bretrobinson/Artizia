@@ -6,10 +6,14 @@ import SellerReview from '../components/Review.components/SellerReview.component
 import * as sellerReviewActions from '../store/actions/ReviewSeller';
 import { createReviewItem } from '../store/actions/ReviewItem';
 import { createReviewSeller } from '../store/actions/ReviewSeller';
+
 import { useSelector, useDispatch } from 'react-redux';
 import MainButton from '../components/MainButton';
+import DeleteMyItemComponent from '../components/DeleteMyItem';
 const ReviewSellerScreen = props => {
   const [name, setName] = useState("");
+ //used for testing component deleteMyItem const [userid, setUserid] = useState("");
+//used for testing component deleteMyItemconst [itemid,setItemid]=useState("");
   const [sellerRating,setsellerRating]= useState("");
  const [sellerReview,setSellerReview]=useState("");
  const [shortDescription, setshortDescription] = useState("");
@@ -17,10 +21,13 @@ const ReviewSellerScreen = props => {
  const [itemReview, setItemReview] = useState("");
 
  const dispatch = useDispatch();
+   
     passValueItemReviewFunction = (shortDescription,itemRating,itemReview) => {
     setshortDescription(shortDescription);
     setItemReview(itemReview);
     setItemRating(itemRating);
+    setItemid(21);
+    setUserid(39);
     console.log("callback function parent-chielditemreview>>>>>");
     console.log("callback function parent description>>>>>" + shortDescription);
     console.log("callback function parent itemrating>>>>>" + itemRating);
@@ -42,8 +49,12 @@ const ReviewSellerScreen = props => {
       <View>
         <SellerReview  parentCallback = {passValueFunction} />
         <ItemReview parentCallback ={passValueItemReviewFunction}/>
-  
+      {/*used for testing component deleteMyItem
+        <DeleteMyItemComponent userid={userid} itemid={itemid}/>
+      
+      */} 
       </View>
+
       <View style={styles.buttonContainer}>
       <View style={styles.buttonSave}>
         <MainButton  
@@ -51,7 +62,7 @@ const ReviewSellerScreen = props => {
           onPress={() => {
             dispatch(createReviewSeller(name,sellerReview,sellerRating));
             createReviewItem(dispatch, shortDescription,itemReview,itemRating);
-          
+          //  dispatch(DeleteMyItem(userid,itemid));
          
           }}
         />

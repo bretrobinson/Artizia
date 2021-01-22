@@ -8,13 +8,16 @@ import { View,
          TouchableOpacity,
          TouchableWithoutFeedback,
          Image,
-          Alert } from 'react-native';
+         Alert,
+         FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ModalDropdown from '../downloads/ModalDropDown';
 
 import Colors from '../constants/Colors';
 import MainButton from '../components/MainButton';
 import DefaultStyles from '../constants/defaultStyles'
+import AddPhotos from './AddPhotos';
+import Card from '../components/Card'
 
 // this should eventually come from database
 const Categories = [
@@ -58,6 +61,8 @@ const AddItemScreen = props => {
   const [category, setCategory] = useState('');
   const [subcategory, setSubcategory] = useState([]);
   const [addPhoto, setAddPhoto] = useState('');
+  const [photos, setPhotos] = useState([]);
+  const [isAddPhotoModalVisible, setIsAddPhotoModalVisible] = useState(false);  
 
   const shortD = useRef();
   const longD = useRef();
@@ -96,7 +101,8 @@ const AddItemScreen = props => {
   };
 
   const addPhotoHandler = props => {
-    console.log('add photo button pressed')
+    console.log('add photo button pressed');
+    setIsAddPhotoModalVisible(true);
   }
 
   const saveButtonHandler = props => {
@@ -205,12 +211,37 @@ const AddItemScreen = props => {
         <TouchableOpacity activeOpacity={0.4} onPress={addPhotoHandler}>
           <Ionicons name="add-circle" size={24} color="black" />
         </TouchableOpacity>
+        <AddPhotos 
+                visible={ isAddPhotoModalVisible } 
+                photos = { photos } 
+                setPhotos = { setPhotos } 
+                setIsAddPhotoModalVisible = { setIsAddPhotoModalVisible } 
+            />        
       </View>
-      <View style={styles.photoContainer}>
-        <Image source={require('../assets/placeholder.png')} />
-        <Image source={require('../assets/placeholder.png')} />
-        <Image source={require('../assets/placeholder.png')} />
-      </View>
+
+      {photos.length === 0?
+        (
+          <View style={styles.photoContainer}>
+            <Image source={require('../assets/placeholder.png')} />
+            <Image source={require('../assets/placeholder.png')} />
+            <Image source={require('../assets/placeholder.png')} />
+          </View>
+        ):
+        (
+          <View style = {styles.photoListContainer}>
+            <FlatList
+            horizontal
+            data={photos}
+            keyExtractor={photo=> photo.uri}
+            renderItem={photo => (
+                <Card style={ styles.card }>
+                    <Image style={styles.image} source={{ uri: photo.uri }}/>
+                </Card>
+            )}
+            />
+          </View>
+        )
+      }        
       <View style={styles.buttonContainer}>
         <View style={styles.buttonSave}>
           <MainButton title="Save" buttonColor="purple" onPress={saveButtonHandler}/>
@@ -289,7 +320,10 @@ const styles = StyleSheet.create({
   photoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  photoListContainer: {
+    height: 130
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -304,7 +338,13 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row'
-  }
+  },
+  card: {
+    height: 100,
+    width: 100,
+    marginHorizontal: 10,
+    marginVertical: 10
+},  
 });
 
 export default AddItemScreen;

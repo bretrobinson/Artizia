@@ -50,11 +50,24 @@ function App() {
     }
   }
 
-  const onUpdateMessage = async (idMessage, message) =>{
-    console.log(message)
-    await craftserverApi.post('/announcement/' + idMessage ,{message})
-    loadAnnouncement()
-  }
+const loadAnnouncement = async () =>{
+try{
+    const response = await craftserverApi.get('/announcement')
+    
+    setAnnouncementData(response.data)
+} catch (err) {
+    console.log(err)
+}
+}
+const onUpdateMessage = async (idMessage, message) =>{
+if(message.length<2){
+  alert('Please Enter Message to edit')
+} else{
+  await craftserverApi.post('/announcement/' + idMessage ,{message})
+  loadAnnouncement()
+}
+
+}
 
 
   const onDeleteMessage = async (idMessage) => {
@@ -73,9 +86,6 @@ function App() {
             </li>
             <li>
               <Link to="/message">Create Mesaage</Link>
-            </li>
-            <li>
-              <Link to="/edit">Edit Message</Link>
             </li>
             <li>
               <Link to="/rules">Rules</Link>
@@ -98,21 +108,22 @@ function App() {
             />
           </Route>
           <Route path="/edit/:idAnnouncements">
-            <AnnouncementEditPage onChangeTitle={setTitle}
-              onChangeExpiredDate={setExpiredDate}
-              onChangeMessage={setMessage} 
-              onUpdateMessage={onUpdateMessage}
-              title={title} message={message} expiredDate={expiredDate}
-            />
+          <AnnouncementEditPage onChangeTitle={setTitle}
+      onChangeExpiredDate={setExpiredDate}
+      onChangeMessage={setMessage}
+      onUpdateMessage={onUpdateMessage}
+      title={title} message={message} expiredDate={expiredDate}
+       
+       />
           </Route>
           <Route path="/rules">
             <GeneralRules />
           </Route>
           <Route path="/addCategory" component={AddCategory} />
           <Route path="/">
-            <AnnouncementDisplay annnouncementData={annnouncementData}
-              onDeleteMessage={onDeleteMessage} message={message}
-            />
+          <AnnouncementDisplay annnouncementData={annnouncementData}
+         onDeleteMessage={onDeleteMessage}
+        />
           </Route>
         </Switch>
       </div>
@@ -120,17 +131,16 @@ function App() {
     </div>
   );
 }
-
-const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, title})=>{
+const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, message, title})=>{
+ 
 let {idAnnouncements} = useParams()
 console.log(idAnnouncements)
 return <AnnouncementEdit idAnnouncements={idAnnouncements} 
-    onChangeTitle={onChangeTitle} 
-    onChangeExpiredDate={onChangeExpiredDate} 
-    onChangeMessage={onChangeMessage}
-    onUpdateMessage={onUpdateMessage}
-    title={title}
-  />
+onChangeTitle={onChangeTitle} 
+onChangeExpiredDate={onChangeExpiredDate} 
+onChangeMessage={onChangeMessage}
+onUpdateMessage={onUpdateMessage}
+title={title} message={message} />
 }
 
 export default App;

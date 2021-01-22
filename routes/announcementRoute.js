@@ -9,11 +9,11 @@ router.get('/', announcementRead.readMessage)
 router.post('/', announcementWrite.create)
 
 router.get('/:id', (req, res)=>{
-    console.log(req.params)
+   
     let sql = `SELECT *  FROM Announcements  WHERE idAnnouncements = ${req.params.id}  `
     let query = db.query(sql, (err, result)=>{
         if (err){
-            console.log({error:err})
+            res.status(404).send({error:err})
         }
        
         res.send(result)
@@ -25,7 +25,7 @@ router.post('/:id', (req, res)=>{
     let sql = `UPDATE Announcements  SET message = '${req.body.message}' WHERE idAnnouncements = ${req.params.id}  `
     let query = db.query(sql, (err, result)=>{
         if (err){
-            console.log({error:err})
+            res.status(404).send({error:err})
         }
        
         res.send('post updated')

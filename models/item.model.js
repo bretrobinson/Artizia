@@ -1,9 +1,40 @@
 const sql = require("./db.js");
 const async = require('async');
 
-var ItemModel = function(item){
 
+const ItemModel=function(itemmodel){
+    this.id=itemmodel.id;
+    this.name=itemmodel.name;
+    this.categoryId=itemmodel.categoryId;
+    this.createdDate=itemmodel.createdDate;
+    this.desc=itemmodel.desc;
+    this.imageUrl=itemmodel.imageUrl;
+    this.price=itemmodel.price;
+    this.userId-itemmodel.userId;
 }
+
+    ItemModel.delete = (userid,itemid, result) => {
+        console.log("Delete sql item_id>>>oooo" + itemid  );
+        console.log("Delete sql user_id>>>oooo" + userid  );
+    sql.query(`DELETE FROM Item WHERE id =${itemid} AND userid=${userid}`, (err, res) => {
+     
+        if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      if (res.affectedRows == 0) {
+        // not found Item with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+  
+      console.log("deleted item with id: ", itemid);
+      result(null, res);
+    });
+  };
+  
 
 ItemModel.findMostRecentItemsByCategoryMatchingSearchTerm=function(searchTerm, numberOfMostRecentItems, result){    
     const categorySql = `select distinct cat.*
