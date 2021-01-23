@@ -51,10 +51,11 @@ try{
 }
 }
 const onUpdateMessage = async (idMessage, message) =>{
+  
 if(message.length<2){
   alert('Please Enter Message to edit')
 } else{
-  await craftserverApi.post('/announcement/' + idMessage ,{message})
+await craftserverApi.post('/announcement/' + idMessage ,{ message})
   loadAnnouncement()
 }
 
@@ -125,7 +126,7 @@ if(message.length<2){
 const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, message, title})=>{
  
 let {idAnnouncements} = useParams()
-console.log(idAnnouncements)
+// console.log(idAnnouncements)
 return <AnnouncementEdit idAnnouncements={idAnnouncements} 
 onChangeTitle={onChangeTitle} 
 onChangeExpiredDate={onChangeExpiredDate} 

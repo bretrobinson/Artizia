@@ -23,6 +23,7 @@ const AnnouncementDisplay = ({annnouncementData,onDeleteMessage}) => {
 
     return (
         <Container maxWidth='lg'>
+            <h1>Announcements</h1>
              {annoucementDisplay}
         </Container>
     );
