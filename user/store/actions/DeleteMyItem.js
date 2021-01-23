@@ -4,20 +4,10 @@ export const DELETE_MYITEM= 'DELETE_MYITEM';
 export const DELETE_MYITEM_FAILED = 'DELETE_MYITEM_FAILED';
 
 export const DeleteMyItem = (userid,itemid) => {
-  console.log('In Delete action');
-  console.log("action_userid>>>>" + userid);
-  console.log("action_itemid>>>" + itemid);
-
-
-
-  
-  return async dispatch => {
-
-    console.log('Before fetch');
+return async dispatch => {
     
-    const response = await axios.post(`http://e712365bac01.ngrok.io/api/deletemyitem/${itemid}/${userid}`,
+    const response = await Api.post(`/api/deletemyitem/${itemid}/${userid}`,
       {
-       
         itemid,
         userid,
              
@@ -25,9 +15,8 @@ export const DeleteMyItem = (userid,itemid) => {
         throw new Error('Error removing item');
       }
        })
-   // const resData = await response; 
-     .then(response)
-    .then(resData => {
+   .then(response)
+   .then(resData => {
      dispatch({ type: DELETE_MYITEM, payload: resData});
     })
     .catch(err => {

@@ -17,7 +17,6 @@ import {DELETE_MYITEM } from '../actions/DeleteMyItem';
         default:
         return state;      
     }
-  
-  
+    
   };
   

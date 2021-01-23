@@ -52,21 +52,16 @@ export const createReviewSeller = (name,sellerReview,sellerRating) => {
 
     console.log('Before fetch');
     
-    const response = await axios.post('http://e712365bac01.ngrok.io/api/newsellerreview',
+    const response = await  Api.post('/api/newsellerreview',
       {
         name,
         sellerReview,
         sellerRating
-      
       }).then(resData => {if (!response.ok) {
-        throw new Error('Error createReviewSeller');
+        throw new Error('Error create review seller');
       }
        })
-
-    
-
-   // const resData = await response; 
-     .then(response)
+    .then(response)
     .then(resData => {
      dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData});
     })
@@ -74,7 +69,7 @@ export const createReviewSeller = (name,sellerReview,sellerRating) => {
       dispatch({ type: CREATE_REVIEWSELLER_FAILED, payload: response });
      });
 
-    //dispatch({ type: CREATE_REVIEWSELLER_SUCCESS, payload: resData})
+
   };
 };
 
