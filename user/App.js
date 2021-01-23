@@ -10,7 +10,7 @@ import { reviewSellerReducer } from './store/reducers/ReviewSeller';
 import {myItemReducer } from './store/reducers/DeleteMyItem';
 import { searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer } from './store/reducers/Landing';
 import thunkMiddleware from 'redux-thunk';
-
+import { Provider as AnnouncementsProvider } from './context/AnnouncementContext';
 const rootReducer = combineReducers({
   myItemReducer,
    reviewSellerReducer,
@@ -22,6 +22,7 @@ const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export default function App() {
   return (
+    <AnnouncementsProvider>
     <AuthProvider>
       <Provider store={store}>
         <NavigationContainer
@@ -31,6 +32,7 @@ export default function App() {
         </NavigationContainer>
       </Provider>
     </AuthProvider>
+    </AnnouncementsProvider>
   );
 }
 

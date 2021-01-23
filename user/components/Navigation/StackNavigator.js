@@ -8,7 +8,9 @@ import Signin from '../../screens/Signin'
 import ReviewSeller from '../../screens/ReviewSellerScreen'
 import CreateStackNavigator from './createStackNavigator'
 import AddItem from '../../screens/AddItemScreen'
-// import MyItem from '../../screens/MyItemScreen'
+import MyItem from '../../screens/MyItemScreen'
+import Announcements from '../../screens/Announcements'
+import Signout from '../../screens/Signout'
 
 
 const Stack = createStackNavigator();
@@ -68,7 +70,17 @@ const MainStackNavigator = ({navigation}) => {
 <CreateStackNavigator navigation={navigation} name="My Item" component={MyItem} />
     );
   }
+  const AnnouncementsStackNavigator = ({navigation}) => {
+    return (
+<CreateStackNavigator navigation={navigation} name="Announcements" component={Announcements} />
+    );
+  }
 
+  const SignoutStackNavigator = ({navigation}) => {
+    return (
+<CreateStackNavigator navigation={navigation} name="signout" component={Signout} />
+    );
+  }
 
   
   
@@ -78,4 +90,6 @@ const MainStackNavigator = ({navigation}) => {
     ReviewSellerStackNavigator, 
     ProfileStackNavigator, 
     AddItemStackNavigator,
-    MyItemStackNavigator, };
+    MyItemStackNavigator,
+  SignoutStackNavigator,
+  AnnouncementsStackNavigator,  };
