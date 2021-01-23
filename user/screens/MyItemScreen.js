@@ -1,7 +1,7 @@
 import React, {useState,useEffect } from 'react';
 import DeleteMyItemComponent from '../components/DeleteMyItem'
-import { View, TextInput, Button, StyleSheet } from 'react-native';
-
+import {  View, Text, StyleSheet, FlatList, ScrollView  } from 'react-native';
+import SearchBar from '../components/SearchBar';
 const ListMyItem = props => {
  const [userid,setUserId]=useState("");
  const [itemid,setItemdId]=useState("");
@@ -13,7 +13,20 @@ const ListMyItem = props => {
 
   return (
     <View >
-     <View style={styles.Container}>
+    <View>
+      
+    <View style={ styles.screen }>
+            <View style={ styles.searchBar }>
+                <SearchBar
+                   />
+            </View>
+            <ScrollView>
+                
+            </ScrollView>
+          </View>
+  
+    </View>
+     <View style={styles.screen}>
      <DeleteMyItemComponent userid={userid} itemid={itemid}/>
     </View>   
     
@@ -22,12 +35,19 @@ const ListMyItem = props => {
 };
 
 
+
 const styles = StyleSheet.create({
-     Container: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      marginVertical: 40
-    
-    }
-  });
+  screen: {
+      // flex: 1,
+      paddingTop: 20,
+      paddingLeft: 20,
+      paddingBottom: 20,
+      // alignItems: 'center',
+      // justifyContent: 'flex-start'
+      backgroundColor: '#F5EEF8'
+  },
+  searchBar: {
+      marginBottom: 20,
+  }
+});
 export default ListMyItem;

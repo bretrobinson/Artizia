@@ -8,7 +8,7 @@ import Signin from '../../screens/Signin'
 import ReviewSeller from '../../screens/ReviewSellerScreen'
 import CreateStackNavigator from './createStackNavigator'
 import AddItem from '../../screens/AddItemScreen'
-// import MyItem from '../../screens/MyItemScreen'
+import MyItem from '../../screens/MyItemScreen'
 
 
 const Stack = createStackNavigator();
