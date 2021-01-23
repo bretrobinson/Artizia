@@ -17,7 +17,7 @@ const DrawerNavigator = ()=> {
              <Drawer.Screen name = 'Profile' component={ProfileStackNavigator} />
             <Drawer.Screen name= 'Review Seller' component={ReviewSellerStackNavigator} />
             <Drawer.Screen name= 'Add Item' component={AddItemStackNavigator} />
-            <Drawer.Screen name= 'My Item' component={MyItemScreen} />
+            <Drawer.Screen name= 'MyItem' component={MyItemScreen} />
        
         </Drawer.Navigator>
 
