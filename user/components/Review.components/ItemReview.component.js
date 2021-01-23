@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-
+import ReactDOM from "react-dom";
+import 'localstorage-polyfill'
 import {
   View,
   Text,
@@ -11,6 +12,10 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 
 import { useSelector, useDispatch } from 'react-redux';
 const ItemReviewscreen = props => {
+ 
+  
+  //const user = JSON.parse(localStorage.getItem("user"));
+  //console.log("user id ooo>>>>>>>" + deserialisedState[0].userId);
   const [shortDescription, setshortDescription] = useState("");
   const [itemRating, setItemRating] = useState("");
   const [itemReview, setItemReview] = useState("");
@@ -31,10 +36,6 @@ const ItemReviewscreen = props => {
   }
 
   useEffect(() => {
-    console.log("callback function child item description>>>>>" + shortDescription);
-    console.log("callback function child item rating>>>>>" + itemRating);
-    console.log("callback function child item review>>>>>" + itemReview);
-   
     props.parentCallback(shortDescription,itemRating,itemReview);
   
   })

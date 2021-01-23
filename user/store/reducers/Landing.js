@@ -12,8 +12,7 @@ export const searchTermReducer = (state = initialStateSearchTerm, action) => {
   switch (action.type) {
     case UPDATE_SEARCH_TERM:
       return { ...state, searchTerm: action.searchTerm };
-         
-    default:
+   default:
       return state;
   }
 };

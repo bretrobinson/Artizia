@@ -38,10 +38,7 @@ const ratingCompleted = (rating) => {
 }
 useEffect(() => {
  
-  console.log("callback function child>>>>>" + name);
-  console.log("callback function child>>>>>" + sellerRating);
-  console.log("callback function child>>>>>" + sellerReview);
- 
+  
   props.parentCallback(name,sellerReview,sellerRating);
 
 })

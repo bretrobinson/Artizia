@@ -10,17 +10,6 @@ const initialState = {
 
 export const reviewSellerReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case CREATE_REVIEWSELLER:
-    //   const newsellerReview = new SellerReview(
-    //     action.sellerReview.name,
-    //     action.sellerReview.sellerRating,
-    //     action.sellerReview.sellerReview,
-      
-    //   );
-    //   return {
-    //     ...state,
-    //     selerreviews: state.sellerreviews.concat(newsellerReview)
-    //   };
     case CREATE_REVIEWSELLER_PENDING:
       return Object.assign({}, state, { isPending: true});
     case CREATE_REVIEWSELLER_SUCCESS:
@@ -29,7 +18,6 @@ export const reviewSellerReducer = (state = initialState, action) => {
         action.payload.sellerReview,
         action.payload.sellerRating,
        
-      
       );      
 
       return Object.assign({}, state, {sellerreviews: state.sellerreviews.concat(newsellerReview), isPending: false });

@@ -15,8 +15,8 @@ const DeleteMyItemComponent = props => {
 
 
 return(
-    <View style={styles.buttonContainer}>
-     <View style={buttonSave}>
+    <View style={styles}>
+     <View>
      <Button title="Delete" onPress={ ()=>dispatch(DeleteMyItem(props.userid,props.itemid))}></Button>
      </View>
     </View>

@@ -7,11 +7,8 @@ export const CREATE_REVIEWITEM_FAILED = 'CREATE_REVIEWITEM_FAILED';
 export const createReviewItem = (dispatch,shortDescription,itemReview,itemRating) => {
 
   dispatch({ type: CREATE_REVIEWITEM_PENDING });
-  console.log(">>>>>>reviewitem action>>>>>>>>");
-    console.log(">>>>>>item-shotdescription" + shortDescription);
-    console.log(">>>>>>item-review" + itemReview);
-    console.log(">>>>>>item-rating" + itemRating);
-    fetch('http://e712365bac01.ngrok.io/api/newitemreview',
+  
+    fetch('http://7e27b4524f2d.ngrok.io/api/newitemreview',
       {
         method: 'POST',
         headers: {
