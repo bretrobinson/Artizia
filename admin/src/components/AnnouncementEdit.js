@@ -20,6 +20,13 @@ const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, 
             loadMessage()
     }, [idAnnouncements])
 
+   const  onHandleInputChange = (e)=>{
+       const {name, value} = e.target
+       onChangeMessage(cur=>{
+           return {...cur, [name]: value}
+       })
+   }
+
 
     return (
         <Container maxWidth='sm' >
@@ -35,7 +42,7 @@ const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, 
             <TextField label='New Title' InputLabelProps={{ shrink: true, }} value={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}  />
             <div>
                 <TextField multiline label='Old Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsMin={3} value={detail.message}   />
-                <TextField  multiline label='New Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsMin={3} placeholder={detail.message} onChange={(e)=>onChangeMessage(e.target.value)}  />
+                <TextField  multiline label='New Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsMin={3} value={detail.message} onChange={(e)=>onHandleInputChange(e)}  />
             </div>
             <div>
              <TextField id='date' label='Expiry date' type='date'  InputLabelProps={{ shrink: true, }} onChange={(e)=>onChangeExpiredDate(e.target.value)}   />

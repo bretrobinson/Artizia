@@ -40,15 +40,6 @@ function App() {
     }
   }
 
-  const loadAnnouncement = async () =>{
-    try{
-      const response = await craftserverApi.get('/announcement')
-      await console.log(response.data)
-      setAnnouncementData(response.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
 const loadAnnouncement = async () =>{
 try{
