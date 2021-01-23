@@ -3,7 +3,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer"
 
 //import {LandingStackNavigator, MainStackNavigator} from './StackNavigator'
 import ReviewSellerScreen from '../../screens/ReviewSellerScreen'
-import {LandingStackNavigator, MainStackNavigator,ProfileStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator} from './StackNavigator'
+import {LandingStackNavigator, 
+    MainStackNavigator,ProfileStackNavigator, 
+    AddItemStackNavigator ,
+    ReviewSellerStackNavigator, 
+    MyItemStackNavigator,
+    AnnouncementsStackNavigator
+} from './StackNavigator'
 import Signup from '../../screens/Signup'
 // import ReviewSellerScreen from '../../screens/ReviewSellerScreen'
 
@@ -18,6 +24,7 @@ const DrawerNavigator = ()=> {
             <Drawer.Screen name= 'Review Seller' component={ReviewSellerStackNavigator} />
             <Drawer.Screen name= 'Add Item' component={AddItemStackNavigator} />
             <Drawer.Screen name= 'My Items' component={MyItemStackNavigator} />
+            <Drawer.Screen name= 'Announcements' component={AnnouncementsStackNavigator} />
         </Drawer.Navigator>
 
     )
