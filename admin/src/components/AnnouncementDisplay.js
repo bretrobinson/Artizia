@@ -1,20 +1,54 @@
 import React from 'react';
-import { Button, Container} from '@material-ui/core'
+import { Button, Container, makeStyles} from '@material-ui/core'
 import {    useHistory  } from "react-router-dom";
+import { lightBlue } from '@material-ui/core/colors';
+
+const useStyles = makeStyles({
+    container: {
+        background: 'lightBlue',    
+        borderRadius: 10  ,
+        margin: 10,
+        paddingBottom: 10,
+        paddingTop: 10
+    },
+    title: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom:10,
+        marginTop: 20,
+        
+    },
+    date: {
+        display: 'flex',
+        marginTop: 15,
+        marginBottom: 5
+    },
+    dateInside: {
+        paddingLeft: 50
+    }
+})
 
 const AnnouncementDisplay = ({annnouncementData,onDeleteMessage}) => {
     const history = useHistory()
+    const classes= useStyles()
 
     const annoucementDisplay = annnouncementData.map((data)=>{
-        return (<Container>
+        return (<Container className={classes.container}>
 
-            <div key={data.idAnnouncements} >{data.title}
+            <div className={classes.title} key={data.idAnnouncements} >
+              <div style={{fontWeight:'bold', fontSize: 20}}>  {data.title} </div>
             <Button variant="contained" onClick={()=>history.push('/edit/' + data.idAnnouncements)}>edit</Button>
             <Button variant="contained" color="secondary" onClick={()=>onDeleteMessage(data.idAnnouncements)}>delete</Button>
             </div>
             <div>{data.message}</div>
-            Date Entered<div>{data.dateEntered}</div>
-            Expire Date <div>{data.expiredDate}</div>            
+            <div className= {classes.date}>
+                <label>Date Entered</label>
+                <div className={classes.dateInside}>{data.dateEntered}</div> 
+            </div>
+            <div className= {classes.date}>
+                <label>Expiry Date</label>
+                <div className={classes.dateInside}>{data.expiredDate}</div>
+            </div>            
             
             
             </Container>)
