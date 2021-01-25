@@ -22,5 +22,5 @@ const fetchAnnouncements = dispatch => async()=>{
 export const {Provider, Context } = createDataContext(
     announcementsReducer,
     { fetchAnnouncements },
-    {}
+    []
 )

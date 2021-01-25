@@ -6,7 +6,7 @@ import {
   Link,
   useParams
 } from "react-router-dom";
-
+import Navbar from './components/Navbar'
 import craftserverApi from './api/craftserver'
 import AnnouncementDisplay from './components/AnnouncementDisplay'
 import Announcement from './components/Announcement'
@@ -69,9 +69,10 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
 
   return (
     <div className="App">
+      <Navbar/>
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -86,7 +87,7 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
               <Link to="/addCategory">Add Category</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
