@@ -5,8 +5,8 @@ import { View,
          TextInput,
          Button,
          Keyboard,
-         TouchableOpacity,
-         TouchableWithoutFeedback,
+        //  TouchableOpacity,
+        //  TouchableWithoutFeedback,
          Image,
          Alert,
          FlatList } from 'react-native';
@@ -17,7 +17,12 @@ import Colors from '../constants/Colors';
 import MainButton from '../components/MainButton';
 import DefaultStyles from '../constants/defaultStyles'
 import AddPhotos from './AddPhotos';
-import Card from '../components/Card'
+import Card from '../components/Card';
+import { TouchableNativeFeedback, 
+        TouchableHighlight, 
+        TouchableOpacity, 
+        TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import Api from '../api/craftserver';       
 
 // this should eventually come from database
 const Categories = [
@@ -128,6 +133,29 @@ const AddItemScreen = props => {
       Alert.alert( "Must select a subcategory", "", [] );
     }
     console.log("all input data looks ok");
+
+    photos.forEach((photo, i) => {
+      const photoData = new FormData();
+
+      photoData.append('fileData', {
+        uri: photo.uri,
+        type: 'image/jpeg',
+        name: `${i}.jpg`
+      });
+
+      const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+      };
+
+      Api.post('/api/uploadImage/1', photoData, config)
+      .then((response) => {
+        // console.log(response);
+      });
+
+    });
+
   }
 
   return (
@@ -135,13 +163,14 @@ const AddItemScreen = props => {
     // of input area, works for Android as well but
     // Android keyboard can be dismissed with checkmark key
     <TouchableWithoutFeedback
+      style={{height: '100%'}}
       onPress={() => {
         Keyboard.dismiss();
       }}
     >
 
     <View style={styles.screen}>
-    <View>
+      <View>
         <Text style={DefaultStyles.bodyText} >Short Desription</Text>
       </View>
       <TextInput
@@ -235,13 +264,13 @@ const AddItemScreen = props => {
             keyExtractor={photo=> photo.uri}
             renderItem={photo => (
                 <Card style={ styles.card }>
-                    <Image style={styles.image} source={{ uri: photo.uri }}/>
-                </Card>
-            )}
+                   <Image style={styles.image} source={{ uri: photo.item.uri }}/>
+                </Card>)
+            }
             />
           </View>
         )
-      }        
+      }
       <View style={styles.buttonContainer}>
         <View style={styles.buttonSave}>
           <MainButton title="Save" buttonColor="purple" onPress={saveButtonHandler}/>
@@ -249,7 +278,7 @@ const AddItemScreen = props => {
         
       </View>
     </View>
-    </TouchableWithoutFeedback>
+  </TouchableWithoutFeedback>
   )
 };
 
@@ -344,7 +373,11 @@ const styles = StyleSheet.create({
     width: 100,
     marginHorizontal: 10,
     marginVertical: 10
-},  
+},
+  image: {
+    height: '100%',
+    width: '100%'
+  }  
 });
 
 export default AddItemScreen;

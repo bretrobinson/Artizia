@@ -7,7 +7,7 @@ const requireAuth = require('./routes/requireAuthRoute')
 const Signup=require("./routes/signupRoute");
 //const ItemsReview=require("./routes/ItemReview.route");
 //const SellerReview=require("./routes/SellerReview.route");
-const ItemRoute=require('./routes/Item.route')
+// const ItemRoute=require('./routes/Item.route')
 
 const db = require("./models/db.js");
 const app = express();
@@ -32,7 +32,8 @@ require("./routes/SellerReview.route.js")(app);
 // require("./routes/anouncementWriteRoute")(app);
 require('./routes/signupRoute')(app)
 require('./routes/Item.route')(app);
-require('./routes/signinRoute')(app)
+require('./routes/signinRoute')(app);
+require('./routes/Image.route')(app);
 // const database = {
 //     login:[{
 //         id: '120',
