@@ -49,12 +49,21 @@ ItemModel.findMostRecentItemsByCategoryMatchingSearchTerm=function(searchTerm, n
         const mostRecentItemsByCategoryMatchingSearchTerm = [];
 
             async.each(categories, (category, callback) => {
-            const itemSql = `select *
-                                from Item it
-                                where it.categoryId = ${category.id} and (it.name like '%${searchTerm}%' 
-                                    or it.desc like '%${searchTerm}%')
-                                order by createdDate desc
-                                limit ${ numberOfMostRecentItems }`
+                const itemSql = `select it.*, im.url as imageUrl
+                from Item it
+                inner join Image im on it.id = im.itemId
+                where it.categoryId = ${category.id} 
+                    and (it.name like '%${searchTerm}%' or it.desc like '%${searchTerm}%')
+                    and im.id = (
+                        select min(minCreateDate.id)
+                        from    (
+                                    select min(firstImage.createdDate), firstImage.id
+                                    from Image firstImage
+                                    where it.id = firstImage.itemId
+                                ) as minCreateDate
+                        )
+                order by createdDate desc
+                limit ${ numberOfMostRecentItems }`
 
 
             sql.query(itemSql, (err, items, fields) => {
