@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator()
 const DrawerNavigator = ()=> {
     return (
         <Drawer.Navigator >
-            <Drawer.Screen name='Landing' component={ LandingStackNavigator} />
+            <Drawer.Screen name='Home' component={ LandingStackNavigator} />
             <Drawer.Screen name= 'Signin' component={MainStackNavigator} />            
              <Drawer.Screen name = 'Profile' component={ProfileStackNavigator} />
             <Drawer.Screen name= 'Review Seller' component={ReviewSellerStackNavigator} />

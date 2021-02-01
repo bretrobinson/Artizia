@@ -54,7 +54,7 @@ const Landing = (props) => {
 
 const styles = StyleSheet.create({
     screen: {
-        // flex: 1,
+        flex: 1,
         paddingTop: 20,
         paddingLeft: 20,
         paddingBottom: 20,
