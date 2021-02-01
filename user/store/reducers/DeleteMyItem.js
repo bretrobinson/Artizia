@@ -10,7 +10,7 @@ export const myItemReducer = (state = initialState, action) => {
           case DELETE_MYITEM:
             return {
                 myitem: [
-                    ...state.items.filter(items => !action.payload)
+                    ...state.items.filter(myitem => !action.payload)
                 ]
             }
         case DELETE_MYITEM_FAILED:

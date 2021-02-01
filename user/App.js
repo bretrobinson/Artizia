@@ -8,12 +8,15 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { reviewSellerReducer } from './store/reducers/ReviewSeller';
 import {myItemReducer } from './store/reducers/DeleteMyItem';
+import {userItemsReducer} from './store/reducers/DisplayMyItem';
 import { searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer } from './store/reducers/Landing';
 import thunkMiddleware from 'redux-thunk';
 import { Provider as AnnouncementsProvider } from './context/AnnouncementContext';
+
 const rootReducer = combineReducers({
   myItemReducer,
    reviewSellerReducer,
+   userItemsReducer,
   searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer
 });
 

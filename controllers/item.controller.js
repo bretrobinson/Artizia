@@ -1,6 +1,22 @@
 const ItemModel= require("../models/item.model.js");
-
-
+// Find Items with a userId
+exports.findUserItem= (req, res) => {
+  console.log("controller find by user id " + req.params.userid);
+  ItemModel.findByUserId(req.params.userid, (err, data) => {
+    
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with id ${req.params.userId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Item with userId " + req.params.userId
+        });
+      }
+    } else res.send(data);
+  });
+};
 // Delete a Myitem with the specified userId and itemId in the request
 exports.deleteMyitem = (req, res) => {
   ItemModel.delete(req.params.itemid,req.params.userid, (err, data) => {

@@ -13,9 +13,28 @@ const ItemModel=function(itemmodel){
     this.userId-itemmodel.userId;
 }
 
+    //Get user item 
+    ItemModel.findByUserId=(userId,result)=>{
+        console.log("sql find ByUserId>>>>>>" + userId);
+        sql.query(`select id, name, categoryId, createdDate, price, userId FROM Item WHERE userId =${userId}`, (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+              }
+          
+              if (res.length) {
+                console.log("found item: ", res[0]);
+                result(null, res[0]);
+                return;
+              }
+          
+              // not found Customer with the id
+              result({ kind: "not_found" }, null);
+            });
+          };    // Delete user item
     ItemModel.delete = (userid,itemid, result) => {
-        console.log("Delete sql item_id>>>oooo" + itemid  );
-        console.log("Delete sql user_id>>>oooo" + userid  );
+ 
     sql.query(`DELETE FROM Item WHERE id =${itemid} AND userid=${userid}`, (err, res) => {
      
         if (err) {
@@ -29,9 +48,7 @@ const ItemModel=function(itemmodel){
         result({ kind: "not_found" }, null);
         return;
       }
-  
-      console.log("deleted item with id: ", itemid);
-      result(null, res);
+       result(null, res);
     });
   };
   

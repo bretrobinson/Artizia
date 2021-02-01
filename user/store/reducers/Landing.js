@@ -24,7 +24,9 @@ const initialStateSearchMostRecentItemsByCategoryMatchingSearchTerm = {
 };
 
 export const searchMostRecentItemsByCategoryMatchingSearchTermReducer = (state = initialStateSearchMostRecentItemsByCategoryMatchingSearchTerm, action={}) => {
+ 
   switch (action.type) {
+    
     case SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_TERM_PENDING:
       return Object.assign({}, state, { isPending: true});
     case SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_TERM_SUCCESS:

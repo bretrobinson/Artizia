@@ -11,6 +11,7 @@ const Landing = (props) => {
     });
 
     const mostRecentItemsByCategoryMatchingSearchTerm = useSelector(state => {
+      
         return state.searchMostRecentItemsByCategoryMatchingSearchTermReducer.mostRecentItemsByCategoryMatchingSearchTerm;
     });
 
