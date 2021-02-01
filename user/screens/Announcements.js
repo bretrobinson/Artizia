@@ -14,7 +14,7 @@ useEffect(()=>{
 }, [])
     return (
         <View>
-            <Text style={styles.title}>Announcements Page</Text>
+            {/* <Text style={styles.title}>Announcements Page</Text> */}
             <FlatList 
                 data={state}
                 keyExtractor={item=>item.idAnnouncements.toString()}
@@ -41,7 +41,7 @@ useEffect(()=>{
 };
 const styles = StyleSheet.create({
     container:{
-        marginHorizontal: 20
+        margin: 20
     },
     title: {
         fontSize: 20,

@@ -11,6 +11,7 @@ import AddItem from '../../screens/AddItemScreen'
 import MyItem from '../../screens/MyItemScreen'
 import Announcements from '../../screens/Announcements'
 import Signout from '../../screens/Signout'
+import ItemDetail from '../../screens/ItemDetail'
 
 
 const Stack = createStackNavigator();
@@ -46,12 +47,6 @@ const MainStackNavigator = ({navigation}) => {
   const ReviewSellerStackNavigator = ({navigation}) => {
     return (
       <CreateStackNavigator navigation={navigation} name="Review Seller" component={ReviewSeller} />
-      // <Stack.Navigator >
-      //   <Stack.Screen name="Review Seller" component={ReviewSeller}
-      //   options={{
-      //     headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
-      //   }} />
-      // </Stack.Navigator>
     );
   }
   const ProfileStackNavigator = ({navigation}) => {
@@ -81,6 +76,11 @@ const MainStackNavigator = ({navigation}) => {
 <CreateStackNavigator navigation={navigation} name="signout" component={Signout} />
     );
   }
+  const ItemDetailStackNavigator = ({navigation}) => {
+    return (
+<CreateStackNavigator navigation={navigation} name="ItemDetail" component={ItemDetail} />
+    );
+  }
 
   
   
@@ -92,4 +92,5 @@ const MainStackNavigator = ({navigation}) => {
     AddItemStackNavigator,
     MyItemStackNavigator,
   SignoutStackNavigator,
-  AnnouncementsStackNavigator,  };
+  AnnouncementsStackNavigator,
+  ItemDetailStackNavigator  };
