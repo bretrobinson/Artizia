@@ -35,10 +35,21 @@ ImageModel.uploadImageToItem = (req, result) => {
     
     upload(req)
     .then((imageResult) => {
+
+        let dateTimeNow = new Date();
+        dateTimeNow = dateTimeNow.getUTCFullYear() + '-' +
+            ('00' + (dateTimeNow.getUTCMonth()+1)).slice(-2) + '-' +
+            ('00' + dateTimeNow.getUTCDate()).slice(-2) + ' ' + 
+            ('00' + dateTimeNow.getUTCHours()).slice(-2) + ':' + 
+            ('00' + dateTimeNow.getUTCMinutes()).slice(-2) + ':' + 
+            ('00' + dateTimeNow.getUTCSeconds()).slice(-2) + '.' +
+            ('000' + dateTimeNow.getUTCMilliseconds()).slice(-3);
+
+        console.log(dateTimeNow);
         const newImage = {
-            createdDate:new Date().toISOString().slice(0, 19).replace('T', ' '),
-            url:imageResult.url,
-            itemId:req.params.itemid,
+            createdDate: dateTimeNow,
+            url: imageResult.url,
+            itemId: req.params.itemid,
         };
 
         sql.query("INSERT INTO Image SET ?", newImage, (err, res) => {
@@ -55,17 +66,6 @@ ImageModel.uploadImageToItem = (req, result) => {
     .catch(err => {
         result(err, null);
     })
-
-    // sql.query("INSERT INTO reviewItem SET ?", newItemReview, (err, res) => {
-    //     if (err) {
-    //       console.log("error: ", err);
-    //       result(err, null);
-    //       return;
-    //     }
-    
-    //     console.log("created item review: ", { id: res.insertId, ...newItemReview});
-    //     result(null, { id: res.insertId, ...newItemReview });
-    // });
 };
 
 module.exports = ImageModel;

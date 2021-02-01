@@ -35,7 +35,7 @@ const MainStackNavigator = ({navigation}) => {
   const LandingStackNavigator = ({navigation}) => {
     return (
       <Stack.Navigator >
-        <Stack.Screen name="Landing" component={Landing}
+        <Stack.Screen name="Craft Sell" component={Landing}
         options={{
           headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
         }} />

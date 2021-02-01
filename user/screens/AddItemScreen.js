@@ -5,11 +5,13 @@ import { View,
          TextInput,
          Button,
          Keyboard,
-        //  TouchableOpacity,
-        //  TouchableWithoutFeedback,
+         TouchableOpacity,
+         TouchableWithoutFeedback,
          Image,
          Alert,
-         FlatList } from 'react-native';
+         FlatList,
+         ScrollView 
+        } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ModalDropdown from '../downloads/ModalDropDown';
 
@@ -18,10 +20,6 @@ import MainButton from '../components/MainButton';
 import DefaultStyles from '../constants/defaultStyles'
 import AddPhotos from './AddPhotos';
 import Card from '../components/Card';
-import { TouchableNativeFeedback, 
-        TouchableHighlight, 
-        TouchableOpacity, 
-        TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Api from '../api/craftserver';       
 
 // this should eventually come from database
@@ -163,7 +161,6 @@ const AddItemScreen = props => {
     // of input area, works for Android as well but
     // Android keyboard can be dismissed with checkmark key
     <TouchableWithoutFeedback
-      style={{height: '100%'}}
       onPress={() => {
         Keyboard.dismiss();
       }}
@@ -240,12 +237,12 @@ const AddItemScreen = props => {
         <TouchableOpacity activeOpacity={0.4} onPress={addPhotoHandler}>
           <Ionicons name="add-circle" size={24} color="black" />
         </TouchableOpacity>
-        <AddPhotos 
-                visible={ isAddPhotoModalVisible } 
-                photos = { photos } 
-                setPhotos = { setPhotos } 
-                setIsAddPhotoModalVisible = { setIsAddPhotoModalVisible } 
-            />        
+          <AddPhotos 
+                  visible={ isAddPhotoModalVisible } 
+                  photos = { photos } 
+                  setPhotos = { setPhotos } 
+                  setIsAddPhotoModalVisible = { setIsAddPhotoModalVisible } 
+              />        
       </View>
 
       {photos.length === 0?
@@ -257,18 +254,21 @@ const AddItemScreen = props => {
           </View>
         ):
         (
-          <View style = {styles.photoListContainer}>
-            <FlatList
-            horizontal
-            data={photos}
-            keyExtractor={photo=> photo.uri}
-            renderItem={photo => (
-                <Card style={ styles.card }>
-                   <Image style={styles.image} source={{ uri: photo.item.uri }}/>
-                </Card>)
-            }
-            />
-          </View>
+            <View style = {styles.photoListContainer}>
+                <FlatList
+                  horizontal
+                  data={photos}
+                  keyExtractor={photo=> photo.uri}
+                  renderItem={photo => (
+                      <View onStartShouldSetResponder={() => true}>
+                        <Card style={ styles.card }>
+                          <Image style={styles.image} source={{ uri: photo.item.uri }}/>
+                        </Card>
+                      </View>)
+                }
+                />
+            </View>
+
         )
       }
       <View style={styles.buttonContainer}>
