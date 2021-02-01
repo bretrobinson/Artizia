@@ -17,7 +17,7 @@ useEffect(()=>{
             <Text style={styles.title}>Announcements Page</Text>
             <FlatList 
                 data={state}
-                keyExtractor={item=>item.idAnnouncements}
+                keyExtractor={item=>item.idAnnouncements.toString()}
                 renderItem={({item})=>{
                     return <View style={styles.container}> 
                         <View>

@@ -7,7 +7,7 @@ const AnnouncementModel = function(item){
 
 AnnouncementModel.readMessage=function(searchTerm, results){   
  
-    const userSql = `select * FROM Announcements `;
+    const userSql = `select * FROM Announcements ORDER by dateEntered DESC `;
     sql.query(userSql, function(err, res) {
         if (err) {
           console.log(err.message)
