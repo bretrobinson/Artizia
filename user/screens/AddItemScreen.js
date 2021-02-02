@@ -5,8 +5,8 @@ import { View,
          TextInput,
          Button,
          Keyboard,
-        //  TouchableOpacity,
-        //  TouchableWithoutFeedback,
+         TouchableOpacity,
+         TouchableWithoutFeedback,
          Image,
          Alert,
          FlatList } from 'react-native';
@@ -18,10 +18,10 @@ import MainButton from '../components/MainButton';
 import DefaultStyles from '../constants/defaultStyles'
 import AddPhotos from './AddPhotos';
 import Card from '../components/Card';
-import { TouchableNativeFeedback, 
-        TouchableHighlight, 
-        TouchableOpacity, 
-        TouchableWithoutFeedback } from 'react-native-gesture-handler';
+// import { TouchableNativeFeedback, 
+//         TouchableHighlight, 
+//         TouchableOpacity, 
+//         TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Api from '../api/craftserver';       
 
 // this should eventually come from database
