@@ -43,9 +43,9 @@ const ProductItem = props => {
 
 const styles = StyleSheet.create({
   product: {
-    height: 250,
+    height: 200,
     margin: 10,
-    width: 150,
+    width: 175,
   },
   touchable: {
     borderRadius: 10,
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
   },
   details: {
     alignItems: 'center',
-    height: '17%',
-    padding: 10
+    height: '40%',
+    padding: 5
   },
   name: {
     // fontFamily: 'open-sans-bold',
