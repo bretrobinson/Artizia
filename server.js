@@ -56,7 +56,7 @@ app.get("/api", (req, res) => {
     });
 });
 
-app.get('/', requireAuth, (req, res)=>{
+app.get('/profile', requireAuth, (req, res)=>{
     res.send(req.user)
 })
 
