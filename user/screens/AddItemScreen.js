@@ -134,6 +134,8 @@ const AddItemScreen = props => {
     }
     console.log("all input data looks ok");
 
+    // save all item data and if successful, save photo info
+
     photos.forEach((photo, i) => {
       const photoData = new FormData();
 
