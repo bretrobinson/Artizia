@@ -24,6 +24,7 @@ exports.item_list = (req, res) => {
 exports.item_create = (req, res) => {
 
   console.log('item_create: ', req.body)
+  console.log('user: ', req.user.idusers)
   console.log('item params: ', req.params)
   // Validate request
   if (!req.body) {
@@ -39,7 +40,7 @@ exports.item_create = (req, res) => {
     createdDate:req.body.createdDate,
     drop:req.body.drop,
     price:req.body.price,
-    userId:req.body.userId,
+    userId:req.user.idusers,
     desc:req.body.desc,
     //name:"Testing",
   });

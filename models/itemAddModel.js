@@ -13,7 +13,7 @@ const Item = function(item) {
   this.createdDate=item.createdDate;
   this.drop=item.drop;
   this.price=item.price;
-  this.userId-item.userId;
+  this.userId=item.userId;
   this.desc=item.desc;
   // this.imageUrl=item.imageUrl;
 }
@@ -40,6 +40,8 @@ sql.query("INSERT INTO Item SET ?", newItem, (err, res) => {
     return;
   }
 
+  console.log('res: ', res)
+  console.log('resid', res.insertId)
   console.log("created item: ", { id: res.insertId, ...newItem});
   result(null, { id: res.insertId, ...newItem });
 });
