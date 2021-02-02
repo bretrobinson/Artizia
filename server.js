@@ -54,7 +54,7 @@ require('./routes/Image.route')(app);
 // const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
 
 app.use('/category', categoryRouter);
-app.use('/item', itemRouter);
+app.use('/item', requireAuth, itemRouter);
 app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
