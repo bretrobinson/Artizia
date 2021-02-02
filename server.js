@@ -5,6 +5,7 @@ const announcementRoute = require('./routes/announcementRoute')
 const requireAuth = require('./routes/requireAuthRoute')
 
 const categoryRouter = require('./routes/categoryRouter');
+const itemRouter = require('./routes/itemRouter');
 
 const Signup=require("./routes/signupRoute");
 //const ItemsReview=require("./routes/ItemReview.route");
@@ -53,6 +54,7 @@ require('./routes/Image.route')(app);
 // const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
 
 app.use('/category', categoryRouter);
+app.use('/item', itemRouter);
 app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
