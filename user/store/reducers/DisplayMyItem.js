@@ -10,7 +10,7 @@ export const userItemsReducer =(state = initialState, action) => {
   switch (action.type) {
     case SET_ITEM:
       console.log(action.payload) 
-      return Object.assign({}, state, {items: action.payload, isPending: false });
+      return Object.assign({}, state, {items: action.payload });
  
    
    

@@ -15,9 +15,10 @@ const ItemModel=function(itemmodel){
 
     //Get user item 
     ItemModel.findByUserId=(userId,result)=>{
-        console.log("sql find ByUserId>>>>>>" + userId);
-        sql.query(`select id, name, categoryId, createdDate, price, userId FROM Item WHERE userId =${userId}`, (err, res) => {
-            if (err) {
+         
+        sql.query(`select Item.id, Item.name, Item.categoryId, Item.price, Item.userId, Image.url FROM Item inner join Image on Image.itemId=Item.id WHERE Item.userId=${userId}`, (err, res) => {
+                    
+                    if (err) {
                 console.log("error: ", err);
                 result(err, null);
                 return;
@@ -25,7 +26,7 @@ const ItemModel=function(itemmodel){
           
               if (res.length) {
                 console.log("found item: ", res[0]);
-                result(null, res[0]);
+                result(null, res);
                 return;
               }
           
@@ -33,9 +34,10 @@ const ItemModel=function(itemmodel){
               result({ kind: "not_found" }, null);
             });
           };    // Delete user item
-    ItemModel.delete = (userid,itemid, result) => {
- 
-    sql.query(`DELETE FROM Item WHERE id =${itemid} AND userid=${userid}`, (err, res) => {
+    ItemModel.delete = (itemid,userid, result) => {
+    console.log("userid>>>>:" + userid)
+    console.log("itemid>>>:" + itemid)
+    sql.query(`DELETE FROM Item WHERE Item.id =${itemid} AND userid=${userid}`, (err, res) => {
      
         if (err) {
         console.log("error: ", err);

@@ -1,51 +1,60 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, ScrollView } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, Button, StatusBar, ScrollView } from 'react-native';
 import * as actionGetItem from '../store/actions/DisplayMyItem';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GetMyItem from '../components/GetMyItem';
-
+import Colors from '../constants/Colors';
 const MyItemScreen = () => {
-  //const[resitem,setResitem]=useState("")
+
   const UserItemreducer = useSelector(state => state.userItemsReducer.items);
-  //if(UserItem!= null){
-  //let result = Object.keys(UserItem).map(function(key) {
-  //return [String(key), UserItem[key]];
-  //});
-  //setResitem(result);
-
-console.log(UserItemreducer);
-
-const dispatch = useDispatch();
-
-useEffect(() => {
-
-  //  setuserid(39)
-  actionGetItem.fetchitem(dispatch, 39);
-
-}, [dispatch]);
-
-return (
-    
-  <View>
-
   
+
+  console.log(UserItemreducer);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+
+    //  setuserid(39)
+    actionGetItem.fetchitem(dispatch,39);
+
+  }, [dispatch]);
+  return (
+
+    <View style={styles.container}>
       <FlatList
-      horizontal
-      data={UserItemreducer}
-      keyExtractor={item => item.id.toString()}
-      renderItem={itemData => (
-       <Text>dfdsfdsfdfdf</Text>
-      )}
-    
+        vertical
+        data={UserItemreducer}
+        keyExtractor={item => item.id.toString()}
+        renderItem={itemData => (
+          <GetMyItem
+            id={itemData.item.id}
+            name={itemData.item.name}
+            price={itemData.item.price}
+            url={itemData.item.url}
+            userid={39}
+
+          >
+           
+
+          </GetMyItem>
+
+
+        )}
+
       />
-  </View>
-);
+
+    </View>
+
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    height: 50,
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
