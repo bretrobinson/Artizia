@@ -135,8 +135,39 @@ const AddItemScreen = props => {
       Alert.alert( "Must select a subcategory", "", [] );
     }
     console.log("all input data looks ok");
+    //console.log('userid :', req.user.idusers)
 
-    // save all item data and if successful, save photo info
+    // save item data in object
+    let currentDate = new Date();
+    console.log('current date: ', currentDate)
+
+    const itemData = {
+      name: shortDesc,
+      categoryId: 7,
+      createdDate: currentDate,
+      drop: longDesc,
+      price: price,
+      userId: 19,
+      desc: longDesc,
+    }
+
+    console.log('itemData: ', itemData)
+
+    // save item data
+    const itemHdr = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    console.log('saving item data to db')
+    Api.post('/item/create', itemData, itemHdr)
+      .then((response) => {
+        console.log('item post res: ', response);
+      })
+      .catch((err) => {
+        console.log('Error from item create api.post: ', err)
+      });
 
     photos.forEach((photo, i) => {
       const photoData = new FormData();
