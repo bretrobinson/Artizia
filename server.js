@@ -4,6 +4,9 @@ const cors = require ('cors')
 const announcementRoute = require('./routes/announcementRoute')
 const requireAuth = require('./routes/requireAuthRoute')
 
+const categoryRouter = require('./routes/categoryRouter');
+const itemRouter = require('./routes/itemRouter');
+
 const Signup=require("./routes/signupRoute");
 //const ItemsReview=require("./routes/ItemReview.route");
 //const SellerReview=require("./routes/SellerReview.route");
@@ -49,6 +52,9 @@ require('./routes/Image.route')(app);
 //     }] announcement
 // }announcement
 // const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
+
+app.use('/category', categoryRouter);
+app.use('/item', requireAuth, itemRouter);
 app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
@@ -56,7 +62,7 @@ app.get("/api", (req, res) => {
     });
 });
 
-app.get('/', requireAuth, (req, res)=>{
+app.get('/profile', requireAuth, (req, res)=>{
     res.send(req.user)
 })
 
@@ -75,6 +81,6 @@ app.get('/', requireAuth, (req, res)=>{
 // app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
 
-app.listen(3000, ()=>{
-    console.log('Listening on 3000')
+app.listen(4000, ()=>{
+    console.log('Listening on 4000')
 })

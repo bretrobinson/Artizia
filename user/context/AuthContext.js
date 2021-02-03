@@ -32,7 +32,7 @@ const signup = dispatch => async ({ email, password, fName, lName, location , pa
             await AsyncStorage.setItem('token', response.data.token)
             
             dispatch({type: 'signin', payload: response.data.token})
-            navigate('Landing')
+            navigate('Home')
         }
 
     } catch (err) {
@@ -50,7 +50,7 @@ const signin = dispatch => async ({ email, password }) => {
             // console.log(response.data)
             await AsyncStorage.setItem('token', response.data.token)        
             dispatch({type: 'signin', payload: response.data.token})
-            navigate('Landing')
+            navigate('Home')
         }
 
        
@@ -62,7 +62,7 @@ const signin = dispatch => async ({ email, password }) => {
 const signout = dispatch => async ()=>{
     await AsyncStorage.removeItem('token')
     dispatch({type: 'signout'})
-    navigate('Landing')
+    navigate('Home')
 }
 
 export const {Provider, Context } = createDataContext(

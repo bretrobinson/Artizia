@@ -22,9 +22,9 @@ module.exports = (req, res, next)=>{
               console.log(err.message)
     
              }
-            // const user = await database.login.find(user => user.id=== userId)
-            // console.log(result)
-        req.user = result[0]
+           const userProfile = result[0]
+            delete userProfile.password
+        req.user = userProfile
 
         next()
     

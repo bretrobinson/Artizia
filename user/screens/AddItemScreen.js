@@ -20,6 +20,10 @@ import MainButton from '../components/MainButton';
 import DefaultStyles from '../constants/defaultStyles'
 import AddPhotos from './AddPhotos';
 import Card from '../components/Card';
+// import { TouchableNativeFeedback, 
+//         TouchableHighlight, 
+//         TouchableOpacity, 
+//         TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Api from '../api/craftserver';       
 
 // this should eventually come from database
@@ -131,6 +135,8 @@ const AddItemScreen = props => {
       Alert.alert( "Must select a subcategory", "", [] );
     }
     console.log("all input data looks ok");
+
+    // save all item data and if successful, save photo info
 
     photos.forEach((photo, i) => {
       const photoData = new FormData();
