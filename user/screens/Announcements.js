@@ -1,7 +1,8 @@
 import React, {useContext,  useEffect} from 'react';
 import { View , Text,StyleSheet, FlatList} from 'react-native';
 import {Context as AnnouncementContext} from '../context/AnnouncementContext'
-
+import Colors from '../constants/Colors';
+import DefaultStyles from '../constants/defaultStyles'
 
 const Announcements = () => {
 
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
         margin: 20
     },
     title: {
-        fontSize: 20,
+        fontSize: DefaultStyles.title.fontSize,
         color: 'blue',
         textAlign: 'center',
         marginVertical: 20
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
     },
     messageTitle:{
         marginVertical: 5,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: DefaultStyles.bodyText.fontSize
     }
 })
 
