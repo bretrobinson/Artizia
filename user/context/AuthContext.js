@@ -49,7 +49,7 @@ const signin = dispatch => async ({ email, password }) => {
             dispatch({type: 'add_error', payload: 'Enter email and password'})
         } else{
             const response = await craftserverApi.post('/signin', {email, password})
-            console.log(response.data)
+            // console.log(response.data.token)
             await AsyncStorage.setItem('token', response.data.token);
             // await AsyncStorage.setItem('user', response.data.user)
             dispatch({type: 'signin', payload: response.data})

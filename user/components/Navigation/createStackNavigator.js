@@ -9,7 +9,7 @@ const CreateStackNavigator = ({navigation, name, component}) => {
       <Stack.Navigator >
         <Stack.Screen name={name} component={component}
         options={{
-          headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
+          headerRight: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
         }} />
       </Stack.Navigator>
     );
