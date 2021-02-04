@@ -2,7 +2,6 @@ import React, {useState,useContext, useCallback} from 'react';
 import { View } from 'react-native';
 import {StyleSheet,ScrollView, KeyboardAvoidingView, SafeAreaView} from 'react-native'
 import {Button, Text ,Input, colors} from 'react-native-elements'
-import AuthForm from '../components/AuthForm'
 import {Context as AuthContext} from '../context/AuthContext'
 import RadioButton2 from '../components/RadioButton2'
 import {useFocusEffect} from '@react-navigation/native'
@@ -36,6 +35,7 @@ const Signup = ({navigation}) => {
             autoCorrect={false}
             label='First Name' 
             placeholder='FirstName'
+            labelStyle={DefaultStyles.bodyText}
             placeholderTextColor={Colors.placeholderTextColor}
             />
     <Input value ={lName}
@@ -43,6 +43,7 @@ const Signup = ({navigation}) => {
         autoCorrect={false}
         label='Last Name'
         placeholder='LastName'
+        labelStyle={DefaultStyles.bodyText}
         placeholderTextColor={Colors.placeholderTextColor} />
         
 <Input value={email} 
@@ -51,6 +52,7 @@ const Signup = ({navigation}) => {
             autoCorrect={false}
             label='Email'
             placeholder='email@mail.com'
+            labelStyle={DefaultStyles.bodyText}
             placeholderTextColor={Colors.placeholderTextColor}
         />
 
@@ -60,6 +62,7 @@ const Signup = ({navigation}) => {
             autoCapitalize='none'
             autoCorrect={false}
             label='Password'
+            labelStyle={DefaultStyles.bodyText}
             placeholder='password'
             placeholderTextColor={Colors.placeholderTextColor}
         />
@@ -68,13 +71,10 @@ const Signup = ({navigation}) => {
         autoCorrect={false}
         label='Postal Code'
         placeholder='A0A 0A0'
+        labelStyle={DefaultStyles.bodyText}
         placeholderTextColor={Colors.placeholderTextColor}
         />
-    {/* <AuthForm 
-    submitButtonText='Sign up'
-    onSubmit={signup}/> */}
-
-
+   
     <RadioButton2 value={payment} setValue={setPayment}/>
     {errorMessage ? <Text style={styles.error} >{errorMessage}</Text> : null}
 
@@ -100,11 +100,6 @@ const styles=StyleSheet.create({
     },
     goto:{
         marginVertical: 40,
-        
-    },
-    error: {
-        textAlign: 'center',
-        color: 'red',
         
     }
 

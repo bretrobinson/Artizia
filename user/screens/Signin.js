@@ -29,6 +29,7 @@ const Signin = ({navigation}) => {
             autoCapitalize='none'
             autoCorrect={false}
             label='Email'
+            labelStyle={DefaultStyles.bodyText}
             placeholder='name@email.com'
             placeholderTextColor= {Colors.placeholderTextColor}
 
@@ -41,6 +42,7 @@ const Signin = ({navigation}) => {
             autoCorrect={false}
             label='Password'
             placeholder='password'
+            labelStyle={DefaultStyles.bodyText}
             placeholderTextColor= {Colors.placeholderTextColor}
         />
 
@@ -70,7 +72,11 @@ const styles=StyleSheet.create({
         textAlign: 'center',
         color: 'red',
         marginBottom: 10
+    },
+    errorStyle: {
+        color: 'red'
     }
+
 
 })
 export default Signin;
