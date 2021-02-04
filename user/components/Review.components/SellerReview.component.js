@@ -38,7 +38,7 @@ const sellerreviewscreen = props => {
   }
   useEffect(() => {
 
-    if (sellerRating = 0) {
+    if (sellerRating == 0) {
       setsellerRating(10)
       props.parentCallback(name, sellerReview, sellerRating);
     }else{
@@ -75,7 +75,7 @@ const sellerreviewscreen = props => {
       <View>
         <Text style={styles.title}>Seller rating</Text>
         <AirbnbRating
-          count={10}
+          count={5}
           onChangeText={sellerRatingInputHandler}
           reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
           defaultRating={10}

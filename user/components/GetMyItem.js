@@ -55,9 +55,7 @@ const GetMyItem = props => {
 
               <Text style={styles.name}>${props.price.toFixed(2)}</Text>
               <View style={styles.buttonContainer}>
-              <TouchableCmp>
-              <Button title="Delete"  onPress={deleteHandler.bind(this, props.id)}></Button>
-              </TouchableCmp>
+            
               </View>
              
             </View>
