@@ -1,24 +1,22 @@
+import Item from '../../models/item';
 import { DELETE_MYITEM, DELETE_MYITEM_FAILED } from '../actions/DeleteMyItem';
 
-
 const initialState = {
-    myitem: []
+  items: []
 };
-
-export const myItemReducer = (state = initialState, action) => {
-    switch (action.type) {
-          case DELETE_MYITEM:
-            return {
-                myitem: [
-                    ...state.items.filter(myitem => !action.payload)
-                ]
-            }
-        case DELETE_MYITEM_FAILED:
-            return Object.assign({}, state, { error: action.payload, isPending: false });
-        default:
-            return state;
-
-    }
-
-
+export const deletemyItemReducer = (state = initialState, action) => {
+  switch (action.type) {
+    
+    case DELETE_MYITEM:
+      console.log("delete item reducer>>>" + action.type)
+      console.log("delete item reducer>>>" + action.Iid)
+      return {
+        
+        items: state.items.filter( item => item.id !== action.Iid)
+      
+      }
+     
+     }
+    
+  return state;
 };

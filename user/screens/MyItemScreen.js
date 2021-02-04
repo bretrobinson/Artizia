@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GetMyItem from '../components/GetMyItem';
 import Colors from '../constants/Colors';
+
 const MyItemScreen = () => {
 
   const UserItemreducer = useSelector(state => state.userItemsReducer.items);
@@ -12,6 +13,19 @@ const MyItemScreen = () => {
 
   console.log(UserItemreducer);
 
+  const deleteHandler = (id) => {
+    Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
+      { text: 'No', style: 'default' },
+      {
+        text: 'Yes',
+        style: 'destructive',
+        onPress: () => {
+          console.log(props.id)
+        dispatch(DeleteMyItem(39,props.id));
+        }
+      }
+    ]);
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +38,7 @@ const MyItemScreen = () => {
 
     <View style={styles.container}>
       <FlatList
+        
         vertical
         data={UserItemreducer}
         keyExtractor={item => item.id.toString()}
@@ -36,58 +51,66 @@ const MyItemScreen = () => {
             userid={39}
 
           >
-           
-
+         
+       
           </GetMyItem>
 
 
         )}
 
       />
-
+     
     </View>
 
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    height: 50,
-    marginTop: StatusBar.currentHeight || 0,
+  product: {
+    height: 300,
+    margin: 20,
+    alignItems: 'stretch',
+   
+
   },
-  item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+  touchable: {
+    borderRadius: 10,
+    overflow: 'hidden'
+  },
+  imageContainer: {
+    width: '100%',
+    height: '60%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    overflow: 'hidden'
+  },
+  image: {
+    width: '100%',
+    height: '100%'
+  },
+  details: {
+    alignItems: 'center',
+    height: '45%',
+   
   },
   title: {
-    fontSize: 20,
-  },
-  separatorLine: {
-    height: 1,
-    backgroundColor: 'plum',
-    paddingTop: 2,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  footer: {
-    paddingBottom: 30,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: 'black',
-  },
-  sectionDescription: {
-    marginTop: 8,
+    fontFamily: 'open-sans-bold',
     fontSize: 18,
-    fontWeight: '400',
-    color: 'black',
+    marginVertical: 2
   },
+  price: {
+    fontFamily: 'open-sans',
+    fontSize: 14,
+    color: '#888'
+  },
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '23%',
+    paddingHorizontal: 20
+  }
 });
+
 
 export default MyItemScreen;

@@ -65,7 +65,7 @@ const ItemReviewscreen = props => {
         <Text style={styles.title}>Item rating</Text>
         <AirbnbRating
           count={10}
-          reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable"]}
+          reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
           defaultRating={10}
           size={20}
           onFinishRating={ratingCompleted}

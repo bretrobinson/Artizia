@@ -2,10 +2,9 @@ import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const instance = axios.create({
-    baseURL: 'http://0a760778e045.ngrok.io',
+    baseURL: 'http://5c911ebccc1e.ngrok.io',
    
 })
-
 
 instance.interceptors.request.use(
     async (config) => {
@@ -19,5 +18,6 @@ instance.interceptors.request.use(
       return Promise.reject(err);
     }
   );
+  
   
   export default instance;

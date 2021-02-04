@@ -45,7 +45,7 @@ const GetMyItem = props => {
   return (
     <Card style={styles.product}>
       <View style={styles.touchable}>
-        <TouchableCmp onPress={props.onSelect} useForeground>
+     
           <View>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{ uri: props.url }} />
@@ -53,14 +53,18 @@ const GetMyItem = props => {
             <View style={styles.details}>
               <Text style={styles.name}>{props.name}</Text>
 
-              <Text style={styles.name}>{props.price}</Text>
+              <Text style={styles.name}>${props.price.toFixed(2)}</Text>
+              <View style={styles.buttonContainer}>
+              <TouchableCmp>
               <Button title="Delete"  onPress={deleteHandler.bind(this, props.id)}></Button>
-  
+              </TouchableCmp>
+              </View>
+             
             </View>
-
+          
          
           </View>
-        </TouchableCmp>
+          
       </View>
 
     </Card>
@@ -69,10 +73,16 @@ const GetMyItem = props => {
 };
 const styles = StyleSheet.create({
   product: {
-    height: 250,
-    margin: 10,
-    width: 300,
-    alignItems: 'stretch'
+    height: 300,
+    margin: 20,
+   
+  },
+  buttonContainer:{
+  
+    marginVertical: 10,
+    justifyContent: 'space-between',
+    padding:1,
+    marginLeft:200
   },
   touchable: {
     borderRadius: 10,
@@ -105,12 +115,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#888'
   },
-  //   actions: {
-  //     flexDirection: 'row',
-  //     justifyContent: 'space-between',
-  //     alignItems: 'center',
-  //     height: '23%',
-  //     paddingHorizontal: 20
-  //   }
+
 });
 export default GetMyItem;

@@ -8,7 +8,7 @@ export const fetchitem = (dispatch,userid) => {
   
   Api.get(`/api/myitem/${userid}`)
     .then(res => {
-         dispatch({ type: SET_ITEM,  payload: res.data})
+         dispatch({ type: SET_ITEM,  myitem: res.data})
   })
   .catch(err => {
       console.log(err);

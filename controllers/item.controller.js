@@ -1,6 +1,7 @@
 const ItemModel= require("../models/item.model.js");
 // Find Items with a userId
 exports.findUserItem= (req, res) => {
+  console.log("user id>>>" + req.params.userid)
   console.log("controller find by user id " + req.params.userid);
   ItemModel.findByUserId(req.params.userid, (err, data) => {
     
