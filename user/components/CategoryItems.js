@@ -14,6 +14,7 @@ const CategoryItems = props => {
             keyExtractor={item => item.id.toString()}
             renderItem={itemData => (
                 <ProductItem
+                itemId={itemData.item.id}
                 image={itemData.item.imageUrl}
                 name={itemData.item.name}
                 price={itemData.item.price}

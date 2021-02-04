@@ -30,7 +30,7 @@ const DrawerNavigator = ()=> {
             <Drawer.Screen name= 'MyItem' component={MyItemStackNavigator} />
             <Drawer.Screen name= 'Announcements' component={AnnouncementsStackNavigator} />
             <Drawer.Screen name= 'Signout' component={SignoutStackNavigator} />
-            <Drawer.Screen name= 'Item Detail' component={ItemDetailStackNavigator} />
+            {/* <Drawer.Screen name= 'Item Detail' component={ItemDetailStackNavigator} /> */}
             
         </Drawer.Navigator>
 
