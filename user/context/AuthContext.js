@@ -1,3 +1,4 @@
+
 import createDataContext from './createDataContext'
 import {navigate} from '../RootNavigation'
 import craftserverApi from '../api/craftserver'
@@ -8,7 +9,7 @@ const authReducer = (state, action)=>{
         case 'add_error':
             return {...state, errorMessage: action.payload}
         case 'signin':
-            return {errorMessage: '', token: action.payload}
+            return {errorMessage: '', token: action.payload.token, user: action.payload.user}
         case 'clear_error_message':
             return {...state, errorMessage:''}
         case 'signout':
@@ -30,8 +31,9 @@ const signup = dispatch => async ({ email, password, fName, lName, location , pa
         } else {
             const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment})
             await AsyncStorage.setItem('token', response.data.token)
+            // await AsyncStorage.setItem('user', response.data.user)
             
-            dispatch({type: 'signin', payload: response.data.token})
+            dispatch({type: 'signin', payload: response.data})
             navigate('Home')
         }
 
@@ -47,9 +49,10 @@ const signin = dispatch => async ({ email, password }) => {
             dispatch({type: 'add_error', payload: 'Enter email and password'})
         } else{
             const response = await craftserverApi.post('/signin', {email, password})
-            // console.log(response.data)
-            await AsyncStorage.setItem('token', response.data.token)        
-            dispatch({type: 'signin', payload: response.data.token})
+            console.log(response.data)
+            await AsyncStorage.setItem('token', response.data.token);
+            // await AsyncStorage.setItem('user', response.data.user)
+            dispatch({type: 'signin', payload: response.data})
             navigate('Home')
         }
 
@@ -68,5 +71,5 @@ const signout = dispatch => async ()=>{
 export const {Provider, Context } = createDataContext(
     authReducer,
     {signup, signin, clearErrorMessage, signout},
-    {token:null, errorMessage: ''}
+    {token:null, errorMessage: '', user: ''}
 )

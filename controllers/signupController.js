@@ -40,6 +40,7 @@ exports.create = (req, res) => {
       });
     else {
       const token = jwt.sign({userId: data.idusers}, dbConfig.jwt)
-      res.send({data, token});}
+      delete data.password
+      res.send({user:data, token});}
   });
 };
