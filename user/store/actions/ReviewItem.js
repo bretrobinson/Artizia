@@ -8,7 +8,7 @@ export const createReviewItem = (dispatch,shortDescription,itemReview,itemRating
 
   dispatch({ type: CREATE_REVIEWITEM_PENDING });
   
-    fetch('http://d31c128a3dad.ngrok.io/api/newitemreview',
+    fetch('http://65304143c1d6.ngrok.io/api/newitemreview',
       {
         method: 'POST',
         headers: {

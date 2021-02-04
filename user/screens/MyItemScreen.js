@@ -1,18 +1,32 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, Button, StatusBar, ScrollView } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, 
+  Button, StatusBar, ScrollView, TouchableOpacity,
+  TouchableNativeFeedback } from 'react-native';
 import * as actionGetItem from '../store/actions/DisplayMyItem';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GetMyItem from '../components/GetMyItem';
 import Colors from '../constants/Colors';
 
 const MyItemScreen = () => {
-
+  const [isLoading, setIsLoading] = useState(false);
+const [refreshing,setRefreshing]=useState(true)
+const [error, setError] = useState();
   const UserItemreducer = useSelector(state => state.userItemsReducer.items);
-  
-
+  const dispatch = useDispatch();
+ 
+  const loadProducts = useCallback(async () => {
+    console.log("loadProducts>>" )
+    setError(null);
+    setIsLoading(true);
+    try {
+      await  actionGetItem.fetchitem(dispatch,39);
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  }, [dispatch, setIsLoading, setError]);
   console.log(UserItemreducer);
-
   const deleteHandler = (id) => {
     Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
       { text: 'No', style: 'default' },
@@ -20,48 +34,42 @@ const MyItemScreen = () => {
         text: 'Yes',
         style: 'destructive',
         onPress: () => {
-          console.log(props.id)
-        dispatch(DeleteMyItem(39,props.id));
+          console.log(id)
+        dispatch(DeleteMyItem(39,id));
         }
       }
     ]);
   };
-  const dispatch = useDispatch();
-
+ 
   useEffect(() => {
-
     //  setuserid(39)
     actionGetItem.fetchitem(dispatch,39);
-
-  }, [dispatch]);
+    setRefreshing(false)
+  }, [dispatch,loadProducts]);
   return (
-
-    <View style={styles.container}>
-      <FlatList
+    
+    <FlatList
+      data={UserItemreducer}
+      keyExtractor={item => item.id}
+      renderItem={itemData => (
+        <GetMyItem
+        id={itemData.item.id}
+        name={itemData.item.name}
+        price={itemData.item.price}
+        url={itemData.item.url}
+        userid={39}
         
-        vertical
-        data={UserItemreducer}
-        keyExtractor={item => item.id.toString()}
-        renderItem={itemData => (
-          <GetMyItem
-            id={itemData.item.id}
-            name={itemData.item.name}
-            price={itemData.item.price}
-            url={itemData.item.url}
-            userid={39}
-
-          >
-         
-       
-          </GetMyItem>
-
-
-        )}
-
-      />
-     
-    </View>
-
+        >
+           <View style={styles.buttonContainer}>
+             
+             <Button title="Delete" onPress={deleteHandler.bind(this,itemData.item.id)}></Button>
+            
+             </View>
+        
+        </GetMyItem>
+      )}
+    />
+   
   );
 };
 
@@ -72,6 +80,14 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
    
 
+  },
+  
+  buttonContainer:{
+  
+    marginVertical: 10,
+    justifyContent: 'space-between',
+    padding:1,
+    marginLeft:200
   },
   touchable: {
     borderRadius: 10,
