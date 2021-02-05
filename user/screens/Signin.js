@@ -4,7 +4,8 @@ import {StyleSheet} from 'react-native'
 import {Button, Text, Input} from 'react-native-elements'
 import {Context as AuthContext} from '../context/AuthContext'
 import {useFocusEffect} from '@react-navigation/native'
-
+import Colors from '../constants/Colors';
+import DefaultStyles from '../constants/defaultStyles'
 
 const Signin = ({navigation}) => {
     const [email, SetEmail] = useState('')
@@ -28,8 +29,9 @@ const Signin = ({navigation}) => {
             autoCapitalize='none'
             autoCorrect={false}
             label='Email'
+            labelStyle={DefaultStyles.bodyText}
             placeholder='name@email.com'
-            placeholderTextColor='rgb(51, 153, 255)'
+            placeholderTextColor= {Colors.placeholderTextColor}
 
         />
 
@@ -40,7 +42,8 @@ const Signin = ({navigation}) => {
             autoCorrect={false}
             label='Password'
             placeholder='password'
-            placeholderTextColor='rgb(51, 153, 255)'
+            labelStyle={DefaultStyles.bodyText}
+            placeholderTextColor= {Colors.placeholderTextColor}
         />
 
 {errorMessage ? <Text style={styles.error} >{errorMessage}</Text> : null}
@@ -69,7 +72,11 @@ const styles=StyleSheet.create({
         textAlign: 'center',
         color: 'red',
         marginBottom: 10
+    },
+    errorStyle: {
+        color: 'red'
     }
+
 
 })
 export default Signin;

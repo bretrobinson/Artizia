@@ -60,9 +60,9 @@ const styles = StyleSheet.create({
     },
     data: {
           fontSize: 18,
-          width: 250,
+          width: 260,
           height: 35,
-          backgroundColor: 'pink',
+          backgroundColor: Colors.accent,
           padding: 10,
           margin: 5
     }
