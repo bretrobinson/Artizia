@@ -23,12 +23,13 @@ import Card from '../components/Card';
 // import { TouchableNativeFeedback, 
 //         TouchableHighlight, 
 //         TouchableOpacity, 
-//         TouchableWithoutFeedback } from 'react-native-gesture-handler';
+//         TouchableWithoutFeedback } from 'react-native-gesture-handler';  
 import Api from '../api/craftserver';       
 
 // this should eventually come from database
 const Categories = [
   'Crochet', 'Sewing', 'Painting', 'Woodwork', 'Photography', 'Metalwork', 'Bath and Beauty', 'Pets', 'Office'];
+
 let SubCategories = [];
 // this should eventually come from database
 const subCats = [
@@ -163,7 +164,7 @@ const AddItemScreen = props => {
     console.log('saving item data to db')
     Api.post('/item/create', itemData, itemHdr)
       .then((response) => {
-        console.log('item post res: ', response);
+        console.log('item post response: ', response);
       })
       .catch((err) => {
         console.log('Error from item create api.post: ', err)

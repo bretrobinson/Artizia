@@ -4,7 +4,6 @@ const item_controller = require('../controllers/addItemController');
 const db = require('../models/db');
 const auth = require('./requireAuthRoute')
 
-console.log('made it into item router');
 router.get('/', item_controller.item_list);
 
 router.post('/create', item_controller.item_create);
