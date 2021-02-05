@@ -2,11 +2,10 @@ export const SET_ITEM = 'SET_ITEM';
 export const SET_ITEM_FAILED = 'SET_ITEM_FAILED';
 import Api from '../../api/craftserver';
 
-
-export const fetchitem = (dispatch,userid) => {
+export const fetchitem = (dispatch) => {
   dispatch({ type: SET_ITEM });
   
-  Api.get(`/api/myitem/${userid}`)
+  Api.get(`/api/myitem/`)
     .then(res => {
          dispatch({ type: SET_ITEM,  myitem: res.data})
   })

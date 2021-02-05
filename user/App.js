@@ -14,7 +14,7 @@ import thunkMiddleware from 'redux-thunk';
 import { Provider as AnnouncementsProvider } from './context/AnnouncementContext';
 
 const rootReducer = combineReducers({
-  deletemyItemReducer,
+  //deletemyItemReducer,
    reviewSellerReducer,
    userItemsReducer,
   searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer
