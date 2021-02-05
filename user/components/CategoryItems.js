@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import ProductItem from './ProductItem';
+import DefaultStyles from '../constants/defaultStyles';
 
 const CategoryItems = props => {
     
     return (
     
-        <View style={ styles.searchCategorySection } >
-            <Text style={styles.title}>{props.category.category.name}</Text>
+        <View style={ DefaultStyles.searchCategorySection } >
+            <Text style={DefaultStyles.heading2}>{props.category.category.name}</Text>
             <FlatList
             horizontal
             data={props.category.mostRecentItems}
@@ -27,14 +28,14 @@ const CategoryItems = props => {
 };
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginBottom: 10
-      },       
-    searchCategorySection: {
-        marginVertical: 10
-    },
+    // title: {
+    //     fontSize: 22,
+    //     fontWeight: 'bold',
+    //     marginBottom: 10
+    //   },       
+    // searchCategorySection: {
+    //     marginVertical: 10
+    // },
 });
 
 export default CategoryItems;
