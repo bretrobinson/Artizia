@@ -23,12 +23,13 @@ import Card from '../components/Card';
 // import { TouchableNativeFeedback, 
 //         TouchableHighlight, 
 //         TouchableOpacity, 
-//         TouchableWithoutFeedback } from 'react-native-gesture-handler';
+//         TouchableWithoutFeedback } from 'react-native-gesture-handler';  
 import Api from '../api/craftserver';       
 
 // this should eventually come from database
 const Categories = [
   'Crochet', 'Sewing', 'Painting', 'Woodwork', 'Photography', 'Metalwork', 'Bath and Beauty', 'Pets', 'Office'];
+
 let SubCategories = [];
 // this should eventually come from database
 const subCats = [
@@ -135,8 +136,39 @@ const AddItemScreen = props => {
       Alert.alert( "Must select a subcategory", "", [] );
     }
     console.log("all input data looks ok");
+    //console.log('userid :', req.user.idusers)
 
-    // save all item data and if successful, save photo info
+    // save item data in object
+    let currentDate = new Date();
+    console.log('current date: ', currentDate)
+
+    const itemData = {
+      name: shortDesc,
+      categoryId: 7,
+      createdDate: currentDate,
+      drop: longDesc,
+      price: price,
+      userId: 0,
+      desc: longDesc,
+    }
+
+    console.log('itemData: ', itemData)
+
+    // save item data
+    const itemHdr = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    console.log('saving item data to db')
+    Api.post('/item/create', itemData, itemHdr)
+      .then((response) => {
+        console.log('item post response: ', response);
+      })
+      .catch((err) => {
+        console.log('Error from item create api.post: ', err)
+      });
 
     photos.forEach((photo, i) => {
       const photoData = new FormData();

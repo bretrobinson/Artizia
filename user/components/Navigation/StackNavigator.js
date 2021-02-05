@@ -12,6 +12,7 @@ import MyItem from '../../screens/MyItemScreen'
 import Announcements from '../../screens/Announcements'
 import Signout from '../../screens/Signout'
 import ItemDetail from '../../screens/ItemDetail'
+import AdvancedSearch from "../../screens/AdvancedSearch";
 
 
 const Stack = createStackNavigator();
@@ -85,8 +86,12 @@ const MainStackNavigator = ({navigation}) => {
 // <CreateStackNavigator navigation={navigation} name="ItemDetail" component={ItemDetail} />
 //     );
 //   }
-
   
+const AdvancedSearchStackNavigator = ({navigation}) => {
+  return (
+    <CreateStackNavigator navigation={navigation} name="Advanced Search" component={AdvancedSearch} />
+  );
+}
   
   export { 
     MainStackNavigator, 
@@ -97,4 +102,5 @@ const MainStackNavigator = ({navigation}) => {
     MyItemStackNavigator,
   SignoutStackNavigator,
   AnnouncementsStackNavigator,
+    AdvancedSearchStackNavigator
    };

@@ -55,6 +55,7 @@ require('./routes/Image.route')(app);
 
 app.use('/category', categoryRouter);
 app.use('/item', requireAuth, itemRouter);
+//app.use('/item', itemRouter);
 app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
