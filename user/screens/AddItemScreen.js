@@ -148,7 +148,7 @@ const AddItemScreen = props => {
       createdDate: currentDate,
       drop: longDesc,
       price: price,
-      userId: 19,
+      userId: 0,
       desc: longDesc,
     }
 
