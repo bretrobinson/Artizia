@@ -16,7 +16,7 @@ const ItemModel=function(itemmodel){
     //Get user item 
     ItemModel.findByUserId=(userId,result)=>{
          console.log("userid>>" + userId)
-        sql.query(`select Item.id, Item.name, Item.categoryId, Item.price, Item.userId, Image.url FROM Item inner join Image on Image.itemId=Item.id WHERE Item.userId=${userId}`, (err, res) => {
+        sql.query(`select Item.id, Item.name,Item.desc,Item.categoryId, Item.price, Item.userId, Image.url FROM Item inner join Image on Image.itemId=Item.id WHERE Item.userId=${userId}`, (err, res) => {
                     
                     if (err) {
                 console.log("error: ", err);

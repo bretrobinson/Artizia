@@ -4,15 +4,10 @@ export const CREATE_REVIEWITEM_PENDING = 'CREATE_REVIEWITEM_PENDING';
 export const CREATE_REVIEWITEM_SUCCESS = 'CREATE_REVIEWITEM_SUCCESS';
 export const CREATE_REVIEWITEM_FAILED = 'CREATE_REVIEWITEM_FAILED';
 
-export const createReviewItem = (dispatch,shortDescription,itemReview,itemRating) => {
-  console.log('In createReviewSeller action');
-  console.log("action_name>>>>" + name);
-  console.log("action_review>>>" + sellerReview);
-  console.log("action_rating>>>" + sellerRating);
+export const createReviewItem = (shortDescription,itemReview,itemRating) => {
+
   // dispatch({ type: CREATE_REVIEWSELLER_PENDING });
 
-
-  
   return async dispatch => {
 
     console.log('Before fetch');
