@@ -33,8 +33,9 @@ exports.findUser = (req, res) => {
       //  console.log(data[0])
           if(found){
             const token = jwt.sign({userId: data[0].idusers}, dbConfig.jwt)
-      
-            res.send({token});
+            const user = data[0]
+            delete user.password
+            res.send({token, user});
           }       
       
  

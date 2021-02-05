@@ -1,6 +1,23 @@
 const ItemModel= require("../models/item.model.js");
-
-
+// Find Items with a userId
+exports.findUserItem= (req, res) => {
+  console.log("user id:>>>" + req.user.idusers)
+  console.log("controller find by user id " + req.user.idusers);
+  ItemModel.findByUserId(req.user.idusers, (err, data) => {
+    console.log(req.user.idusers);
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with id ${req.user.idusers}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Item with userId " + req.user.idusers
+        });
+      }
+    } else res.send(data);
+  });
+};
 // Delete a Myitem with the specified userId and itemId in the request
 exports.deleteMyitem = (req, res) => {
   ItemModel.delete(req.params.itemid,req.params.userid, (err, data) => {
@@ -19,8 +36,7 @@ exports.deleteMyitem = (req, res) => {
   });
 };
 
-exports.findMostRecentItemsByCategoryMatchingSearchTerm = (req, res) => {
-   
+exports.findMostRecentItemsByCategoryMatchingSearchTerm = (req, res) => {   
   // Validate request
 //   if (!req.params.searchTerm) {
     

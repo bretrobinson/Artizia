@@ -12,11 +12,7 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 
 import { useSelector, useDispatch } from 'react-redux';
 const ItemReviewscreen = props => {
- 
-  
-  //const user = JSON.parse(localStorage.getItem("user"));
-  //console.log("user id ooo>>>>>>>" + deserialisedState[0].userId);
-  const [shortDescription, setshortDescription] = useState("");
+   const [shortDescription, setshortDescription] = useState("");
   const [itemRating, setItemRating] = useState("");
   const [itemReview, setItemReview] = useState("");
 
@@ -68,8 +64,8 @@ const ItemReviewscreen = props => {
       <View>
         <Text style={styles.title}>Item rating</Text>
         <AirbnbRating
-          count={10}
-          reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable"]}
+          count={5}
+          reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
           defaultRating={10}
           size={20}
           onFinishRating={ratingCompleted}

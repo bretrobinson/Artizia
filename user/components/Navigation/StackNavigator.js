@@ -12,6 +12,7 @@ import MyItem from '../../screens/MyItemScreen'
 import Announcements from '../../screens/Announcements'
 import Signout from '../../screens/Signout'
 import ItemDetail from '../../screens/ItemDetail'
+import AdvancedSearch from "../../screens/AdvancedSearch";
 
 
 const Stack = createStackNavigator();
@@ -20,12 +21,12 @@ const MainStackNavigator = ({navigation}) => {
       <Stack.Navigator >
         <Stack.Screen name="Signin" component={Signin}         
         options={{
-          headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
+          headerRight: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
         }}
          />
         <Stack.Screen name="Signup" component={Signup}
         options={{
-                  headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
+                  headerRight: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
                 }}  
          />
         
@@ -38,7 +39,11 @@ const MainStackNavigator = ({navigation}) => {
       <Stack.Navigator >
         <Stack.Screen name="Craft Sell" component={Landing}
         options={{
-          headerLeft: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
+          headerRight: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
+        }} />
+        <Stack.Screen name="ItemDetail" component={ItemDetail}
+        options={{
+          headerRight: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
         }} />
       </Stack.Navigator>
     );
@@ -76,13 +81,17 @@ const MainStackNavigator = ({navigation}) => {
 <CreateStackNavigator navigation={navigation} name="signout" component={Signout} />
     );
   }
-  const ItemDetailStackNavigator = ({navigation}) => {
-    return (
-<CreateStackNavigator navigation={navigation} name="ItemDetail" component={ItemDetail} />
-    );
-  }
-
+//   const ItemDetailStackNavigator = ({navigation}) => {
+//     return (
+// <CreateStackNavigator navigation={navigation} name="ItemDetail" component={ItemDetail} />
+//     );
+//   }
   
+const AdvancedSearchStackNavigator = ({navigation}) => {
+  return (
+    <CreateStackNavigator navigation={navigation} name="Advanced Search" component={AdvancedSearch} />
+  );
+}
   
   export { 
     MainStackNavigator, 
@@ -93,4 +102,5 @@ const MainStackNavigator = ({navigation}) => {
     MyItemStackNavigator,
   SignoutStackNavigator,
   AnnouncementsStackNavigator,
-  ItemDetailStackNavigator  };
+    AdvancedSearchStackNavigator
+   };

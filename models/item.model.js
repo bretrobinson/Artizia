@@ -13,10 +13,31 @@ const ItemModel=function(itemmodel){
     this.userId-itemmodel.userId;
 }
 
-    ItemModel.delete = (userid,itemid, result) => {
-        console.log("Delete sql item_id>>>oooo" + itemid  );
-        console.log("Delete sql user_id>>>oooo" + userid  );
-    sql.query(`DELETE FROM Item WHERE id =${itemid} AND userid=${userid}`, (err, res) => {
+    //Get user item 
+    ItemModel.findByUserId=(userId,result)=>{
+         console.log("userid>>" + userId)
+        sql.query(`select Item.id, Item.name, Item.categoryId, Item.price, Item.userId, Image.url FROM Item inner join Image on Image.itemId=Item.id WHERE Item.userId=${userId}`, (err, res) => {
+                    
+                    if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+              }
+          
+              if (res.length) {
+                console.log("found item: ", res[0]);
+                result(null, res);
+                return;
+              }
+          
+              // not found Customer with the id
+              result({ kind: "not_found" }, null);
+            });
+          };    // Delete user item
+    ItemModel.delete = (itemid,userid, result) => {
+    console.log("userid>>>>:" + userid)
+    console.log("itemid>>>:" + itemid)
+    sql.query(`DELETE FROM Item WHERE Item.id =${itemid} AND userid=${userid}`, (err, res) => {
      
         if (err) {
         console.log("error: ", err);
@@ -29,9 +50,7 @@ const ItemModel=function(itemmodel){
         result({ kind: "not_found" }, null);
         return;
       }
-  
-      console.log("deleted item with id: ", itemid);
-      result(null, res);
+       result(null, res);
     });
   };
   

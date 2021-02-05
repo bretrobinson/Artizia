@@ -6,17 +6,26 @@ import {DELETE_MYITEM } from '../actions/DeleteMyItem';
   };
   
   export const reviewItemReducer = (state = initialState, action) => {
-    switch (action.type) {
-      
-      case DELETE_MYITEM:
-        return{
-           items:[
-             ...state.items.filter(items=>items !==action.payload)
-           ]
-          };
-        default:
-        return state;      
-    }
     
-  };
-  
+      switch (action.type) {
+        
+        case CREATE_REVIEWITEM_PENDING:
+          return Object.assign({}, state, { isPending: true});
+        case CREATE_REVIEWITEM_SUCCESS:
+          const newItemReview = new ItemReview(
+            action.payload.shortDescription,
+            action.payload.itemReview,
+            action.payload.itemRating,
+            
+          );      
+    
+          return Object.assign({}, state, {itemreviews: state.itemreviews.concat(newItemReview), isPending: false });
+        case CREATE_REVIEWITEM_FAILED:
+          return Object.assign({}, state, {error: action.payload, isPending: false});
+        default:
+          return state;      
+      }
+    
+    
+    };
+    

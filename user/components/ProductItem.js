@@ -9,7 +9,7 @@ import {
   Platform
 } from 'react-native';
 import Colors from '../constants/Colors';
-
+import {navigate} from '../RootNavigation'
 import Card from './Card';
 
 const ProductItem = props => {
@@ -22,7 +22,8 @@ const ProductItem = props => {
   return (
     <Card style={styles.product}>
       <View style={styles.touchable}>
-        <TouchableCmp onPress={props.onSelect} useForeground>
+        {/* <TouchableCmp onPress={props.onSelect} useForeground> */}
+        <TouchableCmp onPress={()=>navigate('ItemDetail', {itemId: props.itemId, uri: props.image, price:props.price, itemName: props.name } )} useForeground>
           <View>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{ uri: props.image }} />

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   View,
@@ -10,12 +10,12 @@ import {
 } from 'react-native';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
- 
+
 const sellerreviewscreen = props => {
   const [text, setText] = useState('');
   const [name, setName] = useState("");
-  const [sellerRating,setsellerRating]= useState("");
- const [sellerReview,setSellerReview]=useState("");
+  const [sellerRating, setsellerRating] = useState("");
+  const [sellerReview, setSellerReview] = useState("");
 
   const nameInputHandler = (enteredName) => {
     setName(enteredName);
@@ -26,36 +26,39 @@ const sellerreviewscreen = props => {
   const sellerRatingInputHandler = (count) => {
     setsellerRating(count);
   };
-  
+
   //const sellerreview = useSelector(state => state.sellerreviews);
-  
 
- 
 
-const ratingCompleted = (rating) => {
-  setsellerRating(rating)
 
-}
-useEffect(() => {
- 
-  
-  props.parentCallback(name,sellerReview,sellerRating);
 
-})
-//let disabled = (name.length > 0 && text.length > 0) ? false : true;
+  const ratingCompleted = (rating) => {
+    setsellerRating(rating)
+
+  }
+  useEffect(() => {
+
+    if (sellerRating == 0) {
+      setsellerRating(10)
+      props.parentCallback(name, sellerReview, sellerRating);
+    }else{
+      props.parentCallback(name, sellerReview, sellerRating);
+    }
+  })
+  //let disabled = (name.length > 0 && text.length > 0) ? false : true;
   return (
     <View style={styles.container}>
 
       <View >
-        <TextInput   clearButtonMode="while-editing"
-        
+        <TextInput clearButtonMode="while-editing"
+
           style={styles.ReviewInput}
           placeholder="Seller Name"
-           onChangeText={nameInputHandler}
+          onChangeText={nameInputHandler}
           autoFocus={true}
           value={name}
         />
-        <TextInput 
+        <TextInput
           value={sellerReview}
           style={styles.ReviewInput}
           placeholder="Seller review"
@@ -63,18 +66,18 @@ useEffect(() => {
           keyboardType="default"
           autoCapitalize="sentences"
           returnKeyType="next"
-         onChangeText={sellerReviewInputHandler}
+          onChangeText={sellerReviewInputHandler}
           label={"Seller review"}
         />
-       
-        
+
+
       </View>
       <View>
         <Text style={styles.title}>Seller rating</Text>
         <AirbnbRating
-          count={10}
+          count={5}
           onChangeText={sellerRatingInputHandler}
-          reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable"]}
+          reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
           defaultRating={10}
           size={20}
           onFinishRating={ratingCompleted}
@@ -82,7 +85,7 @@ useEffect(() => {
         />
 
       </View>
-     
+
     </View>
   );
 };
@@ -90,12 +93,12 @@ useEffect(() => {
 const styles = StyleSheet.create({
 
   container: {
-    flexDirection:'column',
+    flexDirection: 'column',
     padding: 10,
     justifyContent: 'space-around',
-    marginTop:'10%'
+    marginTop: '10%'
   },
-  
+
   ReviewInput: {
     flex: 1,
     fontSize: 24,
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 25,
- }
+  }
 });
 
 export default sellerreviewscreen;

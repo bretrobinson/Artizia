@@ -82,6 +82,6 @@ app.get('/profile', requireAuth, (req, res)=>{
 // app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
 
-app.listen(4000, ()=>{
-    console.log('Listening on 4000')
+app.listen(3000, ()=>{
+    console.log('Listening on 3000')
 })
