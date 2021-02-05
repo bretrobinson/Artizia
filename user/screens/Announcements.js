@@ -23,8 +23,9 @@ useEffect(()=>{
                     return <View style={styles.container}> 
                         <View>
                         <Text style={styles.messageTitle}>{item.title}</Text>
-                                               </View>
-                        <Text>{item.message}</Text>
+                        </View>
+                        <View style={styles.message}>
+                        <Text >{item.message}</Text>
                         <View style={styles.date}>
                         <Text>Date Entered</Text>
                         <Text>{item.dateEntered}</Text>
@@ -32,6 +33,7 @@ useEffect(()=>{
                         <View style={styles.date}>
                         <Text>Expired Date</Text>
                         <Text>{item.expiredDate}</Text>
+                        </View>
                         </View>
                     </View>
                 }}
@@ -58,6 +60,11 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         fontWeight: 'bold',
         fontSize: DefaultStyles.bodyText.fontSize
+    },
+    message: {
+        backgroundColor: Colors.accent,
+        padding: 10,
+        borderRadius: 10
     }
 })
 
