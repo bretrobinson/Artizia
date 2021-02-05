@@ -3,7 +3,7 @@ const cors = require ('cors')
 // const mysql = require('mysql');
 const announcementRoute = require('./routes/announcementRoute')
 const requireAuth = require('./routes/requireAuthRoute')
-
+const ItemImagesRoute = require('./routes/itemImagesRoute')
 const categoryRouter = require('./routes/categoryRouter');
 const itemRouter = require('./routes/itemRouter');
 
@@ -37,24 +37,25 @@ require('./routes/signupRoute')(app)
 require('./routes/Item.route')(app);
 require('./routes/signinRoute')(app);
 require('./routes/Image.route')(app);
-// const database = {
-//     login:[{
-//         id: '120',
-//         email: 'sally@gmail.com',
-//         password: '1234',
-//          }],
-//     users:[{
-//         id: '120',
-//         email: 'sally@gmail.com',
-//         password: '1234',
-//         joined: new Date(),
-//         location:''
-//     }] announcement
-// }announcement
-// const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.use('/itemImages', ItemImagesRoute)
 app.use('/category', categoryRouter);
 app.use('/item', requireAuth, itemRouter);
+
 app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
