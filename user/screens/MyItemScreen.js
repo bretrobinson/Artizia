@@ -9,13 +9,11 @@ import { useState, useEffect, useCallback, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GetMyItem from '../components/GetMyItem';
 import Colors from '../constants/Colors';
-
 import { Context as AuthContext } from '../context/AuthContext'
 
 const MyItemScreen = () => {
 
   const { state } = useContext(AuthContext)
-
 
   if (state.user) {
     const [isLoading, setIsLoading] = useState(false);
@@ -23,13 +21,14 @@ const MyItemScreen = () => {
     const [error, setError] = useState();
     const UserItemreducer = useSelector(state => state.userItemsReducer.items);
     const dispatch = useDispatch();
-
+    console.log("my item result:" + UserItemreducer)
+      
     const loadProducts = useCallback(async () => {
       console.log("loadProducts>>")
       setError(null);
       setIsLoading(true);
       try {
-        await actionGetItem.fetchitem(dispatch, 39);
+        await actionGetItem.fetchitem(dispatch,state.idusers);
       } catch (err) {
         setError(err.message);
       }
@@ -44,7 +43,7 @@ const MyItemScreen = () => {
           style: 'destructive',
           onPress: () => {
             console.log(id)
-            dispatch(DeleteMyItem(39, id));
+            dispatch(DeleteMyItem(state.idusers,id));
           }
         }
       ]);
@@ -57,8 +56,7 @@ const MyItemScreen = () => {
     }, [dispatch, loadProducts]);
     return (
       <View style={styles.screen}>
-
-
+      
         <FlatList
           data={UserItemreducer}
           keyExtractor={item => item.id}
@@ -68,9 +66,9 @@ const MyItemScreen = () => {
               name={itemData.item.name}
               price={itemData.item.price}
               url={itemData.item.url}
-              userid={39}
+              desc={itemData.item.desc}
+             
             >
-            <Button title="Delete"  onPress={deleteHandler.bind(this,itemData.item.id)}></Button>
             </GetMyItem>
           )}
           
@@ -92,7 +90,8 @@ const styles = StyleSheet.create({
 
   },
   screen:{
-    flex:1
+    flex:1,
+    flexDirection: 'row'
   },
 
   buttonContainer: {

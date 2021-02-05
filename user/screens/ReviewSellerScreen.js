@@ -20,11 +20,7 @@ const ReviewSellerScreen = props => {
 
   const dispatch = useDispatch();
  
- let retrieveData = () => {
-    // We have data!!
-    console.log("value>>>>333");
-   // const value = await AsyncStorage.getItem('token');
-};
+
   passValueItemReviewFunction = (shortDescription, itemRating, itemReview) => {
     setshortDescription(shortDescription);
     setItemReview(itemReview);
@@ -53,9 +49,9 @@ const ReviewSellerScreen = props => {
           <MainButton
             title="Save"
             onPress={() => {
-              retrieveData;
-              dispatch(createReviewSeller(name, sellerReview, sellerRating));
-              createReviewItem(dispatch, shortDescription, itemReview, itemRating);
+              
+              dispatch(createReviewSeller(name,sellerReview, sellerRating));
+             dispatch(createReviewItem(shortDescription, itemReview, itemRating));
             
 
             }}

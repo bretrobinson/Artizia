@@ -45,24 +45,22 @@ const GetMyItem = props => {
   return (
     <Card style={styles.product}>
       <View style={styles.touchable}>
-     
-          <View>
+               <View>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{ uri: props.url }} />
             </View>
             <View style={styles.details}>
               <Text style={styles.name}>{props.name}</Text>
-
-              <Text style={styles.name}>${props.price.toFixed(2)}</Text>
+              <Text style={styles.desc}>{props.desc}</Text>
+              <Text style={styles.price}>${props.price.toFixed(2)}</Text>
               <View style={styles.buttonContainer}>
               <TouchableCmp>
               <Button title="Delete"  onPress={deleteHandler.bind(this, props.id)}></Button>
               </TouchableCmp>
               </View>
-             
-            </View>
           
-         
+            </View>
+                   
           </View>
           
       </View>
@@ -78,7 +76,6 @@ const styles = StyleSheet.create({
    
   },
   buttonContainer:{
-  
     marginVertical: 10,
     justifyContent: 'space-between',
     padding:1,
@@ -114,6 +111,12 @@ const styles = StyleSheet.create({
     // fontFamily: 'open-sans',
     fontSize: 14,
     color: '#888'
+  },
+  desc: {
+    // fontFamily: 'open-sans-bold',
+    fontSize: 18,
+    // color: Colors.accent,
+    marginVertical: 2
   },
 
 });
