@@ -8,6 +8,7 @@ import {
   TouchableNativeFeedback,
   Platform,Button,Alert
 } from 'react-native';
+import { MaterialCommunityIcons,Ionicons } from '@expo/vector-icons';
 import Card from './Card';
 import Colors from '../constants/Colors';
 import { useSelector, useDispatch } from 'react-redux';
@@ -55,7 +56,7 @@ const GetMyItem = props => {
               <Text style={styles.price}>${props.price.toFixed(2)}</Text>
               <View style={styles.buttonContainer}>
               <TouchableCmp>
-              <Button title="Delete"  onPress={deleteHandler.bind(this, props.id)}></Button>
+              <MaterialCommunityIcons  name="delete-forever" size={45} color="red" onPress={deleteHandler.bind(this, props.id)}/>
               </TouchableCmp>
               </View>
           
@@ -71,7 +72,8 @@ const GetMyItem = props => {
 };
 const styles = StyleSheet.create({
   product: {
-    height: 300,
+    marginTop:60,
+    height: 350,
     margin: 20,
    
   },

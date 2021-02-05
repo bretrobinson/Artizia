@@ -10,7 +10,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import GetMyItem from '../components/GetMyItem';
 import Colors from '../constants/Colors';
 import { Context as AuthContext } from '../context/AuthContext'
-
+import { MaterialCommunityIcons,Ionicons } from '@expo/vector-icons';
+import {navigate} from '../RootNavigation'
 const MyItemScreen = () => {
 
   const { state } = useContext(AuthContext)
@@ -56,7 +57,9 @@ const MyItemScreen = () => {
     }, [dispatch, loadProducts]);
     return (
       <View style={styles.screen}>
-      
+        <Ionicons name="add" style={styles.additemicon} size={55} color="black"
+        onPress={()=>navigate('AddItem')}
+        />  
         <FlatList
           data={UserItemreducer}
           keyExtractor={item => item.id}
@@ -93,7 +96,10 @@ const styles = StyleSheet.create({
     flex:1,
     flexDirection: 'row'
   },
-
+  additemicon:{
+    flex:1,
+    marginLeft: 330
+  },
   buttonContainer: {
     
     marginVertical: 10,
