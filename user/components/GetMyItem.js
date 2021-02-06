@@ -56,7 +56,7 @@ const GetMyItem = props => {
               <Text style={styles.price}>${props.price.toFixed(2)}</Text>
               <View style={styles.buttonContainer}>
               <TouchableCmp>
-              <MaterialCommunityIcons  name="delete-forever" size={45} color="red" onPress={deleteHandler.bind(this, props.id)}/>
+              <MaterialCommunityIcons  name="delete-forever" size={45} color="black" onPress={deleteHandler.bind(this, props.id)}/>
               </TouchableCmp>
               </View>
           
@@ -72,7 +72,7 @@ const GetMyItem = props => {
 };
 const styles = StyleSheet.create({
   product: {
-    marginTop:60,
+    marginTop:30,
     height: 350,
     margin: 20,
    

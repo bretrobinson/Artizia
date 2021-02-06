@@ -2,7 +2,7 @@ import React from 'react';
 import {
   SafeAreaView, View, FlatList, StyleSheet, Text,
   Button, StatusBar, ScrollView, TouchableOpacity,
-  TouchableNativeFeedback
+  TouchableNativeFeedback, KeyboardAvoidingView
 } from 'react-native';
 import * as actionGetItem from '../store/actions/DisplayMyItem';
 import { useState, useEffect, useCallback, useContext } from 'react';
@@ -10,8 +10,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import GetMyItem from '../components/GetMyItem';
 import Colors from '../constants/Colors';
 import { Context as AuthContext } from '../context/AuthContext'
-import { MaterialCommunityIcons,Ionicons } from '@expo/vector-icons';
-import {navigate} from '../RootNavigation'
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { navigate } from '../RootNavigation'
 const MyItemScreen = () => {
 
   const { state } = useContext(AuthContext)
@@ -23,13 +23,13 @@ const MyItemScreen = () => {
     const UserItemreducer = useSelector(state => state.userItemsReducer.items);
     const dispatch = useDispatch();
     console.log("my item result:" + UserItemreducer)
-      
+
     const loadProducts = useCallback(async () => {
       console.log("loadProducts>>")
       setError(null);
       setIsLoading(true);
       try {
-        await actionGetItem.fetchitem(dispatch,state.idusers);
+        await actionGetItem.fetchitem(dispatch, state.idusers);
       } catch (err) {
         setError(err.message);
       }
@@ -44,7 +44,7 @@ const MyItemScreen = () => {
           style: 'destructive',
           onPress: () => {
             console.log(id)
-            dispatch(DeleteMyItem(state.idusers,id));
+            dispatch(DeleteMyItem(state.idusers, id));
           }
         }
       ]);
@@ -56,28 +56,33 @@ const MyItemScreen = () => {
       setRefreshing(false)
     }, [dispatch, loadProducts]);
     return (
+
       <View style={styles.screen}>
-        <Ionicons name="add" style={styles.additemicon} size={55} color="black"
-        onPress={()=>navigate('AddItem')}
-        />  
-        <FlatList
-          data={UserItemreducer}
-          keyExtractor={item => item.id}
-          renderItem={itemData => (
-            <GetMyItem
-              id={itemData.item.id}
-              name={itemData.item.name}
-              price={itemData.item.price}
-              url={itemData.item.url}
-              desc={itemData.item.desc}
-             
-            >
-            </GetMyItem>
-          )}
-          
-        >
-        </FlatList>
       
+      <Ionicons name="add" style={styles.additemicon} size={55} color="black"
+          onPress={() => navigate('AddItem')}
+        />
+            
+          <FlatList
+            data={UserItemreducer}
+            keyExtractor={item => item.id.toString()}
+            renderItem={itemData => (
+              <GetMyItem
+                id={itemData.item.id}
+                name={itemData.item.name}
+                price={itemData.item.price}
+                url={itemData.item.url}
+                desc={itemData.item.desc}
+
+              >
+              </GetMyItem>
+            )}
+
+          >
+          </FlatList>
+
+      
+
       </View>
     );
   } else return <Text>Please Login.</Text>
@@ -86,22 +91,21 @@ const MyItemScreen = () => {
 
 const styles = StyleSheet.create({
   product: {
-    height: 300,
-    margin: 20,
-    alignItems: 'stretch',
-
+    height: 300
+    
 
   },
-  screen:{
-    flex:1,
-    flexDirection: 'row'
+  screen: {
+    flex: 1,
+
+    flexDirection: 'column'
   },
-  additemicon:{
-    flex:1,
-    marginLeft: 330
+  additemicon: {
+      width:50,
+      marginLeft:350
   },
   buttonContainer: {
-    
+
     marginVertical: 10,
     justifyContent: 'space-between',
     padding: 1,
