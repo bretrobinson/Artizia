@@ -9,10 +9,11 @@ import DefaultStyles from '../constants/defaultStyles';
 import MainButton from '../components/MainButton';
 
 const AdvancedSearch = props => {
-    const [categories, setCategories] = useState([]);
+    const [categoryNames, setCategoryNames] = useState([]);
+    const [categories, setCategories] = useState([{id: 0, name: 'Select category'}]);
     const [term, setTerm] = useState('');
     const [mostRecentItemsByCategoryMatchingSearchCriteria, setMostRecentItemsByCategoryMatchingSearchCriteria] = useState([]);
-    const [category, setCategory] = useState('');
+    const [categoryIndex, setCategoryIndex] = useState(0);
 
     const categoryRef = useRef();
 
@@ -26,57 +27,73 @@ const AdvancedSearch = props => {
         //     console.log(err);
         // })
 
-        const testCategories = ['Clothing', 'Party Supplies', 'Personal Care', 'Metal'];
-        setCategories(testCategories);
-        searchForMostRecentItemsByCategoryMatchingSearchCriteria('%25');
+        const responseCategories = [{id: 1, name: 'Clothing'}, {id: 2, name: 'Party Supplies'}, {id: 3, name: 'Personal Care'}, {id: 7, name: 'Metal'}];
+
+        console.log('categories', categories);
+        console.log('response categories', responseCategories);
+
+        const newCategories = [{id: 0, name: 'Select category'}, ...responseCategories];
+        
+        setCategories(newCategories);
+
+        const newCategoryNames = newCategories.map(category => category.name);
+        setCategoryNames(newCategoryNames);
+
+        searchForMostRecentItemsByCategoryMatchingSearchCriteria();
     }, []);
 
-    const searchForMostRecentItemsByCategoryMatchingSearchCriteria = (searchTerm) => {
-        // Api.get(`/api/mostRecentItemsByCategoryMatchingSearchCriteria/${searchTerm}/3/`)
-        // .then(response => {
-        //     console.log(response.data);
-        //     setMostRecentItemsByCategoryMatchingSearchCriteria(response.data);            
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });       
+    const searchForMostRecentItemsByCategoryMatchingSearchCriteria = () => {
+        const searchTerm = term === ''? '%25' : term;
 
-        const categoryItems = [
-            {
-                mostRecentItems: [
-                    {
-                        id: 1,
-                        name: 'Socks',
-                        imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
-                        price: 1.00
-                    },
-                    {
-                        id: 2,
-                        name: 'Sweater',
-                        imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
-                        price: 2.00
-                    },
-                    {
-                        id: 3,
-                        name: 'Pants',
-                        imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
-                        price: 3.00
-                    },
+        const searchCategoryId = categories[categoryIndex].id;
 
-                ],
+        const numberOfMostRecentItems = 0;
 
-                category: {
-                    id: 1,
-                    name: 'Clothing'
-                }
-            }
-        ];
+        Api.get(`/api/mostRecentItemsByCategoryMatchingSearchCriteria/${searchTerm}/${searchCategoryId}/${numberOfMostRecentItems}/`)
+        .then(response => {
+            // console.log(response.data);
+            setMostRecentItemsByCategoryMatchingSearchCriteria(response.data);            
+        })
+        .catch(err => {
+            console.log(err);
+        });       
 
-        setMostRecentItemsByCategoryMatchingSearchCriteria(categoryItems);
+        // const categoryItems = [
+        //     {
+        //         mostRecentItems: [
+        //             {
+        //                 id: 1,
+        //                 name: 'Socks',
+        //                 imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
+        //                 price: 1.00
+        //             },
+        //             {
+        //                 id: 2,
+        //                 name: 'Sweater',
+        //                 imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
+        //                 price: 2.00
+        //             },
+        //             {
+        //                 id: 3,
+        //                 name: 'Pants',
+        //                 imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
+        //                 price: 3.00
+        //             },
+
+        //         ],
+
+        //         category: {
+        //             id: 1,
+        //             name: 'Clothing'
+        //         }
+        //     }
+        // ];
+
+        // setMostRecentItemsByCategoryMatchingSearchCriteria(categoryItems);
     }
 
-    const searchButtonHandler = (searchTerm) => {
-        searchForMostRecentItemsByCategoryMatchingSearchCriteria(searchTerm);
+    const searchButtonHandler = () => {
+        searchForMostRecentItemsByCategoryMatchingSearchCriteria();
     }
 
     return (
@@ -101,17 +118,17 @@ const AdvancedSearch = props => {
                             ref={categoryRef}
                             style={DefaultStyles.modalField}
                             textStyle={DefaultStyles.modalFieldText}
-                            options={categories}
+                            options={categoryNames}
                             defaultValue={'Select category'}
                             dropdownTextStyle={DefaultStyles.modalDropdownText}
                             dropdownTextHighlightStyle={DefaultStyles.modalDropdownHighlight}
-                            onSelect={(idx, value) => setCategory(value)}
+                            onSelect={(idx, value) => setCategoryIndex(idx)}
                         />
                     </View>
                 </View>
 
                 <View style={DefaultStyles.buttonContainer}>
-                        <MainButton title="Search" buttonColor={Colors.defaultButtonColor} onPress={searchButtonHandler.bind(this, term === ''? '%25':term)}/>
+                        <MainButton title="Search" buttonColor={Colors.defaultButtonColor} onPress={searchButtonHandler}/>
                 </View>
 
                 <Text style={DefaultStyles.title}>

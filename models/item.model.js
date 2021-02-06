@@ -101,4 +101,58 @@ ItemModel.findMostRecentItemsByCategoryMatchingSearchTerm=function(searchTerm, n
     });
 }
 
+ItemModel.findMostRecentItemsByCategoryMatchingSearchCriteria=function(searchTerm, categoryId, numberOfMostRecentItems, result){    
+    let categorySql = `select distinct cat.*
+                            from Category cat
+                            inner join Item it on cat.id = it.categoryId 
+                            where (it.name like '%${searchTerm}%' 
+                                or it.desc like '%${searchTerm}%')                            
+                            `;
+
+    if (categoryId > 0) {
+        categorySql += ` and cat.id = ${categoryId}`;
+    }
+                            
+    sql.query(categorySql, function(err, categories, fields) {
+        if (err) return result(err,null);
+
+        const mostRecentItemsByCategoryMatchingSearchCriteria = [];
+
+            async.each(categories, (category, callback) => {
+                let itemSql = `select it.*, im.url as imageUrl
+                from Item it
+                inner join Image im on it.id = im.itemId
+                where it.categoryId = ${category.id} 
+                    and (it.name like '%${searchTerm}%' or it.desc like '%${searchTerm}%')
+                    and im.id = (
+                        select min(minCreateDate.id)
+                        from    (
+                                    select min(firstImage.createdDate), firstImage.id
+                                    from Image firstImage
+                                    where it.id = firstImage.itemId
+                                ) as minCreateDate
+                        )
+                order by createdDate desc`
+
+                if (numberOfMostRecentItems > 0)
+                {
+                    itemSql += ` limit ${ numberOfMostRecentItems }`;
+                }
+
+                sql.query(itemSql, (err, items, fields) => {
+                    mostRecentItemsByCategoryMatchingSearchCriteria.push({
+                        category: category,
+                        mostRecentItems: items
+                    });
+
+                callback();
+            });
+        }, err => {
+            if (err) return result(err,null);
+
+            return result(null, mostRecentItemsByCategoryMatchingSearchCriteria);
+        });
+    });
+}
+
 module.exports=ItemModel;
