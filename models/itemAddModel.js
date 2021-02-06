@@ -43,7 +43,7 @@ sql.query("INSERT INTO Item SET ?", newItem, (err, res) => {
   console.log('res: ', res)
   console.log('resid', res.insertId)
   console.log("created item: ", { id: res.insertId, ...newItem});
-  result(null, { id: res.insertId, ...newItem });
+  result(null, { ...newItem, id: res.insertId });
 });
 };
 
