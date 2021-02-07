@@ -7,56 +7,77 @@ import Colors from '../constants/Colors';
 import CategoryItems from '../components/CategoryItems';
 import DefaultStyles from '../constants/defaultStyles';
 import MainButton from '../components/MainButton';
+import { useSelector, useDispatch } from 'react-redux';
+import { searchForMostRecentItemsByCategoryMatchingSearchCriteria } from '../store/actions/Search'
 
 const AdvancedSearch = props => {
     const [categoryNames, setCategoryNames] = useState([]);
     const [categories, setCategories] = useState([{id: 0, name: 'Select category'}]);
     const [term, setTerm] = useState('');
-    const [mostRecentItemsByCategoryMatchingSearchCriteria, setMostRecentItemsByCategoryMatchingSearchCriteria] = useState([]);
+    // const [mostRecentItemsByCategoryMatchingSearchCriteria, setMostRecentItemsByCategoryMatchingSearchCriteria] = useState([]);
     const [categoryIndex, setCategoryIndex] = useState(0);
 
     const categoryRef = useRef();
 
+    const mostRecentItemsByCategoryMatchingSearchCriteria = useSelector(state => {
+        return state.searchMostRecentItemsByCategoryMatchingSearchCriteriaReducer.mostRecentItemsByCategoryMatchingSearchCriteria;
+    });
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        // Api.get('/api/category/all')
-        // .then((response) => {
-        //     console.log(response.data);
-        //     setCategories(response.data);
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // })
+        Api.get('/category')
+        .then((response) => {
+            // console.log('all categories', response.data);
 
-        const responseCategories = [{id: 1, name: 'Clothing'}, {id: 2, name: 'Party Supplies'}, {id: 3, name: 'Personal Care'}, {id: 7, name: 'Metal'}];
+            const responseCategories = response.data;
 
-        console.log('categories', categories);
-        console.log('response categories', responseCategories);
-
-        const newCategories = [{id: 0, name: 'Select category'}, ...responseCategories];
+            const newCategories = [{id: 0, name: 'Select category'}, ...responseCategories];
         
-        setCategories(newCategories);
-
-        const newCategoryNames = newCategories.map(category => category.name);
-        setCategoryNames(newCategoryNames);
-
-        searchForMostRecentItemsByCategoryMatchingSearchCriteria();
-    }, []);
-
-    const searchForMostRecentItemsByCategoryMatchingSearchCriteria = () => {
-        const searchTerm = term === ''? '%25' : term;
-
-        const searchCategoryId = categories[categoryIndex].id;
-
-        const numberOfMostRecentItems = 0;
-
-        Api.get(`/api/mostRecentItemsByCategoryMatchingSearchCriteria/${searchTerm}/${searchCategoryId}/${numberOfMostRecentItems}/`)
-        .then(response => {
-            // console.log(response.data);
-            setMostRecentItemsByCategoryMatchingSearchCriteria(response.data);            
+            setCategories(newCategories);
+    
+            const newCategoryNames = newCategories.map(category => category.name);
+            setCategoryNames(newCategoryNames);
+    
+            searchMostRecentItemsByCategoryMatchingSearchCriteria();        
         })
         .catch(err => {
             console.log(err);
-        });       
+        })
+
+        // const responseCategories = [{id: 1, name: 'Clothing'}, {id: 2, name: 'Party Supplies'}, {id: 3, name: 'Personal Care'}, {id: 7, name: 'Metal'}];
+
+        // console.log('categories', categories);
+        // console.log('response categories', responseCategories);
+
+        // const newCategories = [{id: 0, name: 'Select category'}, ...responseCategories];
+        
+        // setCategories(newCategories);
+
+        // const newCategoryNames = newCategories.map(category => category.name);
+        // setCategoryNames(newCategoryNames);
+
+        // searchForMostRecentItemsByCategoryMatchingSearchCriteria();
+
+        searchMostRecentItemsByCategoryMatchingSearchCriteria();        
+    }, []);
+
+    const searchMostRecentItemsByCategoryMatchingSearchCriteria = () => {
+        // const searchTerm = term === ''? '%25' : term;
+
+        // const searchCategoryId = categories[categoryIndex].id;
+
+        // const numberOfMostRecentItems = 0;
+
+        // // console.log (`/api/mostRecentItemsByCategoryMatchingSearchCriteria/${searchTerm}/${searchCategoryId}/${numberOfMostRecentItems}/`)
+
+        // Api.get(`/api/mostRecentItemsByCategoryMatchingSearchCriteria/${searchTerm}/${searchCategoryId}/${numberOfMostRecentItems}/`)
+        // .then(response => {
+        //     setMostRecentItemsByCategoryMatchingSearchCriteria(response.data);            
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        // });       
 
         // const categoryItems = [
         //     {
@@ -90,10 +111,18 @@ const AdvancedSearch = props => {
         // ];
 
         // setMostRecentItemsByCategoryMatchingSearchCriteria(categoryItems);
+
+        const searchTerm = term === ''? '%25' : term;
+
+        const searchCategoryId = categories[categoryIndex].id;
+
+        const numberOfMostRecentItems = 0;
+
+        dispatch(searchForMostRecentItemsByCategoryMatchingSearchCriteria(searchTerm, searchCategoryId, numberOfMostRecentItems));
     }
 
     const searchButtonHandler = () => {
-        searchForMostRecentItemsByCategoryMatchingSearchCriteria();
+        searchMostRecentItemsByCategoryMatchingSearchCriteria();
     }
 
     return (
@@ -105,7 +134,7 @@ const AdvancedSearch = props => {
                         onTermChange={newTerm => setTerm(newTerm) }
                         // onTermChange={newTerm => dispatch(updateSearchTerm(newTerm)) }
                         // onTermSubmit={() => searchForMostRecentItemsByCategoryMatchingSearchTerm(dispatch, term === ''? '%25':term) }
-                        // onTermSubmit={() => searchForMostRecentItemsByCategoryMatchingSearchCriteria() }                    
+                        onTermSubmit={() => searchMostRecentItemsByCategoryMatchingSearchCriteria() }                    
                     />
                 </View>
                 <View style={styles.categoryContainer}>
