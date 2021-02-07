@@ -26,8 +26,8 @@ const DrawerNavigator = ()=> {
     if (!isSignedIn) {
         return (
         
-            <Drawer.Navigator >
-                <Drawer.Screen name='Home' component={ MyTab}
+            <Drawer.Navigator  drawerPosition="right">
+                <Drawer.Screen name='Home' component={ MyTab} 
                        options={()=> ({
                         drawerIcon: ()=> <FontAwesome name='home' size={25} />
                     })} />
@@ -58,7 +58,7 @@ const DrawerNavigator = ()=> {
 } else {
     return (
         
-        <Drawer.Navigator >
+        <Drawer.Navigator drawerPosition="right">
             <Drawer.Screen name='Home' component={ MyTab}
                 options={()=> ({
                 drawerIcon: ()=> <FontAwesome name='home' size={25} />

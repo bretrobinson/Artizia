@@ -21,19 +21,19 @@ const ItemDetail = ({route, navigation}) => {
 
 }, [itemId])
 
-console.log('N',ItemImages)
+// console.log('N',ItemImages)
 if (ItemImages.length>0){
   return (
     <View style={styles.container}>
-        <Text>This ItemDetailScreen Page</Text>
-        <Text>Item id from Landing {itemId}</Text>
-        <Text>Short Description</Text>
-        <Text>Detailed description</Text>
+        {/* <Text>This ItemDetailScreen Page</Text>
+        <Text>Item id from Landing {itemId}</Text> */}
+        <Text style={styles.price}>{ItemImages[0].name}</Text>
+        <Text style={styles.price}>{ItemImages[0].drop}</Text>
         <View style={styles.imageContainer}>
         <FlatList 
             data={ItemImages}
             horizontal
-            keyExtractor={item=>item.id.toString()}
+            keyExtractor={item=>item.url}
             renderItem={({item})=>{
                 return (
                   <View> 
@@ -48,7 +48,13 @@ if (ItemImages.length>0){
         </View>
         <Text style={styles.price}>{itemName}</Text>
         <Text style={styles.price}>Price ${price.toFixed(2)}</Text>
-        <TextInput placeholder="Message to seller" />
+        <Text style={styles.price}>{ItemImages[0].createdDate}</Text>
+        <TextInput 
+         style={styles.multilineInput}
+         maxLength={256}
+         multiline={true}
+         numberOfLines={10}
+        placeholder="Message to seller" />
         <Button title='Send message' onPress={()=>navigation.goBack()}/>
 
     </View> 
@@ -78,6 +84,13 @@ const styles = StyleSheet.create({
         // fontFamily: 'open-sans',
         fontSize: 26,
         color: '#888'
+      },
+      multilineInput: {
+        height: 80,
+        width: '100%',
+        borderColor: 'black',
+        borderWidth: 1,
+        marginVertical: 10
       },
 })
 

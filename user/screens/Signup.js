@@ -7,7 +7,7 @@ import RadioButton2 from '../components/RadioButton2'
 import {useFocusEffect} from '@react-navigation/native'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles'
-
+import MainButton from '../components/MainButton';
 const Signup = ({navigation}) => {
     const{ signup, state:{errorMessage}, clearErrorMessage} = useContext(AuthContext)
     const [email, SetEmail] = useState('')
@@ -77,12 +77,22 @@ const Signup = ({navigation}) => {
    
     <RadioButton2 value={payment} setValue={setPayment}/>
     {errorMessage ? <Text style={styles.error} >{errorMessage}</Text> : null}
+    <View style={styles.buttonContainer}>
+        <View style={styles.buttonSave}>
+          <MainButton title="Sign up" buttonColor="purple" onPress={()=>signup({email, password, fName, lName, location, payment})}/>
+        </View>        
+      </View>
 
-<Button 
+        <View style={styles.buttonContainer}>
+        <View style={styles.buttonSave}>
+          <MainButton title="Go to Sign in" buttonColor="orange" onPress={()=>navigation.navigate('Signin')}/>
+        </View>        
+      </View>
+{/* <Button 
         title='Sign up' 
         onPress={()=>signup({email, password, fName, lName, location, payment})}
         />
-    <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')} style={styles.goto}/>
+    <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')} style={styles.goto}/> */}
         </View>
         </KeyboardAvoidingView>
         </ScrollView>
@@ -99,9 +109,16 @@ const styles=StyleSheet.create({
         marginVertical: 20
     },
     goto:{
-        marginVertical: 40,
-        
-    }
+        marginVertical: 40,        
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginVertical: 10
+      },
+      buttonSave: {
+        width: '60%',
+      },
 
 })
 export default Signup;

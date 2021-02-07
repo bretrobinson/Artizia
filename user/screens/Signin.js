@@ -6,7 +6,7 @@ import {Context as AuthContext} from '../context/AuthContext'
 import {useFocusEffect} from '@react-navigation/native'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles'
-
+import MainButton from '../components/MainButton';
 const Signin = ({navigation}) => {
     const [email, SetEmail] = useState('')
     const [password, setPassword] = useState ('')
@@ -48,11 +48,23 @@ const Signin = ({navigation}) => {
 
 {errorMessage ? <Text style={styles.error} >{errorMessage}</Text> : null}
 
-<Button 
+{/* <Button 
         title= 'Sign in' 
         onPress={()=>signin({email,password})}
         />
-        <Button title='Go to Sign up' onPress={()=>navigation.navigate('Signup')} style={styles.goto}/>
+        <Button title='Go to Sign up' onPress={()=>navigation.navigate('Signup')} style={styles.goto}/> */}
+        
+        <View style={styles.buttonContainer}>
+        <View style={styles.buttonSave}>
+          <MainButton title="Sign in" buttonColor="purple" onPress={()=>signin({email,password})}/>
+        </View>        
+      </View>
+
+        <View style={styles.buttonContainer}>
+        <View style={styles.buttonSave}>
+          <MainButton title="Go to Sign up" buttonColor="orange" onPress={()=>navigation.navigate('Signup')}/>
+        </View>        
+      </View>
             </View>
     );
 };
@@ -75,7 +87,15 @@ const styles=StyleSheet.create({
     },
     errorStyle: {
         color: 'red'
-    }
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginVertical: 10
+      },
+      buttonSave: {
+        width: '60%',
+      },
 
 
 })

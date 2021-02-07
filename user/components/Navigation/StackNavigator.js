@@ -21,12 +21,12 @@ const MainStackNavigator = ({navigation}) => {
       <Stack.Navigator >
         <Stack.Screen name="Signin" component={Signin}         
         options={{
-          headerRight: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
+          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
         }}
          />
         <Stack.Screen name="Signup" component={Signup}
         options={{
-                  headerRight: ()=> <Feather name='menu' size={25} onPress={()=>navigation.openDrawer()} />
+                  headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
                 }}  
          />
         
@@ -37,9 +37,9 @@ const MainStackNavigator = ({navigation}) => {
   const LandingStackNavigator = ({navigation}) => {
     return (
       <Stack.Navigator >
-        <Stack.Screen name="Craft Sell" component={Landing}S
+        <Stack.Screen name="Craft Sell" component={Landing} 
         options={{
-          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
+          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
         }} />
         <Stack.Screen name="ItemDetail" component={ItemDetail}
         options={{
