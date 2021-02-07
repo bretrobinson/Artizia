@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Button } from 'react-native';
-import { View , StyleSheet, Text, Image, FlatList} from 'react-native';
+import { View , StyleSheet, Text, Image, FlatList, ActivityIndicator} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import craftserverApi from '../api/craftserver'
 
@@ -8,18 +8,21 @@ import craftserverApi from '../api/craftserver'
 const ItemDetail = ({route, navigation}) => {
     const {itemId, uri, itemName, price} = route.params
     const [ItemImages, setItemImages] = useState([])
+
+    const ItemMessage = ` Is ${itemName} still available for sale Thanks`
     
   useEffect( ()=>{
     const fetchData = async ()=>{
-      const response = await  craftserverApi.get('/itemImages/'+itemId)
-      
+      const response = await  craftserverApi.get('/itemImages/'+itemId)      
      await setItemImages(response.data)
-
-    }
-    
+    }    
     fetchData()
-
 }, [itemId])
+
+const sentMessageHandler = ()=>{
+  alert('Message to the seller sent')
+  navigation.goBack()
+}
 
 // console.log('N',ItemImages)
 if (ItemImages.length>0){
@@ -49,18 +52,24 @@ if (ItemImages.length>0){
         <Text style={styles.price}>{itemName}</Text>
         <Text style={styles.price}>Price ${price.toFixed(2)}</Text>
         <Text style={styles.price}>{ItemImages[0].createdDate}</Text>
+        <Text style={styles.price}>{ItemImages[0].location}</Text>
         <TextInput 
          style={styles.multilineInput}
          maxLength={256}
          multiline={true}
          numberOfLines={10}
-        placeholder="Message to seller" />
-        <Button title='Send message' onPress={()=>navigation.goBack()}/>
+        defaultValue={ItemMessage}/>
+        <Button title='Send message' onPress={()=>sentMessageHandler()}/>
 
     </View> 
 );
 }else
- return <Text>Loading...</Text>
+ return (
+   <View style={styles.indicator}>
+    <Text>Loading...</Text>
+    <ActivityIndicator size='large' color='orange' />
+    </View>
+    )
     
 };
 
@@ -92,6 +101,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginVertical: 10
       },
+      indicator: {
+        display: 'flex',
+      
+        justifyContent: 'center',
+        flex: 1
+      }
 })
 
 export default ItemDetail;
