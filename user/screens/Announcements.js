@@ -1,5 +1,5 @@
 import React, {useContext,  useEffect} from 'react';
-import { View , Text,StyleSheet, FlatList} from 'react-native';
+import { View , Text,StyleSheet, FlatList,ScrollView} from 'react-native';
 import {Context as AnnouncementContext} from '../context/AnnouncementContext'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles'
@@ -14,7 +14,7 @@ useEffect(()=>{
     fetchAnnouncements()
 }, [])
     return (
-        <View>
+        <ScrollView >
             {/* <Text style={styles.title}>Announcements Page</Text> */}
             <FlatList 
                 data={state}
@@ -39,7 +39,7 @@ useEffect(()=>{
                 }}
             />
 
-        </View> 
+        </ScrollView> 
     );
 };
 const styles = StyleSheet.create({

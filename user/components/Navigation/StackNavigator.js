@@ -14,7 +14,7 @@ import Signout from '../../screens/Signout'
 import ItemDetail from '../../screens/ItemDetail'
 import AdvancedSearch from "../../screens/AdvancedSearch";
 import Colors from '../../constants/Colors'
-
+import EditProfile from '../../screens/EditProfile'
 
 const Stack = createStackNavigator();
 const MainStackNavigator = ({navigation}) => {
@@ -61,7 +61,20 @@ const MainStackNavigator = ({navigation}) => {
   }
   const ProfileStackNavigator = ({navigation}) => {
     return (
-<CreateStackNavigator navigation={navigation} name="Profile" component={Profile} />
+      <Stack.Navigator screenOptions={{ headerStyle: {
+        backgroundColor: Colors.accent2,
+      },}}>
+        <Stack.Screen name="Profile" component={Profile} 
+        options={{
+          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
+        }} />
+        <Stack.Screen name="EditProfile" component={EditProfile} 
+        options={{
+          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
+        }} />
+        
+{/* <CreateStackNavigator navigation={navigation} name="Profile" component={Profile} /> */}
+        </Stack.Navigator>
     );
   }
   const AddItemStackNavigator = ({navigation}) => {

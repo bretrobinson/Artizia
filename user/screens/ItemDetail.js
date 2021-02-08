@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Button } from 'react-native';
-import { View , StyleSheet, Text, Image, FlatList, ActivityIndicator} from 'react-native';
+import { View , StyleSheet, Text, Image, FlatList, ActivityIndicator, ScrollView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import craftserverApi from '../api/craftserver'
 
@@ -27,6 +27,7 @@ const sentMessageHandler = ()=>{
 // console.log('N',ItemImages)
 if (ItemImages.length>0){
   return (
+    <ScrollView>
     <View style={styles.container}>
         {/* <Text>This ItemDetailScreen Page</Text>
         <Text>Item id from Landing {itemId}</Text> */}
@@ -45,11 +46,8 @@ if (ItemImages.length>0){
     
                 )
             }}
-        />
-
-          
+        />          
         </View>
-        <Text style={styles.price}>{itemName}</Text>
         <Text style={styles.price}>Price ${price.toFixed(2)}</Text>
         <Text style={styles.price}>{ItemImages[0].createdDate}</Text>
         <Text style={styles.price}>{ItemImages[0].location}</Text>
@@ -60,13 +58,12 @@ if (ItemImages.length>0){
          numberOfLines={10}
         defaultValue={ItemMessage}/>
         <Button title='Send message' onPress={()=>sentMessageHandler()}/>
-
     </View> 
+    </ScrollView>
 );
 }else
  return (
    <View style={styles.indicator}>
-    <Text>Loading...</Text>
     <ActivityIndicator size='large' color='orange' />
     </View>
     )

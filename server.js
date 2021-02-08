@@ -6,7 +6,7 @@ const requireAuth = require('./routes/requireAuthRoute')
 const ItemImagesRoute = require('./routes/itemImagesRoute')
 const categoryRouter = require('./routes/categoryRouter');
 const itemRouter = require('./routes/itemRouter');
-
+const profileRoute = require('./routes/profileRoute')
 const Signup=require("./routes/signupRoute");
 //const ItemsReview=require("./routes/ItemReview.route");
 //const SellerReview=require("./routes/SellerReview.route");
@@ -51,7 +51,7 @@ require('./routes/Image.route')(app);
 
 
 
-
+app.use('/profile',requireAuth, profileRoute)
 app.use('/itemImages', ItemImagesRoute)
 app.use('/category', categoryRouter);
 app.use('/item', requireAuth, itemRouter);
@@ -63,9 +63,9 @@ app.get("/api", (req, res) => {
     });
 });
 
-app.get('/profile', requireAuth, (req, res)=>{
-    res.send(req.user)
-})
+// app.get('/profile', requireAuth, (req, res)=>{
+//     res.send(req.user)
+// })
 
 // app.post('/announcement', (req, res)=>{
 //     console.log(req.body)
