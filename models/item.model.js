@@ -16,7 +16,19 @@ const ItemModel=function(itemmodel){
     //Get user item 
     ItemModel.findByUserId=(userId,result)=>{
          console.log("userid>>" + userId)
-        sql.query(`select Item.id, Item.name,Item.desc,Item.categoryId, Item.price, Item.userId, Image.url FROM Item inner join Image on Image.itemId=Item.id WHERE Item.userId=${userId}`, (err, res) => {
+        sql.query(`select itm.*, imge.url as imageUrl
+        from Item itm
+        inner join Image imge on itm.id = imge.itemId
+        where itm.userId = ${userId}
+               and imge.id = (
+                select min(minCreateDate.id)
+                from    (
+                            select min(firstImage.createdDate), firstImage.id
+                            from Image firstImage
+                            where itm.id = firstImage.itemId
+                        ) as minCreateDate
+                )
+        order by createdDate desc`, (err, res) => {
                     
                     if (err) {
                 console.log("error: ", err);

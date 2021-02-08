@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   details: {
     alignItems: 'center',
-    height: '40%',
+    height: '30%',
     padding: 5
   },
   name: {

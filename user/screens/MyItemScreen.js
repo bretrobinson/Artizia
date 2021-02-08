@@ -71,7 +71,7 @@ const MyItemScreen = () => {
                 id={itemData.item.id}
                 name={itemData.item.name}
                 price={itemData.item.price}
-                url={itemData.item.url}
+                url={itemData.item.imageUrl}
                 desc={itemData.item.desc}
 
               >
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   additemicon: {
       width:50,
-      marginLeft:350
+      marginLeft:300
   },
   buttonContainer: {
 
