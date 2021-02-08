@@ -85,9 +85,9 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
       },
       image: {
-        width: 250,
-        height: '80%',
-        margin: 20
+        width: 300,
+        height: '100%',
+        margin: 10
       },
       price: {
         // fontFamily: 'open-sans',
