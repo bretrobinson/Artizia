@@ -10,7 +10,7 @@ const RadioButton2 = ({value, setValue}) => {
       <Text style={styles.text} >Payment Method</Text>
       <View style={styles.container}>
       <RadioButton.Item label="Email Transfer" value="Email Transfer" />
-      <RadioButton.Item label="Pay Pal" value="payPal" />
+      <RadioButton.Item label="Pay Pal" value="PayPal" />
       </View>
     </RadioButton.Group>
   );

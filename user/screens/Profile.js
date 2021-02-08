@@ -1,17 +1,16 @@
-import React, {useEffect, useContext} from 'react';
-import { View , Text, StyleSheet} from 'react-native';
+import React, {useContext} from 'react';
+import { View , Text, StyleSheet, Button} from 'react-native';
 import {Context as AuthContext} from '../context/AuthContext'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles'
 
-const Profile = () => {
+const Profile = ({navigation}) => {
 
     const{ state } = useContext(AuthContext)
-
-    if (state.user){
+     if (state.user){
         return (
             <View style={styles.container}>
-                               
+                <Button title='Edit Profile' onPress={()=>navigation.navigate('EditProfile')} />            
                 <Text>Id {state.user.idusers}</Text>
                 
                 <Text style={DefaultStyles.bodyText} >Username</Text>
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
     data: {
           fontSize: 18,
           width: 260,
-          height: 35,
+          height: 45,
           backgroundColor: Colors.accent,
           padding: 10,
           margin: 5
