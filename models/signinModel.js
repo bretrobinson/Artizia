@@ -6,7 +6,7 @@ const SigninModel = function(item){
 }
 
 SigninModel.findUser=function(searchTerm, results){   
-  console.log(searchTerm) 
+  // console.log(searchTerm) 
     const userSql = `select * FROM users WHERE  email = '${searchTerm}' `;
     sql.query(userSql, function(err, res) {
         if (err) {

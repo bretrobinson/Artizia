@@ -1,15 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import { Button } from 'react-native';
 import { View , StyleSheet, Text, Image, FlatList, ActivityIndicator, ScrollView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import craftserverApi from '../api/craftserver'
-
+import {Context as AuthContext} from '../context/AuthContext'
+// import { navigate } from '../RootNavigation';
 
 const ItemDetail = ({route, navigation}) => {
+  const{ state:{isSignedIn} } = useContext(AuthContext)
     const {itemId, uri, itemName, price} = route.params
     const [ItemImages, setItemImages] = useState([])
 
-    const ItemMessage = ` Is ${itemName} still available for sale Thanks`
+    const ItemMessage = ` Hi, I'm intersted in the ${itemName}! Please contact me if this item is still available, Thanks`
     
   useEffect( ()=>{
     const fetchData = async ()=>{
@@ -20,8 +22,14 @@ const ItemDetail = ({route, navigation}) => {
 }, [itemId])
 
 const sentMessageHandler = ()=>{
-  alert('Message to the seller sent')
-  navigation.goBack()
+   if(!isSignedIn){
+    navigation.navigate('Signin')
+  } else {
+    alert('Message to the seller sent')
+    // navigation.navigate('ItemDetail')
+    navigation.goBack()
+  }
+
 }
 
 // console.log('N',ItemImages)
@@ -33,6 +41,7 @@ if (ItemImages.length>0){
         <Text>Item id from Landing {itemId}</Text> */}
         <Text style={styles.price}>{ItemImages[0].name}</Text>
         <Text style={styles.price}>{ItemImages[0].drop}</Text>
+        <Text style={styles.price}>Price ${price.toFixed(2)}</Text>
         <View style={styles.imageContainer}>
         <FlatList 
             data={ItemImages}
@@ -48,7 +57,7 @@ if (ItemImages.length>0){
             }}
         />          
         </View>
-        <Text style={styles.price}>Price ${price.toFixed(2)}</Text>
+        
         <Text style={styles.price}>{ItemImages[0].createdDate}</Text>
         <Text style={styles.price}>{ItemImages[0].location}</Text>
         <TextInput 
@@ -84,7 +93,8 @@ const styles = StyleSheet.create({
       image: {
         width: 300,
         height: '100%',
-        margin: 10
+        margin: 10,
+        borderRadius: 10
       },
       price: {
         // fontFamily: 'open-sans',
@@ -96,11 +106,12 @@ const styles = StyleSheet.create({
         width: '100%',
         borderColor: 'black',
         borderWidth: 1,
-        marginVertical: 10
+        margin: 10,
+        padding: 10,
+        borderRadius:10
       },
       indicator: {
-        display: 'flex',
-      
+        display: 'flex',      
         justifyContent: 'center',
         flex: 1
       }
