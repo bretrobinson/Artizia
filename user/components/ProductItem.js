@@ -11,6 +11,7 @@ import {
 import Colors from '../constants/Colors';
 import {navigate} from '../RootNavigation'
 import Card from './Card';
+import DefaultStyles from '../constants/defaultStyles';
 
 const ProductItem = props => {
   let TouchableCmp = TouchableOpacity;
@@ -20,17 +21,17 @@ const ProductItem = props => {
   }
 
   return (
-    <Card style={styles.product}>
-      <View style={styles.touchable}>
+    <Card>
+      <View style={DefaultStyles.touchableCard}>
         {/* <TouchableCmp onPress={props.onSelect} useForeground> */}
         <TouchableCmp onPress={()=>navigate('ItemDetail', {itemId: props.itemId, uri: props.image, price:props.price, itemName: props.name } )} useForeground>
           <View>
-            <View style={styles.imageContainer}>
-              <Image style={styles.image} source={{ uri: props.image }} />
+            <View style={DefaultStyles.imageInCardContainer}>
+              <Image style={DefaultStyles.imageInCard} source={{ uri: props.image }} />
             </View>
-            <View style={styles.details}>
-              <Text style={styles.name}>{props.name}</Text>
-              <Text style={styles.price}>${props.price.toFixed(2)}</Text>
+            <View style={DefaultStyles.detailsInCardContainer}>
+              <Text style={DefaultStyles.nameInDetailsOfCard}>{props.name}</Text>
+              <Text style={DefaultStyles.priceInDetailsOfCard}>${props.price.toFixed(2)}</Text>
             </View>
             {/* <View style={styles.actions}>
               {props.children}
@@ -43,11 +44,11 @@ const ProductItem = props => {
 };
 
 const styles = StyleSheet.create({
-  product: {
-    height: 200,
-    margin: 10,
-    width: 175,
-  },
+  // product: {
+  //   height: 200,
+  //   margin: 10,
+  //   width: 175,
+  // },
   touchable: {
     borderRadius: 10,
     overflow: 'hidden'
