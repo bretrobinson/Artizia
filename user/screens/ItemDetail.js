@@ -10,22 +10,28 @@ const ItemDetail = ({route, navigation}) => {
   const{ state:{isSignedIn} } = useContext(AuthContext)
     const {itemId, uri, itemName, price} = route.params
     const [ItemImages, setItemImages] = useState([])
+    const [idusers, setIdusers] = useState('')
 
     const ItemMessage = ` Hi, I'm intersted in the ${itemName}! Please contact me if this item is still available, Thanks`
-    
+    const [message, setMessage] = useState(ItemMessage)
+  
   useEffect( ()=>{
     const fetchData = async ()=>{
       const response = await  craftserverApi.get('/itemImages/'+itemId)      
      await setItemImages(response.data)
+     await setIdusers(response.data[0].userId)
     }    
     fetchData()
 }, [itemId])
 
-const sentMessageHandler = ()=>{
+const sentMessageHandler = async ({message, idusers})=>{
    if(!isSignedIn){
     navigation.navigate('Signin')
   } else {
-    alert('Message to the seller sent')
+    // console.log(message)
+    const response = await  craftserverApi.post('/messages/'+itemId, {message, idusers})      
+    
+    alert(response.data)
     // navigation.navigate('ItemDetail')
     navigation.goBack()
   }
@@ -65,8 +71,9 @@ if (ItemImages.length>0){
          maxLength={256}
          multiline={true}
          numberOfLines={10}
-        defaultValue={ItemMessage}/>
-        <Button title='Send message' onPress={()=>sentMessageHandler()}/>
+        defaultValue={ItemMessage}
+        onChangeText={setMessage}/>
+        <Button title='Send message' onPress={()=>sentMessageHandler({message, idusers})}/>
     </View> 
     </ScrollView>
 );
