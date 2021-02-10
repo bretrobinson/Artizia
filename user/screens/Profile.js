@@ -11,11 +11,7 @@ const Profile = ({navigation}) => {
         return (
             <View style={styles.container}>
                 <Button title='Edit Profile' onPress={()=>navigation.navigate('EditProfile')} />            
-                <Text>Id {state.user.idusers}</Text>
-                
-                <Text style={DefaultStyles.bodyText} >Username</Text>
-                <Text style={styles.data}>{state.user.email}</Text> 
-                
+                {/* <Text>Id {state.user.idusers}</Text> */}
                 
                 <Text style={DefaultStyles.bodyText} >First Name</Text>
                 <Text style={styles.data}>{state.user.fName}</Text>
@@ -60,10 +56,14 @@ const styles = StyleSheet.create({
     data: {
           fontSize: 18,
           width: 260,
-          height: 45,
+          height: 50,
           backgroundColor: Colors.accent,
           padding: 10,
-          margin: 5
+          margin: 5,
+          borderRadius: 10,
+          borderWidth: 2,
+          borderColor: Colors.primary,
+          overflow: 'hidden'
     }
 })
 

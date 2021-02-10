@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar';
 import CategoryItems from '../components/CategoryItems';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchForMostRecentItemsByCategoryMatchingSearchCriteria, updateSearchTerm } from '../store/actions/Search';
+import DefaultStyles from '../constants/defaultStyles';
 
 const Landing = (props) => {
     const term = useSelector(state => {
@@ -33,8 +34,8 @@ const Landing = (props) => {
     
 
     return (
-          <View style={ styles.screen }>
-            <View style={ styles.searchBar }>
+          <View style={ DefaultStyles.screenContainer }>
+            <View style={ DefaultStyles.searchBarOuterContainer }>
                 <SearchBar
                 term={term}
                 onTermChange={newTerm => dispatch(updateSearchTerm(newTerm)) }
@@ -57,18 +58,18 @@ const Landing = (props) => {
 };
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        paddingTop: 20,
-        paddingLeft: 20,
-        paddingBottom: 20,
-        // alignItems: 'center',
-        // justifyContent: 'flex-start'
-        backgroundColor: '#F5EEF8'
-    },
-    searchBar: {
-        marginBottom: 20,
-    }
+    // screen: {
+    //     flex: 1,
+    //     paddingTop: 20,
+    //     paddingLeft: 20,
+    //     paddingBottom: 20,
+    //     // alignItems: 'center',
+    //     // justifyContent: 'flex-start'
+    //     backgroundColor: '#F5EEF8'
+    // },
+    // searchBar: {
+    //     marginBottom: 20,
+    // }
 });
 
 export default Landing;

@@ -31,10 +31,10 @@ const signup = dispatch => async ({ email, password, fName, lName, location , pa
         } else {
             const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment})
             await AsyncStorage.setItem('token', response.data.token)
-            // await AsyncStorage.setItem('user', response.data.user)
-            
+            // await AsyncStorage.setItem('user', response.data.user)            
             dispatch({type: 'signin', payload: response.data})
-            navigate('Home')
+            // navigate('Home')
+            navigate.goBack()
         }
 
     } catch (err) {
@@ -53,7 +53,7 @@ const signin = dispatch => async ({ email, password }) => {
             await AsyncStorage.setItem('token', response.data.token);
             // await AsyncStorage.setItem('user', response.data.user)
             dispatch({type: 'signin', payload: response.data})
-            navigate('Home')
+            navigate.goBack()
         }
 
        

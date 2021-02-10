@@ -8,7 +8,7 @@ const categoryRouter = require('./routes/categoryRouter');
 const itemRouter = require('./routes/itemRouter');
 const profileRoute = require('./routes/profileRoute')
 const Signup=require("./routes/signupRoute");
-//const ItemsReview=require("./routes/ItemReview.route");
+const messagesRoute = require('./routes/messagesRoute')
 //const SellerReview=require("./routes/SellerReview.route");
 // const ItemRoute=require('./routes/Item.route')
 
@@ -50,8 +50,8 @@ require('./routes/Image.route')(app);
 
 
 
-
-app.use('/profile',requireAuth, profileRoute)
+app.use('/messages', requireAuth,  messagesRoute)
+app.use('/profile', requireAuth, profileRoute)
 app.use('/itemImages', ItemImagesRoute)
 app.use('/category', categoryRouter);
 app.use('/item', requireAuth, itemRouter);

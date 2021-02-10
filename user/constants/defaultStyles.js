@@ -69,7 +69,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginVertical: 10,
-    marginRight: 20
+    marginRight: 5
   },
 
   button: {
@@ -78,6 +78,7 @@ export default StyleSheet.create({
     paddingHorizontal: 40,
     borderRadius: 30,
     marginVertical: 10,
+    marginHorizontal: 10
   },
   buttonText: {
     color: Colors.buttonText,
@@ -91,7 +92,7 @@ export default StyleSheet.create({
   searchBarContainer: {
     marginTop: 10,
     marginBottom: 20,
-    // backgroundColor: '#F0EEEE',
+    backgroundColor: Colors.accent2,
     borderColor: Colors.primary,
     borderWidth: 1,
     height: 50,
@@ -110,5 +111,66 @@ export default StyleSheet.create({
   },
   searchCategoryContainer: {
     marginVertical: 10
-},  
+  },
+  input: {
+    height: 40,
+    borderColor: Colors.primary,
+    borderWidth: 1,
+    marginBottom: 10,
+    fontSize: 16,
+    backgroundColor: Colors.accent2,
+    borderRadius: 5,
+    // marginHorizontal: 15,
+    flexDirection: 'row'
+  },
+  imageFlatListContainer: {
+    height: 220
+  },  
+  card: {
+    height: 200,
+    width: 225,
+    marginHorizontal: 10,
+    marginVertical: 10,
+
+    shadowColor: 'black',
+    shadowOpacity: 0.26,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 8,
+    elevation: 5,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    borderColor: Colors.primary    
+  },
+  touchableCard: {
+    borderRadius: 10,
+    overflow: 'hidden'
+  },   
+  imageInCardContainer: {
+    width: '100%',
+    height: '60%',
+    // borderTopLeftRadius: 10,
+    // borderTopRightRadius: 10,
+    borderRadius: 10,
+    overflow: 'hidden'
+  },
+  imageInCard: {
+    height: '100%',
+    width: '100%'
+  },
+  detailsInCardContainer: {
+    alignItems: 'center',
+    height: '40%',
+    padding: 5
+  },
+  nameInDetailsOfCard: {
+    // fontFamily: 'open-sans-bold',
+    fontSize: 18,
+    // color: Colors.accent,
+    marginVertical: 2
+  },
+  priceInDetailsOfCard: {
+    // fontFamily: 'open-sans',
+    fontSize: 14,
+    color: '#888'
+  }, 
 });
