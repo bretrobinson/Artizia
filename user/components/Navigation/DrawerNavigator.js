@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer"
 import {Context as AuthContext} from '../../context/AuthContext'
-import {FontAwesome, Entypo, AntDesign, MaterialIcons} from '@expo/vector-icons'
+import {FontAwesome, Entypo, AntDesign, MaterialIcons, Ionicons} from '@expo/vector-icons'
 import MessageList from '../../screens/MessageList'
 import {LandingStackNavigator, 
     MainStackNavigator,
@@ -74,9 +74,24 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <FontAwesome name='search' size={25} />
             })} />             
             <Drawer.Screen name= 'Review Seller' component={ReviewSellerStackNavigator}
+            options={()=> ({
+                drawerIcon: ()=> <MaterialIcons name='rate-review' size={25} />
+            })}
              />
-            <Drawer.Screen name= 'Add Item' component={AddItemStackNavigator} />
-            <Drawer.Screen name= 'MyItem' component={MyItemStackNavigator} />
+            <Drawer.Screen name= 'Add Item' component={AddItemStackNavigator} 
+            options={()=> ({
+                drawerIcon: ()=> <Entypo name='add-to-list' size={25} />
+    })}
+            />
+            <Drawer.Screen name= 'MyItem' component={MyItemStackNavigator} 
+            options={()=> ({
+                drawerIcon: ()=> <Entypo name='list' size={25} />
+    })}
+            />
+            <Drawer.Screen name='Messages' component={MessageStackNavigator}
+                    options={()=> ({
+                        drawerIcon: ()=> <Entypo name='message' size={25} />
+            })} />
             <Drawer.Screen name= 'Announcements' component={AnnouncementsStackNavigator} 
                     options={()=> ({
                         drawerIcon: ()=> <MaterialIcons name='announcement' size={25} />
@@ -86,7 +101,7 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <Entypo name='log-out' size={25} />
             })} />
           
-          <Drawer.Screen name='Messages' component={MessageStackNavigator} />
+         
             
         </Drawer.Navigator>
 

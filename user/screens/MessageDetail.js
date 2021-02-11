@@ -1,8 +1,9 @@
 import React, {useEffect, useContext, useState} from 'react';
 import {Button, View , StyleSheet, Text, Image, FlatList, ActivityIndicator, ScrollView} from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
 import craftserverApi from '../api/craftserver'
 import {Context as AuthContext} from '../context/AuthContext'
+import Moment from 'react-moment'
+import Colors from '../constants/Colors';
 
 const MessageDetail = ({route, navigation}) => {
     const{ state:{user} } = useContext(AuthContext)
@@ -27,12 +28,19 @@ const MessageDetail = ({route, navigation}) => {
             renderItem={({item, index})=>{
                 return (
             
-                  <View style={Styles.message} > 
+                  <View style={Styles.constainer} > 
                   {user.idusers === item.buyerid ? <Text>Me</Text> : <Text>BuyerId {item.buyerid}</Text>}
                   {user.idusers === item.sellerid ? <Text>Me</Text> : <Text>SellerId {item.sellerid}</Text>}
                      <Text>Itemid {item.itemid}</Text>
                      <Text>Message {item.message}</Text>
-                     <Text>TimeStamp {item.dateCreated}</Text>
+                     <View style={Styles.date}>
+                     <Text >Date  </Text>
+                     <Moment element={Text} format= "YYYY MM DD ">{item.dateCreated}</Moment>
+                     </View>
+                     <View style={Styles.date}>
+                     <Text >Time  </Text>
+                     <Moment element={Text} format= "hh mm">{item.dateCreated}</Moment>
+                     </View>
                      
                   </View>
            
@@ -44,8 +52,15 @@ const MessageDetail = ({route, navigation}) => {
 };
 
 const Styles = StyleSheet.create({
-    message: {
-        margin: 10
+    constainer : {
+        backgroundColor: Colors.accent,
+        margin: 20,
+        borderRadius: 10,
+       
+    },
+        date: {
+        flexDirection: 'row',
+        marginVertical: 5
     }
 })
 
