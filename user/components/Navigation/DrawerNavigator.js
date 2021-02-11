@@ -11,11 +11,11 @@ import {LandingStackNavigator,
     MyItemStackNavigator, 
     AnnouncementsStackNavigator, 
     SignoutStackNavigator,
-    ItemDetailStackNavigator,
+    MessageStackNavigator,
     AdvancedSearchStackNavigator
 } from './StackNavigator'
 import {MyTab} from './BottomNavigator'
-// import ReviewSellerScreen from '../../screens/ReviewSellerScreen'
+import MessageList from '../../screens/MessageList'
 
 const Drawer = createDrawerNavigator()
 
@@ -50,6 +50,7 @@ const DrawerNavigator = ()=> {
                         options={()=> ({
                             drawerIcon: ()=> <MaterialIcons name='announcement' size={25} />
                         })}/>
+                
 
                 
             </Drawer.Navigator>
@@ -85,7 +86,7 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <Entypo name='log-out' size={25} />
             })} />
           
-            
+          <Drawer.Screen name='Messages' component={MessageStackNavigator} />
             
         </Drawer.Navigator>
 
