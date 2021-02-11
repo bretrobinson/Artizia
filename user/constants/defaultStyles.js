@@ -125,12 +125,16 @@ export default StyleSheet.create({
     borderColor: Colors.primary,
     borderWidth: 1,
     marginBottom: 10,
-    fontSize: 16,
+    // fontSize: 18,
     backgroundColor: Colors.accent2,
     borderRadius: 5,
     // marginHorizontal: 15,
     flexDirection: 'row'
   },
+  inputText: {
+    fontSize: 18,
+  },
+
   imageFlatListContainer: {
     height: 220
   },  
@@ -181,4 +185,13 @@ export default StyleSheet.create({
     fontSize: 14,
     color: '#888'
   }, 
+  radioButtonGroupContainer: {
+    margin: 10
+  },
+  radioButtonItemContainer: {
+    marginHorizontal: 40
+  },
+  radioButtonItemLabel: {
+    fontSize: 16
+  }
 });

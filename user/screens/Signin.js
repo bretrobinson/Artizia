@@ -36,6 +36,7 @@ const Signin = ({navigation}) => {
                 placeholder='name@email.com'
                 placeholderTextColor= {Colors.placeholderTextColor}
                 inputContainerStyle={DefaultStyles.input}
+                inputStyle={DefaultStyles.inputText}
             />
 
             <Input value={password} 
@@ -48,6 +49,7 @@ const Signin = ({navigation}) => {
                 labelStyle={DefaultStyles.label}
                 placeholderTextColor= {Colors.placeholderTextColor}
                 inputContainerStyle={DefaultStyles.input}
+                inputStyle={DefaultStyles.inputText}
             />
 
     {errorMessage ? <Text style={DefaultStyles.errorText} >{errorMessage}</Text> : null}
