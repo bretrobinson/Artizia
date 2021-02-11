@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react'
 import {Text, View, FlatList, StyleSheet,   TouchableOpacity,
-    TouchableNativeFeedback,} from 'react-native'
+    TouchableNativeFeedback, Platform} from 'react-native'
 import craftserverApi from '../api/craftserver'
 import {Context as AuthContext} from '../context/AuthContext'
 import {navigate} from '../RootNavigation'
