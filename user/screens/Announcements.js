@@ -14,7 +14,7 @@ useEffect(()=>{
     fetchAnnouncements()
 }, [])
     return (
-        <ScrollView >
+        <View >
             {/* <Text style={styles.title}>Announcements Page</Text> */}
             <FlatList 
                 data={state}
@@ -39,7 +39,7 @@ useEffect(()=>{
                 }}
             />
 
-        </ScrollView> 
+        </View> 
     );
 };
 const styles = StyleSheet.create({

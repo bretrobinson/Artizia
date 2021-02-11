@@ -29,11 +29,17 @@ const sentMessageHandler = async ({message, idusers})=>{
     navigation.navigate('Signin')
   } else {
     // console.log(message)
-    const response = await  craftserverApi.post('/messages/'+itemId, {message, idusers})      
+    try {
+      const response = await  craftserverApi.post('/messages/'+itemId, {message, idusers})      
     
-    alert(response.data)
-    // navigation.navigate('ItemDetail')
-    navigation.goBack()
+      alert(response.data)
+      // navigation.navigate('ItemDetail')
+      navigation.goBack()
+    } catch (err){
+      alert('Message to self is not permitted, Thanks')
+      navigation.goBack()
+    }
+
   }
 
 }

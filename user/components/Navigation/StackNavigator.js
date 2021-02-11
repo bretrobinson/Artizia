@@ -15,7 +15,8 @@ import ItemDetail from '../../screens/ItemDetail'
 import AdvancedSearch from "../../screens/AdvancedSearch";
 import Colors from '../../constants/Colors'
 import EditProfile from '../../screens/EditProfile'
-// import MessageList from '../../screens/MessageList'
+import MessageList from '../../screens/MessageList'
+import MessageDetail from '../../screens/MessageDetail'
 
 
 const Stack = createStackNavigator();
@@ -112,11 +113,22 @@ const AdvancedSearchStackNavigator = ({navigation}) => {
   );
 }
 
-// const MessageStackNavigator = ({navigation}) => {
-//   return (
-//     <CreateStackNavigator navigation={navigation} name="messages" component={MessageList} />
-//   );
-// }
+const MessageStackNavigator = ({navigation}) => {
+  return (
+    <Stack.Navigator screenOptions={{ headerStyle: {
+      backgroundColor: Colors.accent2,
+    },}}>
+      <Stack.Screen name="MessageList" component={MessageList} 
+      options={{
+        headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
+      }} />
+      <Stack.Screen name="MessageDetail" component={MessageDetail}
+      options={{
+        headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
+      }} />
+    </Stack.Navigator>
+  );
+}
 
   
   export { 
@@ -128,7 +140,7 @@ const AdvancedSearchStackNavigator = ({navigation}) => {
     MyItemStackNavigator,
   SignoutStackNavigator,
   AnnouncementsStackNavigator,
-    AdvancedSearchStackNavigator
-   
+    AdvancedSearchStackNavigator,
+    MessageStackNavigator   
    
    };

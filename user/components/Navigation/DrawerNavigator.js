@@ -86,7 +86,7 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <Entypo name='log-out' size={25} />
             })} />
           
-          <Drawer.Screen name='Messages' component={MessageList} />
+          <Drawer.Screen name='Messages' component={MessageStackNavigator} />
             
         </Drawer.Navigator>
 
