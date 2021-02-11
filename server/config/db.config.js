@@ -1,14 +1,14 @@
 module.exports={
-    host: 'craftdbinstance.c0rix1pv1sam.us-west-2.rds.amazonaws.com',
-    user: 'matrixroot',
-    password: 'RF8p8vlVP48glnvKNJGa',
-    database: 'CraftDb',
-    port:3306,
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    password: process.env.DBPASSWORD,
+    database: process.env.DBDATABASE,
+    port:process.env.DBPORT,
   pool: {
     max: 5,
     min: 0,
     acquire: 30000,
     idle: 10000
   },
-  jwt:'MY_SECRETE_KEY'
+  jwt:process.env.JWT
 }
