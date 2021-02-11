@@ -12,7 +12,7 @@ const [messageData , setMessageData] = useState([])
     useEffect( ()=>{
         const fetchData = async ()=>{
          const response = await  craftserverApi.get('/messages/')      
-         await console.log(response.data)
+        //  await console.log(response.data)
          await setMessageData(response.data)
         }    
         fetchData()
@@ -22,18 +22,18 @@ const [messageData , setMessageData] = useState([])
     return ( 
         <View>
 
-<Text>This message List screen</Text>
+<Text>This is message List screen</Text>
 
 <FlatList 
             data={messageData}
-            keyExtractor={item=>item.idmessages}
-            renderItem={({item})=>{
+            keyExtractor={(item,index)=>index.toString()}
+            renderItem={({item, index})=>{
                 return (
-                  <View style={Styles.message}> 
+                  <View style={Styles.message} > 
                      <Text>Buyer {item.buyerid}</Text>
                      <Text>Seller{item.sellerid}</Text>
                      <Text>Item{item.itemid}</Text>
-                     <Text>Message{item.message}</Text>
+                     <Text>Message{index}</Text>
                   </View>
     
                 )

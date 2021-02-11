@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer"
 import {Context as AuthContext} from '../../context/AuthContext'
 import {FontAwesome, Entypo, AntDesign, MaterialIcons} from '@expo/vector-icons'
-// import MyItemScreen from '../../screens/MyItemScreen'
+import MessageList from '../../screens/MessageList'
 import {LandingStackNavigator, 
     MainStackNavigator,
     ProfileStackNavigator, 
@@ -15,7 +15,7 @@ import {LandingStackNavigator,
     AdvancedSearchStackNavigator
 } from './StackNavigator'
 import {MyTab} from './BottomNavigator'
-import MessageList from '../../screens/MessageList'
+
 
 const Drawer = createDrawerNavigator()
 
@@ -86,7 +86,7 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <Entypo name='log-out' size={25} />
             })} />
           
-          <Drawer.Screen name='Messages' component={MessageStackNavigator} />
+          <Drawer.Screen name='Messages' component={MessageList} />
             
         </Drawer.Navigator>
 

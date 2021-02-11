@@ -25,7 +25,8 @@ router.post('/:id', (req, res)=>{
 
 router.get('/', (req, res)=>{
     console.log(req.user.idusers)
-    let sql = `SELECT * from messages WHERE buyerid = ${req.user.idusers} or sellerid = ${req.user.idusers}`
+    // let sql = `SELECT * from messages WHERE buyerid = ${req.user.idusers} or sellerid = ${req.user.idusers}`
+    let sql = `SELECT DISTINCT buyerid, sellerid, itemid from messages WHERE buyerid = ${req.user.idusers} or sellerid = ${req.user.idusers}`
 
     let query1 = db.query(sql, (err, result)=>{
         if (err){
