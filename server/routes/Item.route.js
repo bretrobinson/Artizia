@@ -1,4 +1,4 @@
-const requireAuth = require('../routes/requireAuthRoute')
+const requireAuth = require('../middleware/requireAuthRoute')
 module.exports = app => {
     const item = require("../controllers/item.controller.js");
     // Find items that match search term

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const item_controller = require('../controllers/addItemController');
 const db = require('../models/db');
-const auth = require('./requireAuthRoute')
+const auth = require('../middleware/requireAuthRoute')
 
 router.get('/', item_controller.item_list);
 
