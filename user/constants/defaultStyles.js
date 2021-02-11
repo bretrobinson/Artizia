@@ -15,7 +15,7 @@ export default StyleSheet.create({
   bodyText: {
     //fontFamily: 'open-sans',
     color: 'black',
-    fontSize: 18
+    fontSize: 20
   },
   title: {
     fontSize: 24,
@@ -26,7 +26,9 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 20,
-    marginBottom: 5
+    marginBottom: 5,
+    color: 'black',
+    fontWeight: 'normal'
   },
   heading2: {
       fontSize: 22,
@@ -34,6 +36,12 @@ export default StyleSheet.create({
       marginBottom: 10,
       fontWeight: 'bold',
   },
+  errorText: {
+    textAlign: 'center',
+    color: Colors.error,
+    marginBottom: 10
+  },
+
   modal: {
     height: 50,
     width: 200,
