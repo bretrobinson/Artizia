@@ -12,7 +12,12 @@ import {userItemsReducer} from './store/reducers/DisplayMyItem';
 import { searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer, searchMostRecentItemsByCategoryMatchingSearchCriteriaReducer } from './store/reducers/Search';
 import thunkMiddleware from 'redux-thunk';
 import { Provider as AnnouncementsProvider } from './context/AnnouncementContext';
-
+import * as Notifications from 'expo-notifications';
+Notifications.setNotificationHandler({
+  handleNotification: async () => {
+    return { shouldShowAlert: true };
+  },
+});
 const rootReducer = combineReducers({
   //deletemyItemReducer,
    reviewSellerReducer,
