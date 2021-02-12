@@ -8,7 +8,7 @@ import {Context as AuthContext} from '../context/AuthContext'
 
 const ItemDetail = ({route, navigation}) => {
   const{ state:{isSignedIn} } = useContext(AuthContext)
-    const {itemId, uri, itemName, price} = route.params
+    const {itemId, uri, itemName, price,} = route.params
     const [ItemImages, setItemImages] = useState([])
     const [idusers, setIdusers] = useState('')
 
@@ -24,16 +24,22 @@ const ItemDetail = ({route, navigation}) => {
     fetchData()
 }, [itemId])
 
-const sentMessageHandler = async ({message, idusers})=>{
+const sentMessageHandler = async ({message, idusers, })=>{
    if(!isSignedIn){
     navigation.navigate('Signin')
   } else {
     // console.log(message)
-    const response = await  craftserverApi.post('/messages/'+itemId, {message, idusers})      
+    try {
+      const response = await  craftserverApi.post('/messages/'+itemId, {message, idusers, uri, itemName})      
     
-    alert(response.data)
-    // navigation.navigate('ItemDetail')
-    navigation.goBack()
+      alert(response.data)
+      // navigation.navigate('ItemDetail')
+      navigation.goBack()
+    } catch (err){
+      alert('Message to self is not permitted, Thanks')
+      navigation.goBack()
+    }
+
   }
 
 }

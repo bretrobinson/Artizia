@@ -1,6 +1,7 @@
 import React, {useContext,  useEffect} from 'react';
 import { View , Text,StyleSheet, FlatList,ScrollView} from 'react-native';
 import {Context as AnnouncementContext} from '../context/AnnouncementContext'
+import Moment from 'react-moment'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles'
 
@@ -14,32 +15,35 @@ useEffect(()=>{
     fetchAnnouncements()
 }, [])
     return (
-        <ScrollView >
+        <View >
             {/* <Text style={styles.title}>Announcements Page</Text> */}
             <FlatList 
                 data={state}
                 keyExtractor={item=>item.idAnnouncements.toString()}
                 renderItem={({item})=>{
                     return <View style={styles.container}> 
+                    
                         <View>
                         <Text style={styles.messageTitle}>{item.title}</Text>
                         </View>
                         <View style={styles.message}>
                         <Text >{item.message}</Text>
                         <View style={styles.date}>
-                        <Text>Date Entered</Text>
-                        <Text>{item.dateEntered}</Text>
+                        <Text>Date Entered  </Text>
+                        {/* <Text>{item.dateEntered} </Text> */}
+                        <Moment element={Text} format= "YYYY MM DD">{item.dateEntered}</Moment>
                         </View>
                         <View style={styles.date}>
-                        <Text>Expired Date</Text>
-                        <Text>{item.expiredDate}</Text>
+                        <Text>Expired Date  </Text>
+                        {/* <Text>{item.expiredDate}</Text> */}
+                        <Moment element={Text} format= "YYYY MM DD">{item.expiredDate}</Moment>
                         </View>
                         </View>
                     </View>
                 }}
             />
 
-        </ScrollView> 
+        </View> 
     );
 };
 const styles = StyleSheet.create({

@@ -15,7 +15,7 @@ export default StyleSheet.create({
   bodyText: {
     //fontFamily: 'open-sans',
     color: 'black',
-    fontSize: 18
+    fontSize: 20
   },
   title: {
     fontSize: 24,
@@ -26,7 +26,9 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 20,
-    marginBottom: 5
+    marginBottom: 5,
+    color: 'black',
+    fontWeight: 'normal'
   },
   heading2: {
       fontSize: 22,
@@ -34,6 +36,12 @@ export default StyleSheet.create({
       marginBottom: 10,
       fontWeight: 'bold',
   },
+  errorText: {
+    textAlign: 'center',
+    color: Colors.error,
+    marginBottom: 10
+  },
+
   modal: {
     height: 50,
     width: 200,
@@ -117,12 +125,16 @@ export default StyleSheet.create({
     borderColor: Colors.primary,
     borderWidth: 1,
     marginBottom: 10,
-    fontSize: 16,
+    // fontSize: 18,
     backgroundColor: Colors.accent2,
     borderRadius: 5,
     // marginHorizontal: 15,
     flexDirection: 'row'
   },
+  inputText: {
+    fontSize: 18,
+  },
+
   imageFlatListContainer: {
     height: 220
   },  
@@ -173,4 +185,13 @@ export default StyleSheet.create({
     fontSize: 14,
     color: '#888'
   }, 
+  radioButtonGroupContainer: {
+    margin: 10
+  },
+  radioButtonItemContainer: {
+    marginHorizontal: 40
+  },
+  radioButtonItemLabel: {
+    fontSize: 16
+  }
 });

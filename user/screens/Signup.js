@@ -28,23 +28,30 @@ const Signup = ({navigation}) => {
         <SafeAreaView>
         <ScrollView>
         <KeyboardAvoidingView style={{ height: '100%', justifyContent: 'center' }} >
-        <View style={styles.container}>
-    <Text h3 style={styles.signup} >Sign up</Text>
+        <View style={DefaultStyles.screenContainer}>
+        {/* <View style={styles.container}> */}
+        <Text style={DefaultStyles.title}>Sign Up</Text>
+         {/* <Text h3 style={styles.signup} >Sign up</Text> */}
     <Input value ={fName}
             onChangeText={SetFname}
             autoCorrect={false}
             label='First Name' 
             placeholder='FirstName'
-            labelStyle={DefaultStyles.bodyText}
+            labelStyle={DefaultStyles.label}
             placeholderTextColor={Colors.placeholderTextColor}
+            inputContainerStyle={DefaultStyles.input}
+            inputStyle={DefaultStyles.inputText}            
             />
     <Input value ={lName}
         onChangeText={setLname}
         autoCorrect={false}
         label='Last Name'
         placeholder='LastName'
-        labelStyle={DefaultStyles.bodyText}
-        placeholderTextColor={Colors.placeholderTextColor} />
+        labelStyle={DefaultStyles.label}
+        placeholderTextColor={Colors.placeholderTextColor} 
+        inputContainerStyle={DefaultStyles.input}
+        inputStyle={DefaultStyles.inputText}            
+        />
         
 <Input value={email} 
             onChangeText={SetEmail}
@@ -52,8 +59,10 @@ const Signup = ({navigation}) => {
             autoCorrect={false}
             label='Email'
             placeholder='email@mail.com'
-            labelStyle={DefaultStyles.bodyText}
+            labelStyle={DefaultStyles.label}
             placeholderTextColor={Colors.placeholderTextColor}
+            inputContainerStyle={DefaultStyles.input}
+            inputStyle={DefaultStyles.inputText}            
         />
 
         <Input value={password} 
@@ -62,22 +71,39 @@ const Signup = ({navigation}) => {
             autoCapitalize='none'
             autoCorrect={false}
             label='Password'
-            labelStyle={DefaultStyles.bodyText}
+            labelStyle={DefaultStyles.label}
             placeholder='password'
             placeholderTextColor={Colors.placeholderTextColor}
+            inputContainerStyle={DefaultStyles.input}
+            inputStyle={DefaultStyles.inputText}            
         />
     <Input value ={location}
         onChangeText={setLocation}
         autoCorrect={false}
         label='Postal Code'
         placeholder='A0A 0A0'
-        labelStyle={DefaultStyles.bodyText}
+        labelStyle={DefaultStyles.label}
         placeholderTextColor={Colors.placeholderTextColor}
+        inputContainerStyle={DefaultStyles.input}
+        inputStyle={DefaultStyles.inputText}            
         />
-   
+
     <RadioButton2 value={payment} setValue={setPayment}/>
-    {errorMessage ? <Text style={styles.error} >{errorMessage}</Text> : null}
-    <View style={styles.buttonContainer}>
+    {errorMessage ? <Text style={DefaultStyles.errorText} >{errorMessage}</Text> : null}
+
+    <View style={{...DefaultStyles.buttonContainer, justifyContent: 'center'}}>
+            {/* <View style={styles.buttonSave}> */}
+            <MainButton title="Sign up" buttonColor={Colors.defaultButtonColor} onPress={()=>signup({email, password, fName, lName, location, payment})}/>
+            {/* </View>         */}
+            </View>
+
+            <View style={{...DefaultStyles.buttonContainer, justifyContent: 'center'}}>
+            {/* <View style={styles.buttonSave}> */}
+            <MainButton title="Go to Sign In" buttonColor={Colors.cancelButtonColor} onPress={()=>navigation.navigate('Signin')}/>
+            {/* </View>         */}
+    </View>
+
+    {/* <View style={styles.buttonContainer}>
         <View style={styles.buttonSave}>
           <MainButton title="Sign up" buttonColor="purple" onPress={()=>signup({email, password, fName, lName, location, payment})}/>
         </View>        
@@ -87,7 +113,7 @@ const Signup = ({navigation}) => {
         <View style={styles.buttonSave}>
           <MainButton title="Go to Sign in" buttonColor="orange" onPress={()=>navigation.navigate('Signin')}/>
         </View>        
-      </View>
+      </View> */}
 {/* <Button 
         title='Sign up' 
         onPress={()=>signup({email, password, fName, lName, location, payment})}
@@ -101,24 +127,24 @@ const Signup = ({navigation}) => {
 };
 
 const styles=StyleSheet.create({
-    container: {
-        marginTop : 0,
-        marginHorizontal: 10
-    },
-    signup: {
-        marginVertical: 20
-    },
-    goto:{
-        marginVertical: 40,        
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginVertical: 10
-      },
-      buttonSave: {
-        width: '60%',
-      },
+    // container: {
+    //     marginTop : 0,
+    //     marginHorizontal: 10
+    // },
+    // signup: {
+    //     marginVertical: 20
+    // },
+    // goto:{
+    //     marginVertical: 40,        
+    // },
+    // buttonContainer: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'center',
+    //     marginVertical: 10
+    //   },
+    //   buttonSave: {
+    //     width: '60%',
+    //   },
 
 })
 export default Signup;

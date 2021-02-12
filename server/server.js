@@ -2,9 +2,10 @@ const express = require ('express')
 const cors = require ('cors')
 // const mysql = require('mysql');
 const announcementRoute = require('./routes/announcementRoute')
-const requireAuth = require('./routes/requireAuthRoute')
+const requireAuth = require('./middleware/requireAuthRoute')
 const ItemImagesRoute = require('./routes/itemImagesRoute')
 const categoryRouter = require('./routes/categoryRouter');
+const subcategoryRouter = require('./routes/subcategoryRouter');
 const itemRouter = require('./routes/itemRouter');
 const profileRoute = require('./routes/profileRoute')
 const Signup=require("./routes/signupRoute");
@@ -55,6 +56,7 @@ app.use('/messages', requireAuth,  messagesRoute)
 app.use('/profile', requireAuth, profileRoute)
 app.use('/itemImages', ItemImagesRoute)
 app.use('/category', categoryRouter);
+app.use('/subcategory', subcategoryRouter);
 app.use('/item', requireAuth, itemRouter);
 
 app.use('/announcement', announcementRoute)
@@ -82,7 +84,7 @@ app.get("/api", (req, res) => {
 // app.post('/signup', (req, res)=>{signup.handleSignup(req, res, database, jwt)})
 // app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
-
-app.listen(3000, ()=>{
-    console.log('Listening on 3000')
+let port=process.env.PORT || 4000;
+app.listen(port, ()=>{
+    console.log(`Listening on ${port}`)
 })
