@@ -41,17 +41,6 @@ require('./routes/Image.route')(app);
 require('./routes/User.route')(app);
 
 
-
-
-
-
-
-
-
-
-
-
-
 app.use('/messages', requireAuth,  messagesRoute)
 app.use('/profile', requireAuth, profileRoute)
 app.use('/itemImages', ItemImagesRoute)
