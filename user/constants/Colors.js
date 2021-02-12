@@ -13,6 +13,7 @@ export default {
   cancelButtonColor: '#f13c20',
   saveButtonColor: '#d79922',
   defaultButtonColor: '#d79922',
+  error: '#f13c20',
   //saveButtonColor: 'yellow',
   buttonText: 'white',
   placeholderText: "#999999",

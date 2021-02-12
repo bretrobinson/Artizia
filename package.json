@@ -1,24 +1,24 @@
 {
-  "name": "backend",
+  "name": "matrix",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "install-user": "cd user && npm install && cd ..",
+    "install-admin": "cd admin && npm install && cd ..",
+    "install-server": "cd server && npm install && cd ..",
+    "install": "npm run install-admin && npm run install-user && npm run install-server",
+    "build-admin": "cd admin && npm run build && cd ..",
+    "build": "npm run build-admin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bretrobinson/Matrix.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "async": "^3.2.0",
-    "bcrypt": "^5.0.0",
-    "cloudinary": "^1.23.0",
-    "cors": "^2.8.5",
-    "expo": "^40.0.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "multer": "^1.4.2",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.7",
-    "streamifier": "^0.1.1"
-  }
+  "bugs": {
+    "url": "https://github.com/bretrobinson/Matrix/issues"
+  },
+  "homepage": "https://github.com/bretrobinson/Matrix#readme"
 }

@@ -14,7 +14,7 @@ import { View,
         } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ModalDropdown from '../downloads/ModalDropDown';
-
+import {navigate} from '../RootNavigation'
 import Colors from '../constants/Colors';
 import MainButton from '../components/MainButton';
 import DefaultStyles from '../constants/defaultStyles'
@@ -184,13 +184,21 @@ const AddItemScreen = props => {
     console.log('saving item data to db')
     Api.post('/item/create', itemData, itemHdr)
       .then((response) => {
-        console.log('item post response: ', response);
+        // console.log('item post response: ', response);
+        // console.log('item created id', response.data.data.id)
+        savePhotosForItems(response.data.data.id);
       })
       .catch((err) => {
         console.log('Error from item create api.post: ', err)
       });
 
-    photos.forEach((photo, i) => {
+    navigate('Home');
+  }
+
+  const savePhotosForItems = async (itemId) => {
+    for (const [i, photo] of photos.entries()) {
+
+      console.log ('photo index: ', i);
       const photoData = new FormData();
 
       photoData.append('fileData', {
@@ -205,12 +213,9 @@ const AddItemScreen = props => {
         }
       };
 
-      Api.post('/api/uploadImage/1', photoData, config)
-      .then((response) => {
-        // console.log(response);
-      });
+      await Api.post(`/api/uploadImage/${itemId}`, photoData, config);
 
-    });
+    };
 
   }
 
@@ -332,6 +337,11 @@ const AddItemScreen = props => {
       <View style={styles.buttonContainer}>
         <View style={styles.buttonSave}>
           <MainButton title="Save" buttonColor="purple" onPress={saveButtonHandler}/>
+        </View>      
+      </View>
+      <View style={styles.buttonContainer}>
+        <View style={styles.buttonSave}>
+          <MainButton title="Cancel" buttonColor="orange" onPress={()=>navigate('Home')}/>
         </View>
         
       </View>

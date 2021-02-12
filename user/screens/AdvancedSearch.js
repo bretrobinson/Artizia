@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableWithoutFeedback } from 'react-native';
 import ModalDropdown from '../downloads/ModalDropDown';
 import Api from '../api/craftserver'; 
 import SearchBar from '../components/SearchBar';
@@ -7,88 +7,71 @@ import Colors from '../constants/Colors';
 import CategoryItems from '../components/CategoryItems';
 import DefaultStyles from '../constants/defaultStyles';
 import MainButton from '../components/MainButton';
+import { useSelector, useDispatch } from 'react-redux';
+import { searchForMostRecentItemsByCategoryMatchingSearchCriteria } from '../store/actions/Search'
 
 const AdvancedSearch = props => {
-    const [categories, setCategories] = useState([]);
+    const [categoryNames, setCategoryNames] = useState([]);
+    const [categories, setCategories] = useState([{id: 0, name: 'Select category'}]);
     const [term, setTerm] = useState('');
-    const [mostRecentItemsByCategoryMatchingSearchCriteria, setMostRecentItemsByCategoryMatchingSearchCriteria] = useState([]);
-    const [category, setCategory] = useState('');
+    const [categoryIndex, setCategoryIndex] = useState(0);
 
     const categoryRef = useRef();
 
-    useEffect(() => {
-        // Api.get('/api/category/all')
-        // .then((response) => {
-        //     console.log(response.data);
-        //     setCategories(response.data);
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // })
+    const mostRecentItemsByCategoryMatchingSearchCriteria = useSelector(state => {
+        return state.searchMostRecentItemsByCategoryMatchingSearchCriteriaReducer.mostRecentItemsByCategoryMatchingSearchCriteria;
+    });
 
-        const testCategories = ['Clothing', 'Party Supplies', 'Personal Care', 'Metal'];
-        setCategories(testCategories);
-        searchForMostRecentItemsByCategoryMatchingSearchCriteria('%25');
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        Api.get('/category')
+        .then((response) => {
+            const responseCategories = response.data;
+
+            const newCategories = [{id: 0, name: 'Select category'}, ...responseCategories];
+        
+            setCategories(newCategories);
+    
+            const newCategoryNames = newCategories.map(category => category.name);
+            setCategoryNames(newCategoryNames);
+    
+            searchMostRecentItemsByCategoryMatchingSearchCriteria();        
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+        searchMostRecentItemsByCategoryMatchingSearchCriteria();        
     }, []);
 
-    const searchForMostRecentItemsByCategoryMatchingSearchCriteria = (searchTerm) => {
-        // Api.get(`/api/mostRecentItemsByCategoryMatchingSearchCriteria/${searchTerm}/3/`)
-        // .then(response => {
-        //     console.log(response.data);
-        //     setMostRecentItemsByCategoryMatchingSearchCriteria(response.data);            
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });       
+    const searchMostRecentItemsByCategoryMatchingSearchCriteria = () => {
+        const searchTerm = term === ''? '%25' : term;
 
-        const categoryItems = [
-            {
-                mostRecentItems: [
-                    {
-                        id: 1,
-                        name: 'Socks',
-                        imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
-                        price: 1.00
-                    },
-                    {
-                        id: 2,
-                        name: 'Sweater',
-                        imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
-                        price: 2.00
-                    },
-                    {
-                        id: 3,
-                        name: 'Pants',
-                        imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-crafts-1590677840.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*',
-                        price: 3.00
-                    },
+        const searchCategoryId = categories[categoryIndex].id;
 
-                ],
+        const numberOfMostRecentItems = 0;
 
-                category: {
-                    id: 1,
-                    name: 'Clothing'
-                }
-            }
-        ];
-
-        setMostRecentItemsByCategoryMatchingSearchCriteria(categoryItems);
+        dispatch(searchForMostRecentItemsByCategoryMatchingSearchCriteria(searchTerm, searchCategoryId, numberOfMostRecentItems));
     }
 
-    const searchButtonHandler = (searchTerm) => {
-        searchForMostRecentItemsByCategoryMatchingSearchCriteria(searchTerm);
+    const searchButtonHandler = () => {
+        searchMostRecentItemsByCategoryMatchingSearchCriteria();
     }
 
     return (
+        // <TouchableWithoutFeedback
+        //     onPress={() => {
+        //     Keyboard.dismiss();
+        //     }}
+        // >        
         <View style={ DefaultStyles.screenContainer }>
             <ScrollView>
                 <View style={ DefaultStyles.searchBarOuterContainer }>
                     <SearchBar
                         term={term}
                         onTermChange={newTerm => setTerm(newTerm) }
-                        // onTermChange={newTerm => dispatch(updateSearchTerm(newTerm)) }
-                        // onTermSubmit={() => searchForMostRecentItemsByCategoryMatchingSearchTerm(dispatch, term === ''? '%25':term) }
-                        // onTermSubmit={() => searchForMostRecentItemsByCategoryMatchingSearchCriteria() }                    
+                        onTermSubmit={() => searchMostRecentItemsByCategoryMatchingSearchCriteria() }                    
                     />
                 </View>
                 <View style={styles.categoryContainer}>
@@ -101,17 +84,17 @@ const AdvancedSearch = props => {
                             ref={categoryRef}
                             style={DefaultStyles.modalField}
                             textStyle={DefaultStyles.modalFieldText}
-                            options={categories}
+                            options={categoryNames}
                             defaultValue={'Select category'}
                             dropdownTextStyle={DefaultStyles.modalDropdownText}
                             dropdownTextHighlightStyle={DefaultStyles.modalDropdownHighlight}
-                            onSelect={(idx, value) => setCategory(value)}
+                            onSelect={(idx, value) => setCategoryIndex(idx)}
                         />
                     </View>
                 </View>
 
                 <View style={DefaultStyles.buttonContainer}>
-                        <MainButton title="Search" buttonColor={Colors.defaultButtonColor} onPress={searchButtonHandler.bind(this, term === ''? '%25':term)}/>
+                        <MainButton title="Search" buttonColor={Colors.defaultButtonColor} onPress={searchButtonHandler}/>
                 </View>
 
                 <Text style={DefaultStyles.title}>
@@ -129,6 +112,7 @@ const AdvancedSearch = props => {
                 }
             </ScrollView>
       </View>
+      /* </TouchableWithoutFeedback> */
     );
 };
 

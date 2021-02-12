@@ -60,3 +60,15 @@ exports.findMostRecentItemsByCategoryMatchingSearchTerm = (req, res) => {
     else res.send(data);
   });
 };
+
+exports.findMostRecentItemsByCategoryMatchingSearchCriteria = (req, res) => { 
+  // Find most recent items matching search criteria
+  ItemModel.findMostRecentItemsByCategoryMatchingSearchCriteria(req.params.searchTerm, req.params.categoryId, req.params.numberOfMostRecentItems, (err, data) => {
+   if (err)
+     res.status(500).send({
+       message:
+         err.message || "Some error occurred while finding most recent items by category matching search criteria."
+     });
+   else res.send(data);
+ });
+};

@@ -16,6 +16,7 @@ import {DELETE_MYITEM } from '../actions/DeleteMyItem';
             action.payload.shortDescription,
             action.payload.itemReview,
             action.payload.itemRating,
+            action.payload.ownerPushToken
             
           );      
     

@@ -15,7 +15,7 @@ export default StyleSheet.create({
   bodyText: {
     //fontFamily: 'open-sans',
     color: 'black',
-    fontSize: 18
+    fontSize: 20
   },
   title: {
     fontSize: 24,
@@ -26,7 +26,9 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 20,
-    marginBottom: 5
+    marginBottom: 5,
+    color: 'black',
+    fontWeight: 'normal'
   },
   heading2: {
       fontSize: 22,
@@ -34,6 +36,12 @@ export default StyleSheet.create({
       marginBottom: 10,
       fontWeight: 'bold',
   },
+  errorText: {
+    textAlign: 'center',
+    color: Colors.error,
+    marginBottom: 10
+  },
+
   modal: {
     height: 50,
     width: 200,
@@ -69,15 +77,16 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginVertical: 10,
-    marginRight: 20
+    marginRight: 5
   },
 
   button: {
     backgroundColor: Colors.primary,
     paddingVertical: 15,
     paddingHorizontal: 40,
-    borderRadius: 20,
+    borderRadius: 30,
     marginVertical: 10,
+    marginHorizontal: 10
   },
   buttonText: {
     color: Colors.buttonText,
@@ -91,7 +100,7 @@ export default StyleSheet.create({
   searchBarContainer: {
     marginTop: 10,
     marginBottom: 20,
-    // backgroundColor: '#F0EEEE',
+    backgroundColor: Colors.accent2,
     borderColor: Colors.primary,
     borderWidth: 1,
     height: 50,
@@ -110,5 +119,79 @@ export default StyleSheet.create({
   },
   searchCategoryContainer: {
     marginVertical: 10
-},  
+  },
+  input: {
+    height: 40,
+    borderColor: Colors.primary,
+    borderWidth: 1,
+    marginBottom: 10,
+    // fontSize: 18,
+    backgroundColor: Colors.accent2,
+    borderRadius: 5,
+    // marginHorizontal: 15,
+    flexDirection: 'row'
+  },
+  inputText: {
+    fontSize: 18,
+  },
+
+  imageFlatListContainer: {
+    height: 220
+  },  
+  card: {
+    height: 200,
+    width: 225,
+    marginHorizontal: 10,
+    marginVertical: 10,
+
+    shadowColor: 'black',
+    shadowOpacity: 0.26,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 8,
+    elevation: 5,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    borderColor: Colors.primary    
+  },
+  touchableCard: {
+    borderRadius: 10,
+    overflow: 'hidden'
+  },   
+  imageInCardContainer: {
+    width: '100%',
+    height: '60%',
+    // borderTopLeftRadius: 10,
+    // borderTopRightRadius: 10,
+    borderRadius: 10,
+    overflow: 'hidden'
+  },
+  imageInCard: {
+    height: '100%',
+    width: '100%'
+  },
+  detailsInCardContainer: {
+    alignItems: 'center',
+    height: '40%',
+    padding: 5
+  },
+  nameInDetailsOfCard: {
+    // fontFamily: 'open-sans-bold',
+    fontSize: 18,
+    // color: Colors.accent,
+    marginVertical: 2
+  },
+  priceInDetailsOfCard: {
+    // fontFamily: 'open-sans',
+    fontSize: 14,
+    color: '#888'
+  }, 
+  radioButtonGroupContainer: {
+    margin: 10
+  },
+  radioButtonItemContainer: {
+    marginHorizontal: 40
+  },
+  radioButtonItemLabel: {
+    fontSize: 16
+  }
 });

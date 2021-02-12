@@ -2,14 +2,14 @@ const express = require ('express')
 const cors = require ('cors')
 // const mysql = require('mysql');
 const announcementRoute = require('./routes/announcementRoute')
-const requireAuth = require('./routes/requireAuthRoute')
-
+const requireAuth = require('./middleware/requireAuthRoute')
+const ItemImagesRoute = require('./routes/itemImagesRoute')
 const categoryRouter = require('./routes/categoryRouter');
 const subcategoryRouter = require('./routes/subcategoryRouter');
 const itemRouter = require('./routes/itemRouter');
-
+const profileRoute = require('./routes/profileRoute')
 const Signup=require("./routes/signupRoute");
-//const ItemsReview=require("./routes/ItemReview.route");
+const messagesRoute = require('./routes/messagesRoute')
 //const SellerReview=require("./routes/SellerReview.route");
 // const ItemRoute=require('./routes/Item.route')
 
@@ -38,26 +38,26 @@ require('./routes/signupRoute')(app)
 require('./routes/Item.route')(app);
 require('./routes/signinRoute')(app);
 require('./routes/Image.route')(app);
-// const database = {
-//     login:[{
-//         id: '120',
-//         email: 'sally@gmail.com',
-//         password: '1234',
-//          }],
-//     users:[{
-//         id: '120',
-//         email: 'sally@gmail.com',
-//         password: '1234',
-//         joined: new Date(),
-//         location:''
-//     }] announcement
-// }announcement
-// const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
 
+
+
+
+
+
+
+
+
+
+
+
+
+app.use('/messages', requireAuth,  messagesRoute)
+app.use('/profile', requireAuth, profileRoute)
+app.use('/itemImages', ItemImagesRoute)
 app.use('/category', categoryRouter);
 app.use('/subcategory', subcategoryRouter);
 app.use('/item', requireAuth, itemRouter);
-//app.use('/item', itemRouter);
+
 app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
@@ -65,9 +65,9 @@ app.get("/api", (req, res) => {
     });
 });
 
-app.get('/profile', requireAuth, (req, res)=>{
-    res.send(req.user)
-})
+// app.get('/profile', requireAuth, (req, res)=>{
+//     res.send(req.user)
+// })
 
 // app.post('/announcement', (req, res)=>{
 //     console.log(req.body)
@@ -83,7 +83,7 @@ app.get('/profile', requireAuth, (req, res)=>{
 // app.post('/signup', (req, res)=>{signup.handleSignup(req, res, database, jwt)})
 // app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
-
-app.listen(4000, ()=>{
-    console.log('Listening on 4000')
+let port=process.env.PORT || 4000;
+app.listen(port, ()=>{
+    console.log(`Listening on ${port}`)
 })

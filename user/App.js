@@ -9,15 +9,22 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { reviewSellerReducer } from './store/reducers/ReviewSeller';
 import {deletemyItemReducer } from './store/reducers/DeleteMyItem';
 import {userItemsReducer} from './store/reducers/DisplayMyItem';
-import { searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer } from './store/reducers/Landing';
+import { searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer, searchMostRecentItemsByCategoryMatchingSearchCriteriaReducer } from './store/reducers/Search';
 import thunkMiddleware from 'redux-thunk';
 import { Provider as AnnouncementsProvider } from './context/AnnouncementContext';
-
+import * as Notifications from 'expo-notifications';
+Notifications.setNotificationHandler({
+  handleNotification: async () => {
+    return { shouldShowAlert: true };
+  },
+});
 const rootReducer = combineReducers({
   //deletemyItemReducer,
    reviewSellerReducer,
    userItemsReducer,
-  searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermReducer
+  searchTermReducer, 
+  searchMostRecentItemsByCategoryMatchingSearchTermReducer,
+  searchMostRecentItemsByCategoryMatchingSearchCriteriaReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

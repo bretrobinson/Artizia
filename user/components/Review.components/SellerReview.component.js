@@ -12,7 +12,6 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 
 
 const sellerreviewscreen = props => {
-  const [text, setText] = useState('');
   const [name, setName] = useState("");
   const [sellerRating, setsellerRating] = useState("");
   const [sellerReview, setSellerReview] = useState("");
@@ -29,21 +28,18 @@ const sellerreviewscreen = props => {
 
   //const sellerreview = useSelector(state => state.sellerreviews);
 
-
-
-
-  const ratingCompleted = (rating) => {
+ const ratingCompleted = (rating) => {
     setsellerRating(rating)
 
   }
   useEffect(() => {
 
-    if (sellerRating == 0) {
+  
       setsellerRating(10)
-      props.parentCallback(name, sellerReview, sellerRating);
-    }else{
-      props.parentCallback(name, sellerReview, sellerRating);
-    }
+    //  props.parentCallback(name, sellerReview, sellerRating);
+  
+      props.parentCallback(name,sellerReview, sellerRating);
+  
   })
   //let disabled = (name.length > 0 && text.length > 0) ? false : true;
   return (
@@ -55,8 +51,7 @@ const sellerreviewscreen = props => {
           style={styles.ReviewInput}
           placeholder="Seller Name"
           onChangeText={nameInputHandler}
-          autoFocus={true}
-          value={name}
+           value={name}
         />
         <TextInput
           value={sellerReview}
@@ -64,8 +59,6 @@ const sellerreviewscreen = props => {
           placeholder="Seller review"
           multiline={true}
           keyboardType="default"
-          autoCapitalize="sentences"
-          returnKeyType="next"
           onChangeText={sellerReviewInputHandler}
           label={"Seller review"}
         />

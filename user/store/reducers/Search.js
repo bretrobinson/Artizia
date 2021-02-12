@@ -1,7 +1,9 @@
 import { UPDATE_SEARCH_TERM,
   SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_TERM_PENDING,
   SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_TERM_SUCCESS,
-  SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_TERM_FAILED } from '../constants';
+  SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_TERM_FAILED,
+  SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_CRITERIA_SUCCESS,
+  SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_CRITERIA_FAILED } from '../constants';
 
 
 const initialStateSearchTerm = {
@@ -33,6 +35,23 @@ export const searchMostRecentItemsByCategoryMatchingSearchTermReducer = (state =
       return Object.assign({}, state, {mostRecentItemsByCategoryMatchingSearchTerm: action.payload, isPending: false });
     case SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_TERM_FAILED:
       return Object.assign({}, state, {error: action.payload, isPending: false});
+    default:
+      return state;
+  }
+};
+
+const initialStateSearchMostRecentItemsByCategoryMatchingSearchCriteria = {
+  mostRecentItemsByCategoryMatchingSearchCriteria: [],
+  error: ''
+};
+
+export const searchMostRecentItemsByCategoryMatchingSearchCriteriaReducer = (state = initialStateSearchMostRecentItemsByCategoryMatchingSearchCriteria, action={}) => {
+ 
+  switch (action.type) {  
+    case SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_CRITERIA_SUCCESS:
+      return Object.assign({}, state, {mostRecentItemsByCategoryMatchingSearchCriteria: action.payload});
+    case SEARCH_MOST_RECENT_ITEMS_BY_CATEGORY_MATCHING_SEARCH_CRITERIA_FAILED:
+      return Object.assign({}, state, {error: action.payload});
     default:
       return state;
   }

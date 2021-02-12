@@ -9,7 +9,7 @@ const authReducer = (state, action)=>{
         case 'add_error':
             return {...state, errorMessage: action.payload}
         case 'signin':
-            return {errorMessage: '', token: action.payload.token, user: action.payload.user, isSignedIn:true}
+            return {errorMessage: '', user: action.payload.user, isSignedIn:true}
         case 'clear_error_message':
             return {...state, errorMessage:''}
         case 'signout':
@@ -31,10 +31,10 @@ const signup = dispatch => async ({ email, password, fName, lName, location , pa
         } else {
             const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment})
             await AsyncStorage.setItem('token', response.data.token)
-            // await AsyncStorage.setItem('user', response.data.user)
-            
+            // await AsyncStorage.setItem('user', response.data.user)            
             dispatch({type: 'signin', payload: response.data})
-            navigate('Home')
+            // navigate('Home')
+            navigate.goBack()
         }
 
     } catch (err) {
@@ -53,7 +53,7 @@ const signin = dispatch => async ({ email, password }) => {
             await AsyncStorage.setItem('token', response.data.token);
             // await AsyncStorage.setItem('user', response.data.user)
             dispatch({type: 'signin', payload: response.data})
-            navigate('Home')
+            navigate.goBack()
         }
 
        
@@ -68,8 +68,29 @@ const signout = dispatch => async ()=>{
     navigate('Home')
 }
 
+const editProfile = dispatch => async ({ email, fName, lName, location , payment}) => {
+// console.log(email,location)
+
+    try {
+        if (email.length <1 ){
+            dispatch({type: 'add_error', payload: 'Enter email and password'})
+        } else {
+        const response = await craftserverApi.patch('/profile', {email, fName, lName, location, payment})
+        // await console.log(response.data)
+            
+            dispatch({type: 'signin', payload: response.data})
+            navigate('Profile')
+        }
+
+    } catch (err) {
+        console.log(err)
+        // dispatch({type: 'add_error', payload: 'Something went wrong with signup'})
+    }
+}
+
+
 export const {Provider, Context } = createDataContext(
     authReducer,
-    {signup, signin, clearErrorMessage, signout},
+    {signup, signin, clearErrorMessage, signout, editProfile},
     {token:null, errorMessage: '', user: '', isSignedIn: false}
 )
