@@ -26,9 +26,29 @@ import Card from '../components/Card';
 //         TouchableWithoutFeedback } from 'react-native-gesture-handler';  
 import Api from '../api/craftserver';       
 
-// this should eventually come from database
-const Categories = [
-  'Crochet', 'Sewing', 'Painting', 'Woodwork', 'Photography', 'Metalwork', 'Bath and Beauty', 'Pets', 'Office'];
+const Categories = [];
+let categoryRows = [];
+
+// get categories from datbase
+// the base URL should come from env var
+let serverURL = "http://localhost:4000/category"
+fetch(serverURL)
+.then((resp) => resp.json())
+.then(data => {
+  categoryRows = data
+  console.log('response data in add item: ', categoryRows)
+  categoryRows.forEach((row) => console.log('category id: ', row.id, ' category name: ', row.name))
+  categoryRows.forEach((row) => {
+    Categories.push(row.name)
+  })
+  console.log('Categories inside: ', Categories)
+})
+.catch(error => {
+  console.log(error)
+})
+
+//const Categories = [];
+  // 'Crochet', 'Sewing', 'Painting', 'Woodwork', 'Photography', 'Metalwork', 'Bath and Beauty', 'Pets', 'Office'];
 
 let SubCategories = [];
 // this should eventually come from database
@@ -211,7 +231,7 @@ const AddItemScreen = props => {
 
     <View style={styles.screen}>
       <View>
-        <Text style={DefaultStyles.bodyText} >Short Desription</Text>
+        <Text style={DefaultStyles.bodyText} >Short Description</Text>
       </View>
       <TextInput
         ref={shortD}

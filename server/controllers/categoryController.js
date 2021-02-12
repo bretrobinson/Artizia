@@ -9,13 +9,29 @@ console.log('made it into category controller');
 
 exports.category_list = (req, res) => {
 
-  // Find categories
+  // Find all categories
   categoryModel.category_list(req, (err, data) => {
     
   if (err)
     res.status(500).send({
       message:
-        err.message || "Some error occurred while finding most recent items by category matching search term."
+        err.message || "Some error occurred while finding categories"
+    });
+    else res.send(data);
+  });
+};
+
+// Get category by id
+exports.category_listbyid = (req, res) => {
+  console.log('List category by id');
+  console.log('category controller params: ', req.params)
+  // find all categories with specify cataegory
+  categoryModel.category_listbyid(req, (err, data) => {
+    
+  if (err)
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while finding category by id"
     });
     else res.send(data);
   });
@@ -24,21 +40,18 @@ exports.category_list = (req, res) => {
 exports.category_create = (req, res) => {
 
   console.log('category_create: ', req.body)
-  console.log('category params: ', req.params)
+
   // Validate request
-  if (!req.body) {
+  if (Object.keys(req.body).length === 0) {
+    console.log('req.body is empty')
     res.status(400).send({
       message: "Category can not be empty!"
-    });
+    })
+    return
   }
-
-  // Create a category
-  //const newCategory = req.body.category
-  //console.log('controller category new: ', newCategory, req.params)
   
   const newCategory = new categoryModel({
     name:req.body.name,
-    //name:"Testing",
   });
 
   console.log('controller newCategory :', newCategory)
