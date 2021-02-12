@@ -13,6 +13,7 @@ import Announcement from './components/Announcement'
 import GeneralRules from './components/GeneralRules'
 import AnnouncementEdit from './components/AnnouncementEdit'
 import AddCategory from './components/AddCategory';
+import Notification from "./components/Notification/Notification";
 
 function App() {
   const [title, setTitle] = useState('')
@@ -92,6 +93,8 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+        
+        <Route path="/Notification" component={Notification} />
           <Route path="/message">
             <Announcement onChangeTitle={setTitle}
               onChangeExpiredDate={setExpiredDate}

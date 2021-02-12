@@ -37,6 +37,7 @@ require('./routes/signupRoute')(app)
 require('./routes/Item.route')(app);
 require('./routes/signinRoute')(app);
 require('./routes/Image.route')(app);
+require('./routes/User.route')(app);
 
 
 
