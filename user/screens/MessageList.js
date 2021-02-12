@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react'
 import {Text, View, FlatList, StyleSheet,   TouchableOpacity,
-    TouchableNativeFeedback, Platform} from 'react-native'
+    TouchableNativeFeedback, Platform, Image} from 'react-native'
 import craftserverApi from '../api/craftserver'
 import {Context as AuthContext} from '../context/AuthContext'
 import {navigate} from '../RootNavigation'
@@ -35,12 +35,17 @@ const [messageData , setMessageData] = useState([])
             keyExtractor={(item,index)=>index.toString()}
             renderItem={({item, index})=>{
                 return (
-            <TouchableCmp onPress={()=>navigate('MessageDetail', {buyerid:item.buyerid, sellerid: item.sellerid, itemid: item.itemid} )} useForeground>
-                  <View style={Styles.message} > 
-                  {user.idusers === item.buyerid ? <Text style={Styles.lineMargin}>Me</Text> : <Text style={Styles.lineMargin}>BuyerId {item.buyerid}</Text>}
-                  {user.idusers === item.sellerid ? <Text style={Styles.lineMargin}>Me</Text> : <Text style={Styles.lineMargin}>SellerId {item.sellerid}</Text>}
-                    <Text style={Styles.lineMargin}>ItemId {item.itemid}</Text>
-                     
+            <TouchableCmp onPress={()=>navigate('MessageDetail', {buyerid:item.buyerid, sellerid: item.sellerid, itemName:item.itemName, itemid: item.itemid, uri:item.itemUri} )} useForeground>
+                  <View style={styles.container} > 
+                  <View style={styles.body}>
+                  <Image style={styles.image} source={{ uri: item.itemUri }} />
+                  <View>
+                  <Text>{item.itemName}</Text>
+                  {user.idusers === item.buyerid ? <Text style={styles.lineMargin}>Me</Text> : <Text style={styles.lineMargin}>BuyerId {item.buyerid}</Text>}
+                  {user.idusers === item.sellerid ? <Text style={styles.lineMargin}>Me</Text> : <Text style={styles.lineMargin}>SellerId {item.sellerid}</Text>}
+                    <Text style={styles.lineMargin}>ItemId {item.itemid}</Text>
+                    </View>
+                    </View>
                   </View>
             </TouchableCmp>
                 )
@@ -49,15 +54,24 @@ const [messageData , setMessageData] = useState([])
         </View>
      );
 }
-const Styles = StyleSheet.create({
-    message: {
+const styles = StyleSheet.create({
+    container: {
         margin: 10,
         backgroundColor: Colors.accent,
         borderRadius: 15
     },
+    body: {
+        flexDirection: 'row'
+    },
     lineMargin: {
         margin: 5
-    }
+    },
+    image: {
+        width: 50,
+        height: 50,
+        // margin: 10,
+        borderRadius: 10
+      },
 })
  
 export default MessageList;

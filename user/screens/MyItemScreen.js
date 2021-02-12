@@ -91,13 +91,13 @@ const MyItemScreen = () => {
 
 const styles = StyleSheet.create({
   product: {
-    height: 300
+    height: 300,
+  
     
 
   },
   screen: {
     flex: 1,
-
     flexDirection: 'column'
   },
   additemicon: {

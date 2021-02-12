@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
   product: {
     marginTop:30,
     height: 350,
-    margin: 20,
+    width:350,
+    marginLeft:33
    
   },
   buttonContainer:{
