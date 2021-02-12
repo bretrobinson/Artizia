@@ -5,6 +5,7 @@ const announcementRoute = require('./routes/announcementRoute')
 const requireAuth = require('./routes/requireAuthRoute')
 
 const categoryRouter = require('./routes/categoryRouter');
+const subcategoryRouter = require('./routes/subcategoryRouter');
 const itemRouter = require('./routes/itemRouter');
 
 const Signup=require("./routes/signupRoute");
@@ -54,6 +55,7 @@ require('./routes/Image.route')(app);
 // const checkToken = (req, res, next) => {requireAuth.handleAuth(req, res, db, jwt, next)}
 
 app.use('/category', categoryRouter);
+app.use('/subcategory', subcategoryRouter);
 app.use('/item', requireAuth, itemRouter);
 //app.use('/item', itemRouter);
 app.use('/announcement', announcementRoute)
@@ -82,6 +84,6 @@ app.get('/profile', requireAuth, (req, res)=>{
 // app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
 
-app.listen(3000, ()=>{
-    console.log('Listening on 3000')
+app.listen(4000, ()=>{
+    console.log('Listening on 4000')
 })
