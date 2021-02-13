@@ -41,8 +41,9 @@ const ReviewSellerScreen = props => {
   }
  
   return (
+    <ScrollView>
     <View styles={DefaultStyles.screenContainer}>
-      <ScrollView>
+
         <View>
           <SellerReview parentCallback={passValueFunction} />
           <ItemReview parentCallback={passValueItemReviewFunction} />
@@ -66,8 +67,8 @@ const ReviewSellerScreen = props => {
           {/* </View> */}
         </View>
         </View>
-      </ScrollView>
     </View>
+    </ScrollView>    
   )
 
 
