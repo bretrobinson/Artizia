@@ -1,7 +1,7 @@
 import { TextareaAutosize, Input, Button, TextField, Container } from '@material-ui/core'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-
+import Api from '../../api/craftserver';
 const Notification = () => {
 
     const [message, setMessage] = useState("");
@@ -18,7 +18,7 @@ const Notification = () => {
     function sendnotification() {
 
 
-        axios.get('http://3c163890da46.ngrok.io/tokennotification'
+        Api.get('/api/tokennotification'
         ,{
         responseType: 'json',  
         headers: {
