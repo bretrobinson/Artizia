@@ -50,9 +50,19 @@ router.patch('/:id', (req, res)=>{
             }
         
             res.send('Message sent to the seller')
-        })
-       
+        })      
  
+})
+
+router.delete('/:id', (req,res)=>{
+    
+    let sql = `DELETE FROM messages WHERE idmessages='${req.params.id}'`
+    let query1 = db.query(sql, (err, result)=>{
+        if (err){
+            res.status(404).send({error:err})
+        }
+          res.send('Message deleted')
+    }) 
 })
 
 router.get('/', (req, res)=>{
