@@ -9,6 +9,10 @@ import {
   Button
 } from 'react-native';
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import Input from '../Input';
+import DefaultStyles from '../../constants/defaultStyles';
+import { colors } from 'react-native/Libraries/NewAppScreen';
+import Colors from '../../constants/Colors';
 
 
 const sellerreviewscreen = props => {
@@ -43,40 +47,41 @@ const sellerreviewscreen = props => {
   })
   //let disabled = (name.length > 0 && text.length > 0) ? false : true;
   return (
-    <View style={styles.container}>
-
+    <View style={DefaultStyles.screenContainer}>
       <View >
-        <TextInput clearButtonMode="while-editing"
+        <Text style={DefaultStyles.label} >Seller Name</Text>
+        <Input clearButtonMode="while-editing"
 
-          style={styles.ReviewInput}
+          // style={styles.ReviewInput}
           placeholder="Seller Name"
           onChangeText={nameInputHandler}
            value={name}
         />
-        <TextInput
+
+        <Text style={DefaultStyles.label} >Seller Review</Text>
+        <Input
           value={sellerReview}
-          style={styles.ReviewInput}
+          // style={DefaultStyles.label}
           placeholder="Seller review"
           multiline={true}
           keyboardType="default"
           onChangeText={sellerReviewInputHandler}
-          label={"Seller review"}
+          // label={"Seller review"}
         />
 
 
       </View>
       <View>
-        <Text style={styles.title}>Seller rating</Text>
+        <Text style={{...DefaultStyles.label, textAlign: 'center'}}>Seller Rating</Text>
         <AirbnbRating
           count={5}
           onChangeText={sellerRatingInputHandler}
           reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
-          defaultRating={10}
+          defaultRating={5}
           size={20}
           onFinishRating={ratingCompleted}
           value={sellerRating}
         />
-
       </View>
 
     </View>
@@ -85,28 +90,28 @@ const sellerreviewscreen = props => {
 
 const styles = StyleSheet.create({
 
-  container: {
-    flexDirection: 'column',
-    padding: 10,
-    justifyContent: 'space-around',
-    marginTop: '10%'
-  },
+  // container: {
+  //   flexDirection: 'column',
+  //   padding: 10,
+  //   justifyContent: 'space-around',
+  //   marginTop: '10%'
+  // },
 
-  ReviewInput: {
-    flex: 1,
-    fontSize: 24,
-    marginBottom: 32,
-    borderWidth: 1,
-    padding: 12,
-    width: '100%',
-    height: '1%',
-    borderRadius: 10,
-    backgroundColor: 'white'
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 25,
-  }
+  // ReviewInput: {
+  //   flex: 1,
+  //   fontSize: 24,
+  //   marginBottom: 32,
+  //   borderWidth: 1,
+  //   padding: 12,
+  //   width: '100%',
+  //   height: '1%',
+  //   borderRadius: 10,
+  //   backgroundColor: 'white'
+  // },
+  // title: {
+  //   textAlign: 'center',
+  //   fontSize: 25,
+  // }
 });
 
 export default sellerreviewscreen;

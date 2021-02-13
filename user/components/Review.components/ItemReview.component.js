@@ -11,6 +11,9 @@ import {
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
 import { useSelector, useDispatch } from 'react-redux';
+import Input from '../Input';
+import DefaultStyles from '../../constants/defaultStyles';
+
 const ItemReviewscreen = props => {
    const [shortDescription, setshortDescription] = useState("");
   const [itemRating, setItemRating] = useState("");
@@ -37,11 +40,12 @@ const ItemReviewscreen = props => {
   })
 
   return (
-    <View style={styles.container} >
+    <View style={DefaultStyles.screenContainer} >
 
       <View>
-        <TextInput value={shortDescription}
-          style={styles.ReviewInput}
+        <Text style={DefaultStyles.label} >Item Description</Text>
+        <Input value={shortDescription}
+          // style={styles.ReviewInput}
           placeholder="Item short description"
           multiline={true}
           onChangeText={DescriptionInputHandler}
@@ -49,29 +53,31 @@ const ItemReviewscreen = props => {
           autoCapitalize="sentences"
           autoCorrect={false}
           returnKeyType="next"
-          label='item description' />
-        <TextInput value={itemReview}
-          style={styles.ReviewInput}
+          // label='item description' 
+        />
+
+        <Text style={DefaultStyles.label} >Item Review</Text>        
+        <Input value={itemReview}
+          // style={styles.ReviewInput}
           placeholder="Item review"
           multiline={true}
           keyboardType="default"
           autoCapitalize="sentences"
           returnKeyType="next"
           onChangeText={sellerReviewInputHandler}
-          label={"item review"}
+          // label={"item review"}
         />
       </View>
       <View>
-        <Text style={styles.title}>Item rating</Text>
+      <Text style={{...DefaultStyles.label, textAlign: 'center'}}>Item Rating</Text>
         <AirbnbRating
           count={5}
           reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
-          defaultRating={10}
+          defaultRating={5}
           size={20}
           onFinishRating={ratingCompleted}
           value={itemRating}
         />
-
       </View>
      
 
@@ -82,29 +88,29 @@ const ItemReviewscreen = props => {
 
 const styles = StyleSheet.create({
 
-  container: {
-    flexDirection: 'column',
-    padding: 10,
-    justifyContent: 'space-around',
-    marginTop: '10%'
-  },
+  // container: {
+  //   flexDirection: 'column',
+  //   padding: 10,
+  //   justifyContent: 'space-around',
+  //   marginTop: '10%'
+  // },
 
-  ReviewInput: {
-    flex: 1,
-    fontSize: 24,
-    marginBottom: 32,
-    borderWidth: 1,
-    padding: 12,
-    width: '100%',
-    height: '1%',
-    borderRadius: 10,
-    backgroundColor: 'white'
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 25,
+  // ReviewInput: {
+  //   flex: 1,
+  //   fontSize: 24,
+  //   marginBottom: 32,
+  //   borderWidth: 1,
+  //   padding: 12,
+  //   width: '100%',
+  //   height: '1%',
+  //   borderRadius: 10,
+  //   backgroundColor: 'white'
+  // },
+  // title: {
+  //   textAlign: 'center',
+  //   fontSize: 25,
 
-  }
+  // }
 
 });
 

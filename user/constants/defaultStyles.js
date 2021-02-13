@@ -77,7 +77,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginVertical: 10,
-    marginRight: 5
+    marginRight: 5,
+    backgroundColor: Colors.accent
   },
 
   button: {
