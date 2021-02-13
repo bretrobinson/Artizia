@@ -11,8 +11,8 @@ export const createReviewItem = (shortDescription,itemReview,itemRating) => {
   
   return async dispatch => {
      
-    let pushToken;
-    // dispatch({ type: CREATE_REVIEWSELLER_PENDING });
+  let pushToken;
+  
    let statusObj=await Permissions.getAsync(Permissions.NOTIFICATIONS);
   
     Notification.getExpoPushTokenAsync();
@@ -34,8 +34,7 @@ export const createReviewItem = (shortDescription,itemReview,itemRating) => {
       { 
         shortDescription,
         itemReview,
-        itemRating,
-        ownerPushToken:pushToken
+        itemRating
       }).then(resData => {if (!response.ok) {
         throw new Error('Error create review seller');
       }

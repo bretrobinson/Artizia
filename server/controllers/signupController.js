@@ -27,6 +27,7 @@ exports.create = (req, res) => {
     fName:req.body.fName,
     location:req.body.location,
     payment:req.body.payment,
+    PushTokenNotification:req.body.PushTokenNotification,
     joined: new Date(),
     status: 'Active'
   

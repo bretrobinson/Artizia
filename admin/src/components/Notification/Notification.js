@@ -18,7 +18,7 @@ const Notification = () => {
     function sendnotification() {
 
 
-        axios.get('http://5fa9e9e43a02.ngrok.io/tokennotification'
+        axios.get('http://3c163890da46.ngrok.io/tokennotification'
         ,{
         responseType: 'json',  
         headers: {

@@ -1,12 +1,13 @@
 const sql = require("./db.js");
 
 
-const Signup =function(signup ){
+const Signup =function(signup){
 
     this.password=signup.password;
      this.email=signup.email;
     this.lName=signup.lName;
    this.fName=signup.fName;
+   this.PushTokenNotification=signup.PushTokenNotification;
     this.location=signup.location;
    this.payment=signup.payment;
    this.joined=signup.joined
@@ -17,6 +18,7 @@ const Signup =function(signup ){
 
 Signup.create = (newSignup, result) => {
     sql.query("INSERT INTO users SET ?", newSignup, (err, res) => {
+      console.log(sql);
       if (err) {
         console.log("error: ", err);
         result(err, null);

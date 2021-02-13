@@ -3,6 +3,8 @@ import createDataContext from './createDataContext'
 import {navigate} from '../RootNavigation'
 import craftserverApi from '../api/craftserver'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import * as Notification from 'expo-notifications';
+import *as Permissions from 'expo-permissions';
 
 const authReducer = (state, action)=>{
     switch(action.type){
@@ -23,16 +25,51 @@ const clearErrorMessage = dispatch => ()=>{
     dispatch({type: 'clear_error_message'})
 }
 
+    
+    
+  
 const signup = dispatch => async ({ email, password, fName, lName, location , payment}) => {
 
+
+
+    let PushTokenNotification;
+  
+    let statusObj=await Permissions.getAsync(Permissions.NOTIFICATIONS);
+   
+     Notification.getExpoPushTokenAsync();
+  
+    
+      
+       statusObj= await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      
+     
+     if(statusObj.status !=='granted'){
+        PushTokenNotification=null; 
+     }else{
+        PushTokenNotification= (await Notification.getExpoPushTokenAsync()).data;
+ 
+     }
+    
     try {
         if (email.length <1 || password.length<1){
             dispatch({type: 'add_error', payload: 'Enter email and password'})
         } else {
-            const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment})
+            const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment,PushTokenNotification})
+        
             await AsyncStorage.setItem('token', response.data.token)
+
             // await AsyncStorage.setItem('user', response.data.user)            
             dispatch({type: 'signin', payload: response.data})
+            Notification.scheduleNotificationAsync({
+                content:{
+                  title:'Welcome',
+                  body:'Your account was created successfully!',
+                  
+                },
+                trigger:{
+                  seconds:3
+                }
+              })
             // navigate('Home')
             navigate.goBack()
         }
