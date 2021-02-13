@@ -31,18 +31,15 @@ const clearErrorMessage = dispatch => ()=>{
 const signup = dispatch => async ({ email, password, fName, lName, location , payment}) => {
 
 
-
+///Permissions for notifications
     let PushTokenNotification;
   
     let statusObj=await Permissions.getAsync(Permissions.NOTIFICATIONS);
    
      Notification.getExpoPushTokenAsync();
   
-    
-      
        statusObj= await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      
-     
+           
      if(statusObj.status !=='granted'){
         PushTokenNotification=null; 
      }else{
@@ -57,8 +54,10 @@ const signup = dispatch => async ({ email, password, fName, lName, location , pa
             const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment,PushTokenNotification})
         
             await AsyncStorage.setItem('token', response.data.token)
+  
+            // await AsyncStorage.setItem('user', response.data.user) 
 
-            // await AsyncStorage.setItem('user', response.data.user)            
+            //////Local notification           
             dispatch({type: 'signin', payload: response.data})
             Notification.scheduleNotificationAsync({
                 content:{
