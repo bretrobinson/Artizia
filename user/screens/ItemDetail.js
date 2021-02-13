@@ -1,6 +1,6 @@
 import React, {useEffect, useContext, useState} from 'react';
 import { Button } from 'react-native';
-import { View , StyleSheet, Text, Image, FlatList, ActivityIndicator, ScrollView} from 'react-native';
+import { View , StyleSheet, Text, Image, FlatList, ActivityIndicator, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import craftserverApi from '../api/craftserver'
 import {Context as AuthContext} from '../context/AuthContext'
@@ -10,7 +10,7 @@ const ItemDetail = ({route, navigation}) => {
   const{ state:{isSignedIn} } = useContext(AuthContext)
     const {itemId, uri, itemName, price,} = route.params
     const [ItemImages, setItemImages] = useState([])
-    const [idusers, setIdusers] = useState('')
+    const [sellerid, setSellerid] = useState('')
 
     const ItemMessage = ` Hi, I'm intersted in the ${itemName}! Please contact me if this item is still available, Thanks`
     const [message, setMessage] = useState(ItemMessage)
@@ -19,18 +19,22 @@ const ItemDetail = ({route, navigation}) => {
     const fetchData = async ()=>{
       const response = await  craftserverApi.get('/itemImages/'+itemId)      
      await setItemImages(response.data)
-     await setIdusers(response.data[0].userId)
+     await setSellerid(response.data[0].userId)
     }    
     fetchData()
 }, [itemId])
 
-const sentMessageHandler = async ({message, idusers, })=>{
+const sentMessageHandler = async ({message, sellerid, })=>{
    if(!isSignedIn){
     navigation.navigate('Signin')
   } else {
+    if(message.length<2){
+      alert('Please enter message to send')
+      navigation.navigate('ItemDetail')
+  }else {
     // console.log(message)
     try {
-      const response = await  craftserverApi.post('/messages/'+itemId, {message, idusers, uri, itemName})      
+      const response = await  craftserverApi.post('/messages/'+itemId, {message, sellerid, uri, itemName})      
     
       alert(response.data)
       // navigation.navigate('ItemDetail')
@@ -39,6 +43,7 @@ const sentMessageHandler = async ({message, idusers, })=>{
       alert('Message to self is not permitted, Thanks')
       navigation.goBack()
     }
+  }
 
   }
 
@@ -47,6 +52,11 @@ const sentMessageHandler = async ({message, idusers, })=>{
 // console.log('N',ItemImages)
 if (ItemImages.length>0){
   return (
+    <TouchableWithoutFeedback
+    onPress={() => {
+      Keyboard.dismiss();
+    }}
+  >
     <ScrollView>
     <View style={styles.container}>
         {/* <Text>This ItemDetailScreen Page</Text>
@@ -79,9 +89,10 @@ if (ItemImages.length>0){
          numberOfLines={10}
         defaultValue={ItemMessage}
         onChangeText={setMessage}/>
-        <Button title='Send message' onPress={()=>sentMessageHandler({message, idusers})}/>
+        <Button title='Send message' onPress={()=>sentMessageHandler({message, sellerid})}/>
     </View> 
     </ScrollView>
+    </TouchableWithoutFeedback>
 );
 }else
  return (

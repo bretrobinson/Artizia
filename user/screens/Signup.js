@@ -27,7 +27,7 @@ const Signup = ({navigation}) => {
     return (
         <SafeAreaView>
         <ScrollView>
-        <KeyboardAvoidingView style={{ height: '100%', justifyContent: 'center' }} >
+        <KeyboardAvoidingView behavior='height' style={{ height: '100%', justifyContent: 'center' }} >
         <View style={DefaultStyles.screenContainer}>
         {/* <View style={styles.container}> */}
         <Text style={DefaultStyles.title}>Sign Up</Text>

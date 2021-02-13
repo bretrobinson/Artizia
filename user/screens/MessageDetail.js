@@ -1,9 +1,11 @@
 import React, {useEffect, useContext, useState} from 'react';
-import {Button, View , StyleSheet, Text, Image, FlatList, TextInput,KeyboardAvoidingView, ActivityIndicator, ScrollView} from 'react-native';
+import {Button, View , StyleSheet, Text, Image, FlatList,TouchableWithoutFeedback , TextInput,KeyboardAvoidingView, ActivityIndicator, SafeAreaView} from 'react-native';
 import craftserverApi from '../api/craftserver'
+import { Input} from 'react-native-elements'
 import {Context as AuthContext} from '../context/AuthContext'
 import Moment from 'react-moment'
 import Colors from '../constants/Colors';
+
 
 const MessageDetail = ({route, navigation}) => {
     const{ state:{user} } = useContext(AuthContext)
@@ -20,18 +22,24 @@ const MessageDetail = ({route, navigation}) => {
     }, [itemid])
 
     const sentMessageHandler = async ()=>{
-     
+        if(message.length<2){
+            alert('Please enter message to send')
+            navigation.navigate('MessageDetail')
+        }else {
+
          // console.log(message)
          try {
-           const response = await  craftserverApi.patch('/messages/'+itemid, {message, buyerid, sellerid, uri, itemName})      
-         
-           alert(response.data)
-           // navigation.navigate('ItemDetail')
-           navigation.goBack()
-         } catch (err){
-           alert(err)
-           navigation.goBack()
-         }
+            const response = await  craftserverApi.patch('/messages/'+itemid, {message, buyerid, sellerid, uri, itemName})      
+          
+            alert(response.data)
+            // navigation.navigate('ItemDetail')
+            navigation.goBack()
+          } catch (err){
+            alert(err)
+            navigation.goBack()
+          }
+        }
+     
      
        
      
@@ -39,17 +47,18 @@ const MessageDetail = ({route, navigation}) => {
 
 
     return (
-       
-        <KeyboardAvoidingView>
-        <View>
-            <Text>Message Detail screen</Text>
+        <SafeAreaView style={styles.container}>
+            
+            <KeyboardAvoidingView behavior='position' >
+           
+        <View >
             <FlatList 
             data={messageData}
             keyExtractor={(item,index)=>index.toString()}
             renderItem={({item, index})=>{
                 return (
             
-                  <View style={styles.constainer} > 
+                  <View style={styles.message} > 
                   {user.idusers === item.buyerid ? <Text>Me</Text> : <Text>BuyerId {item.buyerid}</Text>}
                   {user.idusers === item.sellerid ? <Text>Me</Text> : <Text>SellerId {item.sellerid}</Text>}
                      <Text>Itemid {item.itemid}</Text>
@@ -68,6 +77,7 @@ const MessageDetail = ({route, navigation}) => {
                 )
             }}
         /> 
+        
         <TextInput 
          style={styles.multilineInput}
          maxLength={240}
@@ -76,17 +86,25 @@ const MessageDetail = ({route, navigation}) => {
         placeholder='Message'
         onChangeText={setMessage}/>
         <Button title='Send message' onPress={()=>sentMessageHandler()}/>
+        
         </View>
+       
         </KeyboardAvoidingView>
         
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    constainer : {
+    container:{
+        borderRadius:3,
+        flex:1
+    },
+    message : {
         backgroundColor: Colors.accent,
         margin: 20,
         borderRadius: 10,
+        padding:10
        
     },
         date: {
@@ -98,10 +116,14 @@ const styles = StyleSheet.create({
         width: '90%',
         borderColor: 'black',
         borderWidth: 1,
-        margin: 10,
-        padding: 10,
+        margin: 20,
+        padding: 20,
         borderRadius:10
       },
+      button:{
+          paddingBottom:40
+      },
+
 })
 
 export default MessageDetail;

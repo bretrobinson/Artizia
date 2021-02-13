@@ -28,8 +28,6 @@ const [messageData , setMessageData] = useState([])
     return ( 
         <View>
 
-<Text>This is message List screen</Text>
-
 <FlatList 
             data={messageData}
             keyExtractor={(item,index)=>index.toString()}
@@ -67,10 +65,11 @@ const styles = StyleSheet.create({
         margin: 5
     },
     image: {
-        width: 50,
-        height: 50,
+        width: 90,
+        height: 90,
         // margin: 10,
-        borderRadius: 10
+        borderRadius: 10,
+        marginRight:20
       },
 })
  
