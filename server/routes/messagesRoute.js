@@ -6,7 +6,7 @@ const db = require("../models/db");
 router.post('/:id', (req, res)=>{
     // message from Item detail to seller
 
-    if(req.body.idusers === req.user.idusers){
+    if(req.body.sellerid === req.user.idusers){
         res.status(422).send('You not send message to yourself')
     } else{
         let post = {
@@ -14,9 +14,10 @@ router.post('/:id', (req, res)=>{
             dateCreated:new Date(), 
             buyerid: req.user.idusers, 
             itemid: req.params.id, 
-            sellerid:req.body.idusers, 
+            sellerid:req.body.sellerid, 
             itemName:req.body.itemName,
             itemUri:req.body.uri,
+            messageFrom: req.user.idusers,
         }
         let sql1 = `INSERT INTO messages SET ?   `
         let query1 = db.query(sql1, post, (err, result)=>{
@@ -40,6 +41,7 @@ router.patch('/:id', (req, res)=>{
             sellerid:req.body.sellerid, 
             itemName:req.body.itemName,
             itemUri:req.body.uri,
+            messageFrom: req.user.idusers,
         }
         let sql1 = `INSERT INTO messages SET ?   `
         let query1 = db.query(sql1, post, (err, result)=>{
@@ -66,8 +68,7 @@ router.get('/', (req, res)=>{
     })
 })
 router.post('/', (req, res)=>{
-    // console.log(req.user.idusers, req.body, req.params)
-    // let sql = `SELECT * from messages WHERE buyerid = ${req.body.buyerid} or sellerid = ${req.user.idusers}`
+
     let sql = `SELECT * from messages WHERE buyerid = ${req.body.buyerid} AND sellerid = ${req.body.sellerid} AND itemid= ${req.body.itemid}`
 
     let query1 = db.query(sql, (err, result)=>{
