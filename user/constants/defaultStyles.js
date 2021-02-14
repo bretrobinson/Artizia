@@ -78,7 +78,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
     marginVertical: 10,
     marginRight: 5,
-    backgroundColor: Colors.accent
+    // backgroundColor: Colors.accent
   },
 
   button: {
@@ -185,6 +185,13 @@ export default StyleSheet.create({
     // fontFamily: 'open-sans',
     fontSize: 14,
     color: '#888'
+  },
+  myItemCard: {
+    marginTop:30,
+    height: 320,
+    width:350,
+    // marginLeft:33
+   
   }, 
   radioButtonGroupContainer: {
     margin: 10
@@ -194,5 +201,9 @@ export default StyleSheet.create({
   },
   radioButtonItemLabel: {
     fontSize: 16
-  }
-});
+  },
+  addItemIcon: {
+    width:50,
+    marginLeft:300
+  },
+  });
