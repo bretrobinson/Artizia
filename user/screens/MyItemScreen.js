@@ -8,10 +8,13 @@ import * as actionGetItem from '../store/actions/DisplayMyItem';
 import { useState, useEffect, useCallback, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GetMyItem from '../components/GetMyItem';
-import Colors from '../constants/Colors';
+import colors from '../constants/Colors';
 import { Context as AuthContext } from '../context/AuthContext'
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import { navigate } from '../RootNavigation'
+import { navigate } from '../RootNavigation';
+import DefaultStyles from '../constants/defaultStyles';
+import Colors from '../constants/Colors';
+
 const MyItemScreen = () => {
 
   const { state } = useContext(AuthContext)
@@ -57,9 +60,9 @@ const MyItemScreen = () => {
     }, [dispatch, loadProducts]);
     return (
 
-      <View style={styles.screen}>
+      <View style={DefaultStyles.screenContainer}>
       
-      <Ionicons name="add" style={styles.additemicon} size={55} color="black"
+      <Ionicons name="add" style={DefaultStyles.addItemIcon} size={55} color={Colors.saveButtonColor}
           onPress={() => navigate('AddItem')}
         />
             
@@ -90,64 +93,64 @@ const MyItemScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  product: {
-    height: 300,
+  // product: {
+  //   height: 300,
   
     
 
-  },
-  screen: {
-    flex: 1,
-    flexDirection: 'column'
-  },
-  additemicon: {
-      width:50,
-      marginLeft:300
-  },
-  buttonContainer: {
+  // },
+  // screen: {
+  //   flex: 1,
+  //   flexDirection: 'column'
+  // },
+  // additemicon: {
+  //     width:50,
+  //     marginLeft:300
+  // },
+  // buttonContainer: {
 
-    marginVertical: 10,
-    justifyContent: 'space-between',
-    padding: 1,
-    marginLeft: 200
-  },
-  touchable: {
-    borderRadius: 10,
-    overflow: 'hidden'
-  },
-  imageContainer: {
-    width: '100%',
-    height: '60%',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    overflow: 'hidden'
-  },
-  image: {
-    width: '100%',
-    height: '100%'
-  },
-  details: {
-    alignItems: 'center',
-    height: '45%',
+  //   marginVertical: 10,
+  //   justifyContent: 'space-between',
+  //   padding: 1,
+  //   marginLeft: 200
+  // },
+  // touchable: {
+  //   borderRadius: 10,
+  //   overflow: 'hidden'
+  // },
+  // imageContainer: {
+  //   width: '100%',
+  //   height: '60%',
+  //   borderTopLeftRadius: 10,
+  //   borderTopRightRadius: 10,
+  //   overflow: 'hidden'
+  // },
+  // image: {
+  //   width: '100%',
+  //   height: '100%'
+  // },
+  // details: {
+  //   alignItems: 'center',
+  //   height: '45%',
 
-  },
-  title: {
-    fontFamily: 'open-sans-bold',
-    fontSize: 18,
-    marginVertical: 2
-  },
-  price: {
-    fontFamily: 'open-sans',
-    fontSize: 14,
-    color: '#888'
-  },
-  actions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '23%',
-    paddingHorizontal: 20
-  }
+  // },
+  // title: {
+  //   fontFamily: 'open-sans-bold',
+  //   fontSize: 18,
+  //   marginVertical: 2
+  // },
+  // price: {
+  //   fontFamily: 'open-sans',
+  //   fontSize: 14,
+  //   color: '#888'
+  // },
+  // actions: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  //   height: '23%',
+  //   paddingHorizontal: 20
+  // }
 });
 
 

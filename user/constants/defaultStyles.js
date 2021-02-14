@@ -77,7 +77,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginVertical: 10,
-    marginRight: 5
+    marginRight: 5,
+    // backgroundColor: Colors.accent
   },
 
   button: {
@@ -134,7 +135,10 @@ export default StyleSheet.create({
   inputText: {
     fontSize: 18,
   },
-
+  multiLineInput: {
+    height: 100,
+    textAlignVertical: 'top'
+  },
   imageFlatListContainer: {
     height: 220
   },  
@@ -184,6 +188,13 @@ export default StyleSheet.create({
     // fontFamily: 'open-sans',
     fontSize: 14,
     color: '#888'
+  },
+  myItemCard: {
+    marginTop:30,
+    height: 320,
+    width:330,
+    // marginLeft:33
+   
   }, 
   radioButtonGroupContainer: {
     margin: 10
@@ -193,5 +204,9 @@ export default StyleSheet.create({
   },
   radioButtonItemLabel: {
     fontSize: 16
-  }
-});
+  },
+  addItemIcon: {
+    width:50,
+    marginLeft:300
+  },
+  });

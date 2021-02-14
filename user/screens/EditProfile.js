@@ -21,24 +21,33 @@ const EditProfile = ({navigation}) => {
         <SafeAreaView>
         <ScrollView>
         <KeyboardAvoidingView style={{ height: '100%', justifyContent: 'center' }} >
-        <View style={styles.container}>
-    <Text h3 style={styles.signup} >Edit Profile</Text>
+        <View style={DefaultStyles.screenContainer}>
+    {/* <Text h3 style={styles.signup} >Edit Profile</Text> */}
+    <Text style={DefaultStyles.title} >Edit Profile</Text>
     <Input 
             // value ={fName}
             onChangeText={SetFname}
             autoCorrect={false}
             label='First Name' 
             defaultValue={state.user.fName}
-            labelStyle={DefaultStyles.bodyText}
+            // labelStyle={DefaultStyles.bodyText}
             // placeholderTextColor={Colors.placeholderTextColor}
+            labelStyle={DefaultStyles.label}
+            placeholderTextColor={Colors.placeholderTextColor}
+            inputContainerStyle={DefaultStyles.input}
+            inputStyle={DefaultStyles.inputText}               
             />
     <Input 
         onChangeText={setLname}
         autoCorrect={false}
         label='Last Name'
         defaultValue={state.user.lName}
-        labelStyle={DefaultStyles.bodyText}
-        placeholderTextColor={Colors.placeholderTextColor} />
+        // labelStyle={DefaultStyles.bodyText}
+        placeholderTextColor={Colors.placeholderTextColor} 
+        labelStyle={DefaultStyles.label}
+        inputContainerStyle={DefaultStyles.input}
+        inputStyle={DefaultStyles.inputText}         
+        />
         
     <Input 
             onChangeText={SetEmail}
@@ -46,8 +55,11 @@ const EditProfile = ({navigation}) => {
             autoCorrect={false}
             label='Email'
             defaultValue={state.user.email}
-            labelStyle={DefaultStyles.bodyText}
+            // labelStyle={DefaultStyles.bodyText}
             placeholderTextColor={Colors.placeholderTextColor}
+            labelStyle={DefaultStyles.label}
+            inputContainerStyle={DefaultStyles.input}
+            inputStyle={DefaultStyles.inputText}             
         />
 
         {/* <Input value={password} 
@@ -65,22 +77,25 @@ const EditProfile = ({navigation}) => {
         autoCorrect={false}
         label='Postal Code'
         defaultValue={state.user.location}
-        labelStyle={DefaultStyles.bodyText}
+        // labelStyle={DefaultStyles.bodyText}
         placeholderTextColor={Colors.placeholderTextColor}
+        labelStyle={DefaultStyles.label}
+        inputContainerStyle={DefaultStyles.input}
+        inputStyle={DefaultStyles.inputText}         
         />
    
     <RadioButton2 value={payment} setValue={setPayment}/>
    
-    <View style={styles.buttonContainer}>
-        <View style={styles.buttonSave}>
-          <MainButton title="Submit Edit" buttonColor="purple" onPress={()=>editProfile({email, fName, lName, location, payment})}/>
-        </View>        
+    <View style={{...DefaultStyles.buttonContainer, justifyContent: 'center'}}>
+        {/* <View style={styles.buttonSave}> */}
+          <MainButton title="Submit Edit" buttonColor={Colors.saveButtonColor} onPress={()=>editProfile({email, fName, lName, location, payment})}/>
+        {/* </View>         */}
       </View>
 
-        <View style={styles.buttonContainer}>
-        <View style={styles.buttonSave}>
-          <MainButton title="Cancel Edit" buttonColor="orange" onPress={()=>navigation.navigate('Profile')}/>
-        </View>        
+      <View style={{...DefaultStyles.buttonContainer, justifyContent: 'center'}}>
+        {/* <View style={styles.buttonSave}> */}
+          <MainButton title="Cancel Edit" buttonColor={Colors.cancelButtonColor} onPress={()=>navigation.navigate('Profile')}/>
+        {/* </View>         */}
       </View>
 {/* <Button 
         title='Sign up' 
@@ -95,24 +110,24 @@ const EditProfile = ({navigation}) => {
 };
 
 const styles=StyleSheet.create({
-    container: {
-        marginTop : 0,
-        marginHorizontal: 10
-    },
-    signup: {
-        marginVertical: 20
-    },
-    goto:{
-        marginVertical: 40,        
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginVertical: 10
-      },
-      buttonSave: {
-        width: '60%',
-      },
+    // container: {
+    //     marginTop : 0,
+    //     marginHorizontal: 10
+    // },
+    // signup: {
+    //     marginVertical: 20
+    // },
+    // goto:{
+    //     marginVertical: 40,        
+    // },
+    // buttonContainer: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'center',
+    //     marginVertical: 10
+    //   },
+    //   buttonSave: {
+    //     width: '60%',
+    //   },
 
 })
 export default EditProfile;
