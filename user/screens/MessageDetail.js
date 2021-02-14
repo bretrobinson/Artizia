@@ -1,5 +1,5 @@
 import React, {useEffect, useContext, useState} from 'react';
-import {Button, View , StyleSheet, Text, Image, FlatList,TouchableWithoutFeedback , TextInput,KeyboardAvoidingView, ActivityIndicator, SafeAreaView} from 'react-native';
+import {Button, View , StyleSheet, Text, Image,Keyboard,TouchableWithoutFeedback , TextInput,KeyboardAvoidingView, Platform, SafeAreaView} from 'react-native';
 import craftserverApi from '../api/craftserver'
 import {Feather, AntDesign} from '@expo/vector-icons'
 import {Context as AuthContext} from '../context/AuthContext'
@@ -25,7 +25,7 @@ const MessageDetail = ({route, navigation}) => {
    
     const sentMessageHandler = async ()=>{
         if(message.length<2){
-            alert('Please enter message to send')
+            alert('Please entermessssage to send')
             navigation.navigate('MessageDetail')
         }else {
 
@@ -52,11 +52,11 @@ const MessageDetail = ({route, navigation}) => {
 
      const messageDisplay = messageData.map((item)=>{
         return (
-            <View style={styles.message} key={item.idmessages} > 
+            <View style={(item.messageFrom - user.idusers) ?styles.messageMe : styles.messageTo } key={item.idmessages} > 
             
                   {user.idusers === item.buyerid ? <Text>Me</Text> : <Text>BuyerId {item.buyerid}</Text>}
                   {user.idusers === item.sellerid ? <Text>Me</Text> : <Text>SellerId {item.sellerid}</Text>}
-                    <View style={{flexDirection:'row', }}>
+                     <View style={{flexDirection:'row', }}>
                      <Text style={{marginRight:250}}>Itemid {item.itemid}</Text>
                      <AntDesign name='delete' size={20} onPress={()=>messageDeleteHandler(item.idmessages)}/>
                      </View>
@@ -79,8 +79,8 @@ const MessageDetail = ({route, navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-            <KeyboardAvoidingView behavior= 'position' >
-           
+            <KeyboardAvoidingView behavior= {Platform.OS ==='ios' ? 'position' : 'padding'} >
+            
         <View >
             {messageDisplay}
         <View style={styles.sendMessage}>
@@ -108,11 +108,21 @@ const styles = StyleSheet.create({
         borderRadius:3,
         flex:1
     },
-    message : {
+    messageMe : {
         backgroundColor: Colors.accent,
-        margin: 20,
+        marginVertical: 20,
+        marginLeft:20,
         borderRadius: 10,
-        padding:10
+        padding:10,
+       width: '80%',
+    },
+    messageTo : {
+        backgroundColor: Colors.accent2,
+        marginVertical: 20,
+        marginLeft:50,
+        borderRadius: 10,
+        padding:10,
+       width: '80%',
        
     },
         date: {
