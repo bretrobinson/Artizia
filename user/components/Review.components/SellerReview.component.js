@@ -61,7 +61,7 @@ const sellerreviewscreen = props => {
         <Text style={DefaultStyles.label} >Seller Review</Text>
         <Input
           value={sellerReview}
-          // style={DefaultStyles.label}
+          style={DefaultStyles.multiLineInput}
           placeholder="Seller review"
           multiline={true}
           keyboardType="default"

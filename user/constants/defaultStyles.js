@@ -135,7 +135,10 @@ export default StyleSheet.create({
   inputText: {
     fontSize: 18,
   },
-
+  multiLineInput: {
+    height: 100,
+    textAlignVertical: 'top'
+  },
   imageFlatListContainer: {
     height: 220
   },  
@@ -189,7 +192,7 @@ export default StyleSheet.create({
   myItemCard: {
     marginTop:30,
     height: 320,
-    width:350,
+    width:330,
     // marginLeft:33
    
   }, 

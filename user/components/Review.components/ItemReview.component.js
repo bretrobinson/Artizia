@@ -58,7 +58,7 @@ const ItemReviewscreen = props => {
 
         <Text style={DefaultStyles.label} >Item Review</Text>        
         <Input value={itemReview}
-          // style={styles.ReviewInput}
+          style={DefaultStyles.multiLineInput}
           placeholder="Item review"
           multiline={true}
           keyboardType="default"
