@@ -14,7 +14,6 @@ const useStyles = makeStyles({
     
     title: {
         display: 'flex',
-        justifyContent: 'space-between',
         marginBottom:10,
         marginTop: 20,
         
@@ -37,8 +36,8 @@ const AnnouncementDisplay = ({annnouncementData,onDeleteMessage}) => {
         return (<Container className={classes.container}>
 
             <div className={classes.title} key={data.idAnnouncements} >
-              <div style={{fontWeight:'bold', fontSize: 20}}>  {data.title} </div>
-            <Button variant="contained" onClick={()=>history.push('/edit/' + data.idAnnouncements)}>edit</Button>
+              <div style={{fontWeight:'bold', fontSize: 20, marginRight: 'auto'}}>  {data.title} </div>
+            <Button style={{marginRight:150}}variant="contained" onClick={()=>history.push('/edit/' + data.idAnnouncements)}>edit</Button>
             <Button variant="contained" color="secondary" onClick={()=>onDeleteMessage(data.idAnnouncements)}>delete</Button>
             </div>
             <div>{data.message}</div>
