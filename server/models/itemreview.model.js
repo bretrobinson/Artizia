@@ -5,8 +5,7 @@ const ItemReview=function(itemreview){
     this.itemRating=itemreview.itemRating;
     this.itemReview=itemreview.itemReview;
     this.id_item=itemreview.id_item;
-    this.ownerPushToken=itemreview.ownerPushToken;
-}
+  }
 
 
 ItemReview.create = (newItemReview, result) => {

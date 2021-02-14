@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     itemRating:req.body.itemRating,
     itemReview:req.body.itemReview,
     id_item:req.body.id_item,
-    ownerPushToken:req.body.ownerPushToken
+  
 
   });
    // Save item review in the database
