@@ -6,13 +6,13 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableNativeFeedback,
-  Platform,Button,Alert
+  Platform, Button, Alert
 } from 'react-native';
-import { MaterialCommunityIcons,Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import Card from './Card';
 import Colors from '../constants/Colors';
 import { useSelector, useDispatch } from 'react-redux';
-import {DeleteMyItem} from '../store/actions/DeleteMyItem'
+import { DeleteMyItem } from '../store/actions/DeleteMyItem'
 import DefaultStyles from '../constants/defaultStyles';
 
 const GetMyItem = props => {
@@ -20,10 +20,10 @@ const GetMyItem = props => {
   const [userid, setuserid] = useState("");
 
   const dispatch = useDispatch();
- 
+
   const DeleteItem = props => {
     console.log('FSDFDSFD');
-    
+
   }
   let TouchableCmp = TouchableOpacity;
 
@@ -40,7 +40,7 @@ const GetMyItem = props => {
         style: 'destructive',
         onPress: () => {
           console.log(props.id)
-        dispatch(DeleteMyItem(39,props.id));
+          dispatch(DeleteMyItem(39, props.id));
         }
       }
     ]);
@@ -48,24 +48,24 @@ const GetMyItem = props => {
   return (
     <Card style={DefaultStyles.myItemCard}>
       <View style={DefaultStyles.touchableCard}>
-               <View>
-            <View style={DefaultStyles.imageInCardContainer}>
-              <Image style={DefaultStyles.imageInCard} source={{ uri: props.url }} />
-            </View>
-            <View style={{...DefaultStyles.detailsInCardContainer}}>
-              <Text style={DefaultStyles.nameInDetailsOfCard}>{props.name}</Text>
-              {/* <Text style={styles.desc}>{props.desc}</Text> */}
-              <Text style={DefaultStyles.priceInDetailsOfCard}>${props.price.toFixed(2)}</Text>
-              <View style={{...DefaultStyles.buttonContainer, marginLeft: 200}}>
-              <TouchableCmp>
-              <MaterialCommunityIcons  name="delete-forever" size={45} color={Colors.saveButtonColor} onPress={deleteHandler.bind(this, props.id)}/>
-              </TouchableCmp>
-              </View>
-          
-            </View>
-                   
+        <View>
+          <View style={DefaultStyles.imageInCardContainer}>
+            <Image style={DefaultStyles.imageInCard} source={{ uri: props.url }} />
           </View>
-          
+          <View style={{ ...DefaultStyles.detailsInCardContainer }}>
+            <Text style={DefaultStyles.nameInDetailsOfCard}>{props.name}</Text>
+            {/* <Text style={styles.desc}>{props.desc}</Text> */}
+            <Text style={DefaultStyles.priceInDetailsOfCard}>${props.price.toFixed(2)}</Text>
+            <View style={{ ...DefaultStyles.buttonContainer, marginLeft: 200 }}>
+              <TouchableCmp>
+                <MaterialCommunityIcons name="delete-forever" size={45} color={Colors.saveButtonColor} onPress={deleteHandler.bind(this, props.id)} />
+              </TouchableCmp>
+            </View>
+
+          </View>
+
+        </View>
+
       </View>
 
     </Card>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   //   height: 250,
   //   width:300,
   //   marginLeft:33
-   
+
   // },
   // buttonContainer:{
   //   marginVertical: 10,

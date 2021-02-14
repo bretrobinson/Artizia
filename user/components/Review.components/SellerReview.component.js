@@ -32,18 +32,18 @@ const sellerreviewscreen = props => {
 
   //const sellerreview = useSelector(state => state.sellerreviews);
 
- const ratingCompleted = (rating) => {
+  const ratingCompleted = (rating) => {
     setsellerRating(rating)
 
   }
   useEffect(() => {
 
-  
-      setsellerRating(10)
+
+    setsellerRating(10)
     //  props.parentCallback(name, sellerReview, sellerRating);
-  
-      props.parentCallback(name,sellerReview, sellerRating);
-  
+
+    props.parentCallback(name, sellerReview, sellerRating);
+
   })
   //let disabled = (name.length > 0 && text.length > 0) ? false : true;
   return (
@@ -55,7 +55,7 @@ const sellerreviewscreen = props => {
           // style={styles.ReviewInput}
           placeholder="Seller Name"
           onChangeText={nameInputHandler}
-           value={name}
+          value={name}
         />
 
         <Text style={DefaultStyles.label} >Seller Review</Text>
@@ -66,13 +66,13 @@ const sellerreviewscreen = props => {
           multiline={true}
           keyboardType="default"
           onChangeText={sellerReviewInputHandler}
-          // label={"Seller review"}
+        // label={"Seller review"}
         />
 
 
       </View>
       <View>
-        <Text style={{...DefaultStyles.label, textAlign: 'center'}}>Seller Rating</Text>
+        <Text style={{ ...DefaultStyles.label, textAlign: 'center' }}>Seller Rating</Text>
         <AirbnbRating
           count={5}
           onChangeText={sellerRatingInputHandler}

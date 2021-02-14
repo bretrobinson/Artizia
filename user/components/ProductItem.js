@@ -9,7 +9,7 @@ import {
   Platform
 } from 'react-native';
 import Colors from '../constants/Colors';
-import {navigate} from '../RootNavigation'
+import { navigate } from '../RootNavigation'
 import Card from './Card';
 import DefaultStyles from '../constants/defaultStyles';
 
@@ -24,7 +24,7 @@ const ProductItem = props => {
     <Card>
       <View style={DefaultStyles.touchableCard}>
         {/* <TouchableCmp onPress={props.onSelect} useForeground> */}
-        <TouchableCmp onPress={()=>navigate('ItemDetail', {itemId: props.itemId, uri: props.image, price:props.price, itemName: props.name } )} useForeground>
+        <TouchableCmp onPress={() => navigate('ItemDetail', { itemId: props.itemId, uri: props.image, price: props.price, itemName: props.name })} useForeground>
           <View>
             <View style={DefaultStyles.imageInCardContainer}>
               <Image style={DefaultStyles.imageInCard} source={{ uri: props.image }} />
@@ -80,13 +80,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#888'
   },
-//   actions: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//     height: '23%',
-//     paddingHorizontal: 20
-//   }
+  //   actions: {
+  //     flexDirection: 'row',
+  //     justifyContent: 'space-between',
+  //     alignItems: 'center',
+  //     height: '23%',
+  //     paddingHorizontal: 20
+  //   }
 });
 
 export default ProductItem;

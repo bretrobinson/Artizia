@@ -61,30 +61,30 @@ const MyItemScreen = () => {
     return (
 
       <View style={DefaultStyles.screenContainer}>
-      
-      <Ionicons name="add" style={DefaultStyles.addItemIcon} size={55} color={Colors.saveButtonColor}
+
+        <Ionicons name="add" style={DefaultStyles.addItemIcon} size={55} color={Colors.saveButtonColor}
           onPress={() => navigate('AddItem')}
         />
-            
-          <FlatList
-            data={UserItemreducer}
-            keyExtractor={item => item.id.toString()}
-            renderItem={itemData => (
-              <GetMyItem
-                id={itemData.item.id}
-                name={itemData.item.name}
-                price={itemData.item.price}
-                url={itemData.item.imageUrl}
-                desc={itemData.item.desc}
 
-              >
-              </GetMyItem>
-            )}
+        <FlatList
+          data={UserItemreducer}
+          keyExtractor={item => item.id.toString()}
+          renderItem={itemData => (
+            <GetMyItem
+              id={itemData.item.id}
+              name={itemData.item.name}
+              price={itemData.item.price}
+              url={itemData.item.imageUrl}
+              desc={itemData.item.desc}
 
-          >
-          </FlatList>
+            >
+            </GetMyItem>
+          )}
 
-      
+        >
+        </FlatList>
+
+
 
       </View>
     );
@@ -95,8 +95,8 @@ const MyItemScreen = () => {
 const styles = StyleSheet.create({
   // product: {
   //   height: 300,
-  
-    
+
+
 
   // },
   // screen: {

@@ -1,81 +1,81 @@
-import React, {useState, useContext, useCallback} from 'react';
-import { View} from 'react-native';
-import {StyleSheet} from 'react-native'
-import {Button, Text, Input} from 'react-native-elements'
-import {Context as AuthContext} from '../context/AuthContext'
-import {useFocusEffect} from '@react-navigation/native'
+import React, { useState, useContext, useCallback } from 'react';
+import { View } from 'react-native';
+import { StyleSheet } from 'react-native'
+import { Button, Text, Input } from 'react-native-elements'
+import { Context as AuthContext } from '../context/AuthContext'
+import { useFocusEffect } from '@react-navigation/native'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles'
 import MainButton from '../components/MainButton';
 
-const Signin = ({navigation}) => {
+const Signin = ({ navigation }) => {
     const [email, SetEmail] = useState('')
-    const [password, setPassword] = useState ('')
-    const{ signin, state:{errorMessage}, clearErrorMessage } = useContext(AuthContext)
+    const [password, setPassword] = useState('')
+    const { signin, state: { errorMessage }, clearErrorMessage } = useContext(AuthContext)
 
     useFocusEffect(
-        useCallback(()=>{
-            return ()=> clearErrorMessage()
-        },[])
+        useCallback(() => {
+            return () => clearErrorMessage()
+        }, [])
     )
-  
+
     return (
-        <View style={ DefaultStyles.screenContainer }>
-        {/* <View style={styles.container}> */}
+        <View style={DefaultStyles.screenContainer}>
+            {/* <View style={styles.container}> */}
             <Text style={DefaultStyles.title}>Sign in</Text>
             {/* <Text h3 style={styles.signin} >Sign in</Text> */}
             {/* <AuthForm 
             submitButtonText='Sign in'
             onSubmit={signin}/> */}
-            <Input value={email} 
+            <Input value={email}
                 onChangeText={SetEmail}
                 autoCapitalize='none'
                 autoCorrect={false}
                 label='Email'
                 labelStyle={DefaultStyles.label}
                 placeholder='name@email.com'
-                placeholderTextColor= {Colors.placeholderTextColor}
+                placeholderTextColor={Colors.placeholderTextColor}
                 inputContainerStyle={DefaultStyles.input}
                 inputStyle={DefaultStyles.inputText}
             />
 
-            <Input value={password} 
-            onChangeText={setPassword}
-            secureTextEntry
+            <Input value={password}
+                onChangeText={setPassword}
+                secureTextEntry
                 autoCapitalize='none'
                 autoCorrect={false}
                 label='Password'
                 placeholder='password'
                 labelStyle={DefaultStyles.label}
-                placeholderTextColor= {Colors.placeholderTextColor}
+                placeholderTextColor={Colors.placeholderTextColor}
                 inputContainerStyle={DefaultStyles.input}
                 inputStyle={DefaultStyles.inputText}
             />
 
-    {errorMessage ? <Text style={DefaultStyles.errorText} >{errorMessage}</Text> : null}
+            {errorMessage ? <Text style={DefaultStyles.errorText} >{errorMessage}</Text> : null}
 
-    {/* <Button 
+            {/* <Button 
             title= 'Sign in' 
             onPress={()=>signin({email,password})}
             />
             <Button title='Go to Sign up' onPress={()=>navigation.navigate('Signup')} style={styles.goto}/> */}
-            
-            <View style={{...DefaultStyles.buttonContainer, justifyContent: 'center'}}>
-            {/* <View style={styles.buttonSave}> */}
-                <MainButton title="Sign in" buttonColor={Colors.defaultButtonColor} onPress={()=>signin({email,password})}/>
-            {/* </View>         */}
+
+            <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
+                {/* <View style={styles.buttonSave}> */}
+                <MainButton title="Sign in" buttonColor={Colors.defaultButtonColor} onPress={() => signin({ email, password })} />
+                {/* </View>         */}
             </View>
 
-            <View style={{...DefaultStyles.buttonContainer, justifyContent: 'center'}}>
-            {/* <View style={styles.buttonSave}> */}
-                <MainButton title="Go to Sign up" buttonColor={Colors.cancelButtonColor} onPress={()=>navigation.navigate('Signup')}/>
-            {/* </View>         */}
-        </View>
+            <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
+                {/* <View style={styles.buttonSave}> */}
+                <MainButton title="Go to Sign up" buttonColor={Colors.cancelButtonColor} onPress={() => navigation.navigate('Signup')} />
+                {/* </View>         */}
             </View>
+        </View>
     );
 };
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
     // container: {
     //     marginTop : 40,
     //     marginHorizontal: 10

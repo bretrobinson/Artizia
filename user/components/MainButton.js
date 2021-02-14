@@ -8,7 +8,7 @@ const MainButton = ({ title, buttonColor, onPress }) => {
   // the name onPress can be anything as its passed from the calling component
   return (
     <TouchableOpacity activeOpacity={0.6} onPress={onPress}>
-      <View style={DefaultStyles.button} backgroundColor={buttonColor ? buttonColor : DefaultStyles.button.backgroundColor }>
+      <View style={DefaultStyles.button} backgroundColor={buttonColor ? buttonColor : DefaultStyles.button.backgroundColor}>
         <Text style={DefaultStyles.buttonText}>{title}</Text>
       </View>
     </TouchableOpacity>

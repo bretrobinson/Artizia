@@ -23,7 +23,7 @@ const ReviewSellerScreen = props => {
 
 
   const dispatch = useDispatch();
- 
+
 
   passValueItemReviewFunction = (shortDescription, itemRating, itemReview) => {
     setshortDescription(shortDescription);
@@ -39,10 +39,10 @@ const ReviewSellerScreen = props => {
     setsellerRating(sellerRating);
 
   }
- 
+
   return (
     <ScrollView>
-    <View styles={DefaultStyles.screenContainer}>
+      <View styles={DefaultStyles.screenContainer}>
 
         <View>
           <SellerReview parentCallback={passValueFunction} />
@@ -51,24 +51,24 @@ const ReviewSellerScreen = props => {
         </View>
 
         <View style={DefaultStyles.screenContainer}>
-        <View style={{...DefaultStyles.buttonContainer, justifyContent:'center'}}>
-          {/* <View style={styles.buttonSave}> */}
+          <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
+            {/* <View style={styles.buttonSave}> */}
             <MainButton
               title="Save"
               buttonColor={Colors.defaultButtonColor}
               onPress={() => {
-                
-                dispatch(createReviewSeller(name,sellerReview, sellerRating));
-              dispatch(createReviewItem(shortDescription, itemReview, itemRating));
-              
+
+                dispatch(createReviewSeller(name, sellerReview, sellerRating));
+                dispatch(createReviewItem(shortDescription, itemReview, itemRating));
+
 
               }}
             />
-          {/* </View> */}
+            {/* </View> */}
+          </View>
         </View>
-        </View>
-    </View>
-    </ScrollView>    
+      </View>
+    </ScrollView>
   )
 
 

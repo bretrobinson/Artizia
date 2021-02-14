@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles';
 
 const Card = props => {
-  return <View style={{...DefaultStyles.card, ...props.style}}>{props.children}</View>;
+  return <View style={{ ...DefaultStyles.card, ...props.style }}>{props.children}</View>;
 };
 
 const styles = StyleSheet.create({

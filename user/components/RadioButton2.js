@@ -5,16 +5,16 @@ import { colors } from 'react-native/Libraries/NewAppScreen';
 import DefaultStyles from '../constants/defaultStyles';
 import Colors from '../constants/Colors';
 
-const RadioButton2 = ({value, setValue}) => {
-//   const [value, setValue] = React.useState('Email Transfer');
+const RadioButton2 = ({ value, setValue }) => {
+  //   const [value, setValue] = React.useState('Email Transfer');
 
   return (
     <View style={DefaultStyles.radioButtonGroupContainer}>
       <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
         <Text style={DefaultStyles.label} >Payment Method</Text>
         <View style={DefaultStyles.radioButtonItemContainer}>
-        <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color = {Colors.accent2} label="Email Transfer" value="Email Transfer" />
-        <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color = {Colors.accent2} label="Pay Pal" value="PayPal" />
+          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Email Transfer" value="Email Transfer" />
+          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Pay Pal" value="PayPal" />
         </View>
       </RadioButton.Group>
     </View>

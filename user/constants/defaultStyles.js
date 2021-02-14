@@ -196,6 +196,99 @@ export default StyleSheet.create({
     // marginLeft:33
    
   }, 
+  messageCard: {
+    width:'95%', 
+    height:'auto',
+  },
+  messageViewInCardContainer: {
+    flexDirection: 'row',
+  },
+  messageImageInCard: {
+    width: '40%',
+    height: '100%',
+    borderRadius: 10
+  },
+  messageDetailsInCardContainer: {
+    // alignItems: 'center',
+    height: 'auto',
+    padding: 5
+  },
+  messageItemNameInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageBuyerInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageSellerInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageDetailCardMe: {
+    marginLeft: 0,
+    width: '90%',
+    backgroundColor: Colors.accent,
+    padding: 10,
+    height: 'auto'
+  },
+  messageDetailCardThem: {
+    marginLeft: 30,
+    width: '90%',
+    backgroundColor: Colors.accent2,
+    padding: 10,
+    height: 'auto'
+  },
+  messageDetailItemNameInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageDetailBuyerInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageDetailSellerInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageDetailItemAndDeleteButtonInCardContainer: {
+    flexDirection: 'row',
+  },
+  messageDetailDeleteButtonInCard: {
+    marginLeft: '60%'
+  },
+  messageDetailMessage: {
+    fontSize: 20
+  },
+  messageDetailDateTimeInCardContainer: {
+    flexDirection: 'row'
+  },
+  messageDetailDateInCardContainer: {
+    flexDirection: 'row'
+  },
+  messageDetailTimeInCardContainer: {
+    flexDirection: 'row'
+  },
+  messageDetailDateInCard: {
+    fontSize: 16
+  },
+  messageDetailTimeInCard: {
+    fontSize: 16
+  },
+  messageInputContainer: {
+    marginTop: 10,
+    marginBottom: 20,
+    backgroundColor: Colors.accent2,
+    borderColor: Colors.primary,
+    borderWidth: 1,
+    height: 50,
+    borderRadius: 5,
+    // marginHorizontal: 15,
+    flexDirection: 'row'
+  },
+  multiLineFeatherInput: {
+    textAlignVertical: 'top',
+    // height: 70,
+    width: '85%',
+    fontSize: 18 
+  },
+  sendMessageIcon : {
+    marginTop: 12,
+  },
   radioButtonGroupContainer: {
     margin: 10
   },

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from "react-dom";
 // import 'localstorage-polyfill'
 import {
@@ -15,7 +15,7 @@ import Input from '../Input';
 import DefaultStyles from '../../constants/defaultStyles';
 
 const ItemReviewscreen = props => {
-   const [shortDescription, setshortDescription] = useState("");
+  const [shortDescription, setshortDescription] = useState("");
   const [itemRating, setItemRating] = useState("");
   const [itemReview, setItemReview] = useState("");
 
@@ -28,15 +28,15 @@ const ItemReviewscreen = props => {
   const itemRatingInputHandler = (count) => {
     setItemRating(count);
   };
- 
+
   const ratingCompleted = (rating) => {
     setItemRating(rating)
 
   }
 
   useEffect(() => {
-    props.parentCallback(shortDescription,itemRating,itemReview);
-  
+    props.parentCallback(shortDescription, itemRating, itemReview);
+
   })
 
   return (
@@ -53,10 +53,10 @@ const ItemReviewscreen = props => {
           autoCapitalize="sentences"
           autoCorrect={false}
           returnKeyType="next"
-          // label='item description' 
+        // label='item description' 
         />
 
-        <Text style={DefaultStyles.label} >Item Review</Text>        
+        <Text style={DefaultStyles.label} >Item Review</Text>
         <Input value={itemReview}
           style={DefaultStyles.multiLineInput}
           placeholder="Item review"
@@ -65,11 +65,11 @@ const ItemReviewscreen = props => {
           autoCapitalize="sentences"
           returnKeyType="next"
           onChangeText={sellerReviewInputHandler}
-          // label={"item review"}
+        // label={"item review"}
         />
       </View>
       <View>
-      <Text style={{...DefaultStyles.label, textAlign: 'center'}}>Item Rating</Text>
+        <Text style={{ ...DefaultStyles.label, textAlign: 'center' }}>Item Rating</Text>
         <AirbnbRating
           count={5}
           reviews={["Terrible", "Bad", "OK", "Good", "Amazing"]}
@@ -79,7 +79,7 @@ const ItemReviewscreen = props => {
           value={itemRating}
         />
       </View>
-     
+
 
     </View>
   );

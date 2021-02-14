@@ -1,109 +1,109 @@
-import React, {useState,useContext, useCallback} from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { View } from 'react-native';
-import {StyleSheet,ScrollView, KeyboardAvoidingView, SafeAreaView} from 'react-native'
-import {Button, Text ,Input, colors} from 'react-native-elements'
-import {Context as AuthContext} from '../context/AuthContext'
+import { StyleSheet, ScrollView, KeyboardAvoidingView, SafeAreaView } from 'react-native'
+import { Button, Text, Input, colors } from 'react-native-elements'
+import { Context as AuthContext } from '../context/AuthContext'
 import RadioButton2 from '../components/RadioButton2'
-import {useFocusEffect} from '@react-navigation/native'
+import { useFocusEffect } from '@react-navigation/native'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles'
 import MainButton from '../components/MainButton';
-const Signup = ({navigation}) => {
-    const{ signup, state:{errorMessage}, clearErrorMessage} = useContext(AuthContext)
+const Signup = ({ navigation }) => {
+    const { signup, state: { errorMessage }, clearErrorMessage } = useContext(AuthContext)
     const [email, SetEmail] = useState('')
-    const [password, setPassword] = useState ('')
+    const [password, setPassword] = useState('')
     const [fName, SetFname] = useState('')
     const [lName, setLname] = useState('')
     const [location, setLocation] = useState('')
     const [payment, setPayment] = useState('Email Transfer')
 
     useFocusEffect(
-        useCallback(()=>{
-            return ()=> clearErrorMessage()
-        },[])
+        useCallback(() => {
+            return () => clearErrorMessage()
+        }, [])
     )
-    
+
 
     return (
         <SafeAreaView>
-        <ScrollView>
-        <KeyboardAvoidingView behavior='height' style={{ height: '100%', justifyContent: 'center' }} >
-        <View style={DefaultStyles.screenContainer}>
-        {/* <View style={styles.container}> */}
-        <Text style={DefaultStyles.title}>Sign Up</Text>
-         {/* <Text h3 style={styles.signup} >Sign up</Text> */}
-    <Input value ={fName}
-            onChangeText={SetFname}
-            autoCorrect={false}
-            label='First Name' 
-            placeholder='FirstName'
-            labelStyle={DefaultStyles.label}
-            placeholderTextColor={Colors.placeholderTextColor}
-            inputContainerStyle={DefaultStyles.input}
-            inputStyle={DefaultStyles.inputText}            
-            />
-    <Input value ={lName}
-        onChangeText={setLname}
-        autoCorrect={false}
-        label='Last Name'
-        placeholder='LastName'
-        labelStyle={DefaultStyles.label}
-        placeholderTextColor={Colors.placeholderTextColor} 
-        inputContainerStyle={DefaultStyles.input}
-        inputStyle={DefaultStyles.inputText}            
-        />
-        
-<Input value={email} 
-            onChangeText={SetEmail}
-            autoCapitalize='none'
-            autoCorrect={false}
-            label='Email'
-            placeholder='email@mail.com'
-            labelStyle={DefaultStyles.label}
-            placeholderTextColor={Colors.placeholderTextColor}
-            inputContainerStyle={DefaultStyles.input}
-            inputStyle={DefaultStyles.inputText}            
-        />
+            <ScrollView>
+                <KeyboardAvoidingView behavior='height' style={{ height: '100%', justifyContent: 'center' }} >
+                    <View style={DefaultStyles.screenContainer}>
+                        {/* <View style={styles.container}> */}
+                        <Text style={DefaultStyles.title}>Sign Up</Text>
+                        {/* <Text h3 style={styles.signup} >Sign up</Text> */}
+                        <Input value={fName}
+                            onChangeText={SetFname}
+                            autoCorrect={false}
+                            label='First Name'
+                            placeholder='FirstName'
+                            labelStyle={DefaultStyles.label}
+                            placeholderTextColor={Colors.placeholderTextColor}
+                            inputContainerStyle={DefaultStyles.input}
+                            inputStyle={DefaultStyles.inputText}
+                        />
+                        <Input value={lName}
+                            onChangeText={setLname}
+                            autoCorrect={false}
+                            label='Last Name'
+                            placeholder='LastName'
+                            labelStyle={DefaultStyles.label}
+                            placeholderTextColor={Colors.placeholderTextColor}
+                            inputContainerStyle={DefaultStyles.input}
+                            inputStyle={DefaultStyles.inputText}
+                        />
 
-        <Input value={password} 
-        onChangeText={setPassword}
-        secureTextEntry
-            autoCapitalize='none'
-            autoCorrect={false}
-            label='Password'
-            labelStyle={DefaultStyles.label}
-            placeholder='password'
-            placeholderTextColor={Colors.placeholderTextColor}
-            inputContainerStyle={DefaultStyles.input}
-            inputStyle={DefaultStyles.inputText}            
-        />
-    <Input value ={location}
-        onChangeText={setLocation}
-        autoCorrect={false}
-        label='Postal Code'
-        placeholder='A0A 0A0'
-        labelStyle={DefaultStyles.label}
-        placeholderTextColor={Colors.placeholderTextColor}
-        inputContainerStyle={DefaultStyles.input}
-        inputStyle={DefaultStyles.inputText}            
-        />
+                        <Input value={email}
+                            onChangeText={SetEmail}
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            label='Email'
+                            placeholder='email@mail.com'
+                            labelStyle={DefaultStyles.label}
+                            placeholderTextColor={Colors.placeholderTextColor}
+                            inputContainerStyle={DefaultStyles.input}
+                            inputStyle={DefaultStyles.inputText}
+                        />
 
-    <RadioButton2 value={payment} setValue={setPayment}/>
-    {errorMessage ? <Text style={DefaultStyles.errorText} >{errorMessage}</Text> : null}
+                        <Input value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            label='Password'
+                            labelStyle={DefaultStyles.label}
+                            placeholder='password'
+                            placeholderTextColor={Colors.placeholderTextColor}
+                            inputContainerStyle={DefaultStyles.input}
+                            inputStyle={DefaultStyles.inputText}
+                        />
+                        <Input value={location}
+                            onChangeText={setLocation}
+                            autoCorrect={false}
+                            label='Postal Code'
+                            placeholder='A0A 0A0'
+                            labelStyle={DefaultStyles.label}
+                            placeholderTextColor={Colors.placeholderTextColor}
+                            inputContainerStyle={DefaultStyles.input}
+                            inputStyle={DefaultStyles.inputText}
+                        />
 
-    <View style={{...DefaultStyles.buttonContainer, justifyContent: 'center'}}>
-            {/* <View style={styles.buttonSave}> */}
-            <MainButton title="Sign up" buttonColor={Colors.defaultButtonColor} onPress={()=>signup({email, password, fName, lName, location, payment})}/>
-            {/* </View>         */}
-            </View>
+                        <RadioButton2 value={payment} setValue={setPayment} />
+                        {errorMessage ? <Text style={DefaultStyles.errorText} >{errorMessage}</Text> : null}
 
-            <View style={{...DefaultStyles.buttonContainer, justifyContent: 'center'}}>
-            {/* <View style={styles.buttonSave}> */}
-            <MainButton title="Go to Sign In" buttonColor={Colors.cancelButtonColor} onPress={()=>navigation.navigate('Signin')}/>
-            {/* </View>         */}
-    </View>
+                        <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
+                            {/* <View style={styles.buttonSave}> */}
+                            <MainButton title="Sign up" buttonColor={Colors.defaultButtonColor} onPress={() => signup({ email, password, fName, lName, location, payment })} />
+                            {/* </View>         */}
+                        </View>
 
-    {/* <View style={styles.buttonContainer}>
+                        <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
+                            {/* <View style={styles.buttonSave}> */}
+                            <MainButton title="Go to Sign In" buttonColor={Colors.cancelButtonColor} onPress={() => navigation.navigate('Signin')} />
+                            {/* </View>         */}
+                        </View>
+
+                        {/* <View style={styles.buttonContainer}>
         <View style={styles.buttonSave}>
           <MainButton title="Sign up" buttonColor="purple" onPress={()=>signup({email, password, fName, lName, location, payment})}/>
         </View>        
@@ -114,19 +114,19 @@ const Signup = ({navigation}) => {
           <MainButton title="Go to Sign in" buttonColor="orange" onPress={()=>navigation.navigate('Signin')}/>
         </View>        
       </View> */}
-{/* <Button 
+                        {/* <Button 
         title='Sign up' 
         onPress={()=>signup({email, password, fName, lName, location, payment})}
         />
     <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')} style={styles.goto}/> */}
-        </View>
-        </KeyboardAvoidingView>
-        </ScrollView>
+                    </View>
+                </KeyboardAvoidingView>
+            </ScrollView>
         </SafeAreaView>
     );
 };
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
     // container: {
     //     marginTop : 0,
     //     marginHorizontal: 10

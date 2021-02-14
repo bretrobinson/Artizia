@@ -12,7 +12,7 @@ const Landing = (props) => {
     });
 
     const mostRecentItemsByCategoryMatchingSearchCriteria = useSelector(state => {
-      
+
         return state.searchMostRecentItemsByCategoryMatchingSearchCriteriaReducer.mostRecentItemsByCategoryMatchingSearchCriteria;
     });
 
@@ -23,7 +23,7 @@ const Landing = (props) => {
     }, []);
 
     const searchMostRecentItemsByCategoryMatchingSearchCriteria = () => {
-        const searchTerm = term === ''? '%25' : term;
+        const searchTerm = term === '' ? '%25' : term;
 
         const searchCategoryId = 0;
 
@@ -31,29 +31,29 @@ const Landing = (props) => {
 
         dispatch(searchForMostRecentItemsByCategoryMatchingSearchCriteria(searchTerm, searchCategoryId, numberOfMostRecentItems));
     }
-    
+
 
     return (
-          <View style={ DefaultStyles.screenContainer }>
-            <View style={ DefaultStyles.searchBarOuterContainer }>
+        <View style={DefaultStyles.screenContainer}>
+            <View style={DefaultStyles.searchBarOuterContainer}>
                 <SearchBar
-                term={term}
-                onTermChange={newTerm => dispatch(updateSearchTerm(newTerm)) }
-                onTermSubmit={() => searchMostRecentItemsByCategoryMatchingSearchCriteria() }
+                    term={term}
+                    onTermChange={newTerm => dispatch(updateSearchTerm(newTerm))}
+                    onTermSubmit={() => searchMostRecentItemsByCategoryMatchingSearchCriteria()}
                 />
             </View>
             <ScrollView>
                 {
                     mostRecentItemsByCategoryMatchingSearchCriteria.map((category, i) => {
                         return (
-                            <CategoryItems 
-                                key={category.category.name } 
+                            <CategoryItems
+                                key={category.category.name}
                                 category={category} />
                         );
                     })
                 }
             </ScrollView>
-          </View>
+        </View>
     );
 };
 
