@@ -71,7 +71,7 @@ app.get("/api", (req, res) => {
 // app.post('/signup', (req, res)=>{signup.handleSignup(req, res, database, jwt)})
 // app.post('/signin', (req, res)=>{signin.handleSignup(req, res, database, jwt)})
 
-let port=process.env.PORT || 4000;
+let port=process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log(`Listening on ${port}`)
 })
