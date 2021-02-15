@@ -76,17 +76,18 @@ const MessageDetail = ({ route, navigation }) => {
                 </View>
                 <Text></Text>
                 <Text style={DefaultStyles.messageDetailMessage}>{item.message}</Text>
- 
+
             </Card>
         )
     })
 
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'} >
+        <View style={DefaultStyles.screenContainer}>
+            <SafeAreaView>
+                <ScrollView>
+                    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'} >
 
-                    <View style={DefaultStyles.screenContainer}>
+                        {/* <View style={DefaultStyles.screenContainer}> */}
                         {messageDisplay}
                         <View style={DefaultStyles.messageInputContainer}>
                             <TextInput
@@ -96,16 +97,17 @@ const MessageDetail = ({ route, navigation }) => {
                                 numberOfLines={30}
                                 placeholder='Message'
                                 value={message}
-                                onChangeText={setMessage} 
+                                onChangeText={setMessage}
                             />
                             {/* <Button title='Send message' onPress={()=>sentMessageHandler()}/> */}
                             <Feather style={DefaultStyles.sendMessageIcon} name='send' size={25} onPress={() => sentMessageHandler()} />
                         </View>
-                    </View>
+                        {/* </View> */}
 
-                </KeyboardAvoidingView>
-            </ScrollView>
-        </SafeAreaView>
+                    </KeyboardAvoidingView>
+                </ScrollView>
+            </SafeAreaView>
+        </View>
     );
 };
 

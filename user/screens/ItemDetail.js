@@ -73,11 +73,13 @@ const ItemDetail = ({ route, navigation }) => {
                 keyExtractor={item => item.url}
                 renderItem={({ item }) => {
                   return (
-                    <Card>
-                      <View style={{ ...DefaultStyles.imageInCardContainer, height: '100%' }}>
-                        <Image style={DefaultStyles.imageInCard} source={{ uri: item.url }} />
-                      </View>
-                    </Card>
+                    <View onStartShouldSetResponder={() => true}>
+                      <Card>
+                        <View style={{ ...DefaultStyles.imageInCardContainer, height: '100%' }}>
+                          <Image style={DefaultStyles.imageInCard} source={{ uri: item.url }} />
+                        </View>
+                      </Card>
+                    </View>
 
                   )
                 }}
