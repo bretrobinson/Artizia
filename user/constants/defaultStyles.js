@@ -236,6 +236,12 @@ export default StyleSheet.create({
     padding: 10,
     height: 'auto'
   },
+  messageDetailCard: {
+    width: '95%',
+    backgroundColor: Colors.accent2,
+    padding: 10,
+    height: 'auto'
+  },
   messageDetailItemNameInDetailsOfCard: {
     fontSize: 16
   },
@@ -267,6 +273,9 @@ export default StyleSheet.create({
     fontSize: 16
   },
   messageDetailTimeInCard: {
+    fontSize: 16
+  },
+  messageDetailMessageInCard: {
     fontSize: 16
   },
   messageInputContainer: {
