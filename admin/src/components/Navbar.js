@@ -19,6 +19,7 @@ const Navbar = () => {
       <Link className={classes.navbar} href="/rules"><Button variant="outlined" color="primary">Rules</Button></Link>
       <Link className={classes.navbar}  href="/addCategory"><Button variant="outlined" color="primary">Add Category</Button></Link>
       <Link className={classes.navbar}  href="/Notification"><Button variant="outlined" color="primary">Send Notification</Button></Link>
+      <Link className={classes.navbar}  href="/manageusers"><Button variant="outlined" color="primary">Manage Users</Button></Link>
  
     </Typography>
     </Container>

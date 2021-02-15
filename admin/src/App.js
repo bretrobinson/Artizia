@@ -11,6 +11,7 @@ import craftserverApi from './api/craftserver'
 import AnnouncementDisplay from './components/AnnouncementDisplay'
 import Announcement from './components/Announcement'
 import GeneralRules from './components/GeneralRules'
+import ManageUsers from './components/ManageUsers'
 import AnnouncementEdit from './components/AnnouncementEdit'
 import AddCategory from './components/AddCategory';
 import Notification from "./components/Notification/Notification";
@@ -73,28 +74,11 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
       <Navbar/>
     <Router>
       <div>
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/message">Create Mesaage</Link>
-            </li>
-            <li>
-              <Link to="/rules">Rules</Link>
-            </li>
-            <li>
-              <Link to="/addCategory">Add Category</Link>
-            </li>
-          </ul>
-        </nav> */}
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
         
         <Route path="/Notification" component={Notification} />
+        <Route path="/manageusers" component={ManageUsers} />
           <Route path="/message">
             <Announcement onChangeTitle={setTitle}
               onChangeExpiredDate={setExpiredDate}
