@@ -91,7 +91,7 @@ const AddPhotos = (props) => {
           {/* </View>                                 */}
           <Input style={styles.photoUriInput} value={currentImageUri} onChangeText={(imageUri) => setCurrentImageUri(imageUri)} />
 
-          <View style={DefaultStyles.buttonContainer}>
+          <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
             <MainButton title="Browse" buttonColor={Colors.defaultButtonColor} onPress={pickPhotoFromGalleryHandler} />
             <MainButton title="Take Photo" buttonColor={Colors.defaultButtonColor} onPress={takePhotoHandler} />
           </View>
@@ -130,7 +130,7 @@ const AddPhotos = (props) => {
             />
           </View>
 
-          <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'space-evenly' }}>
+          <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
             <MainButton title="Done" buttonColor={Colors.defaultButtonColor} onPress={doneButtonHandler} />
             <MainButton title="Cancel" buttonColor={Colors.cancelButtonColor} onPress={cancelButtonHandler} />
           </View>

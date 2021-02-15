@@ -73,6 +73,14 @@ export default StyleSheet.create({
       backgroundColor: Colors.primary,
       color: Colors.buttonText
   },
+  labelAndModalContainer: {
+      // height: 90,
+      width: '100%',
+      // flexDirection: 'row',
+      justifyContent: 'space-around',
+      // marginVertical: 10,
+      // alignItems: 'center',
+  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -84,7 +92,7 @@ export default StyleSheet.create({
   button: {
     backgroundColor: Colors.primary,
     paddingVertical: 15,
-    paddingHorizontal: 40,
+    paddingHorizontal: 35,
     borderRadius: 30,
     marginVertical: 10,
     marginHorizontal: 10
@@ -138,6 +146,9 @@ export default StyleSheet.create({
   multiLineInput: {
     height: 100,
     textAlignVertical: 'top'
+  },
+  priceInput: {
+    width: '40%'
   },
   imageFlatListContainer: {
     height: 220
@@ -334,5 +345,13 @@ export default StyleSheet.create({
   },
   activityIndicator: {
     justifyContent: 'center'
+  },
+  rowContainer: {
+    flexDirection: 'row'
+  },
+  photoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   }
   });

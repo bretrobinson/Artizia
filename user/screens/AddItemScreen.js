@@ -1,20 +1,21 @@
 import React, { useState, useRef } from 'react';
-import { View,
-         Text,
-         StyleSheet,
-         TextInput,
-         Button,
-         Keyboard,
-         TouchableOpacity,
-         TouchableWithoutFeedback,
-         Image,
-         Alert,
-         FlatList,
-         ScrollView 
-        } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Keyboard,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Image,
+  Alert,
+  FlatList,
+  ScrollView
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ModalDropdown from '../downloads/ModalDropDown';
-import {navigate} from '../RootNavigation'
+import { navigate } from '../RootNavigation'
 import Colors from '../constants/Colors';
 import MainButton from '../components/MainButton';
 import DefaultStyles from '../constants/defaultStyles'
@@ -24,31 +25,31 @@ import Card from '../components/Card';
 //         TouchableHighlight, 
 //         TouchableOpacity, 
 //         TouchableWithoutFeedback } from 'react-native-gesture-handler';  
-import Api from '../api/craftserver';       
+import Api from '../api/craftserver';
 
 const Categories = [];
 let categoryRows = [];
 
 // get categories from datbase
 // the base URL should come from env var
-let serverURL = "http://localhost:4000/category"
+let serverURL = "http://localhost:3000/category"
 fetch(serverURL)
-.then((resp) => resp.json())
-.then(data => {
-  categoryRows = data
-  console.log('response data in add item: ', categoryRows)
-  categoryRows.forEach((row) => console.log('category id: ', row.id, ' category name: ', row.name))
-  categoryRows.forEach((row) => {
-    Categories.push(row.name)
+  .then((resp) => resp.json())
+  .then(data => {
+    categoryRows = data
+    console.log('response data in add item: ', categoryRows)
+    categoryRows.forEach((row) => console.log('category id: ', row.id, ' category name: ', row.name))
+    categoryRows.forEach((row) => {
+      Categories.push(row.name)
+    })
+    console.log('Categories inside: ', Categories)
   })
-  console.log('Categories inside: ', Categories)
-})
-.catch(error => {
-  console.log(error)
-})
+  .catch(error => {
+    console.log(error)
+  })
 
 //const Categories = [];
-  // 'Crochet', 'Sewing', 'Painting', 'Woodwork', 'Photography', 'Metalwork', 'Bath and Beauty', 'Pets', 'Office'];
+// 'Crochet', 'Sewing', 'Painting', 'Woodwork', 'Photography', 'Metalwork', 'Bath and Beauty', 'Pets', 'Office'];
 
 let SubCategories = [];
 // this should eventually come from database
@@ -90,7 +91,7 @@ const AddItemScreen = props => {
   const [subcategory, setSubcategory] = useState([]);
   const [addPhoto, setAddPhoto] = useState('');
   const [photos, setPhotos] = useState([]);
-  const [isAddPhotoModalVisible, setIsAddPhotoModalVisible] = useState(false);  
+  const [isAddPhotoModalVisible, setIsAddPhotoModalVisible] = useState(false);
 
   const shortD = useRef();
   const longD = useRef();
@@ -138,22 +139,22 @@ const AddItemScreen = props => {
     if (!shortDesc) {
       Alert.alert(
         "Must enter a short description", "",
-        [{ text: "OK", onPress: () => {shortD.current.focus()}}]
+        [{ text: "OK", onPress: () => { shortD.current.focus() } }]
       );
     } else if (!longDesc) {
-        Alert.alert(
-          "Must enter a long description", "",
-          [{ text: "OK", onPress: () => {longD.current.focus()}}]
-        );
+      Alert.alert(
+        "Must enter a long description", "",
+        [{ text: "OK", onPress: () => { longD.current.focus() } }]
+      );
     } else if (!price) {
-        Alert.alert(
-          "Must enter a price", "",
-          [{ text: "OK", onPress: () => {sellPrice.current.focus()}}]
-        );
+      Alert.alert(
+        "Must enter a price", "",
+        [{ text: "OK", onPress: () => { sellPrice.current.focus() } }]
+      );
     } else if (!category) {
-      Alert.alert( "Must select a category", "", [] );
+      Alert.alert("Must select a category", "", []);
     } else if (!subcategory || subcategory === category) {
-      Alert.alert( "Must select a subcategory", "", [] );
+      Alert.alert("Must select a subcategory", "", []);
     }
     console.log("all input data looks ok");
     //console.log('userid :', req.user.idusers)
@@ -186,19 +187,23 @@ const AddItemScreen = props => {
       .then((response) => {
         // console.log('item post response: ', response);
         // console.log('item created id', response.data.data.id)
-        savePhotosForItems(response.data.data.id);
+        savePhotosForItems(response.data.data.id)
+        .then(() => {
+          navigate('Home');
+        });
       })
       .catch((err) => {
         console.log('Error from item create api.post: ', err)
+        navigate('Home');
       });
 
-    navigate('Home');
+    // navigate('Home');
   }
 
   const savePhotosForItems = async (itemId) => {
     for (const [i, photo] of photos.entries()) {
 
-      console.log ('photo index: ', i);
+      console.log('photo index: ', i);
       const photoData = new FormData();
 
       photoData.append('fileData', {
@@ -209,7 +214,7 @@ const AddItemScreen = props => {
 
       const config = {
         headers: {
-            'content-type': 'multipart/form-data'
+          'content-type': 'multipart/form-data'
         }
       };
 
@@ -220,232 +225,270 @@ const AddItemScreen = props => {
   }
 
   return (
-    // get rid of keyboard on iOS when click outside
-    // of input area, works for Android as well but
-    // Android keyboard can be dismissed with checkmark key
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
 
-    <View style={styles.screen}>
-      <View>
-        <Text style={DefaultStyles.bodyText} >Short Description</Text>
-      </View>
-      <TextInput
-        ref={shortD}
-        style={styles.textinput}
-        placeholder=" Item short description"
-        placeholderTextColor={Colors.placeholderText}
-        onChangeText={text => setShortDesc(text)}
-        value={shortDesc}
-      />
-      <View>
-        <Text style={DefaultStyles.bodyText} >Detailed Description</Text>
-      </View>
-      <TextInput
-        ref={longD}
-          style={styles.multilineInput}
-          maxLength={256}
-          multiline={true}
-          numberOfLines={10}
-          placeholder = " Item detailed description"
-          placeholderTextColor={Colors.placeholderText}
-          onChangeText={text => setLongDesc(text)}
-          value={longDesc}
-      />
-      <View>
-        <Text style={DefaultStyles.bodyText} >Price</Text>
-      </View>
-      <View style={styles.rowContainer}>
-        <TextInput
-          ref={sellPrice}
-          style={[styles.textinput, styles.priceInput]}
-          placeholder=" Price"
-          placeholderTextColor={Colors.placeholderText}
-          keyboardType='numeric'
-          onChangeText={text => priceInputHandler(text)}
-          value={price}
-        />
-      </View>
-      <View>
-        <Text style={DefaultStyles.bodyText} >Category and Sub-category</Text>
-      </View>
-      <View style={[styles.categoryContainer]}>
-        <ModalDropdown
-          ref={itemCategory}
-          style={styles.dropcat}
-          textStyle={styles.textStyle}
-          options={Categories}
-          defaultValue={'Select category'}
-          dropdownTextStyle={styles.dropdownText}
-          dropdownTextHighlightStyle={styles.dropdownHighlight}
-          onSelect={(idx, value) => categorySelectHandler(idx, value)}
-        />
-        <ModalDropdown
-          ref={itemSubcategory}
-          style={styles.dropcat}
-          textStyle={styles.textStyle}
-          options={SubCategories}
-          defaultValue={defaultSubcatTitle}
-          dropdownTextStyle={styles.dropdownText}
-          dropdownTextStyle={styles.dropdownText}
-          dropdownTextHighlightStyle={styles.dropdownHighlight}
-          onSelect={(idx, value) => subcategorySelectHandler(idx, value)}
-        />
-      </View>
-      <View style={styles.rowContainer}>
-        <Text style={DefaultStyles.bodyText} >Photos  </Text>
-        <TouchableOpacity activeOpacity={0.4} onPress={addPhotoHandler}>
-          <Ionicons name="add-circle" size={24} color="black" />
-        </TouchableOpacity>
-          <AddPhotos 
-                  visible={ isAddPhotoModalVisible } 
-                  photos = { photos } 
-                  setPhotos = { setPhotos } 
-                  setIsAddPhotoModalVisible = { setIsAddPhotoModalVisible } 
-              />        
-      </View>
 
-      {photos.length === 0?
-        (
-          <View style={styles.photoContainer}>
-            <Image source={require('../assets/placeholder.png')} />
-            <Image source={require('../assets/placeholder.png')} />
-            <Image source={require('../assets/placeholder.png')} />
+    <ScrollView>
+      {/* get rid of keyboard on iOS when click outside
+    of input area, works for Android as well but
+    Android keyboard can be dismissed with checkmark key */}
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+
+        <View style={DefaultStyles.screenContainer}>
+
+          {/* <View> */}
+          <Text style={DefaultStyles.label} >Short Description</Text>
+          {/* </View> */}
+          <TextInput
+            ref={shortD}
+            style={{ ...DefaultStyles.input, ...DefaultStyles.inputText }}
+            placeholder=" Item short description"
+            placeholderTextColor={Colors.placeholderText}
+            onChangeText={text => setShortDesc(text)}
+            value={shortDesc}
+          />
+          {/* <View> */}
+          <Text style={DefaultStyles.label} >Detailed Description</Text>
+          {/* </View> */}
+          <TextInput
+            ref={longD}
+            style={{ ...DefaultStyles.input, ...DefaultStyles.inputText, ...DefaultStyles.multiLineInput }}
+            maxLength={256}
+            multiline={true}
+            numberOfLines={10}
+            placeholder=" Item detailed description"
+            placeholderTextColor={Colors.placeholderText}
+            onChangeText={text => setLongDesc(text)}
+            value={longDesc}
+          />
+          {/* <View> */}
+          <Text style={DefaultStyles.label} >Price</Text>
+          {/* </View> */}
+          {/* <View style={styles.rowContainer}> */}
+          <TextInput
+            ref={sellPrice}
+            // style={[styles.textinput, styles.priceInput]}
+            style={{ ...DefaultStyles.input, ...DefaultStyles.inputText, ...DefaultStyles.priceInput }}
+            placeholder=" Price"
+            placeholderTextColor={Colors.placeholderText}
+            keyboardType='numeric'
+            onChangeText={text => priceInputHandler(text)}
+            value={price}
+          />
+          {/* </View> */}
+          {/* <View> */}
+          {/* <Text style={DefaultStyles.label} >Category</Text> */}
+          {/* </View> */}
+          {/* <View style={[styles.categoryContainer]}> */}
+          <View style={styles.labelAndModalContainer}>
+            <Text style={DefaultStyles.label}>
+              Category
+          </Text>
+
+            <View style={DefaultStyles.modal}>
+              <ModalDropdown
+                ref={itemCategory}
+                style={DefaultStyles.modalField}
+                textStyle={DefaultStyles.modalFieldText}
+                options={Categories}
+                defaultValue={'Select category'}
+                dropdownTextStyle={DefaultStyles.modalDropdownText}
+                dropdownTextHighlightStyle={DefaultStyles.modalDropdownHighlight}
+                onSelect={(idx, value) => categorySelectHandler(idx, value)}
+              />
+            </View>
           </View>
-        ):
-        (
-            <View style = {styles.photoListContainer}>
+
+          <View style={styles.labelAndModalContainer}>
+            <Text style={DefaultStyles.label}>
+              Subcategory
+          </Text>
+
+            <View style={DefaultStyles.modal}>
+              <ModalDropdown
+                ref={itemSubcategory}
+                style={DefaultStyles.modalField}
+                textStyle={DefaultStyles.modalFieldText}
+                options={SubCategories}
+                defaultValue={defaultSubcatTitle}
+                dropdownTextStyle={DefaultStyles.modalDropdownText}
+                dropdownTextHighlightStyle={DefaultStyles.modalDropdownHighlight}
+                onSelect={(idx, value) => subcategorySelectHandler(idx, value)}
+              />
+            </View>
+          </View>
+
+          {/* </View> */}
+          <View style={DefaultStyles.rowContainer}>
+            <Text style={DefaultStyles.label} >Photos  </Text>
+            <TouchableOpacity activeOpacity={0.4} onPress={addPhotoHandler}>
+              <Ionicons name="add-circle" size={24} color={Colors.saveButtonColor} />
+            </TouchableOpacity>
+            <AddPhotos
+              visible={isAddPhotoModalVisible}
+              photos={photos}
+              setPhotos={setPhotos}
+              setIsAddPhotoModalVisible={setIsAddPhotoModalVisible}
+            />
+          </View>
+
+          {photos.length === 0 ?
+            (
+              <View style={DefaultStyles.photoContainer}>
+                <Image source={require('../assets/placeholder.png')} />
+                <Image source={require('../assets/placeholder.png')} />
+                <Image source={require('../assets/placeholder.png')} />
+              </View>
+            ) :
+            (
+              <View style={styles.imageFlatListContainer}>
                 <FlatList
                   horizontal
                   data={photos}
-                  keyExtractor={photo=> photo.uri}
+                  keyExtractor={photo => photo.uri}
                   renderItem={photo => (
-                      <View onStartShouldSetResponder={() => true}>
-                        <Card style={ styles.card }>
-                          <Image style={styles.image} source={{ uri: photo.item.uri }}/>
-                        </Card>
-                      </View>)
-                }
+                    <View onStartShouldSetResponder={() => true}>
+                      <Card>
+                        <View style={{ ...DefaultStyles.imageInCardContainer, height: '100%' }}>
+                          <Image style={DefaultStyles.imageInCard} source={{ uri: photo.item.uri }} />
+                        </View>
+                      </Card>
+                    </View>
+                  )
+                  }
                 />
+              </View>
+
+            )
+          }
+
+
+          <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
+            <MainButton title="Save" buttonColor={Colors.defaultButtonColor} onPress={saveButtonHandler} />
+          </View>
+
+
+          <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
+            <MainButton title="Cancel" buttonColor={Colors.cancelButtonColor} onPress={() => navigate('Home')} />
+          </View>
+
+          {/* <View style={DefaultStyles.buttonContainer}>
+            <View style={styles.buttonSave}>
+              <MainButton title="Save" buttonColor={Colors.defaultButtonColor} onPress={saveButtonHandler} />
+            </View>
+          </View>
+          <View style={styles.buttonContainer}>
+            <View style={styles.buttonSave}>
+              <MainButton title="Cancel" buttonColor={Colors.cancelButtonColor} onPress={() => navigate('Home')} />
             </View>
 
-        )
-      }
-      <View style={styles.buttonContainer}>
-        <View style={styles.buttonSave}>
-          <MainButton title="Save" buttonColor="purple" onPress={saveButtonHandler}/>
-        </View>      
-      </View>
-      <View style={styles.buttonContainer}>
-        <View style={styles.buttonSave}>
-          <MainButton title="Cancel" buttonColor="orange" onPress={()=>navigate('Home')}/>
+          </View> */}
+
         </View>
-        
-      </View>
-    </View>
-  </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   )
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    padding: 10,
-    justifyContent: 'flex-start' // default
-  },
-  dropdown_1: {
-    flex: 1,
-    top: 32,
-    left: 8
-  },
-  textinput: {
-    height: 30,
-    width: '100%',
-    borderColor: 'black',
-    borderWidth: 1,
-    marginVertical: 10,
-    textAlign: 'left'
-  },
-  multilineInput: {
-    height: 80,
-    width: '100%',
-    borderColor: 'black',
-    borderWidth: 1,
-    marginVertical: 10
-  },
-  priceInput: {
-    width: '40%',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  },
-  categoryContainer: {
-    height: 30,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: 10,
-  },
-  dropcat: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: 5,
-    fontSize: 15,
-    backgroundColor: Colors.primary,
-    color: Colors.buttonText,
-    paddingHorizontal: 10,
-    borderRadius: 4,
-  },
-  dropdownText: {
-    backgroundColor: Colors.secondary,
-    color: Colors.dropdownText,
-    fontSize: 15
-  },
-  dropdownHighlight: {
-    backgroundColor: Colors.primary,
-    color: Colors.buttonText
-  },
-  textStyle: {
-    backgroundColor: Colors.primary,
-    color: Colors.buttonText,
-    fontSize: 15,
-    justifyContent: 'center'
-  },
-  photoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  photoListContainer: {
-    height: 130
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 10
-  },
-  buttonSave: {
-    width: '60%',
-  },
-  buttonSold: {
-    color: 'red'
-  },
-  rowContainer: {
-    flexDirection: 'row'
-  },
-  card: {
-    height: 100,
-    width: 100,
-    marginHorizontal: 10,
-    marginVertical: 10
-},
-  image: {
-    height: '100%',
-    width: '100%'
-  }  
+  // screen: {
+  //   flex: 1,
+  //   padding: 10,
+  //   justifyContent: 'flex-start' // default
+  // },
+  // dropdown_1: {
+  //   flex: 1,
+  //   top: 32,
+  //   left: 8
+  // },
+  // textinput: {
+  //   height: 30,
+  //   width: '100%',
+  //   borderColor: 'black',
+  //   borderWidth: 1,
+  //   marginVertical: 10,
+  //   textAlign: 'left'
+  // },
+  // multilineInput: {
+  //   height: 80,
+  //   width: '100%',
+  //   borderColor: 'black',
+  //   borderWidth: 1,
+  //   marginVertical: 10
+  // },
+  // priceInput: {
+  //   width: '40%',
+  //   justifyContent: 'flex-start',
+  //   alignItems: 'flex-start'
+  // },
+  // categoryContainer: {
+  //   height: 30,
+  //   width: '100%',
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-around',
+  //   marginVertical: 10,
+  // },
+  // dropcat: {
+  //   flex: 1,
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   marginHorizontal: 5,
+  //   fontSize: 15,
+  //   backgroundColor: Colors.primary,
+  //   color: Colors.buttonText,
+  //   paddingHorizontal: 10,
+  //   borderRadius: 4,
+  // },
+  // dropdownText: {
+  //   backgroundColor: Colors.secondary,
+  //   color: Colors.dropdownText,
+  //   fontSize: 15
+  // },
+  // dropdownHighlight: {
+  //   backgroundColor: Colors.primary,
+  //   color: Colors.buttonText
+  // },
+  // textStyle: {
+  //   backgroundColor: Colors.primary,
+  //   color: Colors.buttonText,
+  //   fontSize: 15,
+  //   justifyContent: 'center'
+  // },
+  // photoContainer: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-around',
+  //   alignItems: 'center',
+  // },
+  // photoListContainer: {
+  //   height: 130
+  // },
+  // buttonContainer: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'center',
+  //   marginVertical: 10
+  // },
+  // buttonSave: {
+  //   width: '60%',
+  // },
+  // buttonSold: {
+  //   color: 'red'
+  // },
+  // rowContainer: {
+  //   flexDirection: 'row'
+  // },
+  // card: {
+  //   height: 100,
+  //   width: 100,
+  //   marginHorizontal: 10,
+  //   marginVertical: 10
+  // },
+  // image: {
+  //   height: '100%',
+  //   width: '100%'
+  // }
 });
 
 export default AddItemScreen;

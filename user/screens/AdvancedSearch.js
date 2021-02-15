@@ -74,7 +74,7 @@ const AdvancedSearch = props => {
                         onTermSubmit={() => searchMostRecentItemsByCategoryMatchingSearchCriteria()}
                     />
                 </View>
-                <View style={styles.categoryContainer}>
+                <View style={styles.labelAndModalContainer}>
                     <Text style={DefaultStyles.label}>
                         Category
                     </Text>
