@@ -302,4 +302,28 @@ export default StyleSheet.create({
     width:50,
     marginLeft:300
   },
+  itemDetails: {
+    marginLeft: 10,
+    fontSize: 22,
+    color: 'black'
+  },
+  itemDetailDateTimeContainer: {
+    flexDirection: 'row',
+    marginLeft: 10
+  },
+  itemDetailDateContainer: {
+    flexDirection: 'row'
+  },
+  itemDetailTimeContainer: {
+    flexDirection: 'row'
+  },
+  itemDetailDate: {
+    fontSize: 22
+  },
+  itemDetailTime: {
+    fontSize: 22
+  },
+  activityIndicator: {
+    justifyContent: 'center'
+  }
   });
