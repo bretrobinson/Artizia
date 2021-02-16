@@ -15,13 +15,15 @@ import ManageUsers from './components/ManageUsers'
 import AnnouncementEdit from './components/AnnouncementEdit'
 import AddCategory from './components/AddCategory';
 import Notification from "./components/Notification/Notification";
-
+import HomeScreen from './components/HomeScreen'
 function App() {
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
   const [expiredDate, setExpiredDate] = useState(new Date())
   const [annnouncementData, setAnnouncementData] = useState([])
   const [category, setCategory] = useState();
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  console.log(isSignedIn)
 
   useEffect (()=>{
   loadAnnouncement()
@@ -68,13 +70,14 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
     await craftserverApi.delete('/announcement/' + idMessage)
     loadAnnouncement()
   }
+  
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar isSignedIn={isSignedIn}  />
     <Router>
       <div>
-
+      
         <Switch>
         
         <Route path="/Notification" component={Notification} />
@@ -100,10 +103,13 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
             <GeneralRules />
           </Route>
           <Route path="/addCategory" component={AddCategory} />
-          <Route path="/">
+          <Route path="/announcements">
           <AnnouncementDisplay annnouncementData={annnouncementData}
          onDeleteMessage={onDeleteMessage}
         />
+          </Route>
+          <Route path="/"  >
+            <HomeScreen  setIsSignedIn={setIsSignedIn} />
           </Route>
         </Switch>
       </div>
