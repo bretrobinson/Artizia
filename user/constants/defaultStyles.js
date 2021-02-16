@@ -353,5 +353,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  headerStyle: {
+    backgroundColor: Colors.defaultButtonColor,
+  },
+  headerTitleStyle: {
+    alignSelf: 'center',
+    fontSize: 22
   }
   });
