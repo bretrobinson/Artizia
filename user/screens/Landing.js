@@ -5,6 +5,7 @@ import CategoryItems from '../components/CategoryItems';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchForMostRecentItemsByCategoryMatchingSearchCriteria, updateSearchTerm } from '../store/actions/Search';
 import DefaultStyles from '../constants/defaultStyles';
+import { navigate } from '../RootNavigation';
 
 const Landing = (props) => {
     const term = useSelector(state => {
@@ -19,7 +20,9 @@ const Landing = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        searchMostRecentItemsByCategoryMatchingSearchCriteria();
+        props.navigation.addListener('focus', () => {
+            searchMostRecentItemsByCategoryMatchingSearchCriteria();
+        });
     }, []);
 
     const searchMostRecentItemsByCategoryMatchingSearchCriteria = () => {
