@@ -32,20 +32,30 @@ const signup = dispatch => async ({ email, password, fName, lName, location , pa
 
 
 ///Permissions for notifications
-    let PushTokenNotification;
-  
-    let statusObj=await Permissions.getAsync(Permissions.NOTIFICATIONS);
-   
-     Notification.getExpoPushTokenAsync();
-  
-       statusObj= await Permissions.askAsync(Permissions.NOTIFICATIONS);
-           
-     if(statusObj.status !=='granted'){
-        PushTokenNotification=null; 
-     }else{
-        PushTokenNotification= (await Notification.getExpoPushTokenAsync()).data;
+let PushTokenNotification
+    Permissions.getAsync(Permissions.NOTIFICATIONS)
+    .then((statusObj)=>{
+      if(statusObj.status !== 'granted'){
+        Permissions.askAsync(Permissions.NOTIFICATIONS);
+      }
+      return statusObj;
+    }).then(statusObj=>{
+      if(statusObj.status !== 'granted'){
+        throw new Error('Permission not granted!');
+      }
+    }
  
-     }
+    )
+    .then(()=>{
+     return Notification.getExpoPushTokenAsync();
+    })
+    .then(data=>{
+        PushTokenNotification=response.data;
+    })
+    .catch((err)=>{
+      console.log(err)
+      return null;
+    });
     
     try {
         if (email.length <1 || password.length<1){

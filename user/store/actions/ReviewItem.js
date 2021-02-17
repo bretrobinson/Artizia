@@ -10,24 +10,32 @@ export const CREATE_REVIEWITEM_FAILED = 'CREATE_REVIEWITEM_FAILED';
 export const createReviewItem = (shortDescription,itemReview,itemRating) => {
   
   return async dispatch => {
-     
-  let pushToken;
-  
-   let statusObj=await Permissions.getAsync(Permissions.NOTIFICATIONS);
-  
-    Notification.getExpoPushTokenAsync();
- 
-   
-     
-      statusObj= await Permissions.askAsync(Permissions.NOTIFICATIONS);
-     
-    
-    if(statusObj.status !=='granted'){
-      pushToken=null; 
-    }else{
-      pushToken= (await Notification.getExpoPushTokenAsync()).data;
-
+   let tokennotefication
+    Permissions.getAsync(Permissions.NOTIFICATIONS)
+    .then((statusObj)=>{
+      if(statusObj.status !== 'granted'){
+        Permissions.askAsync(Permissions.NOTIFICATIONS);
+      }
+      return statusObj;
+    }).then(statusObj=>{
+      if(statusObj.status !== 'granted'){
+        throw new Error('Permission not granted!');
+      }
     }
+ 
+    )
+    .then(()=>{
+     return Notification.getExpoPushTokenAsync();
+    })
+    .then(data=>{
+       tokennotefication=response.data;
+    })
+    .catch((err)=>{
+      console.log(err)
+      return null;
+    });
+    
+   
     console.log('Before fetch');
     
     const response = await  Api.post('/api/newitemreview',
@@ -47,21 +55,18 @@ export const createReviewItem = (shortDescription,itemReview,itemRating) => {
       dispatch({ type: CREATE_REVIEWITEM_FAILED, payload: response });
      });
     
-      fetch('https://exp.host/--/api/v2/push/send', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Accept-Encoding': 'gzip, deflate',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          to:pushToken,
-          title: 'Review was placed!',
-          body:itemReview,
-          
-        })
-      });
-    
+     Notification.scheduleNotificationAsync({
+      content:{
+        to:tokennotefication,
+        title:'Review',
+        body:'Your review was sended!',
+        
+      },
+      
+      trigger:{
+        seconds:10
+      }
+    })
 
 
 
