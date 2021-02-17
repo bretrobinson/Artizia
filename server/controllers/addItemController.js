@@ -37,6 +37,7 @@ exports.item_create = (req, res) => {
   const newItem = new itemAddModel({
     name:req.body.name,
     categoryId:req.body.categoryId,
+    subcategoryId:req.body.subcategoryId,
     createdDate:req.body.createdDate,
     drop:req.body.drop,
     price:req.body.price,
