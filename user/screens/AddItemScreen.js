@@ -28,12 +28,12 @@ import Card from '../components/Card';
 import Api from '../api/craftserver';
 
 const Categories = [];
-const CategoryIds= [];
+const CategoryIds = [];
 let categoryID = '';
 let categoryRows = [];
 
 // main URL of server
-let serverURL = "http://08445e19cff5.ngrok.io"
+let serverURL = "http://4bb65e39ae98.ngrok.io"
 
 // get categories from datbase
 // the base URL should come from env var
@@ -61,7 +61,7 @@ fetch(categoryURL)
 // 'Crochet', 'Sewing', 'Painting', 'Woodwork', 'Photography', 'Metalwork', 'Bath and Beauty', 'Pets', 'Office'];
 
 let SubCategories = [];
-let subcategoryIds= [];
+let subcategoryIds = [];
 let subcategoryID = '';
 let subcategoryRows = [];
 
@@ -111,6 +111,7 @@ const AddItemScreen = props => {
   const sellPrice = useRef();
   const itemCategory = useRef();
   const itemSubcategory = useRef();
+  const photoContainerRef = useRef();
 
   const priceInputHandler = inputText => {
     // this prevents an error when deleting all entered numbers
@@ -148,7 +149,7 @@ const AddItemScreen = props => {
       .then((resp) => resp.json())
       .then(data => {
         subcategoryRows = data
-        //console.log('subcategory response data in add item: ', subcategoryRows)
+        // console.log('subcategory response data in add item: ', subcategoryRows)
         subcategoryRows.forEach((row) => console.log('subcategory id: ', row.id, ' subcategory name: ', row.name))
         subcategoryRows.forEach((row) => {
           SubCategories.push(row.name)
@@ -188,26 +189,38 @@ const AddItemScreen = props => {
 
   const saveButtonHandler = props => {
     //console.log('saveButton: ', shortDesc, longDesc, price, category, subcategory)
+    let isError = false;
     if (!shortDesc) {
       Alert.alert(
         "Must enter a short description", "",
         [{ text: "OK", onPress: () => { shortD.current.focus() } }]
       );
+      isError = true;
     } else if (!longDesc) {
       Alert.alert(
         "Must enter a long description", "",
         [{ text: "OK", onPress: () => { longD.current.focus() } }]
       );
+      isError = true;
     } else if (!price) {
       Alert.alert(
         "Must enter a price", "",
         [{ text: "OK", onPress: () => { sellPrice.current.focus() } }]
       );
+      isError = true;
     } else if (!category) {
-      Alert.alert("Must select a category", "", []);
+      Alert.alert("Must select a category", "", [{ text: "Ok", onPress: () => { } }]);
+      isError = true;
     } else if (!subcategory || subcategory === category) {
-      Alert.alert("Must select a subcategory", "", []);
+      Alert.alert("Must select a subcategory", "", [{ text: "Ok", onPress: () => { } }]);
+      isError = true;
+    } else if (photos.length === 0) {
+      Alert.alert("You must add a photo", "", [{ text: "Ok", onPress: () => { photoContainerRef.current.focus() } }]);
+      isError = true;
     }
+
+    if (isError) return;
+
     console.log("all input data looks ok");
     //console.log('userid :', req.user.idusers)
 
@@ -241,9 +254,9 @@ const AddItemScreen = props => {
         // console.log('item post response: ', response);
         // console.log('item created id', response.data.data.id)
         savePhotosForItems(response.data.data.id)
-        .then(() => {
-          navigate('Home');
-        });
+          .then(() => {
+            navigate('Home');
+          });
       })
       .catch((err) => {
         console.log('Error from item create api.post: ', err)
@@ -390,7 +403,7 @@ const AddItemScreen = props => {
 
           {photos.length === 0 ?
             (
-              <View style={DefaultStyles.photoContainer}>
+              <View ref={photoContainerRef} style={DefaultStyles.photoContainer}>
                 <Image source={require('../assets/placeholder.png')} />
                 <Image source={require('../assets/placeholder.png')} />
                 <Image source={require('../assets/placeholder.png')} />
