@@ -40,7 +40,7 @@ const MessageList = () => {
                         <Card style={DefaultStyles.messageCard}>
                             {/* <View style={styles.container} >  */}
 
-                            <TouchableCmp onPress={() => navigate('MessageDetail', { buyerid: item.buyerid, sellerid: item.sellerid, itemName: item.itemName, itemid: item.itemid, uri: item.itemUri })} useForeground>
+                            <TouchableCmp onPress={() => navigate('Messages', { buyerid: item.buyerid, sellerid: item.sellerid, itemName: item.itemName, itemid: item.itemid, uri: item.itemUri })} useForeground>
 
                                 {/* <View style={styles.body}> */}
                                 <View style={DefaultStyles.messageViewInCardContainer}>

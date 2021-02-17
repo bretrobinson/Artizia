@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import {Feather} from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 import Profile from '../../screens/Profile'
 import Landing from '../../screens/Landing'
 import Signup from '../../screens/Signup'
@@ -16,105 +16,130 @@ import AdvancedSearch from "../../screens/AdvancedSearch";
 import Colors from '../../constants/Colors'
 import EditProfile from '../../screens/EditProfile'
 import MessageList from '../../screens/MessageList'
-import MessageDetail from '../../screens/MessageDetail'
+import MessageDetail from '../../screens/MessageDetail';
+import DefaultStyles from '../../constants/defaultStyles';
 
 
 const Stack = createStackNavigator();
+<<<<<<< HEAD
 const MainStackNavigator = ({navigation}) => {
     return (
       <Stack.Navigator screenOptions={{ headerStyle: {
         backgroundColor: Colors.accent2,
       },}} >
         <Stack.Screen name="Sign in" component={Signin}         
+=======
+const MainStackNavigator = ({ navigation }) => {
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: DefaultStyles.headerStyle,
+      headerTitleStyle: DefaultStyles.headerTitleStyle
+    }} >
+      <Stack.Screen name="Signin" component={Signin}
+>>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
         options={{
-          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }}
+<<<<<<< HEAD
          />
         <Stack.Screen name="Sign up" component={Signup}
+=======
+      />
+      <Stack.Screen name="Signup" component={Signup}
+>>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
         options={{
-                  headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
-                }}  
-         />
-        
-      </Stack.Navigator >
-    );
-  }
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+        }}
+      />
 
-  const LandingStackNavigator = ({navigation}) => {
-    return (
-      <Stack.Navigator screenOptions={{ headerStyle: {
-        backgroundColor: Colors.accent2,
-      },}}>
-        <Stack.Screen name="Craft Sell" component={Landing} 
+    </Stack.Navigator >
+  );
+}
+
+const LandingStackNavigator = ({ navigation }) => {
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: DefaultStyles.headerStyle,
+      headerTitleStyle: DefaultStyles.headerTitleStyle
+    }}
+
+    >
+      <Stack.Screen name="Craft Sell" component={Landing}
         options={{
-          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
         <Stack.Screen name="Item Detail" component={ItemDetail}
         options={{
-          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
-      </Stack.Navigator>
-    );
-  }
+    </Stack.Navigator>
+  );
+}
 
-  const ReviewSellerStackNavigator = ({navigation}) => {
-    return (
-      <CreateStackNavigator navigation={navigation} name="Review Seller" component={ReviewSeller} />
-    );
-  }
-  const ProfileStackNavigator = ({navigation}) => {
-    return (
-      <Stack.Navigator screenOptions={{ headerStyle: {
-        backgroundColor: Colors.accent2,
-      },}}>
-        <Stack.Screen name="Profile" component={Profile} 
+const ReviewSellerStackNavigator = ({ navigation }) => {
+  return (
+    <CreateStackNavigator navigation={navigation} name="Review Seller" component={ReviewSeller} />
+  );
+}
+const ProfileStackNavigator = ({ navigation }) => {
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: DefaultStyles.headerStyle,
+      headerTitleStyle: DefaultStyles.headerTitleStyle
+    }}>
+      <Stack.Screen name="Profile" component={Profile}
         options={{
-          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
+<<<<<<< HEAD
         <Stack.Screen name="Edit Profile" component={EditProfile} 
+=======
+      <Stack.Screen name="EditProfile" component={EditProfile}
+>>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
         options={{
-          headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
 
-        </Stack.Navigator>
-    );
-  }
-  const AddItemStackNavigator = ({navigation}) => {
-    return (
-<CreateStackNavigator navigation={navigation} name="Add Item" component={AddItem} />
-    );
-  }
+    </Stack.Navigator>
+  );
+}
+const AddItemStackNavigator = ({ navigation }) => {
+  return (
+    <CreateStackNavigator navigation={navigation} name="Add Item" component={AddItem} />
+  );
+}
 
-  const MyItemStackNavigator = ({navigation}) => {
-    return (
-<CreateStackNavigator navigation={navigation} name="My Item" component={MyItem} />
-    );
-  }
-  const AnnouncementsStackNavigator = ({navigation}) => {
-    return (
-<CreateStackNavigator navigation={navigation} name="Announcements" component={Announcements} />
-    );
-  }
+const MyItemStackNavigator = ({ navigation }) => {
+  return (
+    <CreateStackNavigator navigation={navigation} name="My Item" component={MyItem} />
+  );
+}
+const AnnouncementsStackNavigator = ({ navigation }) => {
+  return (
+    <CreateStackNavigator navigation={navigation} name="Announcements" component={Announcements} />
+  );
+}
 
-  const SignoutStackNavigator = ({navigation}) => {
-    return (
-<CreateStackNavigator navigation={navigation} name="signout" component={Signout} />
-    );
-  }
+const SignoutStackNavigator = ({ navigation }) => {
+  return (
+    <CreateStackNavigator navigation={navigation} name="signout" component={Signout} />
+  );
+}
 //   const ItemDetailStackNavigator = ({navigation}) => {
 //     return (
 // <CreateStackNavigator navigation={navigation} name="ItemDetail" component={ItemDetail} />
 //     );
 //   }
-  
-const AdvancedSearchStackNavigator = ({navigation}) => {
+
+const AdvancedSearchStackNavigator = ({ navigation }) => {
   return (
     <CreateStackNavigator navigation={navigation} name="Advanced Search" component={AdvancedSearch} />
   );
 }
 
-const MessageStackNavigator = ({navigation}) => {
+const MessageStackNavigator = ({ navigation }) => {
   return (
+<<<<<<< HEAD
     <Stack.Navigator screenOptions={{ headerStyle: {
       backgroundColor: Colors.accent2,
     },}}>
@@ -126,21 +151,35 @@ const MessageStackNavigator = ({navigation}) => {
       options={{
         headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
       }} />
+=======
+    <Stack.Navigator screenOptions={{
+      headerStyle: DefaultStyles.headerStyle,
+      headerTitleStyle: DefaultStyles.headerTitleStyle
+    }}>
+      <Stack.Screen name="MessageList" component={MessageList}
+        options={{
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+        }} />
+      <Stack.Screen name="MessageDetail" component={MessageDetail}
+        options={{
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+        }} />
+>>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
     </Stack.Navigator>
   );
 }
 
-  
-  export { 
-    MainStackNavigator, 
-    LandingStackNavigator, 
-    ReviewSellerStackNavigator, 
-    ProfileStackNavigator, 
-    AddItemStackNavigator,
-    MyItemStackNavigator,
+
+export {
+  MainStackNavigator,
+  LandingStackNavigator,
+  ReviewSellerStackNavigator,
+  ProfileStackNavigator,
+  AddItemStackNavigator,
+  MyItemStackNavigator,
   SignoutStackNavigator,
   AnnouncementsStackNavigator,
-    AdvancedSearchStackNavigator,
-    MessageStackNavigator   
-   
-   };
+  AdvancedSearchStackNavigator,
+  MessageStackNavigator
+
+};

@@ -154,8 +154,8 @@ export default StyleSheet.create({
     height: 220
   },  
   card: {
-    height: 200,
-    width: 225,
+    height: 140,
+    width: 155,
     marginHorizontal: 10,
     marginVertical: 10,
 
@@ -353,5 +353,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  headerStyle: {
+    backgroundColor: Colors.defaultButtonColor,
+  },
+  headerTitleStyle: {
+    alignSelf: 'center',
+    fontSize: 22
   }
   });
