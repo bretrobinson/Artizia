@@ -30,7 +30,7 @@ const Landing = (props) => {
 
         const searchCategoryId = 0;
 
-        const numberOfMostRecentItems = 0;
+        const numberOfMostRecentItems = 5;
 
         dispatch(searchForMostRecentItemsByCategoryMatchingSearchCriteria(searchTerm, searchCategoryId, numberOfMostRecentItems));
     }

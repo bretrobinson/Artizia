@@ -154,8 +154,8 @@ export default StyleSheet.create({
     height: 220
   },  
   card: {
-    height: 200,
-    width: 225,
+    height: 140,
+    width: 155,
     marginHorizontal: 10,
     marginVertical: 10,
 
