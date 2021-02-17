@@ -33,7 +33,7 @@ let categoryID = '';
 let categoryRows = [];
 
 // main URL of server
-let serverURL = "http://4bb65e39ae98.ngrok.io"
+let serverURL = "http://55fd5375a2af.ngrok.io"
 
 // get categories from datbase
 // the base URL should come from env var
@@ -111,7 +111,6 @@ const AddItemScreen = props => {
   const sellPrice = useRef();
   const itemCategory = useRef();
   const itemSubcategory = useRef();
-  const photoContainerRef = useRef();
 
   const priceInputHandler = inputText => {
     // this prevents an error when deleting all entered numbers
@@ -215,7 +214,7 @@ const AddItemScreen = props => {
       Alert.alert("Must select a subcategory", "", [{ text: "Ok", onPress: () => { } }]);
       isError = true;
     } else if (photos.length === 0) {
-      Alert.alert("You must add a photo", "", [{ text: "Ok", onPress: () => { photoContainerRef.current.focus() } }]);
+      Alert.alert("You must add a photo", "", [{ text: "Ok", onPress: () => { } }]);
       isError = true;
     }
 
@@ -403,7 +402,7 @@ const AddItemScreen = props => {
 
           {photos.length === 0 ?
             (
-              <View ref={photoContainerRef} style={DefaultStyles.photoContainer}>
+              <View style={DefaultStyles.photoContainer}>
                 <Image source={require('../assets/placeholder.png')} />
                 <Image source={require('../assets/placeholder.png')} />
                 <Image source={require('../assets/placeholder.png')} />
