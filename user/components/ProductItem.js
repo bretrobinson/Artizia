@@ -24,7 +24,7 @@ const ProductItem = props => {
     <Card>
       <View style={DefaultStyles.touchableCard}>
         {/* <TouchableCmp onPress={props.onSelect} useForeground> */}
-        <TouchableCmp onPress={() => navigate('ItemDetail', { itemId: props.itemId, uri: props.image, price: props.price, itemName: props.name })} useForeground>
+        <TouchableCmp onPress={() => navigate('Item Detail', { itemId: props.itemId, uri: props.image, price: props.price, itemName: props.name })} useForeground>
           <View>
             <View style={DefaultStyles.imageInCardContainer}>
               <Image style={DefaultStyles.imageInCard} source={{ uri: props.image }} />

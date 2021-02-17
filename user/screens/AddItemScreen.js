@@ -37,16 +37,11 @@ let serverURL = "http://08445e19cff5.ngrok.io"
 
 // get categories from datbase
 // the base URL should come from env var
-<<<<<<< HEAD
-let serverURL = "http://3eecd94b4e5c.ngrok.io/category"
-fetch(serverURL)
-=======
 // let serverURL = "http://localhost:3000/category"
 let categoryURL = serverURL + "/category"
 //console.log('categoryURL: ', categoryURL)
 
 fetch(categoryURL)
->>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
   .then((resp) => resp.json())
   .then(data => {
     categoryRows = data

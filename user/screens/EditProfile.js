@@ -23,7 +23,7 @@ const EditProfile = ({ navigation }) => {
                 <KeyboardAvoidingView style={{ height: '100%', justifyContent: 'center' }} >
                     <View style={DefaultStyles.screenContainer}>
                         {/* <Text h3 style={styles.signup} >Edit Profile</Text> */}
-                        <Text style={DefaultStyles.title} >Edit Profile</Text>
+                        {/* <Text style={DefaultStyles.title} >Edit Profile</Text> */}
                         <Input
                             // value ={fName}
                             onChangeText={SetFname}

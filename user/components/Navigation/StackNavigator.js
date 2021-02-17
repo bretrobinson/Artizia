@@ -21,32 +21,17 @@ import DefaultStyles from '../../constants/defaultStyles';
 
 
 const Stack = createStackNavigator();
-<<<<<<< HEAD
 const MainStackNavigator = ({navigation}) => {
     return (
       <Stack.Navigator screenOptions={{ headerStyle: {
         backgroundColor: Colors.accent2,
       },}} >
         <Stack.Screen name="Sign in" component={Signin}         
-=======
-const MainStackNavigator = ({ navigation }) => {
-  return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: DefaultStyles.headerStyle,
-      headerTitleStyle: DefaultStyles.headerTitleStyle
-    }} >
-      <Stack.Screen name="Signin" component={Signin}
->>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }}
-<<<<<<< HEAD
          />
         <Stack.Screen name="Sign up" component={Signup}
-=======
-      />
-      <Stack.Screen name="Signup" component={Signup}
->>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }}
@@ -91,11 +76,7 @@ const ProfileStackNavigator = ({ navigation }) => {
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
-<<<<<<< HEAD
         <Stack.Screen name="Edit Profile" component={EditProfile} 
-=======
-      <Stack.Screen name="EditProfile" component={EditProfile}
->>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
@@ -139,7 +120,6 @@ const AdvancedSearchStackNavigator = ({ navigation }) => {
 
 const MessageStackNavigator = ({ navigation }) => {
   return (
-<<<<<<< HEAD
     <Stack.Navigator screenOptions={{ headerStyle: {
       backgroundColor: Colors.accent2,
     },}}>
@@ -151,20 +131,6 @@ const MessageStackNavigator = ({ navigation }) => {
       options={{
         headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
       }} />
-=======
-    <Stack.Navigator screenOptions={{
-      headerStyle: DefaultStyles.headerStyle,
-      headerTitleStyle: DefaultStyles.headerTitleStyle
-    }}>
-      <Stack.Screen name="MessageList" component={MessageList}
-        options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
-        }} />
-      <Stack.Screen name="MessageDetail" component={MessageDetail}
-        options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
-        }} />
->>>>>>> 23b082b81f5c87d62f8f2f5b0e08832947c468da
     </Stack.Navigator>
   );
 }

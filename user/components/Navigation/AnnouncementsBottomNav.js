@@ -1,11 +1,11 @@
 import React, {useContext, } from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
+import {LandingStackNavigator, MainStackNavigator,AnnouncementsStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
 import {FontAwesome, Entypo, MaterialIcons, Ionicons} from '@expo/vector-icons'
 import {Context as AuthContext} from '../../context/AuthContext'
 const Tab = createBottomTabNavigator();
 
-const MyTab = ()=>{
+const AnnouncementsBottomTab = ()=>{
 
     const{ state:{isSignedIn} } = useContext(AuthContext)
     return    (
@@ -13,10 +13,10 @@ const MyTab = ()=>{
         // initialRouteName= "Home"
         > 
         <Tab.Screen 
-        name = "Home"
-        component={LandingStackNavigator}
+        name = "Announcement"
+        component={AnnouncementsStackNavigator}
        options={()=> ({
-            tabBarIcon: ()=> <FontAwesome name='home' size={25} />
+            tabBarIcon: ()=> <MaterialIcons name='announcement' size={25} />
         })}
         />
         <Tab.Screen 
@@ -65,4 +65,4 @@ const MyTab = ()=>{
 
 }
 
-export {MyTab}
+export default AnnouncementsBottomTab

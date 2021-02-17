@@ -15,6 +15,9 @@ import {LandingStackNavigator,
     AdvancedSearchStackNavigator
 } from './StackNavigator'
 import {MyTab} from './BottomNavigator'
+// import {ProfileStackNavigator} from './BottomNavigator'
+import ProfileBottomNav from "./ProfileBottomNav";
+import AnnouncementsBottomNav  from "./AnnouncementsBottomNav";
 
 
 const Drawer = createDrawerNavigator()
@@ -46,7 +49,7 @@ const DrawerNavigator = ()=> {
                             drawerIcon: ()=> <MaterialIcons name='rate-review' size={25} />
                         })} />
 
-                <Drawer.Screen name= 'Announcements' component={AnnouncementsStackNavigator} 
+                <Drawer.Screen name= 'Announcements' component={AnnouncementsBottomNav} 
                         options={()=> ({
                             drawerIcon: ()=> <MaterialIcons name='announcement' size={25} />
                         })}/>
@@ -65,7 +68,7 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <FontAwesome name='home' size={25} />
             })} />
 
-            <Drawer.Screen name = 'Profile' component={ProfileStackNavigator} 
+            <Drawer.Screen name = 'Profile' component={ProfileBottomNav} 
                 options={()=> ({
                 drawerIcon: ()=> <AntDesign name='profile' size={25} />
             })}/>
@@ -83,7 +86,7 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <Entypo name='add-to-list' size={25} />
     })}
             />
-            <Drawer.Screen name= 'MyItem' component={MyItemStackNavigator} 
+            <Drawer.Screen name= 'My Item' component={MyItemStackNavigator} 
             options={()=> ({
                 drawerIcon: ()=> <Entypo name='list' size={25} />
     })}
@@ -92,11 +95,11 @@ const DrawerNavigator = ()=> {
                     options={()=> ({
                         drawerIcon: ()=> <Entypo name='message' size={25} />
             })} />
-            <Drawer.Screen name= 'Announcements' component={AnnouncementsStackNavigator} 
+            <Drawer.Screen name= 'Announcements' component={AnnouncementsBottomNav} 
                     options={()=> ({
                         drawerIcon: ()=> <MaterialIcons name='announcement' size={25} />
                     })}/>
-            <Drawer.Screen name= 'Signout' component={SignoutStackNavigator}
+            <Drawer.Screen name= 'Sign out' component={SignoutStackNavigator}
               options={()=> ({
                 drawerIcon: ()=> <Entypo name='log-out' size={25} />
             })} />

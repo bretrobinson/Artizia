@@ -1,26 +1,26 @@
 import React, {useContext, } from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
-import {FontAwesome, Entypo, MaterialIcons, Ionicons} from '@expo/vector-icons'
+import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator,ProfileStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
+import {FontAwesome, Entypo, MaterialIcons, AntDesign} from '@expo/vector-icons'
 import {Context as AuthContext} from '../../context/AuthContext'
 const Tab = createBottomTabNavigator();
 
-const MyTab = ()=>{
+const ProfileBottomNav = ()=>{
 
     const{ state:{isSignedIn} } = useContext(AuthContext)
     return    (
     <Tab.Navigator 
-        // initialRouteName= "Home"
+        initialRouteName= "Profile"
         > 
         <Tab.Screen 
-        name = "Home"
-        component={LandingStackNavigator}
+        name = "Profile"
+        component={ProfileStackNavigator}
        options={()=> ({
-            tabBarIcon: ()=> <FontAwesome name='home' size={25} />
+            tabBarIcon: ()=> <AntDesign name='profile' size={25} />
         })}
         />
         <Tab.Screen 
-        name = "My Item"
+        name = "my Item"
         component={MyItemStackNavigator}
         options={()=> ({
             tabBarIcon: ()=> <Entypo name='list' size={25} />
@@ -65,4 +65,4 @@ const MyTab = ()=>{
 
 }
 
-export {MyTab}
+export default  ProfileBottomNav
