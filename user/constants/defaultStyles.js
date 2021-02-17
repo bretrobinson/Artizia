@@ -151,11 +151,11 @@ export default StyleSheet.create({
     width: '40%'
   },
   imageFlatListContainer: {
-    height: 220
+    height: 185
   },  
   card: {
-    height: 140,
-    width: 155,
+    height: 165,
+    width: 175,
     marginHorizontal: 10,
     marginVertical: 10,
 
