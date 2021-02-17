@@ -4,8 +4,10 @@ const router = express.Router();
 const db = require("../models/db");
 
 router.put('/', (req, res)=>{
- 
-    let sql = `UPDATE users  SET status = '${req.body.status}' WHERE email = '${req.body.email}'`
+    
+ const accountDisabledDate = new Date()
+ console.log(accountDisabledDate)
+    let sql = `UPDATE users  SET status = '${req.body.status}',  accountDisabled = "${accountDisabledDate}" WHERE email = '${req.body.email}'`
     // let sql = `UPDATE users  SET lName = '${req.body.lName}' WHERE idusers = ${req.user.idusers}`
     let query = db.query(sql, (err, result)=>{
         if (err){
