@@ -25,12 +25,12 @@ const MainStackNavigator = ({navigation}) => {
       <Stack.Navigator screenOptions={{ headerStyle: {
         backgroundColor: Colors.accent2,
       },}} >
-        <Stack.Screen name="Signin" component={Signin}         
+        <Stack.Screen name="Sign in" component={Signin}         
         options={{
           headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
         }}
          />
-        <Stack.Screen name="Signup" component={Signup}
+        <Stack.Screen name="Sign up" component={Signup}
         options={{
                   headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
                 }}  
@@ -49,7 +49,7 @@ const MainStackNavigator = ({navigation}) => {
         options={{
           headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
         }} />
-        <Stack.Screen name="ItemDetail" component={ItemDetail}
+        <Stack.Screen name="Item Detail" component={ItemDetail}
         options={{
           headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
         }} />
@@ -71,7 +71,7 @@ const MainStackNavigator = ({navigation}) => {
         options={{
           headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
         }} />
-        <Stack.Screen name="EditProfile" component={EditProfile} 
+        <Stack.Screen name="Edit Profile" component={EditProfile} 
         options={{
           headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
         }} />
@@ -118,11 +118,11 @@ const MessageStackNavigator = ({navigation}) => {
     <Stack.Navigator screenOptions={{ headerStyle: {
       backgroundColor: Colors.accent2,
     },}}>
-      <Stack.Screen name="MessageList" component={MessageList} 
+      <Stack.Screen name="Message List" component={MessageList} 
       options={{
         headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
       }} />
-      <Stack.Screen name="MessageDetail" component={MessageDetail}
+      <Stack.Screen name="Messages" component={MessageDetail}
       options={{
         headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
       }} />

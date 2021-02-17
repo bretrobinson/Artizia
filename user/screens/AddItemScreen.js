@@ -32,7 +32,7 @@ let categoryRows = [];
 
 // get categories from datbase
 // the base URL should come from env var
-let serverURL = "http://localhost:3000/category"
+let serverURL = "http://3eecd94b4e5c.ngrok.io/category"
 fetch(serverURL)
   .then((resp) => resp.json())
   .then(data => {

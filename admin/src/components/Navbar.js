@@ -19,7 +19,7 @@ const Navbar = ({isSignedIn}) => {
     <Typography >
     
           <Link className={classes.navbar} href="/" ><Button variant="outlined" color="primary">Home</Button></Link>
-          <Link className={classes.navbar}  href="/message"><Button variant="outlined" color="primary">Create Mesaage</Button></Link>
+          <Link className={classes.navbar}  href="/message"><Button variant="outlined" color="primary">Create Message</Button></Link>
           <Link className={classes.navbar} href="/rules"><Button variant="outlined" color="primary">Rules</Button></Link>
           <Link className={classes.navbar}  href="/addCategory"><Button variant="outlined" color="primary">Add Category</Button></Link>
           <Link className={classes.navbar}  href="/Notification"><Button variant="outlined" color="primary">Send Notification</Button></Link>
