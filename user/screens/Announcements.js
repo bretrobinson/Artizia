@@ -31,17 +31,17 @@ const Announcements = () => {
                             <View style={DefaultStyles.messageDetailsInCardContainer}>
                                 <View style={DefaultStyles.messageDetailDateTimeInCardContainer}>
                                     <View style={DefaultStyles.messageDetailDateInCardContainer}>
-                                        <Text style={DefaultStyles.messageDetailDateInCard} >Date started: </Text>
-                                        <Moment style={DefaultStyles.messageDetailDateInCard} element={Text} format="YYYY-MM-DD ">{item.dateEntered}</Moment>
+                                        <Text style={DefaultStyles.messageDetailDateInCard} >Date : </Text>
+                                        <Moment style={DefaultStyles.messageDetailDateInCard} element={Text} format="MMM-DD-YYYY ">{item.dateEntered}</Moment>
                                     </View>
                                 </View>
 
-                                <View style={DefaultStyles.messageDetailDateTimeInCardContainer}>
+                                {/* <View style={DefaultStyles.messageDetailDateTimeInCardContainer}>
                                     <View style={DefaultStyles.messageDetailDateInCardContainer}>
                                         <Text style={DefaultStyles.messageDetailDateInCard} >Date expired: </Text>
                                         <Moment style={DefaultStyles.messageDetailDateInCard} element={Text} format="YYYY-MM-DD ">{item.expiredDate}</Moment>
                                     </View>
-                                </View>
+                                </View> */}
 
                                 <Text></Text>
                                 <Text style={DefaultStyles.messageDetailMessageInCard} >{item.message}</Text>                                

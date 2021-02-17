@@ -1,31 +1,23 @@
 import React, {useContext, } from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {LandingStackNavigator, MainStackNavigator,AnnouncementsStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
+import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
 import {FontAwesome, Entypo, MaterialIcons, Ionicons} from '@expo/vector-icons'
 import {Context as AuthContext} from '../../context/AuthContext'
 const Tab = createBottomTabNavigator();
 
-const AnnouncementsBottomTab = ()=>{
+const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})=>{
 
-    const{ state:{isSignedIn} } = useContext(AuthContext)
+    // const{ state:{isSignedIn} } = useContext(AuthContext)
     return    (
-    <Tab.Navigator 
-        // initialRouteName= "Home"
-        > 
+    <Tab.Navigator> 
         <Tab.Screen 
-        name = "Announcement"
-        component={AnnouncementsStackNavigator}
+        name = {name}
+        component={component}
        options={()=> ({
-            tabBarIcon: ()=> <Entypo name='news' size={25} />
+            tabBarIcon: ()=> <Entypo name={iconName} size={25} />
         })}
         />
-        <Tab.Screen 
-        name = "My Item"
-        component={MyItemStackNavigator}
-        options={()=> ({
-            tabBarIcon: ()=> <Entypo name='list' size={25} />
-        })}
-        />
+
 
         {isSignedIn ? <>
             <Tab.Screen 
@@ -50,13 +42,22 @@ const AnnouncementsBottomTab = ()=>{
     })}
     />
       </>  
-    :        <Tab.Screen 
+    :     <>  
+        <Tab.Screen 
+        name = "Advance Search"
+        component={AdvancedSearchStackNavigator}
+        options={()=> ({
+            tabBarIcon: ()=> <Entypo name='magnifying-glass' size={25} />
+        })}
+        />
+     <Tab.Screen 
     name = "Signin"
     component={MainStackNavigator}
     options={()=> ({
         tabBarIcon: ()=> <Entypo name='login' size={25} />
     })}
     />
+    </>
     }
 
 
@@ -65,4 +66,4 @@ const AnnouncementsBottomTab = ()=>{
 
 }
 
-export default AnnouncementsBottomTab
+export default CreateBottomTabNavigator
