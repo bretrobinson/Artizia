@@ -4,10 +4,10 @@ import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles';
 
 const Input = props => {
-    return <TextInput {...props} style={{...DefaultStyles.input, ...DefaultStyles.inputText, ...props.style}} />
+    return <TextInput {...props} style={{ ...DefaultStyles.input, ...DefaultStyles.inputText, ...props.style }} />
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
     // input: {
     //     height: 40,
     //     borderColor: Colors.primary,

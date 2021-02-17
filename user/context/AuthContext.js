@@ -95,11 +95,17 @@ const signin = dispatch => async ({ email, password }) => {
             dispatch({type: 'add_error', payload: 'Enter email and password'})
         } else{
             const response = await craftserverApi.post('/signin', {email, password})
-            // console.log(response.data.token)
-            await AsyncStorage.setItem('token', response.data.token);
-            // await AsyncStorage.setItem('user', response.data.user)
-            dispatch({type: 'signin', payload: response.data})
-            navigate.goBack()
+            console.log(response.data)
+            if(response.data.user.status.toLowerCase() === "active") {
+                await AsyncStorage.setItem('token', response.data.token);
+                // await AsyncStorage.setItem('user', response.data.user)
+                dispatch({type: 'signin', payload: response.data})
+                navigate.goBack()
+            }else {
+                alert('Your account has been disabled please contact App Admintrator, Thank you')
+                navigate.goBack()
+            }
+
         }
 
        

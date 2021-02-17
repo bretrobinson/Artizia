@@ -11,16 +11,19 @@ import craftserverApi from './api/craftserver'
 import AnnouncementDisplay from './components/AnnouncementDisplay'
 import Announcement from './components/Announcement'
 import GeneralRules from './components/GeneralRules'
+import ManageUsers from './components/ManageUsers'
 import AnnouncementEdit from './components/AnnouncementEdit'
 import AddCategory from './components/AddCategory';
 import Notification from "./components/Notification/Notification";
-
+import HomeScreen from './components/HomeScreen'
 function App() {
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
   const [expiredDate, setExpiredDate] = useState(new Date())
   const [annnouncementData, setAnnouncementData] = useState([])
   const [category, setCategory] = useState();
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  console.log(isSignedIn)
 
   useEffect (()=>{
   loadAnnouncement()
@@ -67,34 +70,18 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
     await craftserverApi.delete('/announcement/' + idMessage)
     loadAnnouncement()
   }
+  
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar isSignedIn={isSignedIn}  />
     <Router>
       <div>
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/message">Create Mesaage</Link>
-            </li>
-            <li>
-              <Link to="/rules">Rules</Link>
-            </li>
-            <li>
-              <Link to="/addCategory">Add Category</Link>
-            </li>
-          </ul>
-        </nav> */}
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+      
         <Switch>
         
         <Route path="/Notification" component={Notification} />
+        <Route path="/manageusers" component={ManageUsers} />
           <Route path="/message">
             <Announcement onChangeTitle={setTitle}
               onChangeExpiredDate={setExpiredDate}
@@ -116,10 +103,13 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
             <GeneralRules />
           </Route>
           <Route path="/addCategory" component={AddCategory} />
-          <Route path="/">
+          <Route path="/announcements">
           <AnnouncementDisplay annnouncementData={annnouncementData}
          onDeleteMessage={onDeleteMessage}
         />
+          </Route>
+          <Route path="/"  >
+            <HomeScreen  setIsSignedIn={setIsSignedIn} />
           </Route>
         </Switch>
       </div>

@@ -73,6 +73,14 @@ export default StyleSheet.create({
       backgroundColor: Colors.primary,
       color: Colors.buttonText
   },
+  labelAndModalContainer: {
+      // height: 90,
+      width: '100%',
+      // flexDirection: 'row',
+      justifyContent: 'space-around',
+      // marginVertical: 10,
+      // alignItems: 'center',
+  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -84,7 +92,7 @@ export default StyleSheet.create({
   button: {
     backgroundColor: Colors.primary,
     paddingVertical: 15,
-    paddingHorizontal: 40,
+    paddingHorizontal: 35,
     borderRadius: 30,
     marginVertical: 10,
     marginHorizontal: 10
@@ -138,6 +146,9 @@ export default StyleSheet.create({
   multiLineInput: {
     height: 100,
     textAlignVertical: 'top'
+  },
+  priceInput: {
+    width: '40%'
   },
   imageFlatListContainer: {
     height: 220
@@ -196,6 +207,108 @@ export default StyleSheet.create({
     // marginLeft:33
    
   }, 
+  messageCard: {
+    width:'95%', 
+    height:'auto',
+  },
+  messageViewInCardContainer: {
+    flexDirection: 'row',
+  },
+  messageImageInCard: {
+    width: '40%',
+    height: '100%',
+    borderRadius: 10
+  },
+  messageDetailsInCardContainer: {
+    // alignItems: 'center',
+    height: 'auto',
+    padding: 5
+  },
+  messageItemNameInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageBuyerInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageSellerInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageDetailCardMe: {
+    marginLeft: 0,
+    width: '90%',
+    backgroundColor: Colors.accent,
+    padding: 10,
+    height: 'auto'
+  },
+  messageDetailCardThem: {
+    marginLeft: 30,
+    width: '90%',
+    backgroundColor: Colors.accent2,
+    padding: 10,
+    height: 'auto'
+  },
+  messageDetailCard: {
+    width: '95%',
+    backgroundColor: Colors.accent2,
+    padding: 10,
+    height: 'auto'
+  },
+  messageDetailItemNameInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageDetailBuyerInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageDetailSellerInDetailsOfCard: {
+    fontSize: 16
+  },
+  messageDetailItemAndDeleteButtonInCardContainer: {
+    flexDirection: 'row',
+  },
+  messageDetailDeleteButtonInCard: {
+    marginLeft: '60%'
+  },
+  messageDetailMessage: {
+    fontSize: 20
+  },
+  messageDetailDateTimeInCardContainer: {
+    flexDirection: 'row'
+  },
+  messageDetailDateInCardContainer: {
+    flexDirection: 'row'
+  },
+  messageDetailTimeInCardContainer: {
+    flexDirection: 'row'
+  },
+  messageDetailDateInCard: {
+    fontSize: 16
+  },
+  messageDetailTimeInCard: {
+    fontSize: 16
+  },
+  messageDetailMessageInCard: {
+    fontSize: 16
+  },
+  messageInputContainer: {
+    marginTop: 10,
+    marginBottom: 20,
+    backgroundColor: Colors.accent2,
+    borderColor: Colors.primary,
+    borderWidth: 1,
+    height: 50,
+    borderRadius: 5,
+    // marginHorizontal: 15,
+    flexDirection: 'row'
+  },
+  multiLineFeatherInput: {
+    textAlignVertical: 'top',
+    // height: 70,
+    width: '85%',
+    fontSize: 18 
+  },
+  sendMessageIcon : {
+    marginTop: 12,
+  },
   radioButtonGroupContainer: {
     margin: 10
   },
@@ -209,4 +322,43 @@ export default StyleSheet.create({
     width:50,
     marginLeft:300
   },
+  itemDetails: {
+    marginLeft: 10,
+    fontSize: 22,
+    color: 'black'
+  },
+  itemDetailDateTimeContainer: {
+    flexDirection: 'row',
+    marginLeft: 10
+  },
+  itemDetailDateContainer: {
+    flexDirection: 'row'
+  },
+  itemDetailTimeContainer: {
+    flexDirection: 'row'
+  },
+  itemDetailDate: {
+    fontSize: 22
+  },
+  itemDetailTime: {
+    fontSize: 22
+  },
+  activityIndicator: {
+    justifyContent: 'center'
+  },
+  rowContainer: {
+    flexDirection: 'row'
+  },
+  photoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  headerStyle: {
+    backgroundColor: Colors.defaultButtonColor,
+  },
+  headerTitleStyle: {
+    alignSelf: 'center',
+    fontSize: 22
+  }
   });

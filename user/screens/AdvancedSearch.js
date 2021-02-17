@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableWithoutFeedback } from 'react-native';
 import ModalDropdown from '../downloads/ModalDropDown';
-import Api from '../api/craftserver'; 
+import Api from '../api/craftserver';
 import SearchBar from '../components/SearchBar';
 import Colors from '../constants/Colors';
 import CategoryItems from '../components/CategoryItems';
@@ -12,7 +12,7 @@ import { searchForMostRecentItemsByCategoryMatchingSearchCriteria } from '../sto
 
 const AdvancedSearch = props => {
     const [categoryNames, setCategoryNames] = useState([]);
-    const [categories, setCategories] = useState([{id: 0, name: 'Select category'}]);
+    const [categories, setCategories] = useState([{ id: 0, name: 'Select category' }]);
     const [term, setTerm] = useState('');
     const [categoryIndex, setCategoryIndex] = useState(0);
 
@@ -26,27 +26,27 @@ const AdvancedSearch = props => {
 
     useEffect(() => {
         Api.get('/category')
-        .then((response) => {
-            const responseCategories = response.data;
+            .then((response) => {
+                const responseCategories = response.data;
 
-            const newCategories = [{id: 0, name: 'Select category'}, ...responseCategories];
-        
-            setCategories(newCategories);
-    
-            const newCategoryNames = newCategories.map(category => category.name);
-            setCategoryNames(newCategoryNames);
-    
-            searchMostRecentItemsByCategoryMatchingSearchCriteria();        
-        })
-        .catch(err => {
-            console.log(err);
-        })
+                const newCategories = [{ id: 0, name: 'Select category' }, ...responseCategories];
 
-        searchMostRecentItemsByCategoryMatchingSearchCriteria();        
+                setCategories(newCategories);
+
+                const newCategoryNames = newCategories.map(category => category.name);
+                setCategoryNames(newCategoryNames);
+
+                searchMostRecentItemsByCategoryMatchingSearchCriteria();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+        searchMostRecentItemsByCategoryMatchingSearchCriteria();
     }, []);
 
     const searchMostRecentItemsByCategoryMatchingSearchCriteria = () => {
-        const searchTerm = term === ''? '%25' : term;
+        const searchTerm = term === '' ? '%25' : term;
 
         const searchCategoryId = categories[categoryIndex].id;
 
@@ -65,16 +65,16 @@ const AdvancedSearch = props => {
         //     Keyboard.dismiss();
         //     }}
         // >        
-        <View style={ DefaultStyles.screenContainer }>
+        <View style={DefaultStyles.screenContainer}>
             <ScrollView>
-                <View style={ DefaultStyles.searchBarOuterContainer }>
+                <View style={DefaultStyles.searchBarOuterContainer}>
                     <SearchBar
                         term={term}
-                        onTermChange={newTerm => setTerm(newTerm) }
-                        onTermSubmit={() => searchMostRecentItemsByCategoryMatchingSearchCriteria() }                    
+                        onTermChange={newTerm => setTerm(newTerm)}
+                        onTermSubmit={() => searchMostRecentItemsByCategoryMatchingSearchCriteria()}
                     />
                 </View>
-                <View style={styles.categoryContainer}>
+                <View style={styles.labelAndModalContainer}>
                     <Text style={DefaultStyles.label}>
                         Category
                     </Text>
@@ -94,7 +94,7 @@ const AdvancedSearch = props => {
                 </View>
 
                 <View style={DefaultStyles.buttonContainer}>
-                        <MainButton title="Search" buttonColor={Colors.defaultButtonColor} onPress={searchButtonHandler}/>
+                    <MainButton title="Search" buttonColor={Colors.defaultButtonColor} onPress={searchButtonHandler} />
                 </View>
 
                 <Text style={DefaultStyles.title}>
@@ -104,15 +104,15 @@ const AdvancedSearch = props => {
                 {
                     mostRecentItemsByCategoryMatchingSearchCriteria.map((category, i) => {
                         return (
-                            <CategoryItems 
-                                key={category.category.name } 
+                            <CategoryItems
+                                key={category.category.name}
                                 category={category} />
                         );
                     })
                 }
             </ScrollView>
-      </View>
-      /* </TouchableWithoutFeedback> */
+        </View>
+        /* </TouchableWithoutFeedback> */
     );
 };
 

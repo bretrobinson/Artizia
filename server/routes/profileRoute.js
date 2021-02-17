@@ -27,5 +27,21 @@ router.patch('/', (req, res)=>{
         res.send({user})
     })
 })
+router.put('/', (req, res)=>{
+
+    console.log(req.body)
+
+ 
+    let sql = `UPDATE users  SET status = '${req.body.status}' WHERE email = '${req.body.email}'`
+    // let sql = `UPDATE users  SET lName = '${req.body.lName}' WHERE idusers = ${req.user.idusers}`
+    let query = db.query(sql, (err, result)=>{
+        if (err){
+            res.status(404).send({error:err})
+        }
+       console.log(result)
+        res.send(result)
+    })
+
+})
 
 module.exports = router
