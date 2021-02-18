@@ -5,7 +5,7 @@ import craftserverApi from '../api/craftserver'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Notification from 'expo-notifications';
 import *as Permissions from 'expo-permissions';
-
+import { useState } from 'react';
 const authReducer = (state, action)=>{
     switch(action.type){
         case 'add_error':
@@ -32,35 +32,22 @@ const signup = dispatch => async ({ email, password, fName, lName, location , pa
 
 
 ///Permissions for notifications
-let PushTokenNotification
-    Permissions.getAsync(Permissions.NOTIFICATIONS)
-    .then((statusObj)=>{
-      if(statusObj.status !== 'granted'){
-        Permissions.askAsync(Permissions.NOTIFICATIONS);
-      }
-      return statusObj;
-    }).then(statusObj=>{
-      if(statusObj.status !== 'granted'){
-        throw new Error('Permission not granted!');
-      }
-    }
- 
-    )
-    .then(()=>{
-     return Notification.getExpoPushTokenAsync();
-    })
-    .then(data=>{
-        PushTokenNotification=response.data;
-    })
-    .catch((err)=>{
-      console.log(err)
-      return null;
-    });
-    
+
     try {
         if (email.length <1 || password.length<1){
             dispatch({type: 'add_error', payload: 'Enter email and password'})
         } else {
+            let PushTokenNotification;
+            let statusObj = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+            if (statusObj.status !== 'granted') {
+              statusObj = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+            }
+            if (statusObj.status !== 'granted') {
+                PushTokenNotification = null;
+            } else {
+                PushTokenNotification = (await Notifications.getExpoPushTokenAsync()).data;
+            }
+           console.log(PushTokenNotification)
             const response = await craftserverApi.post('/signup', {email, password, fName, lName, location, payment,PushTokenNotification})
         
             await AsyncStorage.setItem('token', response.data.token)
