@@ -3,8 +3,17 @@ import {TextareaAutosize, Input, Button, TextField, Container} from '@material-u
 
 
 
-const Announcement = ({onChangeTitle, onChangeExpiredDate, onChangeMessage, onSubmitmessage, title, message, expiredDate}) => {
-    
+const Announcement = ({onChangeTitle, onChangeExpiredDate, onChangeMessage, onSubmitmessage, title, message, expiredDate, onRoute}) => {
+
+    const submitMessageHandler = ({title, message, expiredDate})=>{
+        if (!title|| !message ){
+            alert('Please enter Title , Message and Expired Date')
+            onRoute('createMessage')
+          } else {
+        onSubmitmessage({title, message, expiredDate})
+        onRoute('announcements')
+    }
+}
     return (
         <Container maxWidth='sm'>
             <h3>General Message</h3>
@@ -17,7 +26,7 @@ const Announcement = ({onChangeTitle, onChangeExpiredDate, onChangeMessage, onSu
              <TextField id='date' label='Expiry date' type='date'  InputLabelProps={{ shrink: true, }} onChange={(e)=>onChangeExpiredDate(e.target.value)}  defaultValue={new Date()} />
             </div>
             <div>              
-               <Button variant="contained" color="primary"  href='/' onClick={()=>onSubmitmessage({title, message, expiredDate})}>
+               <Button variant="contained" color="primary"  onClick={()=>submitMessageHandler({title, message, expiredDate})}>
                     Submit Announcement
                 </Button>
                

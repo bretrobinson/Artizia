@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextareaAutosize, Input, Button, TextField, Container } from '@material-ui/core'
 import {    useHistory  } from "react-router-dom";
 
-const HomeScreen = ({isSignedIn, setIsSignedIn}) => {
+const HomeScreen = ({isSignedIn, setIsSignedIn, onRouteChange}) => {
 
     const [email, setEmail] = useState('')
     const[password, setPassword] = useState('')  
@@ -10,7 +10,7 @@ const HomeScreen = ({isSignedIn, setIsSignedIn}) => {
  
     const onSignin =()=>{
         setIsSignedIn(true)
-        history.push('/announcements/')
+        onRouteChange('announcements')
     }
     return (
         <div className='div_cont'>

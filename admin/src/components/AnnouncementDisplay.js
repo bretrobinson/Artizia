@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Container, makeStyles,} from '@material-ui/core'
-import {    useHistory  } from "react-router-dom";
 
 
 const useStyles = makeStyles({
@@ -28,16 +27,15 @@ const useStyles = makeStyles({
     }
 })
 
-const AnnouncementDisplay = ({annnouncementData,onDeleteMessage}) => {
-    const history = useHistory()
-    const classes= useStyles()
+const AnnouncementDisplay = ({annnouncementData,onDeleteMessage,onRouteChange}) => {
+       const classes= useStyles()
 
     const annoucementDisplay = annnouncementData.map((data)=>{
         return (<Container className={classes.container }  key={data.idAnnouncements}>
 
             <div className={classes.title} >
               <div style={{fontWeight:'bold', fontSize: 20, marginRight: 'auto'}}>  {data.title} </div>
-            <Button style={{marginRight:150}}variant="contained" onClick={()=>history.push('/edit/' + data.idAnnouncements)}>edit</Button>
+            <Button style={{marginRight:150}}variant="contained" onClick={()=>onRouteChange(`edit`,{param:data.idAnnouncements})}>edit</Button>
             <Button variant="contained" color="secondary" onClick={()=>onDeleteMessage(data.idAnnouncements)}>delete</Button>
             </div>
             <div>{data.message}</div>

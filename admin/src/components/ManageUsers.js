@@ -21,14 +21,19 @@ const ManageUsers = () => {
     const [date, setDate] = useState(new Date())
 
  const   setStatusHandler = async (email, status, date )=>{
-        console.log(email, status) 
-        try {
-         let response = await craftserverApi.put('/adminProfile/',{ email,status, date})
-            await alert(response.data)
-        }catch (err){
-            alert(err)
-        }
-        
+   if (!email || !status){
+     alert("Please eneter account and status to change")
+   } else{
+    try {
+      let response = await craftserverApi.put('/adminProfile/',{ email,status, date})
+         await alert(response.data)
+     }catch (err){
+         alert(err)
+     }
+     
+   }
+       
+       
     }
     return (
         <div className='div_cont'>
