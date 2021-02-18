@@ -13,6 +13,10 @@ import { searchTermReducer, searchMostRecentItemsByCategoryMatchingSearchTermRed
 import thunkMiddleware from 'redux-thunk';
 import { Provider as AnnouncementsProvider } from './context/AnnouncementContext';
 import * as Notifications from 'expo-notifications';
+import { enableScreens } from 'react-native-screens';
+
+enableScreens();
+
 Notifications.setNotificationHandler({
   handleNotification: async () => {
     return { shouldShowAlert: true };
