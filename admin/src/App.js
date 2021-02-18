@@ -96,7 +96,7 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
       onChangeMessage={setMessage}
       onUpdateMessage={onUpdateMessage}
       title={title} message={message} expiredDate={expiredDate}
-       
+       setIsSignedIn={setIsSignedIn}
        />
           </Route>
           <Route path="/rules">
@@ -109,7 +109,8 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
         />
           </Route>
           <Route path="/"  >
-            <HomeScreen  setIsSignedIn={setIsSignedIn} />
+            {isSignedIn ? null: <HomeScreen  setIsSignedIn={setIsSignedIn} /> }
+            
           </Route>
         </Switch>
       </div>
@@ -117,7 +118,7 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
     </div>
   );
 }
-const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, message, title})=>{
+const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, message, title, setIsSignedIn })=>{
  
 let {idAnnouncements} = useParams()
 // console.log(idAnnouncements)
@@ -126,7 +127,9 @@ onChangeTitle={onChangeTitle}
 onChangeExpiredDate={onChangeExpiredDate} 
 onChangeMessage={onChangeMessage}
 onUpdateMessage={onUpdateMessage}
-title={title} message={message} />
+title={title} message={message}
+setIsSignedIn={setIsSignedIn} />
+
 }
 
 export default App;

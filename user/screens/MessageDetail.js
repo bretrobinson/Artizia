@@ -59,7 +59,7 @@ const MessageDetail = ({ route, navigation }) => {
                 <View style={DefaultStyles.messageDetailDateTimeInCardContainer}>
                     <View style={DefaultStyles.messageDetailDateInCardContainer}>
                         <Text style={DefaultStyles.messageDetailDateInCard} >Date: </Text>
-                        <Moment style={DefaultStyles.messageDetailDateInCard} element={Text} format="YYYY-MM-DD ">{item.dateCreated}</Moment>
+                        <Moment style={DefaultStyles.messageDetailDateInCard} element={Text} format="MMM-DD-YYYY ">{item.dateCreated}</Moment>
                     </View>
                     <View style={DefaultStyles.messageDetailTimeInCardContainer}>
                         {/* <Text style={DefaultStyles.messageDetailTimeInCard}>Time  </Text> */}

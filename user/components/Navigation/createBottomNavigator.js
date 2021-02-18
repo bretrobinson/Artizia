@@ -21,10 +21,17 @@ const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})
 
         {isSignedIn ? <>
             <Tab.Screen 
+        name = "my Item"
+        component={MyItemStackNavigator}
+        options={()=> ({
+            tabBarIcon: ()=> <Entypo name='list' size={25} />
+        })}
+        />
+            <Tab.Screen 
         name = "Messages"
         component={MessageStackNavigator}
         options={()=> ({
-            tabBarIcon: ()=> <Entypo name='message' size={25} />
+            tabBarIcon: ()=> <Entypo name='chat' size={25} />
         })}
         />
         <Tab.Screen 
@@ -43,13 +50,13 @@ const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})
     />
       </>  
     :     <>  
-        <Tab.Screen 
+        {/* <Tab.Screen 
         name = "Advance Search"
         component={AdvancedSearchStackNavigator}
         options={()=> ({
             tabBarIcon: ()=> <Entypo name='magnifying-glass' size={25} />
         })}
-        />
+        /> */}
      <Tab.Screen 
     name = "Signin"
     component={MainStackNavigator}

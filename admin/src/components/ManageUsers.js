@@ -12,16 +12,18 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+  
 
 const ManageUsers = () => {
     const classes = useStyles();
     const [email,  setEmail] = useState('')
     const [status, setStatus] = useState('')
+    const [date, setDate] = useState(new Date())
 
- const   setStatusHandler = async (email, status)=>{
+ const   setStatusHandler = async (email, status, date )=>{
         console.log(email, status) 
         try {
-         let response = await craftserverApi.put('/adminProfile/',{ email,status})
+         let response = await craftserverApi.put('/adminProfile/',{ email,status, date})
             await alert(response.data)
         }catch (err){
             alert(err)
@@ -51,7 +53,7 @@ const ManageUsers = () => {
            </Select>
       </FormControl>
                 <div className='div_button_cont'>
-                    <Button variant="contained" color="primary"   onClick={()=>setStatusHandler(email, status)}>
+                    <Button variant="contained" color="primary"   onClick={()=>setStatusHandler(email, status, date)}>
                         Submit Changes
                    </Button>
 
