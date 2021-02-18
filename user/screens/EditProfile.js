@@ -75,7 +75,7 @@ const EditProfile = ({ navigation }) => {
                         <Input
                             onChangeText={setLocation}
                             autoCorrect={false}
-                            label='Postal Code'
+                            label='Location'
                             defaultValue={state.user.location}
                             // labelStyle={DefaultStyles.bodyText}
                             placeholderTextColor={Colors.placeholderTextColor}

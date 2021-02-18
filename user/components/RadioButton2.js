@@ -16,7 +16,7 @@ const RadioButton2 = ({ value, setValue }) => {
           <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Email Transfer" value="Email Transfer" />
           <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Pay Pal" value="PayPal" />
           <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Cash" value="Cash" />
-          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Any Above" value="Any Above" />
+          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Any Payment Above" value="Any Above" />
         </View>
       </RadioButton.Group>
     </View>

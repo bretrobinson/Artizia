@@ -3,7 +3,7 @@ import {Button, TextField, Container} from '@material-ui/core'
 import {Link} from '@material-ui/core'
 import craftserverApi from '../api/craftserver'
 
-const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, title, message, expiredDate}) => {
+const AnnouncementEdit = ({idAnnouncements, onChangeTitle, setIsignedIn, onChangeMessage, onUpdateMessage, title, message, expiredDate}) => {
   
     const [detail, setDetail] = useState('')
 
@@ -26,13 +26,16 @@ const AnnouncementEdit = ({idAnnouncements, onChangeTitle, onChangeExpiredDate, 
 //            return {...cur, [name]: value}
 //        })
 //    }
-
+const onSubmitEdit =(idAnnouncements, message)=>{
+    onUpdateMessage(idAnnouncements, message)
+    setIsignedIn(true)
+}
 
     return (
         <Container maxWidth='sm' >
             <h3>Edit Announcement</h3>
             <div>
-           <Button variant="contained" color="primary"  href='/' onClick={()=>onUpdateMessage(idAnnouncements, message)} >
+           <Button variant="contained" color="primary"  href='/announcements' onClick={()=>onSubmitEdit(idAnnouncements, message)} >
             Submit Edit
                 </Button> 
                 <Link href='/' > <Button variant="contained" color="primary">Cancel </Button> </Link>

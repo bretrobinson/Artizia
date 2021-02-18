@@ -80,7 +80,7 @@ const Signup = ({ navigation }) => {
                         <Input value={location}
                             onChangeText={setLocation}
                             autoCorrect={false}
-                            label='Postal Code'
+                            label='Location'
                             placeholder='A0A 0A0'
                             labelStyle={DefaultStyles.label}
                             placeholderTextColor={Colors.placeholderTextColor}
