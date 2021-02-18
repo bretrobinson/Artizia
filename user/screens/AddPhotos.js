@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Modal, View, Image, FlatList, Text } from 'react-native';
+import { Button, StyleSheet, Modal, View, Image, FlatList, Text, Alert } from 'react-native';
 import Input from '../components/Input';
 import Card from '../components/Card';
 import Colors from '../constants/Colors';
@@ -8,13 +8,33 @@ import * as Permissions from 'expo-permissions';
 import DefaultStyles from '../constants/defaultStyles';
 import MainButton from '../components/MainButton';
 import { ScrollView } from 'react-native-gesture-handler';
+import * as FileSystem from 'expo-file-system';
 
 const AddPhotos = (props) => {
   const [currentImageUri, setCurrentImageUri] = useState('');
   const [newPhotos, setNewPhotos] = useState(props.photos);
 
-  const addPhotoHandler = () => {
+  const addPhotoHandler = async () => {
     console.log('addPhotoHandler', currentImageUri);
+
+    if (newPhotos.filter(photo => photo.uri === currentImageUri).length > 0) {
+      Alert.alert("This photo has already been uploaded", "", [{ text: "Ok", onPress: () => { } }]);
+      return;
+    }
+
+    if (currentImageUri) {
+      const fileInfo = await FileSystem.getInfoAsync(currentImageUri);
+
+      if (!fileInfo.exists) {
+        Alert.alert("The image uri does not exist on this device", "", [{ text: "Ok", onPress: () => { } }]);
+        return;
+      }
+    }
+    else {
+      Alert.alert("The image uri does not exist on this device", "", [{ text: "Ok", onPress: () => { } }]);
+      return;
+    }
+    
     const newNewPhotos = [...newPhotos];
     newNewPhotos.push({ uri: currentImageUri });
     setNewPhotos(newNewPhotos);
