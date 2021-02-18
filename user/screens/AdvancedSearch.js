@@ -50,7 +50,7 @@ const AdvancedSearch = props => {
 
         const searchCategoryId = categories[categoryIndex].id;
 
-        const numberOfMostRecentItems = 0;
+        const numberOfMostRecentItems = 5;
 
         dispatch(searchForMostRecentItemsByCategoryMatchingSearchCriteria(searchTerm, searchCategoryId, numberOfMostRecentItems));
     }

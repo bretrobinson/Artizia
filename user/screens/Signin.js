@@ -68,7 +68,7 @@ const Signin = ({ navigation }) => {
 
             <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
                 {/* <View style={styles.buttonSave}> */}
-                <MainButton title="Go to Sign up" buttonColor={Colors.cancelButtonColor} onPress={() => navigation.navigate('Signup')} />
+                <MainButton title="Go to Sign up" buttonColor={Colors.cancelButtonColor} onPress={() => navigation.navigate('Sign up')} />
                 {/* </View>         */}
             </View>
         </View>

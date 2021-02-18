@@ -10,6 +10,7 @@ const Item = function(item) {
   this.id=item.id;
   this.name=item.name;
   this.categoryId=item.categoryId;
+  this.subcategoryId=item.subcategoryId;
   this.createdDate=item.createdDate;
   this.drop=item.drop;
   this.price=item.price;

@@ -21,18 +21,17 @@ import DefaultStyles from '../../constants/defaultStyles';
 
 
 const Stack = createStackNavigator();
-const MainStackNavigator = ({ navigation }) => {
-  return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: DefaultStyles.headerStyle,
-      headerTitleStyle: DefaultStyles.headerTitleStyle
-    }} >
-      <Stack.Screen name="Signin" component={Signin}
+const MainStackNavigator = ({navigation}) => {
+    return (
+      <Stack.Navigator screenOptions={{ headerStyle: {
+        backgroundColor: Colors.accent2,
+      },}} >
+        <Stack.Screen name="Sign in" component={Signin}         
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }}
-      />
-      <Stack.Screen name="Signup" component={Signup}
+         />
+        <Stack.Screen name="Sign up" component={Signup}
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }}
@@ -54,7 +53,7 @@ const LandingStackNavigator = ({ navigation }) => {
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
-      <Stack.Screen name="ItemDetail" component={ItemDetail}
+        <Stack.Screen name="Item Detail" component={ItemDetail}
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
@@ -77,7 +76,7 @@ const ProfileStackNavigator = ({ navigation }) => {
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
-      <Stack.Screen name="EditProfile" component={EditProfile}
+        <Stack.Screen name="Edit Profile" component={EditProfile} 
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
         }} />
@@ -121,18 +120,17 @@ const AdvancedSearchStackNavigator = ({ navigation }) => {
 
 const MessageStackNavigator = ({ navigation }) => {
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: DefaultStyles.headerStyle,
-      headerTitleStyle: DefaultStyles.headerTitleStyle
-    }}>
-      <Stack.Screen name="MessageList" component={MessageList}
-        options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
-        }} />
-      <Stack.Screen name="MessageDetail" component={MessageDetail}
-        options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
-        }} />
+    <Stack.Navigator screenOptions={{ headerStyle: {
+      backgroundColor: Colors.accent2,
+    },}}>
+      <Stack.Screen name="Message List" component={MessageList} 
+      options={{
+        headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
+      }} />
+      <Stack.Screen name="Messages" component={MessageDetail}
+      options={{
+        headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
+      }} />
     </Stack.Navigator>
   );
 }

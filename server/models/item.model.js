@@ -71,6 +71,7 @@ ItemModel.findMostRecentItemsByCategoryMatchingSearchTerm=function(searchTerm, n
     const categorySql = `select distinct cat.*
                             from Category cat
                             inner join Item it on cat.id = it.categoryId 
+                            inner join Image im on it.id = im.itemId
                             where it.name like '%${searchTerm}%' 
                                 or it.desc like '%${searchTerm}%'                            
                             `;
@@ -117,6 +118,7 @@ ItemModel.findMostRecentItemsByCategoryMatchingSearchCriteria=function(searchTer
     let categorySql = `select distinct cat.*
                             from Category cat
                             inner join Item it on cat.id = it.categoryId 
+                            inner join Image im on it.id = im.itemId                            
                             where (it.name like '%${searchTerm}%' 
                                 or it.desc like '%${searchTerm}%')                            
                             `;

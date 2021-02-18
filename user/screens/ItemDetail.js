@@ -19,7 +19,7 @@ const ItemDetail = ({ route, navigation }) => {
   const [ItemImages, setItemImages] = useState([])
   const [sellerid, setSellerid] = useState('')
 
-  const ItemMessage = ` Hi, I'm intersted in the ${itemName}! Please contact me if this item is still available, Thanks`
+  const ItemMessage = ` Hi, I'm interested in the ${itemName}! Please contact me if this item is still available, Thanks`
   const [message, setMessage] = useState(ItemMessage)
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const ItemDetail = ({ route, navigation }) => {
     } else {
       if (message.length < 2) {
         alert('Please enter message to send')
-        navigation.navigate('ItemDetail')
+        navigation.navigate('Item Detail')
       } else {
         // console.log(message)
         try {

@@ -49,7 +49,7 @@ const Profile = ({ navigation }) => {
                     <Input editable={false} value={state.user.joined} />
 
                     <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
-                        <MainButton title="Edit Profile" buttonColor={Colors.defaultButtonColor} onPress={() => navigation.navigate('EditProfile')} />
+                        <MainButton title="Edit Profile" buttonColor={Colors.defaultButtonColor} onPress={() => navigation.navigate('Edit Profile')} />
                     </View>
 
                 </View>

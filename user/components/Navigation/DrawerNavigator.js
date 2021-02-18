@@ -14,7 +14,10 @@ import {LandingStackNavigator,
     MessageStackNavigator,
     AdvancedSearchStackNavigator
 } from './StackNavigator'
-import {MyTab} from './BottomNavigator'
+import {LandingTab, SigininTab, ReviewSellerTab, MyItemTab, MessageTab, AdvanceSearchTab} from './BottomNavigator'
+// import {ProfileStackNavigator} from './BottomNavigator'
+import ProfileBottomNav from "./ProfileBottomNav";
+import AnnouncementsBottomNav  from "./AnnouncementsBottomNav";
 
 
 const Drawer = createDrawerNavigator()
@@ -27,28 +30,28 @@ const DrawerNavigator = ()=> {
         return (
         
             <Drawer.Navigator  drawerPosition="right">
-                <Drawer.Screen name='Home' component={ MyTab} 
+                <Drawer.Screen name='Home' component={LandingTab} 
                        options={()=> ({
                         drawerIcon: ()=> <FontAwesome name='home' size={25} />
                     })} />
-
-                <Drawer.Screen name= 'Signin' component={MainStackNavigator} 
+{/* 
+                <Drawer.Screen name= 'Signin' component={SigininTab} 
                         options={()=> ({
                         drawerIcon: ()=> <Entypo name='login' size={25} />
-                    })}/>            
+                    })}/>             */}
 
-                 <Drawer.Screen name= 'Advanced Search' component={AdvancedSearchStackNavigator}
+                 <Drawer.Screen name= 'Advanced Search' component={AdvanceSearchTab}
                       options={()=> ({
-                        drawerIcon: ()=> <FontAwesome name='search' size={25} />
+                        drawerIcon: ()=> <Entypo name='magnifying-glass' size={25} />
                     })} />
-                <Drawer.Screen name= 'Review Seller' component={ReviewSellerStackNavigator}
+                <Drawer.Screen name= 'Review Seller' component={ReviewSellerTab}
                         options={()=> ({
-                            drawerIcon: ()=> <MaterialIcons name='rate-review' size={25} />
+                            drawerIcon: ()=> <Entypo name='new-message' size={25} />
                         })} />
 
-                <Drawer.Screen name= 'Announcements' component={AnnouncementsStackNavigator} 
+                <Drawer.Screen name= 'Announcements' component={AnnouncementsBottomNav} 
                         options={()=> ({
-                            drawerIcon: ()=> <MaterialIcons name='announcement' size={25} />
+                            drawerIcon: ()=> <Entypo name='news' size={25} />
                         })}/>
                 
 
@@ -60,43 +63,43 @@ const DrawerNavigator = ()=> {
     return (
         
         <Drawer.Navigator drawerPosition="right">
-            <Drawer.Screen name='Home' component={ MyTab}
+            <Drawer.Screen name='Home' component={LandingTab}
                 options={()=> ({
                 drawerIcon: ()=> <FontAwesome name='home' size={25} />
             })} />
 
-            <Drawer.Screen name = 'Profile' component={ProfileStackNavigator} 
+            <Drawer.Screen name = 'Profile' component={ProfileBottomNav} 
                 options={()=> ({
                 drawerIcon: ()=> <AntDesign name='profile' size={25} />
             })}/>
-            <Drawer.Screen name= 'Advanced Search' component={AdvancedSearchStackNavigator}
+            <Drawer.Screen name= 'Advanced Search' component={AdvanceSearchTab}
               options={()=> ({
-                drawerIcon: ()=> <FontAwesome name='search' size={25} />
+                drawerIcon: ()=> <Entypo name='magnifying-glass' size={25} />
             })} />             
-            <Drawer.Screen name= 'Review Seller' component={ReviewSellerStackNavigator}
+            <Drawer.Screen name= 'Review Seller' component={ReviewSellerTab}
             options={()=> ({
-                drawerIcon: ()=> <MaterialIcons name='rate-review' size={25} />
+                drawerIcon: ()=> <Entypo name='new-message' size={25} />
             })}
              />
-            <Drawer.Screen name= 'Add Item' component={AddItemStackNavigator} 
+            {/* <Drawer.Screen name= 'Add Item' component={AddItemStackNavigator} 
             options={()=> ({
                 drawerIcon: ()=> <Entypo name='add-to-list' size={25} />
     })}
-            />
-            <Drawer.Screen name= 'MyItem' component={MyItemStackNavigator} 
+            /> */}
+            {/* <Drawer.Screen name= 'My Item' component={MyItemTab} 
             options={()=> ({
                 drawerIcon: ()=> <Entypo name='list' size={25} />
     })}
-            />
-            <Drawer.Screen name='Messages' component={MessageStackNavigator}
+            /> */}
+            {/* <Drawer.Screen name='Messages' component={MessageTab}
                     options={()=> ({
-                        drawerIcon: ()=> <Entypo name='message' size={25} />
-            })} />
-            <Drawer.Screen name= 'Announcements' component={AnnouncementsStackNavigator} 
+                        drawerIcon: ()=> <Entypo name='chat' size={25} />
+            })} /> */}
+            <Drawer.Screen name= 'Announcements' component={AnnouncementsBottomNav} 
                     options={()=> ({
-                        drawerIcon: ()=> <MaterialIcons name='announcement' size={25} />
+                        drawerIcon: ()=> <Entypo name='news' size={25} />
                     })}/>
-            <Drawer.Screen name= 'Signout' component={SignoutStackNavigator}
+            <Drawer.Screen name= 'Sign out' component={SignoutStackNavigator}
               options={()=> ({
                 drawerIcon: ()=> <Entypo name='log-out' size={25} />
             })} />

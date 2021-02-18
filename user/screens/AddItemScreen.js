@@ -28,21 +28,30 @@ import Card from '../components/Card';
 import Api from '../api/craftserver';
 
 const Categories = [];
+const CategoryIds = [];
+let categoryID = '';
 let categoryRows = [];
+
+// main URL of server
+let serverURL = "http://e0de77257e4e.ngrok.io"
 
 // get categories from datbase
 // the base URL should come from env var
-let serverURL = "http://localhost:3000/category"
-fetch(serverURL)
+// let serverURL = "http://localhost:3000/category"
+let categoryURL = serverURL + "/category"
+//console.log('categoryURL: ', categoryURL)
+
+fetch(categoryURL)
   .then((resp) => resp.json())
   .then(data => {
     categoryRows = data
-    console.log('response data in add item: ', categoryRows)
-    categoryRows.forEach((row) => console.log('category id: ', row.id, ' category name: ', row.name))
+    //console.log('response data in add item: ', categoryRows)
+    //categoryRows.forEach((row) => console.log('category id: ', row.id, ' category name: ', row.name))
     categoryRows.forEach((row) => {
       Categories.push(row.name)
+      CategoryIds.push(row.id)
     })
-    console.log('Categories inside: ', Categories)
+    //console.log('Categories inside: ', Categories)
   })
   .catch(error => {
     console.log(error)
@@ -52,33 +61,37 @@ fetch(serverURL)
 // 'Crochet', 'Sewing', 'Painting', 'Woodwork', 'Photography', 'Metalwork', 'Bath and Beauty', 'Pets', 'Office'];
 
 let SubCategories = [];
+let subcategoryIds = [];
+let subcategoryID = '';
+let subcategoryRows = [];
+
 // this should eventually come from database
-const subCats = [
-  {
-    "cat": "Crochet",
-    "subcats": ['Toques', 'Gloves and Mittens', 'Scarves', 'Shawls']
-  },
-  {
-    "cat": "Sewing",
-    "subcats": ['Quilts', 'Towels', 'Skirts']
-  },
-  {
-    "cat": "Painting",
-    "subcats": ['Landscape', 'Abstract', 'Impressionism', 'Portrait']
-  },
-  {
-    "cat": "Woodwork",
-    "subcats": ['Bowls', 'Tables', 'Carving', 'Kitchen']
-  }
-];
+// const subCats = [
+//   {
+//     "cat": "Crochet",
+//     "subcats": ['Toques', 'Gloves and Mittens', 'Scarves', 'Shawls']
+//   },
+//   {
+//     "cat": "Sewing",
+//     "subcats": ['Quilts', 'Towels', 'Skirts']
+//   },
+//   {
+//     "cat": "Painting",
+//     "subcats": ['Landscape', 'Abstract', 'Impressionism', 'Portrait']
+//   },
+//   {
+//     "cat": "Woodwork",
+//     "subcats": ['Bowls', 'Tables', 'Carving', 'Kitchen']
+//   }
+// ];
 
-let subCatArr = [];
+// let subCatArr = [];
 
-for (let i = 0; i < subCats.length; i++) {
-  subCatArr = [...subCats[i].subcats];
-  //console.log(subCats[i].subcats)
-  //console.log('subCat: ', i, " ", subCatArr)
-}
+// for (let i = 0; i < subCats.length; i++) {
+//   subCatArr = [...subCats[i].subcats];
+//   //console.log(subCats[i].subcats)
+//   //console.log('subCat: ', i, " ", subCatArr)
+// }
 
 let defaultSubcatTitle = 'Select subcat for...'
 
@@ -88,7 +101,7 @@ const AddItemScreen = props => {
   const [longDesc, setLongDesc] = useState();
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
-  const [subcategory, setSubcategory] = useState([]);
+  const [subcategory, setSubcategory] = useState('');
   const [addPhoto, setAddPhoto] = useState('');
   const [photos, setPhotos] = useState([]);
   const [isAddPhotoModalVisible, setIsAddPhotoModalVisible] = useState(false);
@@ -116,16 +129,55 @@ const AddItemScreen = props => {
 
   const categorySelectHandler = (idx, value) => {
     //console.log('idx: ', idx, ' value: ', value);
+    categoryID = CategoryIds[idx];
+    //console.log('categoryID: ', categoryID, ' idx: ', idx, ' value: ', value)
     setCategory(value);
-    SubCategories = subCats[idx].subcats;
-    defaultSubcatTitle = subCats[idx].cat;
+
+    // load up subcat array with subcats matching catid from DB
+    //let subcatServerURL = "http://localhost:3000/subcategory/bycategory/" + categoryID
+    let subcategoryURL = serverURL + "/subcategory/bycategory/" + categoryID
+    //console.log('subcategoryURL: ', subcategoryURL)
+    //let subcatServerURL = "http://6685b309427b.ngrok.io/subcategory/bycategory/" + categoryID
+    //console.log('subcatServerURL: ', subcatServerURL)
+    //console.log('resetting SubCategories array')
+    SubCategories = [];
+    subcategoryIds = [];
+
+    //fetch(subcatServerURL)
+    fetch(subcategoryURL)
+      .then((resp) => resp.json())
+      .then(data => {
+        subcategoryRows = data
+        // console.log('subcategory response data in add item: ', subcategoryRows)
+        subcategoryRows.forEach((row) => console.log('subcategory id: ', row.id, ' subcategory name: ', row.name))
+        subcategoryRows.forEach((row) => {
+          SubCategories.push(row.name)
+          subcategoryIds.push(row.id)
+        })
+        //console.log('Subcategories inside: ', SubCategories)
+        defaultSubcatTitle = value;
+        //console.log('defaultSubcatTitle in fetch then: ', defaultSubcatTitle)
+        setSubcategory(defaultSubcatTitle);
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+    //SubCategories = subCats[idx].subcats;
+    //defaultSubcatTitle = subCats[idx].cat;
+    defaultSubcatTitle = value;
     //setSubcategory(SubCategories);
+    //console.log('defaultSubcatTitle: ', defaultSubcatTitle)
     setSubcategory(defaultSubcatTitle);
     //itemSubcategory.select(0)
   };
 
   const subcategorySelectHandler = (idx, value) => {
     //console.log('subcat idx: ', idx, ' value: ', value);
+    //console.log('subCategory: ', value, ' idx: ', idx)
+
+    subcategoryID = subcategoryIds[idx];
+
     setSubcategory(value);
   };
 
@@ -136,26 +188,38 @@ const AddItemScreen = props => {
 
   const saveButtonHandler = props => {
     //console.log('saveButton: ', shortDesc, longDesc, price, category, subcategory)
+    let isError = false;
     if (!shortDesc) {
       Alert.alert(
         "Must enter a short description", "",
         [{ text: "OK", onPress: () => { shortD.current.focus() } }]
       );
+      isError = true;
     } else if (!longDesc) {
       Alert.alert(
         "Must enter a long description", "",
         [{ text: "OK", onPress: () => { longD.current.focus() } }]
       );
+      isError = true;
     } else if (!price) {
       Alert.alert(
         "Must enter a price", "",
         [{ text: "OK", onPress: () => { sellPrice.current.focus() } }]
       );
+      isError = true;
     } else if (!category) {
-      Alert.alert("Must select a category", "", []);
+      Alert.alert("Must select a category", "", [{ text: "Ok", onPress: () => { } }]);
+      isError = true;
     } else if (!subcategory || subcategory === category) {
-      Alert.alert("Must select a subcategory", "", []);
+      Alert.alert("Must select a subcategory", "", [{ text: "Ok", onPress: () => { } }]);
+      isError = true;
+    } else if (photos.length === 0) {
+      Alert.alert("You must add a photo", "", [{ text: "Ok", onPress: () => { } }]);
+      isError = true;
     }
+
+    if (isError) return;
+
     console.log("all input data looks ok");
     //console.log('userid :', req.user.idusers)
 
@@ -165,7 +229,8 @@ const AddItemScreen = props => {
 
     const itemData = {
       name: shortDesc,
-      categoryId: 7,
+      categoryId: categoryID,
+      subcategoryId: subcategoryID,
       createdDate: currentDate,
       drop: longDesc,
       price: price,
@@ -188,9 +253,9 @@ const AddItemScreen = props => {
         // console.log('item post response: ', response);
         // console.log('item created id', response.data.data.id)
         savePhotosForItems(response.data.data.id)
-        .then(() => {
-          navigate('Home');
-        });
+          .then(() => {
+            navigate('Home');
+          });
       })
       .catch((err) => {
         console.log('Error from item create api.post: ', err)

@@ -1,75 +1,52 @@
 import React, {useContext, } from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
+import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator, AnnouncementsStackNavigator} from './StackNavigator'
 import {FontAwesome, Entypo, MaterialIcons, Ionicons} from '@expo/vector-icons'
 import {Context as AuthContext} from '../../context/AuthContext'
+import CreateBottomTabNavigator from './createBottomNavigator'
 const Tab = createBottomTabNavigator();
 
-const MyTab = ()=>{
+const LandingTab = ()=>{
 
     const{ state:{isSignedIn} } = useContext(AuthContext)
     return    (
-    <Tab.Navigator 
-        initialRouteName= "Home"
-        > 
-        <Tab.Screen 
-        name = "Home"
-        component={LandingStackNavigator}
-       options={()=> ({
-            tabBarIcon: ()=> <FontAwesome name='home' size={25} />
-        })}
-        />
-        {/* <Tab.Screen 
-        name = "ReviewSeller"
-        component={ReviewSellerStackNavigator}
-        options={()=> ({
-            tabBarIcon: ()=> <MaterialIcons name='rate-review' size={25} />
-        })}
-        /> */}
-               <Tab.Screen 
-        name = "AdvancedSearch"
-        component={AdvancedSearchStackNavigator}
-        options={()=> ({
-            tabBarIcon: ()=> <FontAwesome name='search' size={25} />
-        })}
-        />
+    <CreateBottomTabNavigator name='Home'  component={LandingStackNavigator} Icon='MaterialIcons' iconName='home' isSignedIn={isSignedIn} />
+           
+        )
 
-        {isSignedIn ? <>
-            <Tab.Screen 
-        name = "Messages"
-        component={MessageStackNavigator}
-        options={()=> ({
-            tabBarIcon: ()=> <Entypo name='message' size={25} />
-        })}
-        />
-        <Tab.Screen 
-            name = "AddItem"
-            component={AddItemStackNavigator}
-            options={()=> ({
-                tabBarIcon: ()=> <Entypo name='add-to-list' size={25} />
-    })}
-    />
-    <Tab.Screen 
-    name = "Signout"
-    component={SignoutStackNavigator}
-    options={()=> ({
-        tabBarIcon: ()=> <Entypo name='log-out' size={25} />
-    })}
-    />
-      </>  
-    :        <Tab.Screen 
-    name = "Signin"
-    component={MainStackNavigator}
-    options={()=> ({
-        tabBarIcon: ()=> <Entypo name='login' size={25} />
-    })}
-    />
-    }
+}
+const ReviewSellerTab = ()=>{
 
-
-
-        </Tab.Navigator>)
+    const{ state:{isSignedIn} } = useContext(AuthContext)
+    return    (
+    <CreateBottomTabNavigator name='Review'  component={ReviewSellerStackNavigator} Icon='MaterialIcons' iconName='new-message' isSignedIn={isSignedIn} />
+           
+        )
 
 }
 
-export {MyTab}
+const MessageTab = ()=>{
+
+    const{ state:{isSignedIn} } = useContext(AuthContext)
+    return    (
+    <CreateBottomTabNavigator name='Message'  component={MessageStackNavigator} Icon='Entypo' iconName='chat' isSignedIn={isSignedIn} />           
+        )
+}
+
+const AdvanceSearchTab = ()=>{
+
+    const{ state:{isSignedIn} } = useContext(AuthContext)
+    return    (
+    <CreateBottomTabNavigator name='Advance Search'  component={AdvancedSearchStackNavigator} Icon='FontAwesome' iconName='magnifying-glass' isSignedIn={isSignedIn} />           
+        )
+}
+
+
+
+export {
+    LandingTab,
+    ReviewSellerTab,
+    MessageTab,
+    AdvanceSearchTab,
+   
+}
