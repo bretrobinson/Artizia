@@ -6,7 +6,9 @@ import DefaultStyles from '../constants/defaultStyles'
 import { ScrollView } from 'react-native-gesture-handler';
 import MainButton from '../components/MainButton';
 import Input from '../components/Input';
-import Moment from 'react-moment'
+import Moment from 'react-moment';
+import moment from 'moment';
+
 const Profile = ({ navigation }) => {
 
     const { state } = useContext(AuthContext)
