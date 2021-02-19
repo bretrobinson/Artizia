@@ -1,5 +1,5 @@
 import { makeStyles, Button, TextField, FormControl, Select, InputLabel, MenuItem } from '@material-ui/core'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import craftserverApi from '../api/craftserver'
 
 const useStyles = makeStyles((theme) => ({
@@ -12,19 +12,18 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-  
-
 const ManageUsers = () => {
     const classes = useStyles();
     const [email,  setEmail] = useState('')
     const [status, setStatus] = useState('')
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState('')
 
  const   setStatusHandler = async (email, status, date )=>{
    if (!email || !status){
      alert("Please eneter account and status to change")
    } else{
     try {
+      setDate(new Date())
       let response = await craftserverApi.put('/adminProfile/',{ email,status, date})
          await alert(response.data)
      }catch (err){

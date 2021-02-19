@@ -38,7 +38,7 @@ const onSubmitEdit =(idAnnouncements, message)=>{
             
                 <TextField label='Title' InputLabelProps={{ shrink: true, }} value={detail.title}  onChange={(e)=>onChangeTitle(e.target.value)}  />
             <div>
-                <TextField  multiline label='New Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsMin={3} defaultValue={detail.message} onChange={(e)=>onChangeMessage(e.target.value)}  />
+                <TextField  multiline label='New Message' InputLabelProps={{ shrink: true, }} aria-label="minimum height" rowsmin={3} defaultValue={detail.message} onChange={(e)=>onChangeMessage(e.target.value)}  />
             </div>
 
             <div>

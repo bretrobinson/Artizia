@@ -1,11 +1,11 @@
 import React, {useEffect, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link,
+//   useParams
+// } from "react-router-dom";
 import Navbar from './components/Navbar'
 import craftserverApi from './api/craftserver'
 import AnnouncementDisplay from './components/AnnouncementDisplay'
@@ -21,7 +21,7 @@ function App() {
   const [message, setMessage] = useState('')
   const [expiredDate, setExpiredDate] = useState(new Date())
   const [annnouncementData, setAnnouncementData] = useState([])
-  const [category, setCategory] = useState();
+  // const [category, setCategory] = useState();
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [route, setRoute] = useState("signout");
   const [param, setParam] = useState("");
