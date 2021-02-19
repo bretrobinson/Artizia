@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext,useCallback } from 'react';
 import {
   View,
   Text,
@@ -14,23 +14,30 @@ import Colors from '../constants/Colors';
 import { useSelector, useDispatch } from 'react-redux';
 import { DeleteMyItem } from '../store/actions/DeleteMyItem'
 import DefaultStyles from '../constants/defaultStyles';
-
+import { Context as AuthContext } from '../context/AuthContext'
+import * as actionGetItem from '../store/actions/DisplayMyItem';
 const GetMyItem = props => {
-
+  const { state } = useContext(AuthContext)
   const [userid, setuserid] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
+    const [refreshing, setRefreshing] = useState(true)
+    const [error, setError] = useState();
   const dispatch = useDispatch();
-
   const DeleteItem = props => {
     console.log('FSDFDSFD');
 
   }
+
+  const UserItemreducer = useSelector(state => state.userItemsReducer.items);
+  if (UserItemreducer.length === 0) {
+    Alert.alert('Are you sure?');
+  }
+
   let TouchableCmp = TouchableOpacity;
 
   if (Platform.OS === 'android' && Platform.Version >= 21) {
     TouchableCmp = TouchableNativeFeedback;
   }
-
 
   const deleteHandler = (id) => {
     Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
@@ -40,11 +47,12 @@ const GetMyItem = props => {
         style: 'destructive',
         onPress: () => {
           console.log(props.id)
-          dispatch(DeleteMyItem(39, props.id));
+          dispatch(DeleteMyItem(state.user.idusers, props.id));
         }
       }
     ]);
   };
+
   return (
     <Card style={DefaultStyles.myItemCard}>
       <View style={DefaultStyles.touchableCard}>
@@ -56,7 +64,7 @@ const GetMyItem = props => {
             <Text style={DefaultStyles.nameInDetailsOfCard}>{props.name}</Text>
             {/* <Text style={styles.desc}>{props.desc}</Text> */}
             <Text style={DefaultStyles.priceInDetailsOfCard}>${props.price.toFixed(2)}</Text>
-            <View style={{ ...DefaultStyles.buttonContainer, marginLeft: 200 }}>
+            <View style={{ ...DefaultStyles.buttonContainer, marginLeft: 150 }}>
               <TouchableCmp>
                 <MaterialCommunityIcons name="delete-forever" size={45} color={Colors.saveButtonColor} onPress={deleteHandler.bind(this, props.id)} />
               </TouchableCmp>

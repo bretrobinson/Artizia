@@ -2,7 +2,7 @@ import React from 'react';
 import {
   SafeAreaView, View, FlatList, StyleSheet, Text,
   Button, StatusBar, ScrollView, TouchableOpacity,
-  TouchableNativeFeedback, KeyboardAvoidingView
+  TouchableNativeFeedback, KeyboardAvoidingView,Alert
 } from 'react-native';
 import * as actionGetItem from '../store/actions/DisplayMyItem';
 import { useState, useEffect, useCallback, useContext } from 'react';
@@ -24,21 +24,26 @@ const MyItemScreen = () => {
     const [refreshing, setRefreshing] = useState(true)
     const [error, setError] = useState();
     const UserItemreducer = useSelector(state => state.userItemsReducer.items);
+    if (typeof UserItemreducer === "undefined"){
+      console.log("value reducer undefined124>>" + UserItemreducer)
+    }
+  
     const dispatch = useDispatch();
-    console.log("my item result:" + UserItemreducer)
-
+    
     const loadProducts = useCallback(async () => {
-      console.log("loadProducts>>")
+    
       setError(null);
       setIsLoading(true);
       try {
-        await actionGetItem.fetchitem(dispatch, state.idusers);
+      
+      await actionGetItem.fetchitem(dispatch, state.user.idusers);
+           
       } catch (err) {
         setError(err.message);
       }
       setIsLoading(false);
     }, [dispatch, setIsLoading, setError]);
-    console.log(UserItemreducer);
+  
     const deleteHandler = (id) => {
       Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
         { text: 'No', style: 'default' },
@@ -47,17 +52,18 @@ const MyItemScreen = () => {
           style: 'destructive',
           onPress: () => {
             console.log(id)
-            dispatch(DeleteMyItem(state.idusers, id));
+            dispatch(DeleteMyItem(state.user.idusers, id));
           }
         }
       ]);
     };
-
-    useEffect(() => {
+  
+   useEffect(() => {
       //  setuserid(39)
-      actionGetItem.fetchitem(dispatch);
-      setRefreshing(false)
-    }, [dispatch, loadProducts]);
+ actionGetItem.fetchitem(dispatch,state.user.idusers);
+  
+     setRefreshing(false)
+   }, [dispatch, loadProducts]);
     return (
 
       <View style={DefaultStyles.screenContainer}>

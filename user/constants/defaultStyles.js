@@ -84,6 +84,7 @@ export default StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginTop:0,
     marginVertical: 10,
     marginRight: 5,
     // backgroundColor: Colors.accent
@@ -202,9 +203,9 @@ export default StyleSheet.create({
   },
   myItemCard: {
     marginTop:30,
-    height: 320,
-    width:330,
-    // marginLeft:33
+    height: 255,
+    width:250,
+    marginLeft:33
    
   }, 
   messageCard: {
