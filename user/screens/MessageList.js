@@ -18,7 +18,7 @@ const MessageList = () => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await craftserverApi.get('/messages/')
-            //  await console.log(response.data)
+
             await setMessageData(response.data)
         }
         fetchData()
@@ -50,8 +50,8 @@ const MessageList = () => {
 
                                         <View style={DefaultStyles.messageDetailsInCardContainer}>
                                             <Text style={DefaultStyles.messageItemNameInDetailsOfCard}>{item.itemName}</Text>
-                                            {user.idusers === item.buyerid ? <Text style={DefaultStyles.messageBuyerInDetailsOfCard}>Me</Text> : <Text style={DefaultStyles.messageBuyerInDetailsOfCard}>BuyerId {item.buyerid}</Text>}
-                                            {user.idusers === item.sellerid ? <Text style={DefaultStyles.messageSellerInDetailsOfCard}>Me</Text> : <Text style={DefaultStyles.messageSellerInDetailsOfCard}>SellerId {item.sellerid}</Text>}
+                                            {user.idusers === item.buyerid ? <Text style={DefaultStyles.messageBuyerInDetailsOfCard}>Me</Text> : <Text style={DefaultStyles.messageBuyerInDetailsOfCard}>Buyer:  {item.buyerFirstName}</Text>}
+                                            {user.idusers === item.sellerid ? <Text style={DefaultStyles.messageSellerInDetailsOfCard}>Me</Text> : <Text style={DefaultStyles.messageSellerInDetailsOfCard}>Seller: {item.sellerFirstName}</Text>}
                                             {/* <Text style={DefaultStyles.messageItemIdInDetailsOfCard}>ItemId {item.itemid}</Text> */}
 
                                         </View>

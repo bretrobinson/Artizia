@@ -41,11 +41,11 @@ const AnnouncementDisplay = ({annnouncementData,onDeleteMessage,onRouteChange}) 
             <div>{data.message}</div>
             <div className= {classes.date}>
                 <label>Date Entered</label>
-                <div className={classes.dateInside}>{data.dateEntered}</div> 
+                <div className={classes.dateInside}>{data.dateEntered.substring(0,10)}</div> 
             </div>
             <div className= {classes.date}>
                 <label>Expiry Date</label>
-                <div className={classes.dateInside}>{data.expiredDate}</div>
+                <div className={classes.dateInside}>   {data.expiredDate.substring(0,10)}</div>
             </div>            
             
             

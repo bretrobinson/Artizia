@@ -67,14 +67,14 @@ const MessageDetail = ({ route, navigation }) => {
                     </View>
                 </View>
 
-                {user.idusers === item.buyerid ? <Text style={DefaultStyles.messageDetailBuyerInDetailsOfCard}>Me</Text> : <Text style={DefaultStyles.messageDetailBuyerInDetailsOfCard}>BuyerId {item.buyerid}</Text>}
-                {user.idusers === item.sellerid ? <Text style={DefaultStyles.messageDetailSellerInDetailsOfCard}>Me</Text> : <Text style={DefaultStyles.messageDetailSellerInDetailsOfCard}>SellerId {item.sellerid}</Text>}
+                {user.idusers === item.buyerid ? <Text style={DefaultStyles.messageDetailBuyerInDetailsOfCard}>Me</Text> : <Text style={DefaultStyles.messageDetailBuyerInDetailsOfCard}>Buyer: {item.buyerFirstName}</Text>}
+                {user.idusers === item.sellerid ? <Text style={DefaultStyles.messageDetailSellerInDetailsOfCard}>Me</Text> : <Text style={DefaultStyles.messageDetailSellerInDetailsOfCard}>Seller: {item.sellerFirstName}</Text>}
 
                 <View style={DefaultStyles.messageDetailItemAndDeleteButtonInCardContainer}>
                     <Text style={DefaultStyles.messageDetailItemNameInDetailsOfCard}>Item: {item.itemName}</Text>
                     <AntDesign style={DefaultStyles.messageDetailDeleteButtonInCard} name='delete' size={20} onPress={() => messageDeleteHandler(item.idmessages)} />
                 </View>
-                <Text></Text>
+                {/* <Text>{item.itemid}</Text> */}
                 <Text style={DefaultStyles.messageDetailMessage}>{item.message}</Text>
 
             </Card>
@@ -85,6 +85,11 @@ const MessageDetail = ({ route, navigation }) => {
         <View style={DefaultStyles.screenContainer}>
             <SafeAreaView>
                 <ScrollView>
+                <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
                     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'} >
 
                         {/* <View style={DefaultStyles.screenContainer}> */}
@@ -105,6 +110,7 @@ const MessageDetail = ({ route, navigation }) => {
                         {/* </View> */}
 
                     </KeyboardAvoidingView>
+                    </TouchableWithoutFeedback>
                 </ScrollView>
             </SafeAreaView>
         </View>

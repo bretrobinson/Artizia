@@ -46,7 +46,7 @@ app.use('/itemImages', ItemImagesRoute)
 app.use('/category', categoryRouter);
 app.use('/subcategory', subcategoryRouter);
 app.use('/item', requireAuth, itemRouter);
-app.use('/adminProfile',  adminProfileRoute)
+app.use('/adminProfile',requireAuth,  adminProfileRoute)
 app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({

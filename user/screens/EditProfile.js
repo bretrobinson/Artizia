@@ -1,6 +1,6 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { View } from 'react-native';
-import { StyleSheet, ScrollView, KeyboardAvoidingView, SafeAreaView } from 'react-native'
+import { StyleSheet, ScrollView, KeyboardAvoidingView, SafeAreaView , Keyboard, TouchableWithoutFeedback} from 'react-native'
 import { Button, Text, Input, colors } from 'react-native-elements'
 import { Context as AuthContext } from '../context/AuthContext'
 import RadioButton2 from '../components/RadioButton2'
@@ -20,7 +20,12 @@ const EditProfile = ({ navigation }) => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <KeyboardAvoidingView style={{ height: '100%', justifyContent: 'center' }} >
+            <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'} >
                     <View style={DefaultStyles.screenContainer}>
                         {/* <Text h3 style={styles.signup} >Edit Profile</Text> */}
                         {/* <Text style={DefaultStyles.title} >Edit Profile</Text> */}
@@ -104,6 +109,7 @@ const EditProfile = ({ navigation }) => {
     <Button title='Go to Sign in' onPress={()=>navigation.navigate('Signin')} style={styles.goto}/> */}
                     </View>
                 </KeyboardAvoidingView>
+                </TouchableWithoutFeedback>
             </ScrollView>
         </SafeAreaView>
     );

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { View } from 'react-native';
+import { View , Keyboard, TouchableWithoutFeedback} from 'react-native';
 import { StyleSheet } from 'react-native'
 import { Button, Text, Input } from 'react-native-elements'
 import { Context as AuthContext } from '../context/AuthContext'
@@ -20,6 +20,11 @@ const Signin = ({ navigation }) => {
     )
 
     return (
+        <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
         <View style={DefaultStyles.screenContainer}>
             {/* <View style={styles.container}> */}
             <Text style={DefaultStyles.title}>Sign in</Text>
@@ -72,6 +77,7 @@ const Signin = ({ navigation }) => {
                 {/* </View>         */}
             </View>
         </View>
+        </TouchableWithoutFeedback>
     );
 };
 
