@@ -46,8 +46,8 @@ const Profile = ({ navigation }) => {
 
                     <Text style={DefaultStyles.label} >Date Joined</Text>
                     {/* <Text style={styles.data}>{state.user.joined}</Text> */}
-                    {/* <Input editable={false} value={<Moment  element={Text} format="MMM-DD-YYYY ">{state.user.joined}</Moment>} /> */}
-                    <Moment style={DefaultStyles.label} element={Text} format="MMM-DD-YYYY ">{state.user.joined}</Moment>
+                    <Input editable={false} value={state.user.joined} />
+                    
                     <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
                         <MainButton title="Edit Profile" buttonColor={Colors.defaultButtonColor} onPress={() => navigation.navigate('Edit Profile')} />
                     </View>
