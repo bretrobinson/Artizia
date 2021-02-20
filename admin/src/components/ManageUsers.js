@@ -24,7 +24,7 @@ const ManageUsers = () => {
    } else{
     try {
       setDate(new Date())
-      let response = await craftserverApi.put('/adminProfile/',{ email,status, date})
+      let response = await craftserverApi.put('/profile/',{ email,status, date})
          await alert(response.data)
      }catch (err){
          alert(err)

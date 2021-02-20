@@ -32,7 +32,7 @@ const CategoryIds = [];
 let categoryID = '';
 let categoryRows = [];
 // main URL of server
-let serverURL = "http://1f43acd8cb7a.ngrok.io"
+let serverURL = "http://b9c057818339.ngrok.io"
 // get categories from datbase
 // the base URL should come from env var
 // let serverURL = "http://localhost:3000/category"

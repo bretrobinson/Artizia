@@ -9,7 +9,7 @@ router.get('/', announcementRead.readMessage)
 router.post('/', announcementWrite.create)
 
 router.get('/:id', (req, res)=>{
-   
+   // Get Announcement for Edit Screen in Admin
     let sql = `SELECT *  FROM Announcements  WHERE idAnnouncements = ${req.params.id}  `
     let query = db.query(sql, (err, result)=>{
         if (err){
@@ -21,7 +21,7 @@ router.get('/:id', (req, res)=>{
 })
 
 router.post('/:id', (req, res)=>{
-    // console.log(req.params, req.body)
+    // Edit Announcment
     let sql = `UPDATE Announcements  SET message = '${req.body.message}' WHERE idAnnouncements = ${req.params.id}  `
     let query = db.query(sql, (err, result)=>{
         if (err){
@@ -33,7 +33,7 @@ router.post('/:id', (req, res)=>{
 })
 
 router.delete('/:id', (req, res)=>{
-    // console.log(req.params)
+    // Delete Announcement
     let sql = `DELETE FROM Announcements WHERE idAnnouncements = ${req.params.id} `
     let query = db.query(sql, (err, result)=>{
         if (err){

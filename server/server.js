@@ -8,7 +8,7 @@ const categoryRouter = require('./routes/categoryRouter');
 const subcategoryRouter = require('./routes/subcategoryRouter');
 const itemRouter = require('./routes/itemRouter');
 const profileRoute = require('./routes/profileRoute')
-const adminProfileRoute = require('./routes/adminProfileRoute')
+
 const Signup=require("./routes/signupRoute");
 const messagesRoute = require('./routes/messagesRoute')
 //const SellerReview=require("./routes/SellerReview.route");
@@ -17,7 +17,7 @@ const messagesRoute = require('./routes/messagesRoute')
 const db = require("./models/db.js");
 const app = express();
 app.use(cors())
-// const signup = require('./serverHandlers/signup')
+
 
 
 db.connect((err)=> {
@@ -46,7 +46,7 @@ app.use('/itemImages', ItemImagesRoute)
 app.use('/category', categoryRouter);
 app.use('/subcategory', subcategoryRouter);
 app.use('/item', requireAuth, itemRouter);
-app.use('/adminProfile',requireAuth,  adminProfileRoute)
+
 app.use('/announcement', announcementRoute)
 app.get("/api", (req, res) => {
     res.json({
