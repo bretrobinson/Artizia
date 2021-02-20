@@ -25,24 +25,26 @@ const AdvancedSearch = props => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        Api.get('/category')
-            .then((response) => {
-                const responseCategories = response.data;
+        props.navigation.addListener('focus', () => {
+            Api.get('/category')
+                .then((response) => {
+                    const responseCategories = response.data;
 
-                const newCategories = [{ id: 0, name: 'Select category' }, ...responseCategories];
+                    const newCategories = [{ id: 0, name: 'Select category' }, ...responseCategories];
 
-                setCategories(newCategories);
+                    setCategories(newCategories);
 
-                const newCategoryNames = newCategories.map(category => category.name);
-                setCategoryNames(newCategoryNames);
+                    const newCategoryNames = newCategories.map(category => category.name);
+                    setCategoryNames(newCategoryNames);
 
-                searchMostRecentItemsByCategoryMatchingSearchCriteria();
-            })
-            .catch(err => {
-                console.log(err);
-            })
+                    searchMostRecentItemsByCategoryMatchingSearchCriteria();
+                })
+                .catch(err => {
+                    console.log(err);
+                })
 
-        searchMostRecentItemsByCategoryMatchingSearchCriteria();
+            searchMostRecentItemsByCategoryMatchingSearchCriteria();
+        });
     }, []);
 
     const searchMostRecentItemsByCategoryMatchingSearchCriteria = () => {

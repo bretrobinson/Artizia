@@ -1,11 +1,11 @@
 import React, {useEffect, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link,
+//   useParams
+// } from "react-router-dom";
 import Navbar from './components/Navbar'
 import craftserverApi from './api/craftserver'
 import AnnouncementDisplay from './components/AnnouncementDisplay'
@@ -21,18 +21,18 @@ function App() {
   const [message, setMessage] = useState('')
   const [expiredDate, setExpiredDate] = useState(new Date())
   const [annnouncementData, setAnnouncementData] = useState([])
-  const [category, setCategory] = useState();
+  // const [category, setCategory] = useState();
   const [isSignedIn, setIsSignedIn] = useState(false);
-  console.log(isSignedIn)
+  const [route, setRoute] = useState("signout");
+  const [param, setParam] = useState("");
+ 
 
   useEffect (()=>{
   loadAnnouncement()
   }, [])
 
   const onSubmitmessage = async ({title, message, expiredDate})=>{
-    if (!title|| !message ){
-      alert('Please enter Title , Message and Expired Date')
-    } else {
+ 
       try{
         const response = await craftserverApi.post('/announcement', {title, message, expiredDate})
         await console.log(response.data)
@@ -40,7 +40,7 @@ function App() {
         // await setMessage('')
       } catch (err) {
         console.log(err)
-      }
+      
     }
   }
 
@@ -70,12 +70,65 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
     await craftserverApi.delete('/announcement/' + idMessage)
     loadAnnouncement()
   }
-  
 
+ const  onRouteChange =(route, param)=>{
+    if(route === 'signout'){
+      setIsSignedIn(false)
+    }else if(route=== 'announcements'){
+      setIsSignedIn(true)
+    }
+    setRoute(route)
+    if(param){ setParam(Object.values(param)[0])}
+   
+  }
+  let pageDisplay
+  if(route==='createMessage'){
+    pageDisplay = <Announcement  setIsSignedIn={setIsSignedIn} onRoute={onRouteChange}
+              onChangeTitle={setTitle}
+              onChangeExpiredDate={setExpiredDate}
+              onChangeMessage={setMessage} 
+              onSubmitmessage={()=>onSubmitmessage({title, message, expiredDate})}
+              title={title} message={message} expiredDate={expiredDate}/>
+  }
+
+ if(route==='rules'){
+  pageDisplay = <GeneralRules setIsSignedIn={setIsSignedIn} onRouteChange={onRouteChange} />
+}
+if(route==='addCategory'){
+  pageDisplay = <AddCategory  setIsSignedIn={setIsSignedIn} onRoute={onRouteChange}/>
+}
+
+  if(route==='announcements'){
+     pageDisplay = <AnnouncementDisplay annnouncementData={annnouncementData}
+    onDeleteMessage={onDeleteMessage}
+    onRouteChange={onRouteChange}
+   />
+  }
+  if(route==='edit'){
+     pageDisplay = <AnnouncementEdit idAnnouncements={param}
+     onChangeExpiredDate={setExpiredDate}
+     onChangeMessage={setMessage}
+     onUpdateMessage={onUpdateMessage}
+     title={title} message={message} expiredDate={expiredDate}
+      setIsSignedIn={setIsSignedIn}
+      onRouteChange={onRouteChange}
+      />
+  }
+  if(route==='manageUsers'){
+    pageDisplay = <ManageUsers  setIsSignedIn={setIsSignedIn} onRoute={onRouteChange}/>
+  }
+  
+  if(route==='notification'){
+    pageDisplay = <Notification  setIsSignedIn={setIsSignedIn} onRoute={onRouteChange}/>
+ }
+ if(route==='signout'){
+  pageDisplay = <HomeScreen setIsSignedIn={setIsSignedIn} onRouteChange={onRouteChange} />
+}
   return (
     <div className="App">
-      <Navbar isSignedIn={isSignedIn}  />
-    <Router>
+      <Navbar isSignedIn={isSignedIn} onRoute={onRouteChange} />
+      {pageDisplay}
+    {/* <Router>
       <div>
       
         <Switch>
@@ -102,33 +155,33 @@ await craftserverApi.post('/announcement/' + idMessage ,{ message})
           <Route path="/rules">
             <GeneralRules />
           </Route>
-          <Route path="/addCategory" component={AddCategory} />
-          <Route path="/announcements">
+          <Route path="/addCategory" component={AddCategory} /> */}
+          {/* <Route path="/announcements">
           <AnnouncementDisplay annnouncementData={annnouncementData}
          onDeleteMessage={onDeleteMessage}
         />
-          </Route>
-          <Route path="/"  >
+          </Route> */}
+          {/* <Route path="/"  >
             {isSignedIn ? null: <HomeScreen  setIsSignedIn={setIsSignedIn} /> }
             
           </Route>
         </Switch>
       </div>
-    </Router>
+    </Router> */}
     </div>
   );
-}
-const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, message, title, setIsSignedIn })=>{
+// }
+// const AnnouncementEditPage =({onChangeTitle, onChangeExpiredDate, onChangeMessage, onUpdateMessage, message, title, setIsSignedIn })=>{
  
-let {idAnnouncements} = useParams()
-// console.log(idAnnouncements)
-return <AnnouncementEdit idAnnouncements={idAnnouncements} 
-onChangeTitle={onChangeTitle} 
-onChangeExpiredDate={onChangeExpiredDate} 
-onChangeMessage={onChangeMessage}
-onUpdateMessage={onUpdateMessage}
-title={title} message={message}
-setIsSignedIn={setIsSignedIn} />
+// let {idAnnouncements} = useParams()
+// // console.log(idAnnouncements)
+// return <AnnouncementEdit idAnnouncements={idAnnouncements} 
+// onChangeTitle={onChangeTitle} 
+// onChangeExpiredDate={onChangeExpiredDate} 
+// onChangeMessage={onChangeMessage}
+// onUpdateMessage={onUpdateMessage}
+// title={title} message={message}
+// setIsSignedIn={setIsSignedIn} />
 
 }
 

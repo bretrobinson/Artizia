@@ -1,10 +1,9 @@
 const ItemModel= require("../models/item.model.js");
 // Find Items with a userId
 exports.findUserItem= (req, res) => {
-  console.log("user id:>>>" + req.user.idusers)
-  console.log("controller find by user id " + req.user.idusers);
+ 
   ItemModel.findByUserId(req.user.idusers, (err, data) => {
-    console.log(req.user.idusers);
+ 
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

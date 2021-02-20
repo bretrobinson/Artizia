@@ -8,26 +8,29 @@ const useStles= makeStyles({
     }
 })
 
-const Navbar = ({isSignedIn}) => {
+const Navbar = ({isSignedIn, onRoute}) => {
     const classes = useStles()
-    console.log(isSignedIn)
+   const signout = ()=>{
+     localStorage.removeItem('token')
+     onRoute('signout')
+   }
 
-  // if(!isSignedIn){
-  //   return null
-  // }
+  if(!isSignedIn){
+    return null
+  }
         return (
             
             <Container style={{marginTop: 20}}>
     <Typography >
     
           
-          <Link className={classes.navbar}  href="/message"><Button variant="outlined" color="primary">Create Message</Button></Link>
-          <Link className={classes.navbar} href="/rules"><Button variant="outlined" color="primary">Rules</Button></Link>
-          <Link className={classes.navbar}  href="/addCategory"><Button variant="outlined" color="primary">Add Category</Button></Link>
-          <Link className={classes.navbar}  href="/Notification"><Button variant="outlined" color="primary">Send Notification</Button></Link>
-          <Link className={classes.navbar}  href="/manageusers"><Button variant="outlined" color="primary">Manage Users</Button></Link>
-          <Link className={classes.navbar}  href="/announcements"><Button variant="outlined" color="primary">announcements</Button></Link>
-          <Link className={classes.navbar} href="/" ><Button variant="outlined" color="primary">Signout</Button></Link>
+          <Link className={classes.navbar}  onClick = {()=>onRoute('createMessage')} ><Button variant="outlined" color="primary">Create Message</Button></Link>
+          <Link className={classes.navbar} onClick = {()=>onRoute('rules')}><Button variant="outlined" color="primary">Rules</Button></Link>
+          <Link className={classes.navbar}  onClick = {()=>onRoute('addCategory')} ><Button variant="outlined" color="primary">Add Category</Button></Link>
+          <Link className={classes.navbar} onClick={()=>onRoute('notification')} ><Button variant="outlined" color="primary">Send Notification</Button></Link>
+          <Link className={classes.navbar}   onClick={()=>onRoute('manageUsers')}><Button variant="outlined" color="primary">Manage Users</Button></Link>
+          <Link className={classes.navbar} onClick={()=>onRoute('announcements')}  ><Button variant="outlined" color="primary">announcements</Button></Link>
+          <Link className={classes.navbar} onClick={()=>signout()}><Button variant="outlined" color="primary">Signout</Button></Link>
      
         </Typography>
         </Container>

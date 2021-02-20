@@ -5,17 +5,17 @@ const instance = axios.create({
 })
 
 
-// instance.interceptors.request.use(
-//     async (config) => {
-//       const token = await AsyncStorage.getItem('token');
-//       if (token) {
-//         config.headers.Authorization = `Bearer ${token}`;
-//       }
-//       return config;
-//     },
-//     (err) => {
-//       return Promise.reject(err);
-//     }
-//   );
+instance.interceptors.request.use(
+    async (config) => {
+      const token = await localStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (err) => {
+      return Promise.reject(err);
+    }
+  );
   
   export default instance;

@@ -1,6 +1,5 @@
-import { TextareaAutosize, Input, Button, TextField, Container } from '@material-ui/core'
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'
+import {  Button, TextField } from '@material-ui/core'
+import React, { useState } from 'react';
 import Api from '../../api/craftserver';
 const Notification = () => {
 
@@ -43,8 +42,6 @@ const Notification = () => {
         }
 
         fetch(PUSH_ENDPOINT, {
-            'mode': 'no-cors',
-            'method': 'POST',
             'mode': 'no-cors',
             'method': 'POST',
             'headers': {

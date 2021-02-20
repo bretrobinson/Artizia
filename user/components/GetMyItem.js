@@ -28,10 +28,8 @@ const GetMyItem = props => {
 
   }
 
-  const UserItemreducer = useSelector(state => state.userItemsReducer.items);
-  if (UserItemreducer.length === 0) {
-    Alert.alert('Are you sure?');
-  }
+  //const UserItemreducer = useSelector(state => state.userItemsReducer.items);
+ 
 
   let TouchableCmp = TouchableOpacity;
 
@@ -39,14 +37,15 @@ const GetMyItem = props => {
     TouchableCmp = TouchableNativeFeedback;
   }
 
-  const deleteHandler = (id) => {
+  const deleteHandler = (id,isdelete) => {
     Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
       { text: 'No', style: 'default' },
       {
         text: 'Yes',
         style: 'destructive',
         onPress: () => {
-          console.log(props.id)
+
+          console.log(props.isdelete)
           dispatch(DeleteMyItem(state.user.idusers, props.id));
         }
       }

@@ -9,7 +9,8 @@ const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})
 
     // const{ state:{isSignedIn} } = useContext(AuthContext)
     return    (
-    <Tab.Navigator> 
+    <Tab.Navigator tabBarOptions={{activeTintColor: 'orange',
+    inactiveTintColor: 'gray',}} > 
         <Tab.Screen 
         name = {name}
         component={component}

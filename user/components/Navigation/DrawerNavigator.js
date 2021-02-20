@@ -14,10 +14,7 @@ import {LandingStackNavigator,
     MessageStackNavigator,
     AdvancedSearchStackNavigator
 } from './StackNavigator'
-import {LandingTab, SigininTab, ReviewSellerTab, MyItemTab, MessageTab, AdvanceSearchTab} from './BottomNavigator'
-// import {ProfileStackNavigator} from './BottomNavigator'
-import ProfileBottomNav from "./ProfileBottomNav";
-import AnnouncementsBottomNav  from "./AnnouncementsBottomNav";
+import {LandingTab, ProfileTab, ReviewSellerTab, AnnouncementsTab, AdvanceSearchTab} from './BottomNavigator'
 
 
 const Drawer = createDrawerNavigator()
@@ -49,15 +46,11 @@ const DrawerNavigator = ()=> {
                             drawerIcon: ()=> <Entypo name='new-message' size={25} />
                         })} />
 
-                <Drawer.Screen name= 'Announcements' component={AnnouncementsBottomNav} 
+                <Drawer.Screen name= 'Announcements' component={AnnouncementsTab} 
                         options={()=> ({
                             drawerIcon: ()=> <Entypo name='news' size={25} />
-                        })}/>
-                
-
-                
-            </Drawer.Navigator>
-    
+                        })}/>            
+            </Drawer.Navigator>    
         )
 } else {
     return (
@@ -68,7 +61,7 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <FontAwesome name='home' size={25} />
             })} />
 
-            <Drawer.Screen name = 'Profile' component={ProfileBottomNav} 
+            <Drawer.Screen name = 'Profile' component={ProfileTab} 
                 options={()=> ({
                 drawerIcon: ()=> <AntDesign name='profile' size={25} />
             })}/>
@@ -81,21 +74,7 @@ const DrawerNavigator = ()=> {
                 drawerIcon: ()=> <Entypo name='new-message' size={25} />
             })}
              />
-            {/* <Drawer.Screen name= 'Add Item' component={AddItemStackNavigator} 
-            options={()=> ({
-                drawerIcon: ()=> <Entypo name='add-to-list' size={25} />
-    })}
-            /> */}
-            {/* <Drawer.Screen name= 'My Item' component={MyItemTab} 
-            options={()=> ({
-                drawerIcon: ()=> <Entypo name='list' size={25} />
-    })}
-            /> */}
-            {/* <Drawer.Screen name='Messages' component={MessageTab}
-                    options={()=> ({
-                        drawerIcon: ()=> <Entypo name='chat' size={25} />
-            })} /> */}
-            <Drawer.Screen name= 'Announcements' component={AnnouncementsBottomNav} 
+            <Drawer.Screen name= 'Announcements' component={AnnouncementsTab} 
                     options={()=> ({
                         drawerIcon: ()=> <Entypo name='news' size={25} />
                     })}/>

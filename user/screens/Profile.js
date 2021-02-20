@@ -6,6 +6,8 @@ import DefaultStyles from '../constants/defaultStyles'
 import { ScrollView } from 'react-native-gesture-handler';
 import MainButton from '../components/MainButton';
 import Input from '../components/Input';
+import Moment from 'react-moment';
+import moment from 'moment';
 
 const Profile = ({ navigation }) => {
 
@@ -46,8 +48,8 @@ const Profile = ({ navigation }) => {
 
                     <Text style={DefaultStyles.label} >Date Joined</Text>
                     {/* <Text style={styles.data}>{state.user.joined}</Text> */}
-                    <Input editable={false} value={state.user.joined} />
-
+                    <Input editable={false} value={moment(state.user.joined.substring(0, 10), ['YYYY-MM-DD']).format('MMM DD, yyyy')} />
+                    
                     <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
                         <MainButton title="Edit Profile" buttonColor={Colors.defaultButtonColor} onPress={() => navigation.navigate('Edit Profile')} />
                     </View>

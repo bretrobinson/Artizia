@@ -39,8 +39,7 @@ router.delete('/:id', (req, res)=>{
         if (err){
             console.log({error:err})
         }
-        console.log(result)
-        res.send('post deleted')
+           res.send('post deleted')
     })
 })
 
