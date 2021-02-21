@@ -1,5 +1,5 @@
 import {  Button, TextField } from '@material-ui/core'
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import Api from '../../api/craftserver';
 const Notification = () => {
 
@@ -17,20 +17,7 @@ const Notification = () => {
     function sendnotification() {
 
 
-        Api.get('/api/tokennotification'
-        ,{
-        responseType: 'json',  
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          } 
-             }     )
-        .then((response) => {
-            const result = response.data.map(obj => obj.PushTokenNotification);
-           setTokennot(result)
-       
-        });
-       
+    
   
         const PUSH_ENDPOINT = 'https://exp.host/--/api/v2/push/send';
         let data = {
@@ -53,7 +40,23 @@ const Notification = () => {
 
 
     }
+    useEffect(() => {
 
+        Api.get('/api/tokennotification'
+        ,{
+        responseType: 'json',  
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          } 
+             }     )
+        .then((response) => {
+            const result = response.data.map(obj => obj.PushTokenNotification);
+           setTokennot(result)
+       
+        });
+       
+      }, []);
     return (
         <div className='div_cont'>
 
