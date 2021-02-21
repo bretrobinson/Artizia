@@ -32,17 +32,17 @@ const CategoryIds = [];
 let categoryID = '';
 let categoryRows = [];
 // main URL of server
-let serverURL = "http://b9c057818339.ngrok.io"
+// let serverURL = "http://b9c057818339.ngrok.io"
 // get categories from datbase
 // the base URL should come from env var
 // let serverURL = "http://localhost:3000/category"
-let categoryURL = serverURL + "/category"
+// let categoryURL = serverURL + "/category"
 //console.log('categoryURL: ', categoryURL)
 
-fetch(categoryURL)
-  .then((resp) => resp.json())
-  .then(data => {
-    categoryRows = data
+Api.get('/category')
+  // .then((resp) => resp.json())
+  .then(response => {
+    categoryRows = response.data
     //console.log('response data in add item: ', categoryRows)
     //categoryRows.forEach((row) => console.log('category id: ', row.id, ' category name: ', row.name))
     categoryRows.forEach((row) => {

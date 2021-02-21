@@ -41,7 +41,7 @@ const Signup = ({ navigation }) => {
                             onChangeText={SetFname}
                             autoCorrect={false}
                             label='First Name'
-                            placeholder='FirstName'
+                            placeholder='First Name'
                             labelStyle={DefaultStyles.label}
                             placeholderTextColor={Colors.placeholderTextColor}
                             inputContainerStyle={DefaultStyles.input}
@@ -51,7 +51,7 @@ const Signup = ({ navigation }) => {
                             onChangeText={setLname}
                             autoCorrect={false}
                             label='Last Name'
-                            placeholder='LastName'
+                            placeholder='Last Name'
                             labelStyle={DefaultStyles.label}
                             placeholderTextColor={Colors.placeholderTextColor}
                             inputContainerStyle={DefaultStyles.input}
