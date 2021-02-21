@@ -31,7 +31,7 @@ console.log("item:" + item)
       if(typeof item === "undefined"){
         return (
           <View style={styles.EmptyListMessage}>
-             <Text>No items found, maybe start creating some?</Text>
+             <Text style={styles.text}>No items found, maybe start creating some?</Text>
              
           </View>
        
@@ -108,6 +108,11 @@ const styles = StyleSheet.create({
     fontSize: 77,
     textAlign: 'center',
   },
+  text: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 200
+  }
 
 });
 
