@@ -17,10 +17,16 @@ const useStyles = makeStyles(theme => ({
     title: {
         color: theme.palette.title.main,
         textAlign: 'center',
-        marginBottom: 20
+        marginBottom: 20,
+        marginTop: 40
     },
     heading: {
-        color: theme.palette.heading.main
+        color: theme.palette.heading.main,
+        marginBottom: 20,
+    },
+    body: {
+        color: theme.palette.body.main,
+        // marginBottom: 20        
     },
     card: {
         backgroundColor: theme.palette.cardBackground.main,
@@ -37,7 +43,6 @@ const useStyles = makeStyles(theme => ({
     cardContent: {
         paddingLeft: 80,
         paddingRight: 80,
-        paddingTop: 40
     },
     cardActions: {
         display: 'flex',
@@ -45,11 +50,35 @@ const useStyles = makeStyles(theme => ({
         paddingRight: 80,
         paddingBottom: 40
     },
+    messageCard: {
+        backgroundColor: theme.palette.cardBackground.main,
+        borderRadius: 10,
+        marginTop: 40,
+        marginBottom: 40,
+        marginLeft: '20%',
+        marginRight: '20%',
+        paddingBottom: 10,
+        paddingTop: 20,
+        boxShadow: '5px 10px ' + theme.palette.boxShadow.main
+    },
     button: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.buttonText.main,
         textTransform: 'none',
-        fontSize: 16
+        fontSize: 16,
+    },
+    button2: {
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.buttonText.main,
+        textTransform: 'none',
+        fontSize: 16,
+    },
+    navButton: {
+        backgroundColor: theme.palette.navButtonBackground.main,
+        color: theme.palette.navButtonText.main,
+        // textTransform: 'none',
+        fontSize: 16,
+        marginRight: 30
     },
     input: {
         marginBottom: 15,
@@ -62,7 +91,8 @@ const useStyles = makeStyles(theme => ({
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.inputContainerFocused.main
         },
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        minWidth: 300
     },
     // inputLabel: {
     //     color: theme.palette.inputLabel.main,
@@ -70,9 +100,30 @@ const useStyles = makeStyles(theme => ({
     //         color: theme.palette.inputLabel.main
     //       }        
     // }
-
+    formControl: {
+        marginBottom: 15,
+        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: theme.palette.inputContainer.main
+        },
+        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: theme.palette.inputContainerHover.main
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: theme.palette.inputContainerFocused.main
+        },
+        backgroundColor: 'white',
+        minWidth: 120,
+    },
+    navBar: {
+        minWidth: "100%",
+        paddingTop: 20,
+        paddingBottom: 20,
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: theme.palette.navBackground.main
+    }
 }))
-
+  
 const HomeScreen = ({ setIsSignedIn, onRouteChange }) => {
     const classes = useStyles();
 
@@ -104,10 +155,10 @@ const HomeScreen = ({ setIsSignedIn, onRouteChange }) => {
                     <CardContent className={classes.cardContent}>
                         <Typography className={classes.title} variant="h5">Sign In</Typography>
                         <div>
-                            <TextField size='small' className={classes.input} variant="outlined" label='email' value={email} onChange={(event) => setEmail(event.target.value)} />
+                            <TextField size='small' className={classes.input} variant="outlined" label='Email' value={email} onChange={(event) => setEmail(event.target.value)} />
                         </div>
                         <div>
-                            <TextField size='small' className={classes.input} variant="outlined" label='password' type='password' value={password} aria-label="minimum height" onChange={(event) => setPassword(event.target.value)} />
+                            <TextField size='small' className={classes.input} variant="outlined" label='Password' type='password' value={password} aria-label="minimum height" onChange={(event) => setPassword(event.target.value)} />
                         </div>
                     </CardContent>
                     <CardActions className={classes.cardActions}>

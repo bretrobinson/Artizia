@@ -4,37 +4,49 @@ import { createMuiTheme } from '@material-ui/core/styles';
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#800080',
+      main: '#0c6980',
     },
     secondary: {
-      main: '#19857b',
+      main: '#00a8a8',
     },
     error: {
       main: red.A400,
     },
     background: {
-      main: 'teal',
+      main: '#e8f4f8',
     },
+    navBackground: {
+        main: '#0c6980',
+    },    
     cardBackground: {
-        main: 'lightblue'
+        main: '#c4dbe0'
     },
     title: {
-        main: 'green'
+        main: 'black'
     },
     heading: {
-        main: 'pink'
+        main: 'black'
     },
+    body: {
+        main: 'black'
+    },    
     buttonText: {
         main: 'white'
     },
+    navButtonBackground: {
+        main: '#00a8a8'
+    },
+    navButtonText: {
+        main: 'white'
+    },    
     inputContainer: {
-        main: 'green'
+        main: '#858585'
     },
     inputContainerHover: {
-        main: 'blue'
+        main: '#858585'
     },
     inputContainerFocused: {
-        main: 'purple'
+        main: '#858585'
     },
     boxShadow: {
         main: '#888888'
@@ -43,9 +55,9 @@ export const theme = createMuiTheme({
   overrides: {
     MuiInputLabel: { // Name of the component ⚛️ / style sheet
       root: { // Name of the rule
-        color: "orange",
+        color: "#858585",
         "&$focused": { // increase the specificity for the pseudo class
-          color: "orange"
+          color: "black"
         }
       }
     }
