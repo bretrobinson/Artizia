@@ -15,9 +15,12 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.background.main
     },
     title: {
-        color: theme.palette.primary.main,
+        color: theme.palette.title.main,
         textAlign: 'center',
         marginBottom: 20
+    },
+    heading: {
+        color: theme.palette.heading.main
     },
     card: {
         backgroundColor: theme.palette.cardBackground.main,
@@ -52,13 +55,14 @@ const useStyles = makeStyles(theme => ({
         marginBottom: 15,
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.inputContainer.main
-          },
-          "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+        },
+        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.inputContainerHover.main
-          },
-          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.inputContainerFocused.main
-          }        
+        },
+        backgroundColor: 'white'
     },
     // inputLabel: {
     //     color: theme.palette.inputLabel.main,
@@ -103,7 +107,7 @@ const HomeScreen = ({ setIsSignedIn, onRouteChange }) => {
                             <TextField size='small' className={classes.input} variant="outlined" label='email' value={email} onChange={(event) => setEmail(event.target.value)} />
                         </div>
                         <div>
-                            <TextField size='small' className={classes.input}  variant="outlined" label='password' type='password' value={password} aria-label="minimum height" onChange={(event) => setPassword(event.target.value)} />
+                            <TextField size='small' className={classes.input} variant="outlined" label='password' type='password' value={password} aria-label="minimum height" onChange={(event) => setPassword(event.target.value)} />
                         </div>
                     </CardContent>
                     <CardActions className={classes.cardActions}>

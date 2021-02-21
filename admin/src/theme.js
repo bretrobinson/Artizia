@@ -4,7 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#800080',
     },
     secondary: {
       main: '#19857b',
@@ -17,6 +17,12 @@ export const theme = createMuiTheme({
     },
     cardBackground: {
         main: 'lightblue'
+    },
+    title: {
+        main: 'green'
+    },
+    heading: {
+        main: 'pink'
     },
     buttonText: {
         main: 'white'
