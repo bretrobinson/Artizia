@@ -53,24 +53,26 @@ export default StyleSheet.create({
     alignItems: 'center',
     // marginHorizontal: 5,
     fontSize: 18,
-    backgroundColor: Colors.primary,
+    //backgroundColor: Colors.primary,
+    backgroundColor: Colors.modalColor,
     color: Colors.buttonText,
     paddingHorizontal: 10,
     borderRadius: 4,
   },
   modalFieldText: {
-    backgroundColor: Colors.primary,
+    //backgroundColor: Colors.primary,
     color: Colors.buttonText,
     fontSize: 18,
     justifyContent: 'center'
   },
   modalDropdownText: {
-    backgroundColor: Colors.secondary,
+    //backgroundColor: Colors.secondary,
+    backgroundColor: Colors.modalDropdownColor,
     color: Colors.dropdownText,
     fontSize: 18
   },
   modalDropdownHighlight: {
-      backgroundColor: Colors.primary,
+      //backgroundColor: Colors.primary,
       color: Colors.buttonText
   },
   labelAndModalContainer: {
@@ -111,7 +113,8 @@ export default StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
     backgroundColor: Colors.accent2,
-    borderColor: Colors.primary,
+    //borderColor: Colors.primary,
+    borderColor: Colors.inputBorderColor,
     borderWidth: 1,
     height: 50,
     borderRadius: 5,
@@ -132,7 +135,8 @@ export default StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: Colors.primary,
+    //borderColor: Colors.primary,
+    borderColor: Colors.inputBorderColor,
     borderWidth: 1,
     marginBottom: 10,
     // fontSize: 18,
@@ -356,7 +360,8 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   headerStyle: {
-    backgroundColor: Colors.defaultButtonColor,
+    //backgroundColor: Colors.defaultButtonColor,
+    backgroundColor: Colors.primary
   },
   headerTitleStyle: {
     alignSelf: 'center',
