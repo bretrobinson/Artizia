@@ -32,17 +32,17 @@ const CategoryIds = [];
 let categoryID = '';
 let categoryRows = [];
 // main URL of server
-let serverURL = "http://1f43acd8cb7a.ngrok.io"
+//let serverURL = "http://b9c057818339.ngrok.io"
 // get categories from datbase
 // the base URL should come from env var
 // let serverURL = "http://localhost:3000/category"
-let categoryURL = serverURL + "/category"
+// let categoryURL = serverURL + "/category"
 //console.log('categoryURL: ', categoryURL)
 
-fetch(categoryURL)
-  .then((resp) => resp.json())
-  .then(data => {
-    categoryRows = data
+Api.get('/category')
+  // .then((resp) => resp.json())
+  .then(response => {
+    categoryRows = response.data
     //console.log('response data in add item: ', categoryRows)
     //categoryRows.forEach((row) => console.log('category id: ', row.id, ' category name: ', row.name))
     categoryRows.forEach((row) => {
@@ -133,7 +133,9 @@ const AddItemScreen = props => {
 
     // load up subcat array with subcats matching catid from DB
     //let subcatServerURL = "http://localhost:3000/subcategory/bycategory/" + categoryID
-    let subcategoryURL = serverURL + "/subcategory/bycategory/" + categoryID
+    //let subcategoryURL = serverURL + "/subcategory/bycategory/" + categoryID
+    let subcategoryURL = "/subcategory/bycategory/" + categoryID
+    console.log('subcatURL: ', subcategoryURL)
     //console.log('subcategoryURL: ', subcategoryURL)
     //let subcatServerURL = "http://6685b309427b.ngrok.io/subcategory/bycategory/" + categoryID
     //console.log('subcatServerURL: ', subcatServerURL)
@@ -141,11 +143,13 @@ const AddItemScreen = props => {
     SubCategories = [];
     subcategoryIds = [];
 
-    //fetch(subcatServerURL)
-    fetch(subcategoryURL)
-      .then((resp) => resp.json())
-      .then(data => {
-        subcategoryRows = data
+    //fetch(subcategoryURL)
+    Api.get(subcategoryURL)
+      //.then((resp) => resp.json())
+      //.then(data => {
+        .then(response => {
+        //subcategoryRows = data
+        subcategoryRows = response.data
         // console.log('subcategory response data in add item: ', subcategoryRows)
         subcategoryRows.forEach((row) => console.log('subcategory id: ', row.id, ' subcategory name: ', row.name))
         subcategoryRows.forEach((row) => {
@@ -388,7 +392,7 @@ const AddItemScreen = props => {
           <View style={DefaultStyles.rowContainer}>
             <Text style={DefaultStyles.label} >Photos  </Text>
             <TouchableOpacity activeOpacity={0.4} onPress={addPhotoHandler}>
-              <Ionicons name="add-circle" size={24} color={Colors.saveButtonColor} />
+              <Ionicons name="add-circle" size={24} color={Colors.addCircle} />
             </TouchableOpacity>
             <AddPhotos
               visible={isAddPhotoModalVisible}
@@ -430,7 +434,7 @@ const AddItemScreen = props => {
 
 
           <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
-            <MainButton title="Save" buttonColor={Colors.defaultButtonColor} onPress={saveButtonHandler} />
+            <MainButton title="Save" buttonColor={Colors.saveButtonColor} onPress={saveButtonHandler} />
           </View>
 
 

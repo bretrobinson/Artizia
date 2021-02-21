@@ -16,6 +16,7 @@ import AnnouncementEdit from './components/AnnouncementEdit'
 import AddCategory from './components/AddCategory';
 import Notification from "./components/Notification/Notification";
 import HomeScreen from './components/HomeScreen'
+
 function App() {
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
@@ -125,6 +126,7 @@ if(route==='addCategory'){
   pageDisplay = <HomeScreen setIsSignedIn={setIsSignedIn} onRouteChange={onRouteChange} />
 }
   return (
+
     <div className="App">
       <Navbar isSignedIn={isSignedIn} onRoute={onRouteChange} />
       {pageDisplay}

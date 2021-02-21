@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext,useCallback } from 'react'
 import {
     Text, View, FlatList, StyleSheet, TouchableOpacity,
     TouchableNativeFeedback, Platform, Image
@@ -9,20 +9,27 @@ import { navigate } from '../RootNavigation'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles';
 import Card from '../components/Card';
+import {useFocusEffect} from '@react-navigation/native'
 
 const MessageList = () => {
 
     const { state: { user } } = useContext(AuthContext)
 
     const [messageData, setMessageData] = useState([])
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await craftserverApi.get('/messages/')
+    const fetchData = async () => {
+        const response = await craftserverApi.get('/messages/')
 
-            await setMessageData(response.data)
-        }
+        await setMessageData(response.data)
+    }
+    useEffect(() => {
         fetchData()
     }, [])
+
+    useFocusEffect(
+        useCallback(()=>{
+            fetchData()
+        },[])
+    )
     let TouchableCmp = TouchableOpacity;
 
     if (Platform.OS === 'android' && Platform.Version >= 21) {
@@ -55,14 +62,9 @@ const MessageList = () => {
                                             {/* <Text style={DefaultStyles.messageItemIdInDetailsOfCard}>ItemId {item.itemid}</Text> */}
 
                                         </View>
-                                        {/* 
-                    <Text>{item.itemName}</Text>
-                    {user.idusers === item.buyerid ? <Text style={styles.lineMargin}>Me</Text> : <Text style={styles.lineMargin}>BuyerId {item.buyerid}</Text>}
-                    {user.idusers === item.sellerid ? <Text style={styles.lineMargin}>Me</Text> : <Text style={styles.lineMargin}>SellerId {item.sellerid}</Text>}
-                        <Text style={styles.lineMargin}>ItemId {item.itemid}</Text> */}
+
                                     </View>
-                                    {/* </View> */}
-                                    {/* </View> */}
+
                                 </View>
                             </TouchableCmp>
                         </Card>

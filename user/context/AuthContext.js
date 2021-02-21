@@ -90,7 +90,8 @@ const signin = dispatch => async ({ email, password }) => {
             } else if (response.data.user.status.toLowerCase() !== "active" && (new Date() - new Date(response.data.user.accountDisabled))> -23400000) {
                 await AsyncStorage.setItem('token', response.data.token);
                 dispatch({ type: 'signin', payload: response.data })
-                await craftserverApi.put('/adminProfile/',{ email,status:'Active', date:new Date()})               
+                await craftserverApi.put('/profile/',{ email,status:'Active', date:new Date()})
+                alert("Your account is now now active, Thank you")               
                 navigate.goBack()                
             } else{
                 alert('Your account has been disabled please contact App Admintrator, Thank you')

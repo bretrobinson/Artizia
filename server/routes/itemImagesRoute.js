@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../models/db");
 
 router.get('/:id', (req, res)=>{
-    // let sql = `SELECT *  FROM Image  WHERE itemId = ${req.params.id}`
+    // Get date for Item Detail Screen
     let sql = `SELECT Image.*, Item.* from Item INNER JOIN Image ON  Image.itemId = Item.id  WHERE Image.itemId = ${req.params.id}  `
     let query = db.query(sql, (err, result)=>{
         if (err){
