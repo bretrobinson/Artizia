@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import DrawerNavigator from "./components/Navigation/DrawerNavigator";
 import { navigationRef } from './RootNavigation';
@@ -14,6 +14,8 @@ import thunkMiddleware from 'redux-thunk';
 import { Provider as AnnouncementsProvider } from './context/AnnouncementContext';
 import * as Notifications from 'expo-notifications';
 import { enableScreens } from 'react-native-screens';
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => {
@@ -22,6 +24,13 @@ Notifications.setNotificationHandler({
 });
 
 enableScreens();
+
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  })
+}
 
 const rootReducer = combineReducers({
   //deletemyItemReducer,
@@ -36,6 +45,12 @@ const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 
 export default function App() {
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  if (!dataLoaded) {
+    return <AppLoading startAsync={fetchFonts} onFinish={() => setDataLoaded(true)} onError={console.warn} />
+  }
+
   return (
     <AnnouncementsProvider>
     <AuthProvider>

@@ -15,11 +15,13 @@ export default StyleSheet.create({
   bodyText: {
     //fontFamily: 'open-sans',
     color: 'black',
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'open-sans'
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    fontFamily: 'open-sans-bold',
     marginBottom: 10,
     marginTop: 10,
     textAlign: 'center'
@@ -28,13 +30,15 @@ export default StyleSheet.create({
     fontSize: 20,
     marginBottom: 5,
     color: 'black',
-    fontWeight: 'normal'
+    fontWeight: 'normal',
+    fontFamily: 'open-sans'
   },
   heading2: {
       fontSize: 22,
       marginTop: 10,
       marginBottom: 10,
       fontWeight: 'bold',
+      fontFamily: 'open-sans-bold',
   },
   errorText: {
     textAlign: 'center',
@@ -53,6 +57,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     // marginHorizontal: 5,
     fontSize: 18,
+    fontFamily: 'open-sans',    
     //backgroundColor: Colors.primary,
     backgroundColor: Colors.modalColor,
     color: Colors.buttonText,
@@ -63,13 +68,15 @@ export default StyleSheet.create({
     //backgroundColor: Colors.primary,
     color: Colors.buttonText,
     fontSize: 18,
+    fontFamily: 'open-sans',
     justifyContent: 'center'
   },
   modalDropdownText: {
     //backgroundColor: Colors.secondary,
     backgroundColor: Colors.modalDropdownColor,
     color: Colors.dropdownText,
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: 'open-sans',
   },
   modalDropdownHighlight: {
       //backgroundColor: Colors.primary,
@@ -104,6 +111,7 @@ export default StyleSheet.create({
     color: Colors.buttonText,
     //fontFamily: 'open-sans',
     fontSize: 20,
+    fontFamily: 'open-sans',
     textAlign: 'center'
   },
   searchBarOuterContainer: {
@@ -123,10 +131,12 @@ export default StyleSheet.create({
   },
   searchBarText: {
     flex: 1,
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: 'open-sans',
   },
   searchBarIcon: {
     fontSize: 35,
+    fontFamily: 'open-sans',
     alignSelf: 'center',
     marginHorizontal: 15
   },
@@ -147,6 +157,7 @@ export default StyleSheet.create({
   },
   inputText: {
     fontSize: 18,
+    fontFamily: 'open-sans',
   },
   multiLineInput: {
     height: 100,
@@ -197,12 +208,14 @@ export default StyleSheet.create({
   nameInDetailsOfCard: {
     // fontFamily: 'open-sans-bold',
     fontSize: 18,
+    fontFamily: 'open-sans',
     // color: Colors.accent,
     marginVertical: 2
   },
   priceInDetailsOfCard: {
     // fontFamily: 'open-sans',
     fontSize: 14,
+    fontFamily: 'open-sans',
     color: '#888'
   },
   myItemCard: {
@@ -230,13 +243,16 @@ export default StyleSheet.create({
     padding: 5
   },
   messageItemNameInDetailsOfCard: {
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'open-sans',
   },
   messageBuyerInDetailsOfCard: {
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'open-sans',
   },
   messageSellerInDetailsOfCard: {
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'open-sans',
   },
   messageDetailCardMe: {
     marginLeft: 0,
@@ -259,13 +275,16 @@ export default StyleSheet.create({
     height: 'auto'
   },
   messageDetailItemNameInDetailsOfCard: {
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'open-sans',
   },
   messageDetailBuyerInDetailsOfCard: {
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'open-sans',
   },
   messageDetailSellerInDetailsOfCard: {
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'open-sans',
   },
   messageDetailItemAndDeleteButtonInCardContainer: {
     flexDirection: 'row',
@@ -274,7 +293,8 @@ export default StyleSheet.create({
     marginLeft: '60%'
   },
   messageDetailMessage: {
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'open-sans',
   },
   messageDetailDateTimeInCardContainer: {
     flexDirection: 'row'
@@ -309,7 +329,8 @@ export default StyleSheet.create({
     textAlignVertical: 'top',
     // height: 70,
     width: '85%',
-    fontSize: 18 
+    fontSize: 18 ,
+    fontFamily: 'open-sans',
   },
   sendMessageIcon : {
     marginTop: 12,
@@ -321,7 +342,8 @@ export default StyleSheet.create({
     marginHorizontal: 40
   },
   radioButtonItemLabel: {
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'open-sans',
   },
   addItemIcon: {
     width:50,
@@ -330,6 +352,7 @@ export default StyleSheet.create({
   itemDetails: {
     marginLeft: 10,
     fontSize: 22,
+    fontFamily: 'open-sans',
     color: 'black'
   },
   itemDetailDateTimeContainer: {
@@ -343,10 +366,12 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   itemDetailDate: {
-    fontSize: 22
+    fontSize: 22,
+    fontFamily: 'open-sans',
   },
   itemDetailTime: {
-    fontSize: 22
+    fontSize: 22,
+    fontFamily: 'open-sans',
   },
   activityIndicator: {
     justifyContent: 'center'
@@ -365,6 +390,7 @@ export default StyleSheet.create({
   },
   headerTitleStyle: {
     alignSelf: 'center',
-    fontSize: 22
+    fontSize: 22,
+    fontFamily: 'open-sans-bold',
   }
   });
