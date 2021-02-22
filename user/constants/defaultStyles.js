@@ -392,5 +392,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
     fontSize: 22,
     fontFamily: 'open-sans-bold',
+    color: Colors.headerText
   }
   });
