@@ -3,14 +3,21 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
 import {FontAwesome, Entypo, MaterialIcons, Ionicons} from '@expo/vector-icons'
 import {Context as AuthContext} from '../../context/AuthContext'
+import DefaultStyles from '../../constants/defaultStyles';
+
 const Tab = createBottomTabNavigator();
 
 const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})=>{
 
     // const{ state:{isSignedIn} } = useContext(AuthContext)
     return    (
-    <Tab.Navigator tabBarOptions={{activeTintColor: 'orange',
-    inactiveTintColor: 'gray',}} > 
+      <Tab.Navigator 
+        screenOptions={{
+          headerStyle: DefaultStyles.headerStyle,
+        }}
+        tabBarOptions={{activeTintColor: 'orange',
+        inactiveTintColor: 'gray',
+        }} >
         <Tab.Screen 
         name = {name}
         component={component}
@@ -70,7 +77,7 @@ const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})
 
 
 
-        </Tab.Navigator>)
+    </Tab.Navigator>)
 
 }
 
