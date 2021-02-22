@@ -151,7 +151,7 @@ const AddPhotos = (props) => {
           </View>
 
           <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
-            <MainButton title="Done" buttonColor={Colors.defaultButtonColor} onPress={doneButtonHandler} />
+            <MainButton title="Done" buttonColor={Colors.saveButtonColor} onPress={doneButtonHandler} />
             <MainButton title="Cancel" buttonColor={Colors.cancelButtonColor} onPress={cancelButtonHandler} />
           </View>
         </ScrollView>
