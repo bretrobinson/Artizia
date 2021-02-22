@@ -18,8 +18,10 @@ export default {
   //cancelButtonColor: '#f13c20',
   saveButtonColor: '#0c6980',
   //saveButtonColor: '#d79922',
-  defaultButtonColor: '#0055aa',
-  //defaultButtonColor: '#d79922',
+  //defaultButtonColor: '#0055aa',
+  defaultButtonColor: '#319eb9',
+  //defaultButtonColor: '#d79922', // tany/browny colour
+  radioButtonColor: 'black',
   error: '#f13c20',
   //saveButtonColor: 'yellow',
   buttonText: 'white',
