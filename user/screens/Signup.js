@@ -1,6 +1,6 @@
 import React, { useState, useContext, useCallback } from 'react';
 import { View } from 'react-native';
-import { StyleSheet, ScrollView, KeyboardAvoidingView, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { StyleSheet, ScrollView, KeyboardAvoidingView, SafeAreaView, TouchableWithoutFeedback, Keyboard , Platform} from 'react-native'
 import { Button, Text, Input, colors } from 'react-native-elements'
 import { Context as AuthContext } from '../context/AuthContext'
 import RadioButton2 from '../components/RadioButton2'
@@ -32,7 +32,7 @@ const Signup = ({ navigation }) => {
           Keyboard.dismiss();
         }}
       >
-                <KeyboardAvoidingView behavior='height' style={{ height: '100%', justifyContent: 'center' }} >
+                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'height' : 'padding'}  style={{ height: '100%', justifyContent: 'center' }} >
                     <View style={DefaultStyles.screenContainer}>
                         {/* <View style={styles.container}> */}
                         <Text style={DefaultStyles.title}>Sign Up</Text>

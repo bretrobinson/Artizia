@@ -61,7 +61,7 @@ console.log("item:" + item)
       <View style={DefaultStyles.screenContainer}>
        
         <Ionicons name="add" style={DefaultStyles.addItemIcon} size={55} color={Colors.saveButtonColor}
-          onPress={() => navigate('AddItem')}
+          onPress={() => navigate('Add Item')}
         />
        
         <FlatList

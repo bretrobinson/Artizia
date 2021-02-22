@@ -90,7 +90,7 @@ const MessageDetail = ({ route, navigation }) => {
           Keyboard.dismiss();
         }}
       >
-                    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'padding'} >
+                    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'height' : 'padding'} >
 
                         {/* <View style={DefaultStyles.screenContainer}> */}
                         {messageDisplay}
