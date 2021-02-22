@@ -21,9 +21,9 @@ const MessageList = () => {
 
         await setMessageData(response.data)
     }
-    // useEffect(() => {
-    //     fetchData()
-    // }, [])
+    useEffect(() => {
+        fetchData()
+    }, [])
 
     useFocusEffect(
         useCallback(()=>{

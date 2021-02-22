@@ -11,9 +11,9 @@ const Announcements = () => {
 
     const { state, fetchAnnouncements } = useContext(AnnouncementContext)
 
-    // useEffect(() => {
-    //     fetchAnnouncements()
-    // }, [])
+    useEffect(() => {
+        fetchAnnouncements()
+    }, [])
     useFocusEffect(
         useCallback(()=>{
             fetchAnnouncements()
