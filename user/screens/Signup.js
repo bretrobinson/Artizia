@@ -98,13 +98,13 @@ const Signup = ({ navigation }) => {
 
                         <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
                             {/* <View style={styles.buttonSave}> */}
-                            <MainButton title="Sign up" buttonColor={Colors.defaultButtonColor} onPress={() => signup({ email, password, fName, lName, location, payment })} />
+                            <MainButton title="Sign Up" buttonColor={Colors.defaultButtonColor} onPress={() => signup({ email, password, fName, lName, location, payment })} />
                             {/* </View>         */}
                         </View>
 
                         <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
                             {/* <View style={styles.buttonSave}> */}
-                            <MainButton title="Go to Sign In" buttonColor={Colors.cancelButtonColor} onPress={() => navigation.navigate('Sign in')} />
+                            <MainButton title="Go to Sign In" buttonColor={Colors.cancelButtonColor} onPress={() => navigation.navigate('Sign In')} />
                             {/* </View>         */}
                         </View>
 

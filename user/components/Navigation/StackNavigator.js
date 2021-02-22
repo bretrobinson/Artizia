@@ -37,7 +37,7 @@ const MainStackNavigator = ({ navigation }) => {
           />
         }}
       />
-      <Stack.Screen name="Sign up" component={Signup}
+      <Stack.Screen name="Sign Up" component={Signup}
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
           headerLeft: () => <Image
