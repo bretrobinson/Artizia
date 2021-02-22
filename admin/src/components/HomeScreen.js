@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.title.main,
         textAlign: 'center',
         marginBottom: 20,
-        marginTop: 40
+        marginTop: 40,
     },
     heading: {
         color: theme.palette.heading.main,

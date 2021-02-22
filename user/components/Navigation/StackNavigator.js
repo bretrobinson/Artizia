@@ -18,22 +18,32 @@ import EditProfile from '../../screens/EditProfile'
 import MessageList from '../../screens/MessageList'
 import MessageDetail from '../../screens/MessageDetail';
 import DefaultStyles from '../../constants/defaultStyles';
+import { Image } from 'react-native';
 
 
 const Stack = createStackNavigator();
-const MainStackNavigator = ({navigation}) => {
-    return (
-      <Stack.Navigator screenOptions={{ headerStyle: {
-        backgroundColor: Colors.accent2,
-      },}} >
-        <Stack.Screen name="Sign in" component={Signin}         
+const MainStackNavigator = ({ navigation }) => {
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: DefaultStyles.headerStyle,
+      headerTitleStyle: DefaultStyles.headerTitleStyle
+    }}>
+      <Stack.Screen name="Sign in" component={Signin}
         options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerLeft: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../../assets/logo.png')}
+          />
         }}
-         />
-        <Stack.Screen name="Sign up" component={Signup}
+      />
+      <Stack.Screen name="Sign up" component={Signup}
         options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerLeft: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../../assets/logo.png')}
+          />
         }}
       />
 
@@ -49,13 +59,22 @@ const LandingStackNavigator = ({ navigation }) => {
     }}
 
     >
-      <Stack.Screen name="Craft Sell" component={Landing}
+      <Stack.Screen name="Artizia" component={Landing}
         options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerLeft: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../../assets/logo.png')}
+          />
+
         }} />
-        <Stack.Screen name="Item Detail" component={ItemDetail}
+      <Stack.Screen name="Item Detail" component={ItemDetail}
         options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerLeft: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../../assets/logo.png')}
+          />
         }} />
     </Stack.Navigator>
   );
@@ -74,11 +93,19 @@ const ProfileStackNavigator = ({ navigation }) => {
     }}>
       <Stack.Screen name="Profile" component={Profile}
         options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerLeft: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../../assets/logo.png')}
+          />
         }} />
-        <Stack.Screen name="Edit Profile" component={EditProfile} 
+      <Stack.Screen name="Edit Profile" component={EditProfile}
         options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerLeft: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../../assets/logo.png')}
+          />
         }} />
 
     </Stack.Navigator>
@@ -120,17 +147,26 @@ const AdvancedSearchStackNavigator = ({ navigation }) => {
 
 const MessageStackNavigator = ({ navigation }) => {
   return (
-    <Stack.Navigator screenOptions={{ headerStyle: {
-      backgroundColor: Colors.accent2,
-    },}}>
-      <Stack.Screen name="Message List" component={MessageList} 
-      options={{
-        headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
-      }} />
+    <Stack.Navigator screenOptions={{
+      headerStyle: DefaultStyles.headerStyle,
+      headerTitleStyle: DefaultStyles.headerTitleStyle
+    }}>
+      <Stack.Screen name="Message List" component={MessageList}
+        options={{
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerLeft: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../../assets/logo.png')}
+          />
+        }} />
       <Stack.Screen name="Messages" component={MessageDetail}
-      options={{
-        headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}} onPress={()=>navigation.openDrawer()} />
-      }} />
+        options={{
+          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerLeft: () => <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../../assets/logo.png')}
+          />
+        }} />
     </Stack.Navigator>
   );
 }
