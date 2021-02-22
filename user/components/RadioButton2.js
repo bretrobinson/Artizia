@@ -13,10 +13,10 @@ const RadioButton2 = ({ value, setValue }) => {
       <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
         <Text style={DefaultStyles.label} >Payment Method</Text>
         <View style={DefaultStyles.radioButtonItemContainer}>
-          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Email Transfer" value="Email Transfer" />
-          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Pay Pal" value="PayPal" />
-          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Cash" value="Cash" />
-          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.accent2} label="Any Payment Above" value="Any Payment Above" />
+          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.radioButtonColor} label="Email Transfer" value="Email Transfer" />
+          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.radioButtonColor} label="Pay Pal" value="PayPal" />
+          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.radioButtonColor} label="Cash" value="Cash" />
+          <RadioButton.Item labelStyle={DefaultStyles.radioButtonItemLabel} color={Colors.radioButtonColor} label="Any Payment Above" value="Any Payment Above" />
         </View>
       </RadioButton.Group>
     </View>
