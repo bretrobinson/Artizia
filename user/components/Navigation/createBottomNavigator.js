@@ -4,6 +4,8 @@ import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator, 
 import {FontAwesome, Entypo, MaterialIcons, Ionicons} from '@expo/vector-icons'
 import {Context as AuthContext} from '../../context/AuthContext'
 import Colors from '../../constants/Colors';
+import DefaultStyles from '../../constants/defaultStyles';
+
 const Tab = createBottomTabNavigator();
 
 const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})=>{

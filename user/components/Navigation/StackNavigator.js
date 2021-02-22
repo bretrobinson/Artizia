@@ -149,14 +149,6 @@ const MessageStackNavigator = ({ navigation }) => {
     <Stack.Navigator screenOptions={{
       headerStyle: DefaultStyles.headerStyle,
       headerTitleStyle: DefaultStyles.headerTitleStyle
-<<<<<<< HEAD
-    }}
-    >
-      <Stack.Screen name="Message List" component={MessageList} 
-      options={{
-        headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
-      }} />
-=======
     }}>
       <Stack.Screen name="Message List" component={MessageList}
         options={{
@@ -166,7 +158,6 @@ const MessageStackNavigator = ({ navigation }) => {
             source={require('../../assets/logo.png')}
           />
         }} />
->>>>>>> 7ceae87c97a2b71f3d82885e3de9df44d7ef17ae
       <Stack.Screen name="Messages" component={MessageDetail}
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
