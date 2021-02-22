@@ -15,9 +15,9 @@ const CreateStackNavigator = ({ navigation, name, component }) => {
     }}>
       <Stack.Screen name={name} component={component}
         options={{
-          headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
+          headerRight: () => <Feather name='menu' size={25} style={DefaultStyles.hamburgerMenu} onPress={() => navigation.openDrawer()} />,
           headerLeft: () => <Image
-            style={{ width: 50, height: 50 }}
+            style={DefaultStyles.logo}
             source={require('../../assets/logo.png')}
           />
         }} />

@@ -31,5 +31,6 @@ export default {
   addCircle: 'black',
   modalColor: '#00a8a8',
   modalDropdownColor: '#1acece',
-  headerText: '#c4dbe0'
+  headerText: '#c4dbe0',
+  hamburgerMenu: '#c4dbe0'  
 };
