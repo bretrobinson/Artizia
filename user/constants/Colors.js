@@ -30,5 +30,6 @@ export default {
   inputBorderColor: '#858585',
   addCircle: 'black',
   modalColor: '#00a8a8',
-  modalDropdownColor: '#1acece'
+  modalDropdownColor: '#1acece',
+  headerText: '#c4dbe0'
 };

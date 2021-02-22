@@ -78,7 +78,7 @@ const DrawerNavigator = ()=> {
                     options={()=> ({
                         drawerIcon: ()=> <Entypo name='news' size={25} />
                     })}/>
-            <Drawer.Screen name= 'Sign out' component={SignoutStackNavigator}
+            <Drawer.Screen name= 'Signout' component={SignoutStackNavigator}
               options={()=> ({
                 drawerIcon: ()=> <Entypo name='log-out' size={25} />
             })} />

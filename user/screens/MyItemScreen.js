@@ -15,7 +15,6 @@ import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { navigate } from '../RootNavigation';
 import DefaultStyles from '../constants/defaultStyles';
 import Colors from '../constants/Colors';
-
 const MyItemScreen = (props) => {
 
   const { state } = useContext(AuthContext)
@@ -25,10 +24,30 @@ const MyItemScreen = (props) => {
     const [isDetele, setDelete] = useState(false);
     const [refreshing, setRefreshing] = useState(true)
     const [error, setError] = useState();
-
     const dispatch = useDispatch();
     const UserItemreducer = useSelector(state => state.userItemsReducer.items);
-
+    const EmptyListMessage = ({item}) => {
+console.log("item:" + item)
+      if(typeof item === "undefined"){
+        return (
+          <View style={styles.EmptyListMessage}>
+             <Text style={styles.text}>No items found, maybe start creating some?</Text>
+             
+          </View>
+       
+         
+        );
+      }else{
+        return(null)
+      }
+    
+    };
+  
+   
+  
+    
+    
+ 
     useEffect(() => {
 
       setIsLoading(false)
@@ -40,15 +59,16 @@ const MyItemScreen = (props) => {
     return (
 
       <View style={DefaultStyles.screenContainer}>
-
+       
         <Ionicons name="add" style={DefaultStyles.addItemIcon} size={55} color={Colors.saveButtonColor}
           onPress={() => navigate('AddItem')}
         />
-
+       
         <FlatList
           data={UserItemreducer}
           keyExtractor={item => item.id.toString()}
-          renderItem={itemData => (
+                   renderItem={itemData => (
+            
             <GetMyItem
               id={itemData.item.id}
               name={itemData.item.name}
@@ -58,9 +78,10 @@ const MyItemScreen = (props) => {
           
             >
             </GetMyItem>
+           
               
           )}
-
+          ListEmptyComponent={EmptyListMessage}
         >
         </FlatList>
            
@@ -69,6 +90,8 @@ const MyItemScreen = (props) => {
   } else return <Text>Please Login.</Text>
 
 };
+
+  
 
 const styles = StyleSheet.create({
   msg: {
@@ -80,6 +103,16 @@ const styles = StyleSheet.create({
 
 
   },
+  emptyListStyle: {
+    padding: 10,
+    fontSize: 77,
+    textAlign: 'center',
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 200
+  }
 
 });
 

@@ -45,7 +45,7 @@ const ItemDetail = ({ route, navigation }) => {
 
           alert(response.data)
           // navigation.navigate('ItemDetail')
-          navigation.goBack()
+          navigation.navigate('Message List')
         } catch (err) {
           alert('Message to self is not permitted, Thanks')
           navigation.goBack()
@@ -70,6 +70,7 @@ const ItemDetail = ({ route, navigation }) => {
               <FlatList
                 data={ItemImages}
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 keyExtractor={item => item.url}
                 renderItem={({ item }) => {
                   return (

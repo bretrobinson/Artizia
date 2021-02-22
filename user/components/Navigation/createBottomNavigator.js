@@ -3,8 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {LandingStackNavigator, MainStackNavigator,AdvancedSearchStackNavigator, AddItemStackNavigator ,ReviewSellerStackNavigator, MyItemStackNavigator, MessageStackNavigator, SignoutStackNavigator} from './StackNavigator'
 import {FontAwesome, Entypo, MaterialIcons, Ionicons} from '@expo/vector-icons'
 import {Context as AuthContext} from '../../context/AuthContext'
-import DefaultStyles from '../../constants/defaultStyles';
-
+import Colors from '../../constants/Colors';
 const Tab = createBottomTabNavigator();
 
 const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})=>{
@@ -22,38 +21,38 @@ const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})
         name = {name}
         component={component}
        options={()=> ({
-            tabBarIcon: ()=> <Entypo name={iconName} size={25} />
+            tabBarIcon: ({focused, color})=> <Entypo name={iconName} size={25} focused={focused} color={color} />
         })}
         />
 
 
         {isSignedIn ? <>
             <Tab.Screen 
-        name = "my Item"
+        name = "My Items"
         component={MyItemStackNavigator}
         options={()=> ({
-            tabBarIcon: ()=> <Entypo name='list' size={25} />
+            tabBarIcon: ({focused, color})=> <Entypo name='list' size={25} focused={focused} color={color} />
         })}
         />
             <Tab.Screen 
         name = "Messages"
         component={MessageStackNavigator}
         options={()=> ({
-            tabBarIcon: ()=> <Entypo name='chat' size={25} />
+            tabBarIcon: ({focused, color})=> <Entypo name='chat' size={25} focused={focused} color={color} />
         })}
         />
         <Tab.Screen 
-            name = "AddItem"
+            name = "Add Item"
             component={AddItemStackNavigator}
             options={()=> ({
-                tabBarIcon: ()=> <Entypo name='add-to-list' size={25} />
+                tabBarIcon: ({focused, color})=> <Entypo name='add-to-list' size={25} focused={focused} color={color}/>
     })}
     />
     <Tab.Screen 
     name = "Signout"
     component={SignoutStackNavigator}
     options={()=> ({
-        tabBarIcon: ()=> <Entypo name='log-out' size={25} />
+        tabBarIcon: ({focused, color})=> <Entypo name='log-out' size={25} focused={focused} color={color}/>
     })}
     />
       </>  
@@ -66,10 +65,10 @@ const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})
         })}
         /> */}
      <Tab.Screen 
-    name = "Signin"
+    name = "Sign In"
     component={MainStackNavigator}
     options={()=> ({
-        tabBarIcon: ()=> <Entypo name='login' size={25} />
+        tabBarIcon: ({focused, color})=> <Entypo name='login' size={25} focused={focused} color={color} />
     })}
     />
     </>

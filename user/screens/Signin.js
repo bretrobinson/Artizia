@@ -27,7 +27,7 @@ const Signin = ({ navigation }) => {
       >
         <View style={DefaultStyles.screenContainer}>
             {/* <View style={styles.container}> */}
-            <Text style={DefaultStyles.title}>Sign in</Text>
+            <Text style={DefaultStyles.title}>Sign In</Text>
             {/* <Text h3 style={styles.signin} >Sign in</Text> */}
             {/* <AuthForm 
             submitButtonText='Sign in'
@@ -67,13 +67,13 @@ const Signin = ({ navigation }) => {
 
             <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
                 {/* <View style={styles.buttonSave}> */}
-                <MainButton title="Sign in" buttonColor={Colors.defaultButtonColor} onPress={() => signin({ email, password })} />
+                <MainButton title="Sign In" buttonColor={Colors.defaultButtonColor} onPress={() => signin({ email, password })} />
                 {/* </View>         */}
             </View>
 
             <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
                 {/* <View style={styles.buttonSave}> */}
-                <MainButton title="Go to Sign up" buttonColor={Colors.cancelButtonColor} onPress={() => navigation.navigate('Sign up')} />
+                <MainButton title="Go to Sign Up" buttonColor={Colors.cancelButtonColor} onPress={() => navigation.navigate('Sign Up')} />
                 {/* </View>         */}
             </View>
         </View>

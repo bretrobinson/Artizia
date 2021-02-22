@@ -11,6 +11,7 @@ const CategoryItems = props => {
             <Text style={DefaultStyles.heading2}>{props.category.category.name}</Text>
             <FlatList
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 data={props.category.mostRecentItems}
                 keyExtractor={item => item.id.toString()}
                 renderItem={itemData => (

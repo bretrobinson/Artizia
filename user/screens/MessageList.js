@@ -35,7 +35,11 @@ const MessageList = () => {
     if (Platform.OS === 'android' && Platform.Version >= 21) {
         TouchableCmp = TouchableNativeFeedback;
     }
-
+if (messageData.length<1){
+    return ( <View style={DefaultStyles.screenContainer}>
+    <Text style={styles.container}>No message to display</Text>
+    </View>)
+} else {
     return (
         <View style={DefaultStyles.screenContainer}>
 
@@ -75,13 +79,14 @@ const MessageList = () => {
         </View>
     );
 }
+}
 const styles = StyleSheet.create({
-    // container: {
-    //     margin: 10,
-    //     backgroundColor: Colors.accent,
-    //     borderRadius: 15
-    // },
-    // body: {
+    container: {
+        textAlign: 'center',
+        marginTop: 200,
+        fontSize: 24
+    },
+    // body: {: 
     //     flexDirection: 'row'
     // },
     // lineMargin: {
