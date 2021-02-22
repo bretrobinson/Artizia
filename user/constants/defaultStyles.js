@@ -351,7 +351,7 @@ export default StyleSheet.create({
   },
   itemDetails: {
     marginLeft: 10,
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: 'open-sans',
     color: 'black'
   },
@@ -366,11 +366,11 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   itemDetailDate: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: 'open-sans',
   },
   itemDetailTime: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: 'open-sans',
   },
   activityIndicator: {
@@ -393,5 +393,14 @@ export default StyleSheet.create({
     fontSize: 22,
     fontFamily: 'open-sans-bold',
     color: Colors.headerText
+  },
+  hamburgerMenu: {
+    marginRight: 15, 
+    color: Colors.hamburgerMenu    
+  },
+  logo: {
+    marginLeft: 10, 
+    width: 50, 
+    height: 50    
   }
   });

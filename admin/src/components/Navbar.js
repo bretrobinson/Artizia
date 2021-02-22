@@ -66,6 +66,9 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.buttonText.main,
     textTransform: 'none',
     fontSize: 16,
+    '&:hover': {
+      backgroundColor: 'black'
+    }    
   },
   button2: {
     backgroundColor: theme.palette.secondary.main,
@@ -123,11 +126,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.navBackground.main,
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     marginRight: 'auto',
     marginLeft: 30,
-    marginTop: -5
+    marginTop: -8
   }
 }))
 
@@ -151,13 +154,13 @@ const Navbar = ({ isSignedIn, onRoute }) => {
       <img src={logo} className={classes.logo} />
 
       { isSignedIn ? <>
-        <Link onClick={() => onRoute('announcements')}  ><Button variant='contained' className={classes.navButton}>announcements</Button></Link>
-        <Link onClick={() => onRoute('createMessage')} ><Button variant='contained' className={classes.navButton}>Create Announcement</Button></Link>
-        <Link onClick={() => onRoute('rules')}><Button variant='contained' className={classes.navButton}>Rules</Button></Link>
-        <Link onClick={() => onRoute('addCategory')} ><Button variant='contained' className={classes.navButton}>Add Category</Button></Link>
-        <Link onClick={() => onRoute('notification')} ><Button variant='contained' className={classes.navButton}>Send Notification</Button></Link>
-        <Link onClick={() => onRoute('manageUsers')}><Button variant='contained' className={classes.navButton}>Manage Users</Button></Link>
-        <Link onClick={() => signout()} style={{ marginLeft: 'auto' }}><Button variant='contained' className={classes.navButton}>Signout</Button></Link>
+        <Link onClick={() => onRoute('announcements')} underline='none'  ><Button variant='contained' className={classes.navButton}>announcements</Button></Link>
+        <Link onClick={() => onRoute('createMessage')} underline='none' ><Button variant='contained' className={classes.navButton}>Create Announcement</Button></Link>
+        <Link onClick={() => onRoute('rules')} underline='none' ><Button variant='contained' className={classes.navButton}>Rules</Button></Link>
+        <Link onClick={() => onRoute('addCategory')} underline='none' ><Button variant='contained' className={classes.navButton}>Add Category</Button></Link>
+        <Link onClick={() => onRoute('notification')} underline='none' ><Button variant='contained' className={classes.navButton}>Send Notification</Button></Link>
+        <Link onClick={() => onRoute('manageUsers')} underline='none' ><Button variant='contained' className={classes.navButton}>Manage Users</Button></Link>
+        <Link onClick={() => signout()} style={{ marginLeft: 'auto' }} underline='none' ><Button variant='contained' className={classes.navButton}>Signout</Button></Link>
       </> : <></>
       }
     </Container>

@@ -62,9 +62,9 @@ export const theme = createMuiTheme({
       }
     }
   },
-  typography: {
-    fontFamily: [
-      'Open Sans',
-    ].join(','),
- }  
+//   typography: {
+//     fontFamily: [
+//       'Open Sans',
+//     ].join(','),
+//  }  
  });
