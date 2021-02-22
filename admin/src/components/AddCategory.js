@@ -123,6 +123,13 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'center',
       backgroundColor: theme.palette.navBackground.main
+  },
+  logo: {
+    width: 50, 
+    height: 50, 
+    marginRight: 'auto', 
+    marginLeft: 30, 
+    marginTop: -5
   }
 }))
 
