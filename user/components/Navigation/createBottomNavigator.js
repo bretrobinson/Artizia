@@ -23,7 +23,7 @@ const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})
 
         {isSignedIn ? <>
             <Tab.Screen 
-        name = "My Item"
+        name = "My Items"
         component={MyItemStackNavigator}
         options={()=> ({
             tabBarIcon: ({focused, color})=> <Entypo name='list' size={25} focused={focused} color={color} />
@@ -60,7 +60,7 @@ const CreateBottomTabNavigator = ({name, isSignedIn, component, Icon, iconName})
         })}
         /> */}
      <Tab.Screen 
-    name = "Signin"
+    name = "Sign In"
     component={MainStackNavigator}
     options={()=> ({
         tabBarIcon: ({focused, color})=> <Entypo name='login' size={25} focused={focused} color={color} />

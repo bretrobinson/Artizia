@@ -28,7 +28,7 @@ const MainStackNavigator = ({ navigation }) => {
       headerStyle: DefaultStyles.headerStyle,
       headerTitleStyle: DefaultStyles.headerTitleStyle
     }}>
-      <Stack.Screen name="Sign in" component={Signin}
+      <Stack.Screen name="Sign In" component={Signin}
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />,
           headerLeft: () => <Image
@@ -119,7 +119,7 @@ const AddItemStackNavigator = ({ navigation }) => {
 
 const MyItemStackNavigator = ({ navigation }) => {
   return (
-    <CreateStackNavigator navigation={navigation} name="My Item" component={MyItem} />
+    <CreateStackNavigator navigation={navigation} name="My Items" component={MyItem} />
   );
 }
 const AnnouncementsStackNavigator = ({ navigation }) => {
@@ -130,7 +130,7 @@ const AnnouncementsStackNavigator = ({ navigation }) => {
 
 const SignoutStackNavigator = ({ navigation }) => {
   return (
-    <CreateStackNavigator navigation={navigation} name="signout" component={Signout} />
+    <CreateStackNavigator navigation={navigation} name="Signout" component={Signout} />
   );
 }
 //   const ItemDetailStackNavigator = ({navigation}) => {
