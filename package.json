@@ -9,7 +9,9 @@
     "install-server": "cd server && npm install && cd ..",
     "install": "npm run install-admin && npm run install-user && npm run install-server",
     "build-admin": "cd admin && npm run build && cd ..",
-    "build": "npm run build-admin"
+    "build": "npm run build-admin",
+    "start-server": "cd server && npm start && cd ..",
+    "start": "npm run start-server"
   },
   "repository": {
     "type": "git",

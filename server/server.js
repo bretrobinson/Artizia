@@ -8,6 +8,7 @@ const categoryRouter = require('./routes/categoryRouter');
 const subcategoryRouter = require('./routes/subcategoryRouter');
 const itemRouter = require('./routes/itemRouter');
 const profileRoute = require('./routes/profileRoute')
+const path = require('path');
 
 const Signup=require("./routes/signupRoute");
 const messagesRoute = require('./routes/messagesRoute')
@@ -30,6 +31,9 @@ db.connect((err)=> {
   });
 
 app.use(express.json())
+
+app.use(express.static(path.join(__dirname, '../admin/build')));
+
 // require("./routes/announcementReadRoute")(app);
 require("./routes/ItemReview.route.js")(app);
 require("./routes/SellerReview.route.js")(app);
