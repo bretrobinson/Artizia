@@ -23,9 +23,11 @@ import DefaultStyles from '../../constants/defaultStyles';
 const Stack = createStackNavigator();
 const MainStackNavigator = ({navigation}) => {
     return (
-      <Stack.Navigator screenOptions={{ headerStyle: {
-        backgroundColor: Colors.accent2,
-      },}} >
+      <Stack.Navigator screenOptions={{
+        headerStyle: DefaultStyles.headerStyle,
+        headerTitleStyle: DefaultStyles.headerTitleStyle
+        }}
+      >
         <Stack.Screen name="Sign in" component={Signin}         
         options={{
           headerRight: () => <Feather name='menu' size={25} style={{ marginRight: 15 }} onPress={() => navigation.openDrawer()} />
@@ -47,7 +49,6 @@ const LandingStackNavigator = ({ navigation }) => {
       headerStyle: DefaultStyles.headerStyle,
       headerTitleStyle: DefaultStyles.headerTitleStyle
     }}
-
     >
       <Stack.Screen name="Craft Sell" component={Landing}
         options={{
@@ -120,9 +121,11 @@ const AdvancedSearchStackNavigator = ({ navigation }) => {
 
 const MessageStackNavigator = ({ navigation }) => {
   return (
-    <Stack.Navigator screenOptions={{ headerStyle: {
-      backgroundColor: Colors.accent2,
-    },}}>
+    <Stack.Navigator screenOptions={{
+      headerStyle: DefaultStyles.headerStyle,
+      headerTitleStyle: DefaultStyles.headerTitleStyle
+    }}
+    >
       <Stack.Screen name="Message List" component={MessageList} 
       options={{
         headerRight: ()=> <Feather name='menu' size={25} style={{marginRight:15}}  onPress={()=>navigation.openDrawer()} />
