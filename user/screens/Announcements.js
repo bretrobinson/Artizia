@@ -1,21 +1,25 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { Context as AnnouncementContext } from '../context/AnnouncementContext'
 import Moment from 'react-moment'
 import Colors from '../constants/Colors';
 import DefaultStyles from '../constants/defaultStyles';
 import Card from '../components/Card';
-
+import {useFocusEffect} from '@react-navigation/native'
 
 const Announcements = () => {
 
-
-
     const { state, fetchAnnouncements } = useContext(AnnouncementContext)
 
-    useEffect(() => {
-        fetchAnnouncements()
-    }, [])
+    // useEffect(() => {
+    //     fetchAnnouncements()
+    // }, [])
+    useFocusEffect(
+        useCallback(()=>{
+            fetchAnnouncements()
+        },[])
+    )
+    
 
     return (
         <View style={DefaultStyles.screenContainer} >
