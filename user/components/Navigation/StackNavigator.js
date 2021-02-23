@@ -26,7 +26,8 @@ const MainStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator screenOptions={{
       headerStyle: DefaultStyles.headerStyle,
-      headerTitleStyle: DefaultStyles.headerTitleStyle
+      headerTitleStyle: DefaultStyles.headerTitleStyle,
+      headerTintColor: 'white'
     }}>
       <Stack.Screen name="Sign In" component={Signin}
         options={{
@@ -40,10 +41,10 @@ const MainStackNavigator = ({ navigation }) => {
       <Stack.Screen name="Sign Up" component={Signup}
         options={{
           headerRight: () => <Feather name='menu' size={25} style={DefaultStyles.hamburgerMenu} onPress={() => navigation.openDrawer()} />,
-          headerLeft: () => <Image
-            style={DefaultStyles.logo}
-            source={require('../../assets/logo.png')}
-          />
+          // headerLeft: () => <Image
+          //   style={DefaultStyles.logo}
+          //   source={require('../../assets/logo.png')}
+          // />
         }}
       />
 
@@ -55,7 +56,9 @@ const LandingStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator screenOptions={{
       headerStyle: DefaultStyles.headerStyle,
-      headerTitleStyle: DefaultStyles.headerTitleStyle
+      headerTitleStyle: DefaultStyles.headerTitleStyle,
+      headerTintColor: 'white',
+      headerBackTitle: 'Back'
     }}
     >
       <Stack.Screen name="Artizia" component={Landing}
@@ -88,7 +91,8 @@ const ProfileStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator screenOptions={{
       headerStyle: DefaultStyles.headerStyle,
-      headerTitleStyle: DefaultStyles.headerTitleStyle
+      headerTitleStyle: DefaultStyles.headerTitleStyle,
+      headerTintColor: 'white'
     }}>
       <Stack.Screen name="Profile" component={Profile}
         options={{
@@ -101,10 +105,10 @@ const ProfileStackNavigator = ({ navigation }) => {
       <Stack.Screen name="Edit Profile" component={EditProfile}
         options={{
           headerRight: () => <Feather name='menu' size={25} style={DefaultStyles.hamburgerMenu} onPress={() => navigation.openDrawer()} />,
-          headerLeft: () => <Image
-            style={DefaultStyles.logo}
-            source={require('../../assets/logo.png')}
-          />
+          // headerLeft: () => <Image
+          //   style={DefaultStyles.logo}
+          //   source={require('../../assets/logo.png')}
+          // />
         }} />
 
     </Stack.Navigator>
@@ -148,7 +152,8 @@ const MessageStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator screenOptions={{
       headerStyle: DefaultStyles.headerStyle,
-      headerTitleStyle: DefaultStyles.headerTitleStyle
+      headerTitleStyle: DefaultStyles.headerTitleStyle,
+      headerTintColor: 'white'
     }}>
       <Stack.Screen name="Message List" component={MessageList}
         options={{
