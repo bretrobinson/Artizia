@@ -33,7 +33,7 @@ const ItemDetail = ({ route, navigation }) => {
 
   const sentMessageHandler = async ({ message, sellerid, }) => {
     if (!isSignedIn) {
-      navigation.navigate('Signin')
+      navigation.navigate('Sign In')
     } else {
       if (message.length < 2) {
         alert('Please enter message to send')
