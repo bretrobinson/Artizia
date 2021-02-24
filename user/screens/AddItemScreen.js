@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -103,12 +103,28 @@ const AddItemScreen = props => {
   const [addPhoto, setAddPhoto] = useState('');
   const [photos, setPhotos] = useState([]);
   const [isAddPhotoModalVisible, setIsAddPhotoModalVisible] = useState(false);
+  const [currentImageUri, setCurrentImageUri] = useState('');
+  const [newPhotos, setNewPhotos] = useState([]);
 
   const shortD = useRef();
   const longD = useRef();
   const sellPrice = useRef();
   const itemCategory = useRef();
   const itemSubcategory = useRef();
+
+  useEffect(() => {
+    props.navigation.addListener('focus', () => {
+        setShortDesc('');
+        setLongDesc('');
+        setPrice('');
+        setAddPhoto('');
+        setCategory('');
+        setSubcategory('');
+        setCurrentImageUri('');
+        setPhotos([]);
+        setNewPhotos([]);
+    });
+  }, []);
 
   const priceInputHandler = inputText => {
     // this prevents an error when deleting all entered numbers
@@ -399,6 +415,10 @@ const AddItemScreen = props => {
               photos={photos}
               setPhotos={setPhotos}
               setIsAddPhotoModalVisible={setIsAddPhotoModalVisible}
+              currentImageUri={currentImageUri}
+              setCurrentImageUri={setCurrentImageUri}
+              newPhotos={newPhotos}
+              setNewPhotos={setNewPhotos}
             />
           </View>
 

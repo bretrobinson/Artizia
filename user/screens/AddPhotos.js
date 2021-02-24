@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, StyleSheet, Modal, View, Image, FlatList, Text, Alert } from 'react-native';
 import Input from '../components/Input';
 import Card from '../components/Card';
@@ -11,19 +11,19 @@ import { ScrollView } from 'react-native-gesture-handler';
 import * as FileSystem from 'expo-file-system';
 
 const AddPhotos = (props) => {
-  const [currentImageUri, setCurrentImageUri] = useState('');
-  const [newPhotos, setNewPhotos] = useState(props.photos);
+
+ 
 
   const addPhotoHandler = async () => {
-    console.log('addPhotoHandler', currentImageUri);
+    console.log('addPhotoHandler', props.currentImageUri);
 
-    if (newPhotos.filter(photo => photo.uri === currentImageUri).length > 0) {
+    if (props.newPhotos.filter(photo => photo.uri === props.currentImageUri).length > 0) {
       Alert.alert("This photo has already been uploaded", "", [{ text: "Ok", onPress: () => { } }]);
       return;
     }
 
-    if (currentImageUri) {
-      const fileInfo = await FileSystem.getInfoAsync(currentImageUri);
+    if (props.currentImageUri) {
+      const fileInfo = await FileSystem.getInfoAsync(props.currentImageUri);
 
       if (!fileInfo.exists) {
         Alert.alert("The image uri does not exist on this device", "", [{ text: "Ok", onPress: () => { } }]);
@@ -35,9 +35,9 @@ const AddPhotos = (props) => {
       return;
     }
     
-    const newNewPhotos = [...newPhotos];
-    newNewPhotos.push({ uri: currentImageUri });
-    setNewPhotos(newNewPhotos);
+    const newNewPhotos = [...props.newPhotos];
+    newNewPhotos.push({ uri: props.currentImageUri });
+    props.setNewPhotos(newNewPhotos);
   };
 
   const verifyPermissions = async () => {
@@ -67,7 +67,7 @@ const AddPhotos = (props) => {
       quality: 0.5
     });
 
-    setCurrentImageUri(image.uri);
+    props.setCurrentImageUri(image.uri);
     console.log(image.uri);
   };
 
@@ -83,18 +83,18 @@ const AddPhotos = (props) => {
       quality: 0.5
     });
 
-    setCurrentImageUri(image.uri);
+    props.setCurrentImageUri(image.uri);
     console.log(image.uri);
   };
 
   const doneButtonHandler = () => {
-    props.setPhotos(newPhotos);
+    props.setPhotos(props.newPhotos);
     props.setIsAddPhotoModalVisible(false);
   }
 
   const cancelButtonHandler = () => {
-    setNewPhotos(props.photos);
-    props.setIsAddPhotoModalVisible(false);
+    props.setNewPhotos(props.photos);
+    props.setIsAddPhotoModalVisible(false); 
   }
 
   return (
@@ -109,7 +109,7 @@ const AddPhotos = (props) => {
           {/* <View> */}
           <Text style={DefaultStyles.label} >Image Uri</Text>
           {/* </View>                                 */}
-          <Input style={styles.photoUriInput} value={currentImageUri} onChangeText={(imageUri) => setCurrentImageUri(imageUri)} />
+          <Input style={styles.photoUriInput} value={props.currentImageUri} onChangeText={(imageUri) => props.setCurrentImageUri(imageUri)} />
 
           <View style={{ ...DefaultStyles.buttonContainer, justifyContent: 'center' }}>
             <MainButton title="Browse" buttonColor={Colors.defaultButtonColor} onPress={pickPhotoFromGalleryHandler} />
@@ -136,7 +136,7 @@ const AddPhotos = (props) => {
           <View style={DefaultStyles.imageFlatListContainer} >
             <FlatList
               horizontal
-              data={newPhotos}
+              data={props.newPhotos}
               keyExtractor={photo => photo.uri}
               renderItem={photo => (
                 // <View onStartShouldSetResponder={() => true}>
